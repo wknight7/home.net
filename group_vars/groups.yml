@@ -1,0 +1,17 @@
+---
+
+group_definitions:
+  - name: media
+    gid: 1776
+  - name: docs
+    gid: 1787
+  - name: hal
+    gid: 1999
+  - name: ansible
+    gid: 1998
+  - name: data
+    gid: 1997
+  - name: git
+    gid: 1996
+  - name: librarian
+    gid: 1995

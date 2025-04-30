@@ -1,0 +1,2 @@
+[server]
+wg ansible_host=192.168.86.56 container_id=101
