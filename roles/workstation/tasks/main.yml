@@ -1,3 +1,14 @@
 ---
+# Load workstation variables
+- name: Load workstation variables
+  include_vars: group_vars/workstations.yml
+  tags: always
+
+# Load group variables
+- name: Load group variables
+  include_vars: group_vars/groups.yml
+  tags: always
+
 - include_tasks: home_directory.yml
-# Other workstation-specific tasks would be included or defined here
+- include_tasks: fstab.yml
+- include_tasks: groups.yml

@@ -1,9 +1,10 @@
+---
 # tasks to complete before running roles
-- hosts: workstations, server
+- hosts: workstation, server
   tags: always
   become: true
   vars_files:
-    - ~/git/homelab/group_vars/vault.yml
+    - ~/git/home.net/vault.yml
   pre_tasks:
     - name: pre-run | update package cache (debian, etc)
       tags: always
@@ -16,3 +17,16 @@
       with_items:
         - "host_vars/{{ inventory_hostname }}.yml"
       tags: always
+
+# Workstation configuration
+- hosts: workstation
+  become: yes
+  ignore_errors: yes
+  force_handlers: yes
+  vars:
+    ansible_user: hal
+  vars_files:
+    - group_vars/workstations.yml
+  roles:
+    - workstation
+

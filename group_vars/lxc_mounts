@@ -1,0 +1,48 @@
+---
+
+mount_points:
+  media:
+    source: "/media"
+    dest: "/media"
+    owner: "bill"
+    group: "media"
+  books_downloads:
+    source: "/home/media/books/downloads"
+    dest: "/mnt/books/downloads"
+    owner: "bill"
+    group: "media"
+  book_library:
+    source: "/home/media/books"
+    dest: "/media/books"
+    owner: "bill"
+    group: "media"
+  paperless:
+    source: "/mnt/docs"
+    dest: "/mnt/docs"
+    owner: "bill"
+    group: "docs"  
+  photoprism_import:
+    source: "/media/downloads/photos"
+    dest: "/opt/photoprism/photos/import"
+    owner: "bill"
+    group: "media"
+  photoprism_originals:
+    source: "/media/storage/photos"
+    dest: "/opt/photoprism/photos/originals"
+    owner: "bill"
+    group: "media"
+  photoprism_storage:
+    source: "/home/media/photo_storage"
+    dest: "/opt/photoprism/storage"
+    owner: "bill"
+    group: "media"
+  plex:
+    source: "/media/storage"
+    dest: "/media/storage"
+    owner: "bill"
+    group: "media"
+  trilium:
+    source: "/mnt/trilium"
+    dest: "/mnt/trilium"
+    owner: "bill"
+    group: "data"

@@ -1,0 +1,3 @@
+{% for mount in assigned_mounts %}
+mp{{ loop.index0 }}: {{ mount_points[mount].source }},mp={{ mount_points[mount].dest }}
+{% endfor %}

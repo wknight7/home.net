@@ -1,16 +1,30 @@
 ---
 - name: Create desired directories
   file:
-    path: "/home/bill/{{ item }}"
+    path: "{{ desired_directories }}"
     state: directory
     mode: '0755'
   loop: "{{ desired_directories }}"
 
-- name: Remove unwanted directories
-  file:
-    path: "/home/bill/{{ item }}"
-    state: absent
+- name: Check if unwanted directories are empty
+  find:
+    paths: "{{ unwanted_directories }}"
+    file_type: any
+  register: found_files
   loop: "{{ unwanted_directories }}"
+
+- name: Remove empty unwanted directories
+  file:
+    path: "{{ unwanted_directories }}"
+    state: absent
+  when: item.matched == 0
+  loop: "{{ found_files.results }}"
+
+- name: Warn about non-empty unwanted directories
+  debug:
+    msg: "Warning: Directory {{ unwanted_directories }} is not empty and was not removed"
+  when: item.matched > 0
+  loop: "{{ found_files.results }}"
 
 - name: Rename snap to .snap
   command: mv /home/bill/snap /home/bill/.snap
@@ -46,11 +60,23 @@
     - Pictures
     - Videos
 
-- name: Rename Desktop to desktop
+- name: Check if Desktop directory is empty
+  find:
+    paths: "/home/bill/Desktop"
+    file_type: any
+  register: desktop_files
+
+- name: Rename Desktop to desktop if empty
   command: mv /home/bill/Desktop /home/bill/desktop
   args:
     creates: /home/bill/desktop
     removes: /home/bill/Desktop
+  when: desktop_files.matched == 0
+
+- name: Warn if Desktop directory is not empty
+  debug:
+    msg: "Warning: Desktop directory is not empty and was not renamed to desktop"
+  when: desktop_files.matched > 0
 
 - name: Ensure desktop directory exists
   file:
@@ -70,25 +96,18 @@
   become: yes
   become_user: bill
 
-- name: Restart GNOME session
-  shell: |
-    dbus-send --session --dest=org.gnome.SessionManager \
-    --type=method_call --print-reply --reply-timeout=2000 \
-    /org/gnome/SessionManager \
-    org.gnome.SessionManager.Logout uint32:1
-  async: 0
-  poll: 0
-  become: yes
-  become_user: bill
-  when: gnome_session_restart.rc != 0
+- name: Check if running in graphical environment
+  stat:
+    path: /usr/bin/gnome-session
+  register: gnome_session_check
+
+- name: gnome | appearance | dconf update  # Run dconf update as root
+  become: true
+  become_user: root
+  command: dconf update
 
 - name: Wait for system to come back
   wait_for_connection:
     delay: 10
     timeout: 300
   when: gnome_session_restart.rc != 0
-
-- name: Ensure Nautilus is restarted
-  command: nautilus -q
-  become: yes
-  become_user: bill

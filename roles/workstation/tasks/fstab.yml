@@ -1,0 +1,21 @@
+---
+- name: Add managed fstab entries
+  blockinfile:
+    path: /etc/fstab
+    block: |
+      # Begin managed fstab entries
+      {% for mount in nfs_mounts %}
+      {{ mount.src }} {{ mount.dest }} nfs {{ mount.opts }} 0 0
+      {% endfor %}
+      # End managed fstab entries
+  when: nfs_mounts is defined
+
+- name: Reload systemd daemon
+  command: systemctl daemon-reload
+  become: true
+  when: nfs_mounts is defined
+
+- name: Remount all filesystems
+  command: mount -a
+  become: true
+  when: nfs_mounts is defined

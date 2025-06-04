@@ -1,0 +1,17 @@
+- name: Ensure mount point directories exist
+  file:
+    path: "{{ mount_points[item].dest }}"
+    state: directory
+    owner: "{{ mount_points[item].owner }}"
+    group: "{{ mount_points[item].group }}"
+    mode: '0755'
+  loop: "{{ needed_mounts }}"
+  become: yes
+
+- name: Configure LXC mounts
+  template:
+    src: lxc_config.j2
+    dest: "/etc/pve/lxc/{{ container_id }}.conf"
+  vars:
+    container_id: "{{ lxc_id }}"
+  become: yes
