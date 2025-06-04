@@ -1,0 +1,18 @@
+---
+- name: Debug groups_to_create
+  debug:
+    msg: "groups_to_create: {{ groups_to_create }}"
+  when: groups_to_create is defined
+
+- name: Debug group_definitions variable
+  debug:
+    var: group_definitions
+  tags: always
+
+- name: Ensure groups are created
+  group:
+    name: "{{ item.name }}"
+    gid: "{{ item.gid }}"
+    state: present
+  with_items: "{{ group_definitions | selectattr('name', 'in', groups_to_create) | list }}"
+  when: groups_to_create is defined

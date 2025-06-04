@@ -1,0 +1,19 @@
+---
+branch: master
+
+ansible_cron_minute: "40"
+ssh_port: 22
+ssh_users: "bill hal"
+
+# platform-specific
+microcode_amd_install: false
+microcode_intel_install: false
+proxmox_instance: false
+user_maps: true
+
+# server
+unattended_upgrades: true
+web_server: false
+
+# Add container_id
+container_id: 101

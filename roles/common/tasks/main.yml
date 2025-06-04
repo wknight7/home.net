@@ -1,0 +1,44 @@
+---
+# Load vault variables
+- name: Load vault variables
+  include_vars: group_vars/vault.yml
+  tags: always
+
+# Load distro-specific variables (if needed)
+- include_vars: "{{ ansible_distribution }}.yml"
+  tags: always
+
+# Load group variables
+- name: Load group variables
+  include_vars: group_vars/groups.yml
+  tags: always
+
+- block:
+  # Create necessary groups
+  - import_tasks: groups.yml
+
+  # Make sure users exist on the system
+  - import_tasks: users/bill.yml
+  - import_tasks: users/hal.yml
+  - import_tasks: users/app_user.yml
+
+  # Set up the ansible environment
+  - import_tasks: ansible_setup.yml
+
+  # Install Python3 and pip3
+  - import_tasks: system_setup/python_pip.yml
+
+  # Install software
+  - import_tasks: software/packages.yml
+  - import_tasks: software/repositories.yml
+
+  # Perform remaining tasks:
+  - import_tasks: system_setup/clock.yml
+  - import_tasks: system_setup/locale.yml
+  - import_tasks: system_setup/logging.yml
+  - import_tasks: system_setup/openssh.yml
+  - import_tasks: system_setup/cron.yml
+
+  rescue:
+    - set_fact: task_failed=true
+

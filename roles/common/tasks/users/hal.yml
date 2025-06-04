@@ -1,0 +1,16 @@
+- name: users | hal | create user
+  user:
+    name: hal    
+    uid: 1999
+    groups: sudo
+    state: present    
+    shell: /bin/bash    
+
+- name: users | hal | add sudoers file
+  tags: settings,hal,sudo,system,users
+  copy:
+    src: ~/git/homelab/roles/common/files/users/hal/sudoer_hal
+    dest: /etc/sudoers.d/hal
+    owner: root
+    group: root
+    mode: 0440

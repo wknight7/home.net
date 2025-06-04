@@ -1,0 +1,89 @@
+- name: users | bill | create group
+  tags: groups,bill,users
+  group:
+    name: bill
+    state: present
+
+- name: users | bill | create user
+  tags: bill,sudo,users
+  user:
+    name: bill
+    group: bill
+    uid: 1000
+    groups: adm,{{ sudo_group }}
+    state: present
+    comment: "Bill Knight"
+    password: "{{ bill_password | password_hash('sha512') }}"
+    shell: /bin/bash
+
+- name: users | bill | bill | add sudoers file
+  tags: bill,settings,hal,sudo,system,users
+  copy:
+    src: ~/git/homelab/roles/common/files/users/bill/sudoer_bill
+    dest: /etc/sudoers.d/bill
+    owner: root
+    group: root
+    mode: 0440
+
+- name: users | bill | create .ssh directory
+  become_user: bill
+  tags: dotfiles,bill,ssh,users
+  file:
+    path: "{{ item.dir }}"
+    state: directory
+    owner: bill
+    group: bill
+    mode: 0700  
+  with_items:
+    - { dir: '/home/bill/.ssh' }
+
+- name: users | bill | add public key
+  tags: dotfiles,bill,ssh,ssh-keys,users
+  authorized_key:
+    user: bill
+    key: "{{ item }}"
+  with_file:
+    - ~/git/homelab/roles/common/files/users/bill/bill.pub
+
+- name: users | bill | create config directories
+  tags: dotfiles,bill,users
+  file:
+    path: /home/bill/{{ item.dir }}
+    state: directory
+    owner: bill
+    group: bill
+    mode: 0700
+  with_items:
+    - { dir: '.bash' }
+    - { dir: '.config' }
+
+
+- name: users | bill | copy bashrc
+  tags: bashrc,users,bill,test
+  copy:
+    src: ~/git/homelab/roles/common/files/users/bill/bashrc
+    dest: /home/bill/.bashrc
+    owner: bill
+    group: bill
+    mode: 0600
+  # with_items:
+  #   - { src: 'bashrc', dest: '.bashrc' }
+    
+
+# - name: users | bill | checkout git repositories
+#   tags: git,users,bill
+#   become: yes
+#   git:
+#     repo: "{{ item.repo }}"
+#     dest: "{{ item.dest }}"
+#     force: yes
+#   with_items:
+#     - { repo: 'https://github.com/ctrlpvim/ctrlp.vim.git', dest: '/home/bill/.vim/bundle/ctrlp.vim' }
+#     - { repo: 'https://github.com/davidhalter/jedi-vim.git', dest: '/home/bill/.vim/bundle/jedi-vim' }
+#     - { repo: 'https://github.com/pearofducks/ansible-vim', dest: '/home/bill/.vim/bundle/ansible-vim' }
+#     - { repo: 'https://github.com/rhysd/vim-grammarous.git', dest: '/home/bill/.vim/bundle/vim-grammarous' }
+#     - { repo: 'https://github.com/ron89/thesaurus_query.vim', dest: '/home/bill/.vim/bundle/thesaurus_query' }
+#     - { repo: 'https://github.com/scrooloose/nerdtree.git', dest: '/home/bill/.vim/bundle/nerdtree' }
+#     - { repo: 'https://github.com/tpope/vim-obsession.git', dest: '/home/bill/.vim/bundle/vim-obsession' }
+#     - { repo: 'https://github.com/vim-syntastic/syntastic.git', dest: '/home/bill/.vim/bundle/syntastic' }
+#   notify: update_vim_bundle_perms

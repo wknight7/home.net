@@ -1,0 +1,51 @@
+2025-05-01 13:36:12,597 p=23308 u=bill n=ansible WARNING| [WARNING]: Unable to parse
+/home/bill/git/home.net/inventories/inventory_production as an inventory source
+
+2025-05-01 13:36:12,597 p=23308 u=bill n=ansible WARNING| [WARNING]: No inventory was parsed, only implicit localhost is available
+
+2025-05-01 13:36:12,601 p=23308 u=bill n=ansible WARNING| [WARNING]: provided hosts list is empty, only localhost is available. Note that
+the implicit localhost does not match 'all'
+
+2025-05-01 13:36:12,675 p=23308 u=bill n=ansible WARNING| [WARNING]: Skipping callback plugin 'email_notifications  # Remove this line if
+you want standard output.', unable to load
+
+2025-05-01 13:36:52,616 p=23374 u=bill n=ansible WARNING| [WARNING]: Skipping callback plugin 'email_notifications  # Remove this line if
+you want standard output.', unable to load
+
+2025-05-01 13:36:53,294 p=23374 u=bill n=ansible WARNING| [WARNING]: Platform linux on host wg is using the discovered Python interpreter at
+/usr/bin/python3.12, but future installation of another Python interpreter could
+change the meaning of that path. See https://docs.ansible.com/ansible-
+core/2.18/reference_appendices/interpreter_discovery.html for more information.
+
+2025-05-01 13:36:53,294 p=23374 u=bill n=ansible INFO| wg | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.12"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+2025-05-01 13:40:55,804 p=23495 u=bill n=ansible WARNING| [WARNING]: Skipping callback plugin 'email_notifications  # Remove this line if
+you want standard output.', unable to load
+
+2025-05-01 13:40:55,804 p=23495 u=bill n=ansible WARNING| [WARNING]: Could not match supplied host pattern, ignoring: lxc
+
+2025-05-01 13:40:55,804 p=23495 u=bill n=ansible WARNING| [WARNING]: Could not match supplied host pattern, ignoring: workstations
+
+2025-05-01 13:40:55,825 p=23495 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from
+/home/bill/git/homelab/group_vars/vault.yml, line 3, column 1, found a duplicate
+dict key (proxmox_password). Using last defined value only.
+
+2025-05-01 13:40:55,826 p=23495 u=bill n=ansible INFO| PLAY [lxc, workstations, server] **************************************************
+2025-05-01 13:40:55,831 p=23495 u=bill n=ansible INFO| TASK [Gathering Facts] ************************************************************
+2025-05-01 13:40:57,104 p=23495 u=bill n=ansible WARNING| [WARNING]: Platform linux on host wg is using the discovered Python interpreter at
+/usr/bin/python3.12, but future installation of another Python interpreter could
+change the meaning of that path. See https://docs.ansible.com/ansible-
+core/2.18/reference_appendices/interpreter_discovery.html for more information.
+
+2025-05-01 13:40:57,104 p=23495 u=bill n=ansible INFO| ok: [wg]
+2025-05-01 13:40:57,110 p=23495 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] *******************************
+2025-05-01 13:41:01,152 p=23495 u=bill n=ansible INFO| ok: [wg]
+2025-05-01 13:41:01,159 p=23495 u=bill n=ansible INFO| TASK [Include host variables dynamically] *****************************************
+2025-05-01 13:41:01,170 p=23495 u=bill n=ansible INFO| ok: [wg] => (item=host_vars/wg.yml)
+2025-05-01 13:41:01,171 p=23495 u=bill n=ansible INFO| PLAY RECAP ************************************************************************
+2025-05-01 13:41:01,171 p=23495 u=bill n=ansible INFO| wg                         : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
