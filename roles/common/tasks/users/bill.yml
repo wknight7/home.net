@@ -66,24 +66,3 @@
     owner: bill
     group: bill
     mode: 0600
-  # with_items:
-  #   - { src: 'bashrc', dest: '.bashrc' }
-    
-
-# - name: users | bill | checkout git repositories
-#   tags: git,users,bill
-#   become: yes
-#   git:
-#     repo: "{{ item.repo }}"
-#     dest: "{{ item.dest }}"
-#     force: yes
-#   with_items:
-#     - { repo: 'https://github.com/ctrlpvim/ctrlp.vim.git', dest: '/home/bill/.vim/bundle/ctrlp.vim' }
-#     - { repo: 'https://github.com/davidhalter/jedi-vim.git', dest: '/home/bill/.vim/bundle/jedi-vim' }
-#     - { repo: 'https://github.com/pearofducks/ansible-vim', dest: '/home/bill/.vim/bundle/ansible-vim' }
-#     - { repo: 'https://github.com/rhysd/vim-grammarous.git', dest: '/home/bill/.vim/bundle/vim-grammarous' }
-#     - { repo: 'https://github.com/ron89/thesaurus_query.vim', dest: '/home/bill/.vim/bundle/thesaurus_query' }
-#     - { repo: 'https://github.com/scrooloose/nerdtree.git', dest: '/home/bill/.vim/bundle/nerdtree' }
-#     - { repo: 'https://github.com/tpope/vim-obsession.git', dest: '/home/bill/.vim/bundle/vim-obsession' }
-#     - { repo: 'https://github.com/vim-syntastic/syntastic.git', dest: '/home/bill/.vim/bundle/syntastic' }
-#   notify: update_vim_bundle_perms

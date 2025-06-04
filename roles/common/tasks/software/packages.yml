@@ -15,6 +15,7 @@
       - "{{ rename_package }}"
       - rsync
       - sshfs # 	filesystem client based on SSH File Transfer Protocol
+      - tree
       - traceroute
       - wget
       - zsh  # shell with lots of features

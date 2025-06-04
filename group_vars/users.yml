@@ -1,0 +1,24 @@
+---
+users:
+  - username: bill
+    groups:
+      - bill
+    uid: 1000
+    shell: /bin/bash    
+    sudo: yes
+    state: present
+    comment: "Bill Knight"
+    password: "{{ vault_bill_password }}"
+    ssh_keys: "{{ vault_bill_ssh_keys }}"
+
+  - username: hal  
+    groups:
+      - ansible  
+    uid: 1999
+    shell: /bin/bash    
+    sudo: yes
+    state: present
+    comment: "Ansible System User"
+    password: "{{ vault_hal_password }}"
+    ssh_key: "{{ vault_hal_ssh_key }}"
+

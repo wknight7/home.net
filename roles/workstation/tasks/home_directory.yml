@@ -1,0 +1,94 @@
+---
+- name: Create desired directories
+  file:
+    path: "/home/bill/{{ item }}"
+    state: directory
+    mode: '0755'
+  loop: "{{ desired_directories }}"
+
+- name: Remove unwanted directories
+  file:
+    path: "/home/bill/{{ item }}"
+    state: absent
+  loop: "{{ unwanted_directories }}"
+
+- name: Rename snap to .snap
+  command: mv /home/bill/snap /home/bill/.snap
+  args:
+    creates: /home/bill/.snap
+    removes: /home/bill/snap
+
+- name: Ensure .snap directory exists
+  file:
+    path: /home/bill/.snap
+    state: directory
+    mode: '0755'
+
+- name: Update .config/user-dirs.dirs file
+  template:
+    src: user-dirs.dirs.j2
+    dest: /home/bill/.config/user-dirs.dirs
+    mode: '0644'
+
+- name: Update .config/gtk-3.0/bookmarks file
+  template:
+    src: bookmarks.j2
+    dest: /home/bill/.config/gtk-3.0/bookmarks
+    mode: '0644'
+
+- name: Remove dead .desktop files from Desktop
+  file:
+    path: "/home/bill/Desktop/{{ item }}.desktop"
+    state: absent
+  loop:
+    - Documents
+    - Music
+    - Pictures
+    - Videos
+
+- name: Rename Desktop to desktop
+  command: mv /home/bill/Desktop /home/bill/desktop
+  args:
+    creates: /home/bill/desktop
+    removes: /home/bill/Desktop
+
+- name: Ensure desktop directory exists
+  file:
+    path: /home/bill/desktop
+    state: directory
+    mode: '0755'
+
+- name: Check if GNOME session needs restart
+  shell: |
+    dbus-send --session --dest=org.gnome.SessionManager \
+    --type=method_call --print-reply --reply-timeout=2000 \
+    /org/gnome/SessionManager \
+    org.gnome.SessionManager.Logout uint32:1
+  register: gnome_session_restart
+  changed_when: false
+  failed_when: false
+  become: yes
+  become_user: bill
+
+- name: Restart GNOME session
+  shell: |
+    dbus-send --session --dest=org.gnome.SessionManager \
+    --type=method_call --print-reply --reply-timeout=2000 \
+    /org/gnome/SessionManager \
+    org.gnome.SessionManager.Logout uint32:1
+  async: 0
+  poll: 0
+  become: yes
+  become_user: bill
+  when: gnome_session_restart.rc != 0
+
+- name: Wait for system to come back
+  wait_for_connection:
+    delay: 10
+    timeout: 300
+  when: gnome_session_restart.rc != 0
+
+- name: Ensure Nautilus is restarted
+  command: nautilus -q
+  become: yes
+  become_user: bill
