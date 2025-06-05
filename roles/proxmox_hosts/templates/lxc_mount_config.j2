@@ -1,0 +1,7 @@
+{% if hostvars[item]['needed_mounts'] is defined %}
+{% for mount in hostvars[item]['needed_mounts'] %}
+{% if mount in mount_points %}
+mp{{ loop.index0 }}: {{ mount_points[mount]['source'] }},mp={{ mount_points[mount]['dest'] }}
+{% endif %}
+{% endfor %}
+{% endif %}

@@ -1,0 +1,10 @@
+{% set config_file = lxc_conf_file.results | selectattr('item', 'equalto', item) | list %}
+{% if config_file and config_file[0].stat.exists %}
+{% set config_content = existing_config.results | selectattr('item.item', 'equalto', item) | list %}
+{% if config_content %}
+{{ config_content[0].content | b64decode | regex_replace('\n*(?:mp\d+: .+\n)+', '') }}
+{% endif %}
+{% endif %}
+
+# Mount configurations
+{{ mount_configs[item] }}

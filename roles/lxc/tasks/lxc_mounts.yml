@@ -13,5 +13,5 @@
     src: lxc_config.j2
     dest: "/etc/pve/lxc/{{ container_id }}.conf"
   vars:
-    container_id: "{{ lxc_id }}"
+    container_id: "{{ container_id }}"
   become: yes

@@ -16,4 +16,14 @@ unattended_upgrades: true
 web_server: false
 
 # Add container_id
-container_id: 101
+container_id: '101'
+
+needed_mounts:
+  - trilium
+
+ansible_python_interpreter: /usr/bin/python3
+
+groups_to_create:
+  - media
+  - docs
+  - data
