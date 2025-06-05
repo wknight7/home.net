@@ -1,0 +1,32 @@
+---
+branch: master
+
+ansible_cron_minute: "40"
+ssh_port: 22
+ssh_users: "bill hal"
+ansible_python_interpreter: /usr/bin/python3
+app_user: bill
+app_user_groups:
+  - media
+
+# platform-specific
+microcode_amd_install: false
+microcode_intel_install: false
+proxmox_instance: false
+user_maps: true
+
+# server
+unattended_upgrades: true
+web_server: false
+
+needed_mounts:
+  - photoprism_import
+  - photoprism_originals
+  - photoprism_storage
+
+# groups to create
+groups_to_create:
+  - media
+
+# Add container_id
+container_id: 103

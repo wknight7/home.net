@@ -1,8 +1,10 @@
 [lxc]
-wg ansible_host=192.168.86.54 container_id=101
+wg ansible_host=192.168.86.46 container_id=101
+photoprism ansible_host=192.168.86.72 container_id=103
 
 [workstation]
 desktop ansible_host=192.168.86.40
+samsung ansible_host=192.168.86.94
 
 [proxmox_hosts]
 proxmox ansible_host=192.168.86.143
