@@ -18,7 +18,8 @@
   authorized_key:
     user: bill
     state: present
-    key: "{{ vault_bill_authorized_keys }}"
+    key: "{{ item }}"
+  loop: "{{ vault_bill_ssh_keys }}"
   no_log: true
 
 - name: Copy bashrc for Bill

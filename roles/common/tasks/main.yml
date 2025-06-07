@@ -1,7 +1,7 @@
 ---
 # Load vault variables
 - name: Load vault variables
-  include_vars: vault.yml
+  include_vars: ~/git/home.net/vault.yml
   tags: always
 
 # Load distro-specific variables (if needed)
