@@ -15,3 +15,4 @@ wg ansible_host=192.168.86.46 container_id=101
 photoprism ansible_host=192.168.86.72 container_id=103
 desktop ansible_host=192.168.86.40
 samsung ansible_host=192.168.86.94
+dell ansible_host=192.168.86.55
