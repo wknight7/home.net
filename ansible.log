@@ -21442,3 +21442,831 @@ that path. See https://docs.ansible.com/ansible-core/2.18/reference_appendices/i
 2025-06-07 13:18:36,355 p=123243 u=bill n=ansible INFO| proxmox                    : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 2025-06-07 13:18:36,355 p=123243 u=bill n=ansible INFO| samsung                    : ok=73   changed=3    unreachable=0    failed=0    skipped=10   rescued=0    ignored=5   
 2025-06-07 13:18:36,355 p=123243 u=bill n=ansible INFO| wg                         : ok=48   changed=2    unreachable=0    failed=0    skipped=9    rescued=0    ignored=1   
+2025-06-07 13:35:14,363 p=124743 u=bill n=ansible WARNING| [WARNING]: Could not match supplied host pattern, ignoring: common
+
+2025-06-07 13:35:14,382 p=124743 u=bill n=ansible INFO| PLAY [workstation, lxc, common] *************************************************************************************************************************************************************
+2025-06-07 13:35:14,387 p=124743 u=bill n=ansible INFO| TASK [Gathering Facts] **********************************************************************************************************************************************************************
+2025-06-07 13:35:15,462 p=124743 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:35:16,473 p=124743 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:35:16,708 p=124743 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:35:17,636 p=124743 u=bill n=ansible INFO| fatal: [desktop]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.40\". Make sure this host can be reached over ssh: ssh: connect to host 192.168.86.40 port 22: No route to host\r\n", "unreachable": true}
+2025-06-07 13:35:17,753 p=124743 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 13:35:17,760 p=124743 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] *****************************************************************************************************************************************
+2025-06-07 13:35:19,212 p=124743 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:35:19,297 p=124743 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 13:35:19,672 p=124743 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:35:19,715 p=124743 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:35:19,722 p=124743 u=bill n=ansible INFO| TASK [Include host variables dynamically] ***************************************************************************************************************************************************
+2025-06-07 13:35:19,743 p=124743 u=bill n=ansible INFO| ok: [samsung] => (item=host_vars/samsung.yml)
+2025-06-07 13:35:19,752 p=124743 u=bill n=ansible INFO| ok: [dell] => (item=host_vars/dell.yml)
+2025-06-07 13:35:19,761 p=124743 u=bill n=ansible INFO| ok: [wg] => (item=host_vars/wg.yml)
+2025-06-07 13:35:19,768 p=124743 u=bill n=ansible INFO| ok: [photoprism] => (item=host_vars/photoprism.yml)
+2025-06-07 13:35:19,771 p=124743 u=bill n=ansible INFO| PLAY [updates] ******************************************************************************************************************************************************************************
+2025-06-07 13:35:19,790 p=124743 u=bill n=ansible INFO| TASK [Gathering Facts] **********************************************************************************************************************************************************************
+2025-06-07 13:35:20,401 p=124743 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:35:20,433 p=124743 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 13:35:20,924 p=124743 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:35:21,185 p=124743 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:35:21,213 p=124743 u=bill n=ansible INFO| TASK [common : Load vault variables] ********************************************************************************************************************************************************
+2025-06-07 13:35:21,265 p=124743 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 13:35:21,268 p=124743 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:35:21,279 p=124743 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:35:21,291 p=124743 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:35:21,298 p=124743 u=bill n=ansible INFO| TASK [common : include_vars] ****************************************************************************************************************************************************************
+2025-06-07 13:35:21,345 p=124743 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 13:35:21,356 p=124743 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:35:21,357 p=124743 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:35:21,364 p=124743 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:35:21,370 p=124743 u=bill n=ansible INFO| TASK [common : Load group variables] ********************************************************************************************************************************************************
+2025-06-07 13:35:21,394 p=124743 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 13:35:21,405 p=124743 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:35:21,406 p=124743 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:35:21,411 p=124743 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:35:21,419 p=124743 u=bill n=ansible INFO| TASK [common : Debug groups_to_create] ******************************************************************************************************************************************************
+2025-06-07 13:35:21,447 p=124743 u=bill n=ansible INFO| ok: [wg] => {
+    "msg": "groups_to_create: ['media', 'docs', 'data']"
+}
+2025-06-07 13:35:21,459 p=124743 u=bill n=ansible INFO| ok: [photoprism] => {
+    "msg": "groups_to_create: ['media']"
+}
+2025-06-07 13:35:21,463 p=124743 u=bill n=ansible INFO| ok: [samsung] => {
+    "msg": "groups_to_create: ['media', 'ansible', 'data', 'docs']"
+}
+2025-06-07 13:35:21,472 p=124743 u=bill n=ansible INFO| ok: [dell] => {
+    "msg": "groups_to_create: ['media', 'ansible', 'data', 'docs']"
+}
+2025-06-07 13:35:21,479 p=124743 u=bill n=ansible INFO| TASK [common : Debug group_definitions variable] ********************************************************************************************************************************************
+2025-06-07 13:35:21,506 p=124743 u=bill n=ansible INFO| ok: [wg] => {
+    "group_definitions": [
+        {
+            "gid": 1776,
+            "name": "media"
+        },
+        {
+            "gid": 1787,
+            "name": "docs"
+        },
+        {
+            "gid": 1999,
+            "name": "hal"
+        },
+        {
+            "gid": 1998,
+            "name": "ansible"
+        },
+        {
+            "gid": 1997,
+            "name": "data"
+        },
+        {
+            "gid": 1996,
+            "name": "git"
+        },
+        {
+            "gid": 1995,
+            "name": "librarian"
+        }
+    ]
+}
+2025-06-07 13:35:21,519 p=124743 u=bill n=ansible INFO| ok: [photoprism] => {
+    "group_definitions": [
+        {
+            "gid": 1776,
+            "name": "media"
+        },
+        {
+            "gid": 1787,
+            "name": "docs"
+        },
+        {
+            "gid": 1999,
+            "name": "hal"
+        },
+        {
+            "gid": 1998,
+            "name": "ansible"
+        },
+        {
+            "gid": 1997,
+            "name": "data"
+        },
+        {
+            "gid": 1996,
+            "name": "git"
+        },
+        {
+            "gid": 1995,
+            "name": "librarian"
+        }
+    ]
+}
+2025-06-07 13:35:21,520 p=124743 u=bill n=ansible INFO| ok: [samsung] => {
+    "group_definitions": [
+        {
+            "gid": 1776,
+            "name": "media"
+        },
+        {
+            "gid": 1787,
+            "name": "docs"
+        },
+        {
+            "gid": 1999,
+            "name": "hal"
+        },
+        {
+            "gid": 1998,
+            "name": "ansible"
+        },
+        {
+            "gid": 1997,
+            "name": "data"
+        },
+        {
+            "gid": 1996,
+            "name": "git"
+        },
+        {
+            "gid": 1995,
+            "name": "librarian"
+        }
+    ]
+}
+2025-06-07 13:35:21,528 p=124743 u=bill n=ansible INFO| ok: [dell] => {
+    "group_definitions": [
+        {
+            "gid": 1776,
+            "name": "media"
+        },
+        {
+            "gid": 1787,
+            "name": "docs"
+        },
+        {
+            "gid": 1999,
+            "name": "hal"
+        },
+        {
+            "gid": 1998,
+            "name": "ansible"
+        },
+        {
+            "gid": 1997,
+            "name": "data"
+        },
+        {
+            "gid": 1996,
+            "name": "git"
+        },
+        {
+            "gid": 1995,
+            "name": "librarian"
+        }
+    ]
+}
+2025-06-07 13:35:21,534 p=124743 u=bill n=ansible INFO| TASK [common : Ensure groups are created] ***************************************************************************************************************************************************
+2025-06-07 13:35:21,770 p=124743 u=bill n=ansible INFO| ok: [photoprism] => (item={'name': 'media', 'gid': 1776})
+2025-06-07 13:35:21,797 p=124743 u=bill n=ansible INFO| ok: [wg] => (item={'name': 'media', 'gid': 1776})
+2025-06-07 13:35:21,938 p=124743 u=bill n=ansible INFO| ok: [wg] => (item={'name': 'docs', 'gid': 1787})
+2025-06-07 13:35:21,943 p=124743 u=bill n=ansible INFO| ok: [samsung] => (item={'name': 'media', 'gid': 1776})
+2025-06-07 13:35:21,946 p=124743 u=bill n=ansible INFO| ok: [dell] => (item={'name': 'media', 'gid': 1776})
+2025-06-07 13:35:22,084 p=124743 u=bill n=ansible INFO| ok: [wg] => (item={'name': 'data', 'gid': 1997})
+2025-06-07 13:35:22,184 p=124743 u=bill n=ansible INFO| ok: [samsung] => (item={'name': 'docs', 'gid': 1787})
+2025-06-07 13:35:22,307 p=124743 u=bill n=ansible INFO| ok: [dell] => (item={'name': 'docs', 'gid': 1787})
+2025-06-07 13:35:22,410 p=124743 u=bill n=ansible INFO| ok: [samsung] => (item={'name': 'ansible', 'gid': 1998})
+2025-06-07 13:35:22,630 p=124743 u=bill n=ansible INFO| ok: [dell] => (item={'name': 'ansible', 'gid': 1998})
+2025-06-07 13:35:22,633 p=124743 u=bill n=ansible INFO| ok: [samsung] => (item={'name': 'data', 'gid': 1997})
+2025-06-07 13:35:22,913 p=124743 u=bill n=ansible INFO| ok: [dell] => (item={'name': 'data', 'gid': 1997})
+2025-06-07 13:35:22,920 p=124743 u=bill n=ansible INFO| TASK [common : Create Bill user] ************************************************************************************************************************************************************
+2025-06-07 13:35:23,206 p=124743 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 13:35:23,218 p=124743 u=bill n=ansible INFO| changed: [photoprism]
+2025-06-07 13:35:23,374 p=124743 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:35:23,502 p=124743 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:35:23,509 p=124743 u=bill n=ansible INFO| TASK [common : Ensure .ssh directory exists] ************************************************************************************************************************************************
+2025-06-07 13:35:23,709 p=124743 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:35:23,732 p=124743 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 13:35:23,821 p=124743 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:35:23,950 p=124743 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:35:23,958 p=124743 u=bill n=ansible INFO| TASK [common : Set authorized keys for Bill from vault] *************************************************************************************************************************************
+2025-06-07 13:35:24,217 p=124743 u=bill n=ansible INFO| ok: [photoprism] => (item=None)
+2025-06-07 13:35:24,255 p=124743 u=bill n=ansible INFO| ok: [wg] => (item=None)
+2025-06-07 13:35:24,377 p=124743 u=bill n=ansible INFO| ok: [photoprism] => (item=None)
+2025-06-07 13:35:24,435 p=124743 u=bill n=ansible INFO| ok: [samsung] => (item=None)
+2025-06-07 13:35:24,450 p=124743 u=bill n=ansible INFO| ok: [wg] => (item=None)
+2025-06-07 13:35:24,484 p=124743 u=bill n=ansible INFO| ok: [dell] => (item=None)
+2025-06-07 13:35:24,538 p=124743 u=bill n=ansible INFO| ok: [photoprism] => (item=None)
+2025-06-07 13:35:24,654 p=124743 u=bill n=ansible INFO| ok: [wg] => (item=None)
+2025-06-07 13:35:24,700 p=124743 u=bill n=ansible INFO| ok: [photoprism] => (item=None)
+2025-06-07 13:35:24,700 p=124743 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:35:24,779 p=124743 u=bill n=ansible INFO| ok: [samsung] => (item=None)
+2025-06-07 13:35:24,861 p=124743 u=bill n=ansible INFO| ok: [wg] => (item=None)
+2025-06-07 13:35:24,861 p=124743 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 13:35:24,946 p=124743 u=bill n=ansible INFO| ok: [dell] => (item=None)
+2025-06-07 13:35:25,115 p=124743 u=bill n=ansible INFO| ok: [samsung] => (item=None)
+2025-06-07 13:35:25,364 p=124743 u=bill n=ansible INFO| ok: [dell] => (item=None)
+2025-06-07 13:35:25,427 p=124743 u=bill n=ansible INFO| ok: [samsung] => (item=None)
+2025-06-07 13:35:25,428 p=124743 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:35:25,727 p=124743 u=bill n=ansible INFO| ok: [dell] => (item=None)
+2025-06-07 13:35:25,728 p=124743 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:35:25,735 p=124743 u=bill n=ansible INFO| TASK [common : Copy bashrc for Bill] ********************************************************************************************************************************************************
+2025-06-07 13:35:26,092 p=124743 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:35:26,150 p=124743 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 13:35:26,389 p=124743 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:35:26,453 p=124743 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:35:26,459 p=124743 u=bill n=ansible INFO| TASK [common : Ensure sudo rights for Bill] *************************************************************************************************************************************************
+2025-06-07 13:35:26,796 p=124743 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:35:26,842 p=124743 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 13:35:26,987 p=124743 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:35:27,193 p=124743 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:35:27,201 p=124743 u=bill n=ansible INFO| TASK [common : Configure SSH daemon] ********************************************************************************************************************************************************
+2025-06-07 13:35:27,547 p=124743 u=bill n=ansible ERROR| ERROR! The requested handler 'Restart SSH service' was not found in either the main handlers list nor in the listening handlers list
+2025-06-07 13:40:31,357 p=125192 u=bill n=ansible WARNING| [WARNING]: Could not match supplied host pattern, ignoring: common
+
+2025-06-07 13:40:31,376 p=125192 u=bill n=ansible INFO| PLAY [workstation, lxc, common] *************************************************************************************************************************************************************
+2025-06-07 13:40:31,381 p=125192 u=bill n=ansible INFO| TASK [Gathering Facts] **********************************************************************************************************************************************************************
+2025-06-07 13:40:32,452 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:40:33,508 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:40:33,597 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:40:34,627 p=125192 u=bill n=ansible INFO| fatal: [desktop]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.40\". Make sure this host can be reached over ssh: ssh: connect to host 192.168.86.40 port 22: No route to host\r\n", "unreachable": true}
+2025-06-07 13:40:43,704 p=125192 u=bill n=ansible INFO| fatal: [wg]: FAILED! => {"msg": "Timeout (12s) waiting for privilege escalation prompt: "}
+2025-06-07 13:40:43,711 p=125192 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] *****************************************************************************************************************************************
+2025-06-07 13:40:45,923 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:40:47,757 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:40:48,563 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:40:48,570 p=125192 u=bill n=ansible INFO| TASK [Include host variables dynamically] ***************************************************************************************************************************************************
+2025-06-07 13:40:48,588 p=125192 u=bill n=ansible INFO| ok: [samsung] => (item=host_vars/samsung.yml)
+2025-06-07 13:40:48,598 p=125192 u=bill n=ansible INFO| ok: [dell] => (item=host_vars/dell.yml)
+2025-06-07 13:40:48,604 p=125192 u=bill n=ansible INFO| ok: [photoprism] => (item=host_vars/photoprism.yml)
+2025-06-07 13:40:48,607 p=125192 u=bill n=ansible INFO| PLAY [updates] ******************************************************************************************************************************************************************************
+2025-06-07 13:40:48,625 p=125192 u=bill n=ansible INFO| TASK [Gathering Facts] **********************************************************************************************************************************************************************
+2025-06-07 13:40:49,956 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:40:49,965 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:40:50,337 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:40:50,360 p=125192 u=bill n=ansible INFO| TASK [common : Load vault variables] ********************************************************************************************************************************************************
+2025-06-07 13:40:50,392 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:40:50,408 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:40:50,416 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:40:50,423 p=125192 u=bill n=ansible INFO| TASK [common : include_vars] ****************************************************************************************************************************************************************
+2025-06-07 13:40:50,445 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:40:50,446 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:40:50,453 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:40:50,459 p=125192 u=bill n=ansible INFO| TASK [common : Load group variables] ********************************************************************************************************************************************************
+2025-06-07 13:40:50,471 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:40:50,483 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:40:50,489 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:40:50,496 p=125192 u=bill n=ansible INFO| TASK [common : Debug groups_to_create] ******************************************************************************************************************************************************
+2025-06-07 13:40:50,522 p=125192 u=bill n=ansible INFO| ok: [photoprism] => {
+    "msg": "groups_to_create: ['media']"
+}
+2025-06-07 13:40:50,525 p=125192 u=bill n=ansible INFO| ok: [samsung] => {
+    "msg": "groups_to_create: ['media', 'ansible', 'data', 'docs']"
+}
+2025-06-07 13:40:50,535 p=125192 u=bill n=ansible INFO| ok: [dell] => {
+    "msg": "groups_to_create: ['media', 'ansible', 'data', 'docs']"
+}
+2025-06-07 13:40:50,541 p=125192 u=bill n=ansible INFO| TASK [common : Debug group_definitions variable] ********************************************************************************************************************************************
+2025-06-07 13:40:50,556 p=125192 u=bill n=ansible INFO| ok: [photoprism] => {
+    "group_definitions": [
+        {
+            "gid": 1776,
+            "name": "media"
+        },
+        {
+            "gid": 1787,
+            "name": "docs"
+        },
+        {
+            "gid": 1999,
+            "name": "hal"
+        },
+        {
+            "gid": 1998,
+            "name": "ansible"
+        },
+        {
+            "gid": 1997,
+            "name": "data"
+        },
+        {
+            "gid": 1996,
+            "name": "git"
+        },
+        {
+            "gid": 1995,
+            "name": "librarian"
+        }
+    ]
+}
+2025-06-07 13:40:50,569 p=125192 u=bill n=ansible INFO| ok: [samsung] => {
+    "group_definitions": [
+        {
+            "gid": 1776,
+            "name": "media"
+        },
+        {
+            "gid": 1787,
+            "name": "docs"
+        },
+        {
+            "gid": 1999,
+            "name": "hal"
+        },
+        {
+            "gid": 1998,
+            "name": "ansible"
+        },
+        {
+            "gid": 1997,
+            "name": "data"
+        },
+        {
+            "gid": 1996,
+            "name": "git"
+        },
+        {
+            "gid": 1995,
+            "name": "librarian"
+        }
+    ]
+}
+2025-06-07 13:40:50,577 p=125192 u=bill n=ansible INFO| ok: [dell] => {
+    "group_definitions": [
+        {
+            "gid": 1776,
+            "name": "media"
+        },
+        {
+            "gid": 1787,
+            "name": "docs"
+        },
+        {
+            "gid": 1999,
+            "name": "hal"
+        },
+        {
+            "gid": 1998,
+            "name": "ansible"
+        },
+        {
+            "gid": 1997,
+            "name": "data"
+        },
+        {
+            "gid": 1996,
+            "name": "git"
+        },
+        {
+            "gid": 1995,
+            "name": "librarian"
+        }
+    ]
+}
+2025-06-07 13:40:50,605 p=125192 u=bill n=ansible INFO| TASK [common : Ensure groups are created] ***************************************************************************************************************************************************
+2025-06-07 13:40:50,819 p=125192 u=bill n=ansible INFO| ok: [photoprism] => (item={'name': 'media', 'gid': 1776})
+2025-06-07 13:40:50,982 p=125192 u=bill n=ansible INFO| ok: [dell] => (item={'name': 'media', 'gid': 1776})
+2025-06-07 13:40:51,133 p=125192 u=bill n=ansible INFO| ok: [samsung] => (item={'name': 'media', 'gid': 1776})
+2025-06-07 13:40:51,277 p=125192 u=bill n=ansible INFO| ok: [dell] => (item={'name': 'docs', 'gid': 1787})
+2025-06-07 13:40:51,355 p=125192 u=bill n=ansible INFO| ok: [samsung] => (item={'name': 'docs', 'gid': 1787})
+2025-06-07 13:40:51,555 p=125192 u=bill n=ansible INFO| ok: [dell] => (item={'name': 'ansible', 'gid': 1998})
+2025-06-07 13:40:51,578 p=125192 u=bill n=ansible INFO| ok: [samsung] => (item={'name': 'ansible', 'gid': 1998})
+2025-06-07 13:40:51,812 p=125192 u=bill n=ansible INFO| ok: [samsung] => (item={'name': 'data', 'gid': 1997})
+2025-06-07 13:40:51,821 p=125192 u=bill n=ansible INFO| ok: [dell] => (item={'name': 'data', 'gid': 1997})
+2025-06-07 13:40:51,828 p=125192 u=bill n=ansible INFO| TASK [common : Create Bill user] ************************************************************************************************************************************************************
+2025-06-07 13:40:52,080 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:40:52,241 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:40:52,306 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:40:52,313 p=125192 u=bill n=ansible INFO| TASK [common : Ensure .ssh directory exists] ************************************************************************************************************************************************
+2025-06-07 13:40:52,513 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:40:52,675 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:40:52,677 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:40:52,684 p=125192 u=bill n=ansible INFO| TASK [common : Set authorized keys for Bill from vault] *************************************************************************************************************************************
+2025-06-07 13:40:52,923 p=125192 u=bill n=ansible INFO| ok: [photoprism] => (item=None)
+2025-06-07 13:40:53,070 p=125192 u=bill n=ansible INFO| ok: [samsung] => (item=None)
+2025-06-07 13:40:53,079 p=125192 u=bill n=ansible INFO| ok: [photoprism] => (item=None)
+2025-06-07 13:40:53,192 p=125192 u=bill n=ansible INFO| ok: [dell] => (item=None)
+2025-06-07 13:40:53,235 p=125192 u=bill n=ansible INFO| ok: [photoprism] => (item=None)
+2025-06-07 13:40:53,346 p=125192 u=bill n=ansible INFO| ok: [samsung] => (item=None)
+2025-06-07 13:40:53,389 p=125192 u=bill n=ansible INFO| ok: [photoprism] => (item=None)
+2025-06-07 13:40:53,390 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:40:53,635 p=125192 u=bill n=ansible INFO| ok: [dell] => (item=None)
+2025-06-07 13:40:53,641 p=125192 u=bill n=ansible INFO| ok: [samsung] => (item=None)
+2025-06-07 13:40:53,929 p=125192 u=bill n=ansible INFO| ok: [samsung] => (item=None)
+2025-06-07 13:40:53,930 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:40:54,081 p=125192 u=bill n=ansible INFO| ok: [dell] => (item=None)
+2025-06-07 13:40:54,445 p=125192 u=bill n=ansible INFO| ok: [dell] => (item=None)
+2025-06-07 13:40:54,445 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:40:54,452 p=125192 u=bill n=ansible INFO| TASK [common : Copy bashrc for Bill] ********************************************************************************************************************************************************
+2025-06-07 13:40:54,786 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:40:55,123 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:40:55,131 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:40:55,137 p=125192 u=bill n=ansible INFO| TASK [common : Ensure sudo rights for Bill] *************************************************************************************************************************************************
+2025-06-07 13:40:55,408 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:40:55,634 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:40:55,752 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:40:55,759 p=125192 u=bill n=ansible INFO| TASK [common : Configure SSH daemon] ********************************************************************************************************************************************************
+2025-06-07 13:40:56,037 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:40:56,387 p=125192 u=bill n=ansible INFO| changed: [samsung]
+2025-06-07 13:40:56,389 p=125192 u=bill n=ansible INFO| changed: [dell]
+2025-06-07 13:40:56,396 p=125192 u=bill n=ansible INFO| TASK [common : Ensure SSH service is running and enabled] ***********************************************************************************************************************************
+2025-06-07 13:40:56,770 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:40:57,052 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:40:57,083 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:40:57,089 p=125192 u=bill n=ansible INFO| TASK [common : users | hal | create user] ***************************************************************************************************************************************************
+2025-06-07 13:40:57,251 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:40:57,442 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:40:57,486 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:40:57,492 p=125192 u=bill n=ansible INFO| TASK [common : users | hal | add sudoers file] **********************************************************************************************************************************************
+2025-06-07 13:40:57,763 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:40:58,073 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:40:58,093 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:40:58,100 p=125192 u=bill n=ansible INFO| TASK [common : Ensure app user exists as a system user] *************************************************************************************************************************************
+2025-06-07 13:40:58,130 p=125192 u=bill n=ansible INFO| skipping: [samsung]
+2025-06-07 13:40:58,138 p=125192 u=bill n=ansible INFO| skipping: [dell]
+2025-06-07 13:40:58,257 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:40:58,263 p=125192 u=bill n=ansible INFO| TASK [common : Add app user to specified groups] ********************************************************************************************************************************************
+2025-06-07 13:40:58,292 p=125192 u=bill n=ansible INFO| skipping: [samsung]
+2025-06-07 13:40:58,301 p=125192 u=bill n=ansible INFO| skipping: [dell]
+2025-06-07 13:40:58,446 p=125192 u=bill n=ansible INFO| changed: [photoprism]
+2025-06-07 13:40:58,453 p=125192 u=bill n=ansible INFO| TASK [common : ansible setup | ensure group ansible exists] *********************************************************************************************************************************
+2025-06-07 13:40:58,575 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:40:58,801 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:40:58,884 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:40:58,892 p=125192 u=bill n=ansible INFO| TASK [common : ansible setup | ensure ansible is the latest version] ************************************************************************************************************************
+2025-06-07 13:40:59,546 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:40:59,741 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:40:59,937 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:40:59,944 p=125192 u=bill n=ansible INFO| TASK [common : ansible setup | install required packages] ***********************************************************************************************************************************
+2025-06-07 13:41:00,594 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:41:00,968 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:00,989 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:00,995 p=125192 u=bill n=ansible INFO| TASK [common : ansible setup | install acl package] *****************************************************************************************************************************************
+2025-06-07 13:41:01,666 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:41:01,813 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:02,012 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:02,019 p=125192 u=bill n=ansible INFO| TASK [common : ansible setup | create ansible log file] *************************************************************************************************************************************
+2025-06-07 13:41:02,152 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:41:02,293 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:02,364 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:02,371 p=125192 u=bill n=ansible INFO| TASK [common : ansible setup | add logrotate config for ansible log file] *******************************************************************************************************************
+2025-06-07 13:41:02,639 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:41:02,938 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:03,030 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:03,037 p=125192 u=bill n=ansible INFO| TASK [common : ansible setup | remove default ansible directory (/etc/ansible) from host] ***************************************************************************************************
+2025-06-07 13:41:03,162 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:41:03,316 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:03,359 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:03,367 p=125192 u=bill n=ansible INFO| TASK [common : ansible setup | generate provision script from template] *********************************************************************************************************************
+2025-06-07 13:41:03,651 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:41:03,884 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:04,011 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:04,020 p=125192 u=bill n=ansible INFO| TASK [common : Ensure pip3 and pipx are installed] ******************************************************************************************************************************************
+2025-06-07 13:41:04,675 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:41:05,055 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:05,071 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:05,077 p=125192 u=bill n=ansible INFO| TASK [common : Ensure psutil is installed] **************************************************************************************************************************************************
+2025-06-07 13:41:05,720 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:41:05,925 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:06,118 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:06,125 p=125192 u=bill n=ansible INFO| TASK [common : system setup | utilities | install utility packages] *************************************************************************************************************************
+2025-06-07 13:41:06,778 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:41:07,025 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:07,174 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:07,181 p=125192 u=bill n=ansible INFO| TASK [common : system setup | repositories | add sources.list for debian hosts] *************************************************************************************************************
+2025-06-07 13:41:07,193 p=125192 u=bill n=ansible INFO| skipping: [photoprism]
+2025-06-07 13:41:07,202 p=125192 u=bill n=ansible INFO| skipping: [samsung]
+2025-06-07 13:41:07,208 p=125192 u=bill n=ansible INFO| skipping: [dell]
+2025-06-07 13:41:07,215 p=125192 u=bill n=ansible INFO| TASK [common : system setup | repositories | add debian-backports] **************************************************************************************************************************
+2025-06-07 13:41:07,227 p=125192 u=bill n=ansible INFO| skipping: [photoprism]
+2025-06-07 13:41:07,239 p=125192 u=bill n=ansible INFO| skipping: [samsung]
+2025-06-07 13:41:07,245 p=125192 u=bill n=ansible INFO| skipping: [dell]
+2025-06-07 13:41:07,273 p=125192 u=bill n=ansible INFO| TASK [common : system setup | repositories | install package management tools (debian-based)] ***********************************************************************************************
+2025-06-07 13:41:07,923 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:41:08,124 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:08,307 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:08,313 p=125192 u=bill n=ansible INFO| TASK [common : system setup | clock | install systemd-timesyncd (ubuntu)] *******************************************************************************************************************
+2025-06-07 13:41:08,958 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:41:09,275 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:09,356 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:09,364 p=125192 u=bill n=ansible INFO| TASK [common : system setup | clock | install systemd-timesyncd (debian)] *******************************************************************************************************************
+2025-06-07 13:41:09,380 p=125192 u=bill n=ansible INFO| skipping: [photoprism]
+2025-06-07 13:41:09,393 p=125192 u=bill n=ansible INFO| skipping: [samsung]
+2025-06-07 13:41:09,398 p=125192 u=bill n=ansible INFO| skipping: [dell]
+2025-06-07 13:41:09,405 p=125192 u=bill n=ansible INFO| TASK [common : system setup | clock | start and enable systemd-timesyncd] *******************************************************************************************************************
+2025-06-07 13:41:09,634 p=125192 u=bill n=ansible INFO| changed: [photoprism]
+2025-06-07 13:41:09,925 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:09,968 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:09,974 p=125192 u=bill n=ansible INFO| TASK [common : system setup | clock | set time zone] ****************************************************************************************************************************************
+2025-06-07 13:41:10,279 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:41:10,424 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:10,469 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:10,475 p=125192 u=bill n=ansible INFO| TASK [common : system setup | locale | add en_US] *******************************************************************************************************************************************
+2025-06-07 13:41:10,697 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:41:10,913 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:10,920 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:10,927 p=125192 u=bill n=ansible INFO| TASK [common : system setup | locale | set locale to en_US] *********************************************************************************************************************************
+2025-06-07 13:41:11,069 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:41:11,213 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:11,297 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:11,304 p=125192 u=bill n=ansible INFO| TASK [common : system setup | locale | set en_US as default locale] *************************************************************************************************************************
+2025-06-07 13:41:11,317 p=125192 u=bill n=ansible INFO| skipping: [photoprism]
+2025-06-07 13:41:11,327 p=125192 u=bill n=ansible INFO| skipping: [samsung]
+2025-06-07 13:41:11,332 p=125192 u=bill n=ansible INFO| skipping: [dell]
+2025-06-07 13:41:11,339 p=125192 u=bill n=ansible INFO| TASK [common : system setup | locale | remove en_GB] ****************************************************************************************************************************************
+2025-06-07 13:41:11,353 p=125192 u=bill n=ansible INFO| skipping: [photoprism]
+2025-06-07 13:41:11,364 p=125192 u=bill n=ansible INFO| skipping: [samsung]
+2025-06-07 13:41:11,370 p=125192 u=bill n=ansible INFO| skipping: [dell]
+2025-06-07 13:41:11,377 p=125192 u=bill n=ansible INFO| TASK [common : system setup | logging | adjust retention period] ****************************************************************************************************************************
+2025-06-07 13:41:11,561 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:41:11,693 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:11,715 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:11,721 p=125192 u=bill n=ansible INFO| TASK [common : system setup | logging | restart journald (config changed)] ******************************************************************************************************************
+2025-06-07 13:41:11,737 p=125192 u=bill n=ansible INFO| skipping: [photoprism]
+2025-06-07 13:41:11,750 p=125192 u=bill n=ansible INFO| skipping: [samsung]
+2025-06-07 13:41:11,756 p=125192 u=bill n=ansible INFO| skipping: [dell]
+2025-06-07 13:41:11,762 p=125192 u=bill n=ansible INFO| TASK [common : system setup | openssh | install or update daemon package] *******************************************************************************************************************
+2025-06-07 13:41:12,438 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:41:12,630 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:12,817 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:12,824 p=125192 u=bill n=ansible INFO| TASK [common : system setup | openssh | enable daemon] **************************************************************************************************************************************
+2025-06-07 13:41:13,053 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:41:13,331 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:13,359 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:13,365 p=125192 u=bill n=ansible INFO| TASK [common : system setup | openssh | generate sshd_config file from template] ************************************************************************************************************
+2025-06-07 13:41:13,647 p=125192 u=bill n=ansible INFO| changed: [photoprism]
+2025-06-07 13:41:13,939 p=125192 u=bill n=ansible INFO| changed: [samsung]
+2025-06-07 13:41:13,998 p=125192 u=bill n=ansible INFO| changed: [dell]
+2025-06-07 13:41:14,005 p=125192 u=bill n=ansible INFO| TASK [common : system setup | openssh | copy issue.net] *************************************************************************************************************************************
+2025-06-07 13:41:14,275 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:41:14,575 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:14,586 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:14,593 p=125192 u=bill n=ansible INFO| TASK [common : system setup | cron | install cron package] **********************************************************************************************************************************
+2025-06-07 13:41:15,238 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:41:15,397 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:15,636 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:15,643 p=125192 u=bill n=ansible INFO| TASK [common : system setup | cron | start and enable cronie daemon] ************************************************************************************************************************
+2025-06-07 13:41:15,656 p=125192 u=bill n=ansible INFO| skipping: [photoprism]
+2025-06-07 13:41:15,667 p=125192 u=bill n=ansible INFO| skipping: [samsung]
+2025-06-07 13:41:15,673 p=125192 u=bill n=ansible INFO| skipping: [dell]
+2025-06-07 13:41:15,680 p=125192 u=bill n=ansible INFO| TASK [common : system setup | cron | schedule automatic ansible provisioning] ***************************************************************************************************************
+2025-06-07 13:41:15,886 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:41:16,056 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:16,141 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:16,147 p=125192 u=bill n=ansible INFO| TASK [common : system setup | cron | schedule ansible cleanup at boot] **********************************************************************************************************************
+2025-06-07 13:41:16,273 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:41:16,415 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:16,504 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:16,511 p=125192 u=bill n=ansible INFO| TASK [common : Copy provision script] *******************************************************************************************************************************************************
+2025-06-07 13:41:16,802 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:41:17,082 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:17,213 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:17,255 p=125192 u=bill n=ansible INFO| RUNNING HANDLER [common : restart_sshd] *****************************************************************************************************************************************************
+2025-06-07 13:41:17,505 p=125192 u=bill n=ansible INFO| changed: [photoprism]
+2025-06-07 13:41:17,758 p=125192 u=bill n=ansible INFO| changed: [samsung]
+2025-06-07 13:41:17,853 p=125192 u=bill n=ansible INFO| changed: [dell]
+2025-06-07 13:41:17,897 p=125192 u=bill n=ansible INFO| PLAY [workstation] **************************************************************************************************************************************************************************
+2025-06-07 13:41:17,906 p=125192 u=bill n=ansible INFO| TASK [Gathering Facts] **********************************************************************************************************************************************************************
+2025-06-07 13:41:19,081 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:19,299 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:19,319 p=125192 u=bill n=ansible INFO| TASK [workstation : Load workstation variables] *********************************************************************************************************************************************
+2025-06-07 13:41:19,334 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:19,340 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:19,348 p=125192 u=bill n=ansible INFO| TASK [workstation : Load group variables] ***************************************************************************************************************************************************
+2025-06-07 13:41:19,360 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:19,366 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:19,373 p=125192 u=bill n=ansible INFO| TASK [workstation : include_tasks] **********************************************************************************************************************************************************
+2025-06-07 13:41:19,409 p=125192 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/workstation/tasks/home_directory.yml for samsung, dell
+2025-06-07 13:41:19,417 p=125192 u=bill n=ansible INFO| TASK [workstation : Create desired directories] *********************************************************************************************************************************************
+2025-06-07 13:41:19,431 p=125192 u=bill n=ansible INFO| fatal: [samsung]: FAILED! => {"msg": "['/home/{{ nfs_user }}/desktop', '/home/{{ nfs_user }}/documents', '/home/{{ nfs_user }}/downloads', '/home/{{ nfs_user }}/media', '/home/bill/code', '/home/bill/git', 'home/lily/documents/paperless', 'home/loretta/documents/paperless', 'home/lily/downloads/paperless_consume', 'home/loretta/downloads/paperless_consume']: 'nfs_user' is undefined"}
+2025-06-07 13:41:19,431 p=125192 u=bill n=ansible INFO| ...ignoring
+2025-06-07 13:41:19,437 p=125192 u=bill n=ansible INFO| fatal: [dell]: FAILED! => {"msg": "['/home/{{ nfs_user }}/desktop', '/home/{{ nfs_user }}/documents', '/home/{{ nfs_user }}/downloads', '/home/{{ nfs_user }}/media', '/home/bill/code', '/home/bill/git', 'home/lily/documents/paperless', 'home/loretta/documents/paperless', 'home/lily/downloads/paperless_consume', 'home/loretta/downloads/paperless_consume']: 'nfs_user' is undefined"}
+2025-06-07 13:41:19,437 p=125192 u=bill n=ansible INFO| ...ignoring
+2025-06-07 13:41:19,445 p=125192 u=bill n=ansible INFO| TASK [workstation : Check if unwanted directories are empty] ********************************************************************************************************************************
+2025-06-07 13:41:19,459 p=125192 u=bill n=ansible INFO| fatal: [samsung]: FAILED! => {"msg": "['/home/{{ nfs_user }}/Desktop', '/home/{{ nfs_user }}/Documents', '/home/{{ nfs_user }}/Downloads', '/home/{{ nfs_user }}/Music', '/home/{{ nfs_user }}/Pictures', '/home/{{ nfs_user }}/Public', '/home/{{ nfs_user }}/Templates', '/home/{{ nfs_user }}/Videos']: 'nfs_user' is undefined"}
+2025-06-07 13:41:19,459 p=125192 u=bill n=ansible INFO| ...ignoring
+2025-06-07 13:41:19,465 p=125192 u=bill n=ansible INFO| fatal: [dell]: FAILED! => {"msg": "['/home/{{ nfs_user }}/Desktop', '/home/{{ nfs_user }}/Documents', '/home/{{ nfs_user }}/Downloads', '/home/{{ nfs_user }}/Music', '/home/{{ nfs_user }}/Pictures', '/home/{{ nfs_user }}/Public', '/home/{{ nfs_user }}/Templates', '/home/{{ nfs_user }}/Videos']: 'nfs_user' is undefined"}
+2025-06-07 13:41:19,465 p=125192 u=bill n=ansible INFO| ...ignoring
+2025-06-07 13:41:19,474 p=125192 u=bill n=ansible INFO| TASK [workstation : Remove empty unwanted directories] **************************************************************************************************************************************
+2025-06-07 13:41:19,488 p=125192 u=bill n=ansible INFO| fatal: [samsung]: FAILED! => {"msg": "'dict object' has no attribute 'results'"}
+2025-06-07 13:41:19,489 p=125192 u=bill n=ansible INFO| ...ignoring
+2025-06-07 13:41:19,495 p=125192 u=bill n=ansible INFO| fatal: [dell]: FAILED! => {"msg": "'dict object' has no attribute 'results'"}
+2025-06-07 13:41:19,496 p=125192 u=bill n=ansible INFO| ...ignoring
+2025-06-07 13:41:19,504 p=125192 u=bill n=ansible INFO| TASK [workstation : Warn about non-empty unwanted directories] ******************************************************************************************************************************
+2025-06-07 13:41:19,517 p=125192 u=bill n=ansible INFO| fatal: [samsung]: FAILED! => {"msg": "'dict object' has no attribute 'results'"}
+2025-06-07 13:41:19,518 p=125192 u=bill n=ansible INFO| ...ignoring
+2025-06-07 13:41:19,524 p=125192 u=bill n=ansible INFO| fatal: [dell]: FAILED! => {"msg": "'dict object' has no attribute 'results'"}
+2025-06-07 13:41:19,524 p=125192 u=bill n=ansible INFO| ...ignoring
+2025-06-07 13:41:19,532 p=125192 u=bill n=ansible INFO| TASK [workstation : Rename snap to .snap] ***************************************************************************************************************************************************
+2025-06-07 13:41:19,862 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:19,895 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:19,905 p=125192 u=bill n=ansible INFO| TASK [workstation : Ensure .snap directory exists] ******************************************************************************************************************************************
+2025-06-07 13:41:20,135 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:20,208 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:20,216 p=125192 u=bill n=ansible INFO| TASK [workstation : Update .config/user-dirs.dirs file] *************************************************************************************************************************************
+2025-06-07 13:41:20,577 p=125192 u=bill n=ansible INFO| fatal: [dell]: FAILED! => {"msg": "Failed to get information on remote file (/home/bill/.config/user-dirs.dirs): Permission denied"}
+2025-06-07 13:41:20,577 p=125192 u=bill n=ansible INFO| ...ignoring
+2025-06-07 13:41:20,828 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:20,836 p=125192 u=bill n=ansible INFO| TASK [workstation : Update .config/gtk-3.0/bookmarks file] **********************************************************************************************************************************
+2025-06-07 13:41:21,261 p=125192 u=bill n=ansible INFO| fatal: [dell]: FAILED! => {"msg": "Failed to get information on remote file (/home/bill/.config/gtk-3.0/bookmarks): Permission denied"}
+2025-06-07 13:41:21,261 p=125192 u=bill n=ansible INFO| ...ignoring
+2025-06-07 13:41:21,376 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:21,386 p=125192 u=bill n=ansible INFO| TASK [workstation : Remove dead .desktop files from Desktop] ********************************************************************************************************************************
+2025-06-07 13:41:21,624 p=125192 u=bill n=ansible INFO| ok: [samsung] => (item=Documents)
+2025-06-07 13:41:21,757 p=125192 u=bill n=ansible INFO| ok: [dell] => (item=Documents)
+2025-06-07 13:41:21,849 p=125192 u=bill n=ansible INFO| ok: [samsung] => (item=Music)
+2025-06-07 13:41:22,040 p=125192 u=bill n=ansible INFO| ok: [dell] => (item=Music)
+2025-06-07 13:41:22,074 p=125192 u=bill n=ansible INFO| ok: [samsung] => (item=Pictures)
+2025-06-07 13:41:22,299 p=125192 u=bill n=ansible INFO| ok: [samsung] => (item=Videos)
+2025-06-07 13:41:22,341 p=125192 u=bill n=ansible INFO| ok: [dell] => (item=Pictures)
+2025-06-07 13:41:22,611 p=125192 u=bill n=ansible INFO| ok: [dell] => (item=Videos)
+2025-06-07 13:41:22,620 p=125192 u=bill n=ansible INFO| TASK [workstation : Check if Desktop directory is empty] ************************************************************************************************************************************
+2025-06-07 13:41:22,963 p=125192 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Desktop' path due to this access issue: '/home/bill/Desktop' is not a directory
+
+2025-06-07 13:41:22,964 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:22,971 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:22,978 p=125192 u=bill n=ansible INFO| TASK [workstation : Rename Desktop to desktop if empty] *************************************************************************************************************************************
+2025-06-07 13:41:23,197 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:23,281 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:23,290 p=125192 u=bill n=ansible INFO| TASK [workstation : Warn if Desktop directory is not empty] *********************************************************************************************************************************
+2025-06-07 13:41:23,303 p=125192 u=bill n=ansible INFO| skipping: [samsung]
+2025-06-07 13:41:23,309 p=125192 u=bill n=ansible INFO| skipping: [dell]
+2025-06-07 13:41:23,317 p=125192 u=bill n=ansible INFO| TASK [workstation : Ensure desktop directory exists] ****************************************************************************************************************************************
+2025-06-07 13:41:23,556 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:23,621 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:23,629 p=125192 u=bill n=ansible INFO| TASK [workstation : Check if GNOME session needs restart] ***********************************************************************************************************************************
+2025-06-07 13:41:23,872 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:23,923 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:23,932 p=125192 u=bill n=ansible INFO| TASK [workstation : Check if running in graphical environment] ******************************************************************************************************************************
+2025-06-07 13:41:24,175 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:24,301 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:24,310 p=125192 u=bill n=ansible INFO| TASK [workstation : gnome | appearance | dconf update] **************************************************************************************************************************************
+2025-06-07 13:41:24,583 p=125192 u=bill n=ansible INFO| changed: [samsung]
+2025-06-07 13:41:24,633 p=125192 u=bill n=ansible INFO| changed: [dell]
+2025-06-07 13:41:24,641 p=125192 u=bill n=ansible INFO| TASK [workstation : Wait for system to come back] *******************************************************************************************************************************************
+2025-06-07 13:41:35,252 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:35,323 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:35,333 p=125192 u=bill n=ansible INFO| TASK [workstation : include_tasks] **********************************************************************************************************************************************************
+2025-06-07 13:41:35,367 p=125192 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/workstation/tasks/fstab.yml for samsung, dell
+2025-06-07 13:41:35,380 p=125192 u=bill n=ansible INFO| TASK [workstation : Debug nfs_users] ********************************************************************************************************************************************************
+2025-06-07 13:41:35,397 p=125192 u=bill n=ansible INFO| ok: [samsung] => {
+    "nfs_users": [
+        "bill",
+        "lily",
+        "loretta"
+    ]
+}
+2025-06-07 13:41:35,404 p=125192 u=bill n=ansible INFO| ok: [dell] => {
+    "nfs_users": [
+        "bill",
+        "lily",
+        "loretta"
+    ]
+}
+2025-06-07 13:41:35,412 p=125192 u=bill n=ansible INFO| TASK [workstation : Debug nfs_mounts] *******************************************************************************************************************************************************
+2025-06-07 13:41:35,427 p=125192 u=bill n=ansible INFO| ok: [samsung] => {
+    "nfs_mounts": [
+        {
+            "dest": "/home/DEFAULT_USER/media/books",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/books"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/media/movies",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/media/storage/movies"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/media/tv",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/media/storage/tv"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/media/music",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/media/storage/music"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/media/photos",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/media/storage/photos"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/media/home_videos",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/media/storage/home_videos"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/documents",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/ssd-files/home/DEFAULT_USER/Documents"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/downloads",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/ssd-files/home/DEFAULT_USER/Downloads"
+        }
+    ]
+}
+2025-06-07 13:41:35,436 p=125192 u=bill n=ansible INFO| ok: [dell] => {
+    "nfs_mounts": [
+        {
+            "dest": "/home/DEFAULT_USER/media/books",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/books"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/media/movies",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/media/storage/movies"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/media/tv",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/media/storage/tv"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/media/music",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/media/storage/music"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/media/photos",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/media/storage/photos"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/media/home_videos",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/media/storage/home_videos"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/documents",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/ssd-files/home/DEFAULT_USER/Documents"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/downloads",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/ssd-files/home/DEFAULT_USER/Downloads"
+        }
+    ]
+}
+2025-06-07 13:41:35,444 p=125192 u=bill n=ansible INFO| TASK [workstation : Add managed fstab entries] **********************************************************************************************************************************************
+2025-06-07 13:41:35,777 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:35,873 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:35,881 p=125192 u=bill n=ansible INFO| TASK [workstation : Reload systemd daemon] **************************************************************************************************************************************************
+2025-06-07 13:41:36,648 p=125192 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 13:41:37,039 p=125192 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 13:41:37,070 p=125192 u=bill n=ansible INFO| TASK [workstation : Remount all filesystems] ************************************************************************************************************************************************
+2025-06-07 13:41:37,423 p=125192 u=bill n=ansible INFO| fatal: [dell]: FAILED! => {"changed": true, "cmd": ["mount", "-a"], "delta": "0:00:00.076912", "end": "2025-06-07 13:41:37.391935", "msg": "non-zero return code", "rc": 32, "start": "2025-06-07 13:41:37.315023", "stderr": "mount.nfs: mount point /home/bill/media/books does not exist\nmount.nfs: mount point /home/bill/media/movies does not exist\nmount.nfs: mount point /home/bill/media/tv does not exist\nmount.nfs: mount point /home/bill/media/music does not exist\nmount.nfs: mount point /home/bill/media/photos does not exist\nmount.nfs: mount point /home/bill/media/home_videos does not exist\nmount.nfs: mount point /home/lily/media/books does not exist\nmount.nfs: mount point /home/lily/media/movies does not exist\nmount.nfs: mount point /home/lily/media/tv does not exist\nmount.nfs: mount point /home/lily/media/music does not exist\nmount.nfs: mount point /home/lily/media/photos does not exist\nmount.nfs: mount point /home/lily/media/home_videos does not exist\nmount.nfs: mount point /home/loretta/media/books does not exist\nmount.nfs: mount point /home/loretta/media/movies does not exist\nmount.nfs: mount point /home/loretta/media/tv does not exist\nmount.nfs: mount point /home/loretta/media/music does not exist\nmount.nfs: mount point /home/loretta/media/photos does not exist\nmount.nfs: mount point /home/loretta/media/home_videos does not exist", "stderr_lines": ["mount.nfs: mount point /home/bill/media/books does not exist", "mount.nfs: mount point /home/bill/media/movies does not exist", "mount.nfs: mount point /home/bill/media/tv does not exist", "mount.nfs: mount point /home/bill/media/music does not exist", "mount.nfs: mount point /home/bill/media/photos does not exist", "mount.nfs: mount point /home/bill/media/home_videos does not exist", "mount.nfs: mount point /home/lily/media/books does not exist", "mount.nfs: mount point /home/lily/media/movies does not exist", "mount.nfs: mount point /home/lily/media/tv does not exist", "mount.nfs: mount point /home/lily/media/music does not exist", "mount.nfs: mount point /home/lily/media/photos does not exist", "mount.nfs: mount point /home/lily/media/home_videos does not exist", "mount.nfs: mount point /home/loretta/media/books does not exist", "mount.nfs: mount point /home/loretta/media/movies does not exist", "mount.nfs: mount point /home/loretta/media/tv does not exist", "mount.nfs: mount point /home/loretta/media/music does not exist", "mount.nfs: mount point /home/loretta/media/photos does not exist", "mount.nfs: mount point /home/loretta/media/home_videos does not exist"], "stdout": "", "stdout_lines": []}
+2025-06-07 13:41:37,423 p=125192 u=bill n=ansible INFO| ...ignoring
+2025-06-07 13:41:37,473 p=125192 u=bill n=ansible INFO| changed: [samsung]
+2025-06-07 13:41:37,481 p=125192 u=bill n=ansible INFO| TASK [workstation : include_tasks] **********************************************************************************************************************************************************
+2025-06-07 13:41:37,513 p=125192 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/workstation/tasks/groups.yml for samsung, dell
+2025-06-07 13:41:37,529 p=125192 u=bill n=ansible INFO| TASK [workstation : Ensure groups are created] **********************************************************************************************************************************************
+2025-06-07 13:41:37,789 p=125192 u=bill n=ansible INFO| ok: [samsung] => (item={'name': 'media', 'gid': 1776})
+2025-06-07 13:41:37,959 p=125192 u=bill n=ansible INFO| ok: [dell] => (item={'name': 'media', 'gid': 1776})
+2025-06-07 13:41:38,016 p=125192 u=bill n=ansible INFO| ok: [samsung] => (item={'name': 'docs', 'gid': 1787})
+2025-06-07 13:41:38,270 p=125192 u=bill n=ansible INFO| ok: [samsung] => (item={'name': 'hal', 'gid': 1999})
+2025-06-07 13:41:38,331 p=125192 u=bill n=ansible INFO| ok: [dell] => (item={'name': 'docs', 'gid': 1787})
+2025-06-07 13:41:38,505 p=125192 u=bill n=ansible INFO| ok: [samsung] => (item={'name': 'ansible', 'gid': 1998})
+2025-06-07 13:41:38,700 p=125192 u=bill n=ansible INFO| ok: [dell] => (item={'name': 'hal', 'gid': 1999})
+2025-06-07 13:41:38,709 p=125192 u=bill n=ansible INFO| ok: [samsung] => (item={'name': 'data', 'gid': 1997})
+2025-06-07 13:41:38,939 p=125192 u=bill n=ansible INFO| ok: [samsung] => (item={'name': 'git', 'gid': 1996})
+2025-06-07 13:41:39,028 p=125192 u=bill n=ansible INFO| ok: [dell] => (item={'name': 'ansible', 'gid': 1998})
+2025-06-07 13:41:39,165 p=125192 u=bill n=ansible INFO| ok: [samsung] => (item={'name': 'librarian', 'gid': 1995})
+2025-06-07 13:41:39,348 p=125192 u=bill n=ansible INFO| ok: [dell] => (item={'name': 'data', 'gid': 1997})
+2025-06-07 13:41:39,599 p=125192 u=bill n=ansible INFO| ok: [dell] => (item={'name': 'git', 'gid': 1996})
+2025-06-07 13:41:39,851 p=125192 u=bill n=ansible INFO| ok: [dell] => (item={'name': 'librarian', 'gid': 1995})
+2025-06-07 13:41:39,882 p=125192 u=bill n=ansible INFO| PLAY [proxmox_hosts] ************************************************************************************************************************************************************************
+2025-06-07 13:41:39,885 p=125192 u=bill n=ansible INFO| TASK [Gathering Facts] **********************************************************************************************************************************************************************
+2025-06-07 13:41:42,253 p=125192 u=bill n=ansible INFO| ok: [proxmox]
+2025-06-07 13:41:42,272 p=125192 u=bill n=ansible INFO| TASK [proxmox_hosts : Check if LXC configuration file exists] *******************************************************************************************************************************
+2025-06-07 13:41:42,420 p=125192 u=bill n=ansible INFO| ok: [proxmox] => (item=wg)
+2025-06-07 13:41:42,560 p=125192 u=bill n=ansible INFO| ok: [proxmox] => (item=photoprism)
+2025-06-07 13:41:42,583 p=125192 u=bill n=ansible INFO| TASK [proxmox_hosts : Read existing LXC configuration] **************************************************************************************************************************************
+2025-06-07 13:41:42,781 p=125192 u=bill n=ansible INFO| ok: [proxmox] => (item={'changed': False, 'stat': {'exists': True, 'path': '/etc/pve/lxc/101.conf', 'mode': '0640', 'isdir': False, 'ischr': False, 'isblk': False, 'isreg': True, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 0, 'gid': 33, 'size': 995, 'inode': 33500, 'dev': 44, 'nlink': 1, 'atime': 1749316714.0, 'mtime': 1749316714.0, 'ctime': 1749316714.0, 'wusr': True, 'rusr': True, 'xusr': False, 'wgrp': False, 'rgrp': True, 'xgrp': False, 'woth': False, 'roth': False, 'xoth': False, 'isuid': False, 'isgid': False, 'blocks': 1, 'block_size': 4096, 'device_type': 0, 'readable': True, 'writeable': True, 'executable': False, 'pw_name': 'root', 'gr_name': 'www-data', 'checksum': '4a6b07315bc6bbd104992f933b8bcb08ba6e027a', 'mimetype': 'text/plain', 'charset': 'us-ascii', 'version': None, 'attributes': [], 'attr_flags': ''}, 'invocation': {'module_args': {'path': '/etc/pve/lxc/101.conf', 'follow': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': 'wg', 'ansible_loop_var': 'item'})
+2025-06-07 13:41:42,905 p=125192 u=bill n=ansible INFO| ok: [proxmox] => (item={'changed': False, 'stat': {'exists': True, 'path': '/etc/pve/lxc/103.conf', 'mode': '0640', 'isdir': False, 'ischr': False, 'isblk': False, 'isreg': True, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 0, 'gid': 33, 'size': 1420, 'inode': 33501, 'dev': 44, 'nlink': 1, 'atime': 1749316715.0, 'mtime': 1749316715.0, 'ctime': 1749316715.0, 'wusr': True, 'rusr': True, 'xusr': False, 'wgrp': False, 'rgrp': True, 'xgrp': False, 'woth': False, 'roth': False, 'xoth': False, 'isuid': False, 'isgid': False, 'blocks': 1, 'block_size': 4096, 'device_type': 0, 'readable': True, 'writeable': True, 'executable': False, 'pw_name': 'root', 'gr_name': 'www-data', 'checksum': '6ad195af947e68c60fd34921a88adcfe8ae02856', 'mimetype': 'text/plain', 'charset': 'us-ascii', 'version': None, 'attributes': [], 'attr_flags': ''}, 'invocation': {'module_args': {'path': '/etc/pve/lxc/103.conf', 'follow': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': 'photoprism', 'ansible_loop_var': 'item'})
+2025-06-07 13:41:42,927 p=125192 u=bill n=ansible INFO| TASK [proxmox_hosts : Generate mount configurations] ****************************************************************************************************************************************
+2025-06-07 13:41:42,997 p=125192 u=bill n=ansible INFO| ok: [proxmox] => (item=wg)
+2025-06-07 13:41:43,094 p=125192 u=bill n=ansible INFO| ok: [proxmox] => (item=photoprism)
+2025-06-07 13:41:43,115 p=125192 u=bill n=ansible INFO| TASK [proxmox_hosts : Update LXC configuration with mounts] *********************************************************************************************************************************
+2025-06-07 13:41:43,295 p=125192 u=bill n=ansible WARNING| [WARNING]: sftp transfer mechanism failed on [192.168.86.143]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-06-07 13:41:43,299 p=125192 u=bill n=ansible WARNING| [WARNING]: scp transfer mechanism failed on [192.168.86.143]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-06-07 13:41:43,509 p=125192 u=bill n=ansible INFO| changed: [proxmox] => (item=wg)
+2025-06-07 13:41:43,832 p=125192 u=bill n=ansible INFO| changed: [proxmox] => (item=photoprism)
+2025-06-07 13:41:43,857 p=125192 u=bill n=ansible INFO| PLAY [lxc] **********************************************************************************************************************************************************************************
+2025-06-07 13:41:43,864 p=125192 u=bill n=ansible INFO| TASK [Gathering Facts] **********************************************************************************************************************************************************************
+2025-06-07 13:41:44,446 p=125192 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 13:41:44,458 p=125192 u=bill n=ansible INFO| TASK [lxc : include_tasks] ******************************************************************************************************************************************************************
+2025-06-07 13:41:44,472 p=125192 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/lxc/tasks/groups.yml for photoprism
+2025-06-07 13:41:44,478 p=125192 u=bill n=ansible INFO| TASK [lxc : Ensure groups are created] ******************************************************************************************************************************************************
+2025-06-07 13:41:44,611 p=125192 u=bill n=ansible INFO| ok: [photoprism] => (item={'name': 'media', 'gid': 1776})
+2025-06-07 13:41:44,624 p=125192 u=bill n=ansible INFO| PLAY RECAP **********************************************************************************************************************************************************************************
+2025-06-07 13:41:44,624 p=125192 u=bill n=ansible INFO| dell                       : ok=74   changed=5    unreachable=0    failed=0    skipped=10   rescued=0    ignored=7   
+2025-06-07 13:41:44,624 p=125192 u=bill n=ansible INFO| desktop                    : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-07 13:41:44,624 p=125192 u=bill n=ansible INFO| photoprism                 : ok=51   changed=4    unreachable=0    failed=0    skipped=7    rescued=0    ignored=0   
+2025-06-07 13:41:44,625 p=125192 u=bill n=ansible INFO| proxmox                    : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-07 13:41:44,625 p=125192 u=bill n=ansible INFO| samsung                    : ok=74   changed=5    unreachable=0    failed=0    skipped=10   rescued=0    ignored=4   
+2025-06-07 13:41:44,625 p=125192 u=bill n=ansible INFO| wg                         : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
