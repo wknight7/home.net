@@ -1,7 +1,7 @@
 ---
 # Load vault variables
 - name: Load vault variables
-  include_vars: group_vars/vault.yml
+  include_vars: vault.yml
   tags: always
 
 # Load distro-specific variables (if needed)

@@ -15977,3 +15977,1126 @@ to see detailed information
 2025-06-07 12:07:05,522 p=111940 u=bill n=ansible INFO| proxmox                    : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
 2025-06-07 12:07:05,522 p=111940 u=bill n=ansible INFO| samsung                    : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
 2025-06-07 12:07:05,522 p=111940 u=bill n=ansible INFO| wg                         : ok=48   changed=1    unreachable=0    failed=0    skipped=9    rescued=0    ignored=3   
+2025-06-07 12:22:51,534 p=113821 u=bill n=ansible WARNING| [WARNING]: Could not match supplied host pattern, ignoring: common
+
+2025-06-07 12:22:51,554 p=113821 u=bill n=ansible INFO| PLAY [workstation, lxc, common] *************************************************************************************************************************************************************
+2025-06-07 12:22:51,559 p=113821 u=bill n=ansible INFO| TASK [Gathering Facts] **********************************************************************************************************************************************************************
+2025-06-07 12:22:52,636 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:22:53,054 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:22:54,356 p=113821 u=bill n=ansible WARNING| [WARNING]: Platform linux on host dell is using the discovered Python interpreter at /usr/bin/python3.12, but future installation of another Python interpreter could change the meaning of
+that path. See https://docs.ansible.com/ansible-core/2.18/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-07 12:22:54,356 p=113821 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 12:22:54,749 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:22:54,788 p=113821 u=bill n=ansible INFO| fatal: [samsung]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.94\". Make sure this host can be reached over ssh: ssh: connect to host 192.168.86.94 port 22: No route to host\r\n", "unreachable": true}
+2025-06-07 12:22:54,795 p=113821 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] *****************************************************************************************************************************************
+2025-06-07 12:22:56,791 p=113821 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 12:22:57,132 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:22:58,108 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:22:58,358 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:22:58,367 p=113821 u=bill n=ansible INFO| TASK [Include host variables dynamically] ***************************************************************************************************************************************************
+2025-06-07 12:22:58,384 p=113821 u=bill n=ansible INFO| ok: [desktop] => (item=host_vars/desktop.yml)
+2025-06-07 12:22:58,388 p=113821 u=bill n=ansible INFO| failed: [dell] (item=host_vars/dell.yml) => {"ansible_facts": {}, "ansible_included_var_files": [], "ansible_loop_var": "item", "changed": false, "item": "host_vars/dell.yml", "message": "Could not find or access 'host_vars/dell.yml'\nSearched in:\n\t/home/bill/git/home.net/vars/host_vars/dell.yml\n\t/home/bill/git/home.net/host_vars/dell.yml\n\t/home/bill/git/home.net/vars/host_vars/dell.yml\n\t/home/bill/git/home.net/host_vars/dell.yml on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+2025-06-07 12:22:58,403 p=113821 u=bill n=ansible INFO| ok: [wg] => (item=host_vars/wg.yml)
+2025-06-07 12:22:58,411 p=113821 u=bill n=ansible INFO| ok: [photoprism] => (item=host_vars/photoprism.yml)
+2025-06-07 12:22:58,415 p=113821 u=bill n=ansible INFO| PLAY [updates] ******************************************************************************************************************************************************************************
+2025-06-07 12:22:58,434 p=113821 u=bill n=ansible INFO| TASK [Gathering Facts] **********************************************************************************************************************************************************************
+2025-06-07 12:22:59,061 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:22:59,073 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:22:59,296 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:22:59,320 p=113821 u=bill n=ansible INFO| TASK [common : Load vault variables] ********************************************************************************************************************************************************
+2025-06-07 12:22:59,345 p=113821 u=bill n=ansible INFO| fatal: [wg]: FAILED! => {"ansible_facts": {}, "ansible_included_var_files": [], "changed": false, "message": "Could not find or access 'group_vars/vault.yml'\nSearched in:\n\t/home/bill/git/home.net/roles/common/vars/group_vars/vault.yml\n\t/home/bill/git/home.net/roles/common/group_vars/vault.yml\n\t/home/bill/git/home.net/roles/common/tasks/vars/group_vars/vault.yml\n\t/home/bill/git/home.net/roles/common/tasks/group_vars/vault.yml\n\t/home/bill/git/home.net/vars/group_vars/vault.yml\n\t/home/bill/git/home.net/group_vars/vault.yml on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+2025-06-07 12:22:59,345 p=113821 u=bill n=ansible INFO| ...ignoring
+2025-06-07 12:22:59,346 p=113821 u=bill n=ansible INFO| fatal: [photoprism]: FAILED! => {"ansible_facts": {}, "ansible_included_var_files": [], "changed": false, "message": "Could not find or access 'group_vars/vault.yml'\nSearched in:\n\t/home/bill/git/home.net/roles/common/vars/group_vars/vault.yml\n\t/home/bill/git/home.net/roles/common/group_vars/vault.yml\n\t/home/bill/git/home.net/roles/common/tasks/vars/group_vars/vault.yml\n\t/home/bill/git/home.net/roles/common/tasks/group_vars/vault.yml\n\t/home/bill/git/home.net/vars/group_vars/vault.yml\n\t/home/bill/git/home.net/group_vars/vault.yml on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+2025-06-07 12:22:59,346 p=113821 u=bill n=ansible INFO| ...ignoring
+2025-06-07 12:22:59,352 p=113821 u=bill n=ansible INFO| fatal: [desktop]: FAILED! => {"ansible_facts": {}, "ansible_included_var_files": [], "changed": false, "message": "Could not find or access 'group_vars/vault.yml'\nSearched in:\n\t/home/bill/git/home.net/roles/common/vars/group_vars/vault.yml\n\t/home/bill/git/home.net/roles/common/group_vars/vault.yml\n\t/home/bill/git/home.net/roles/common/tasks/vars/group_vars/vault.yml\n\t/home/bill/git/home.net/roles/common/tasks/group_vars/vault.yml\n\t/home/bill/git/home.net/vars/group_vars/vault.yml\n\t/home/bill/git/home.net/group_vars/vault.yml on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+2025-06-07 12:22:59,352 p=113821 u=bill n=ansible INFO| ...ignoring
+2025-06-07 12:22:59,358 p=113821 u=bill n=ansible INFO| TASK [common : include_vars] ****************************************************************************************************************************************************************
+2025-06-07 12:22:59,384 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:22:59,385 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:22:59,393 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:22:59,400 p=113821 u=bill n=ansible INFO| TASK [common : Load group variables] ********************************************************************************************************************************************************
+2025-06-07 12:22:59,413 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:22:59,447 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:22:59,454 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:22:59,461 p=113821 u=bill n=ansible INFO| TASK [common : Debug groups_to_create] ******************************************************************************************************************************************************
+2025-06-07 12:22:59,486 p=113821 u=bill n=ansible INFO| ok: [wg] => {
+    "msg": "groups_to_create: ['media', 'docs', 'data']"
+}
+2025-06-07 12:22:59,489 p=113821 u=bill n=ansible INFO| ok: [photoprism] => {
+    "msg": "groups_to_create: ['media']"
+}
+2025-06-07 12:22:59,498 p=113821 u=bill n=ansible INFO| ok: [desktop] => {
+    "msg": "groups_to_create: ['media', 'ansible', 'data', 'docs']"
+}
+2025-06-07 12:22:59,504 p=113821 u=bill n=ansible INFO| TASK [common : Debug group_definitions variable] ********************************************************************************************************************************************
+2025-06-07 12:22:59,518 p=113821 u=bill n=ansible INFO| ok: [wg] => {
+    "group_definitions": [
+        {
+            "gid": 1776,
+            "name": "media"
+        },
+        {
+            "gid": 1787,
+            "name": "docs"
+        },
+        {
+            "gid": 1999,
+            "name": "hal"
+        },
+        {
+            "gid": 1998,
+            "name": "ansible"
+        },
+        {
+            "gid": 1997,
+            "name": "data"
+        },
+        {
+            "gid": 1996,
+            "name": "git"
+        },
+        {
+            "gid": 1995,
+            "name": "librarian"
+        }
+    ]
+}
+2025-06-07 12:22:59,533 p=113821 u=bill n=ansible INFO| ok: [photoprism] => {
+    "group_definitions": [
+        {
+            "gid": 1776,
+            "name": "media"
+        },
+        {
+            "gid": 1787,
+            "name": "docs"
+        },
+        {
+            "gid": 1999,
+            "name": "hal"
+        },
+        {
+            "gid": 1998,
+            "name": "ansible"
+        },
+        {
+            "gid": 1997,
+            "name": "data"
+        },
+        {
+            "gid": 1996,
+            "name": "git"
+        },
+        {
+            "gid": 1995,
+            "name": "librarian"
+        }
+    ]
+}
+2025-06-07 12:22:59,543 p=113821 u=bill n=ansible INFO| ok: [desktop] => {
+    "group_definitions": [
+        {
+            "gid": 1776,
+            "name": "media"
+        },
+        {
+            "gid": 1787,
+            "name": "docs"
+        },
+        {
+            "gid": 1999,
+            "name": "hal"
+        },
+        {
+            "gid": 1998,
+            "name": "ansible"
+        },
+        {
+            "gid": 1997,
+            "name": "data"
+        },
+        {
+            "gid": 1996,
+            "name": "git"
+        },
+        {
+            "gid": 1995,
+            "name": "librarian"
+        }
+    ]
+}
+2025-06-07 12:22:59,549 p=113821 u=bill n=ansible INFO| TASK [common : Ensure groups are created] ***************************************************************************************************************************************************
+2025-06-07 12:22:59,773 p=113821 u=bill n=ansible INFO| ok: [desktop] => (item={'name': 'media', 'gid': 1776})
+2025-06-07 12:22:59,789 p=113821 u=bill n=ansible INFO| ok: [photoprism] => (item={'name': 'media', 'gid': 1776})
+2025-06-07 12:22:59,813 p=113821 u=bill n=ansible INFO| ok: [wg] => (item={'name': 'media', 'gid': 1776})
+2025-06-07 12:22:59,888 p=113821 u=bill n=ansible INFO| ok: [desktop] => (item={'name': 'docs', 'gid': 1787})
+2025-06-07 12:22:59,953 p=113821 u=bill n=ansible INFO| ok: [wg] => (item={'name': 'docs', 'gid': 1787})
+2025-06-07 12:23:00,002 p=113821 u=bill n=ansible INFO| ok: [desktop] => (item={'name': 'ansible', 'gid': 1998})
+2025-06-07 12:23:00,095 p=113821 u=bill n=ansible INFO| ok: [wg] => (item={'name': 'data', 'gid': 1997})
+2025-06-07 12:23:00,120 p=113821 u=bill n=ansible INFO| ok: [desktop] => (item={'name': 'data', 'gid': 1997})
+2025-06-07 12:23:00,128 p=113821 u=bill n=ansible INFO| TASK [common : Create Bill user] ************************************************************************************************************************************************************
+2025-06-07 12:23:00,387 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:00,431 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:01,222 p=113821 u=bill n=ansible INFO| changed: [photoprism]
+2025-06-07 12:23:01,229 p=113821 u=bill n=ansible INFO| TASK [common : Ensure .ssh directory exists] ************************************************************************************************************************************************
+2025-06-07 12:23:01,424 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:01,438 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:01,461 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:01,467 p=113821 u=bill n=ansible INFO| TASK [common : Set authorized keys for Bill from vault] *************************************************************************************************************************************
+2025-06-07 12:23:01,480 p=113821 u=bill n=ansible INFO| fatal: [wg]: FAILED! => {"censored": "the output has been hidden due to the fact that 'no_log: true' was specified for this result"}
+2025-06-07 12:23:01,480 p=113821 u=bill n=ansible INFO| ...ignoring
+2025-06-07 12:23:01,494 p=113821 u=bill n=ansible INFO| fatal: [photoprism]: FAILED! => {"censored": "the output has been hidden due to the fact that 'no_log: true' was specified for this result"}
+2025-06-07 12:23:01,494 p=113821 u=bill n=ansible INFO| ...ignoring
+2025-06-07 12:23:01,499 p=113821 u=bill n=ansible INFO| fatal: [desktop]: FAILED! => {"censored": "the output has been hidden due to the fact that 'no_log: true' was specified for this result"}
+2025-06-07 12:23:01,499 p=113821 u=bill n=ansible INFO| ...ignoring
+2025-06-07 12:23:01,506 p=113821 u=bill n=ansible INFO| TASK [common : Copy bashrc for Bill] ********************************************************************************************************************************************************
+2025-06-07 12:23:01,855 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:01,866 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:01,905 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:01,912 p=113821 u=bill n=ansible INFO| TASK [common : Ensure sudo rights for Bill] *************************************************************************************************************************************************
+2025-06-07 12:23:02,222 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:02,296 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:02,335 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:02,342 p=113821 u=bill n=ansible INFO| TASK [common : Configure SSH daemon] ********************************************************************************************************************************************************
+2025-06-07 12:23:02,394 p=113821 u=bill n=ansible INFO| An exception occurred during task execution. To see the full traceback, use -vvv. The error was: If you are using a module and expect the file to exist on the remote, see the remote_src option
+2025-06-07 12:23:02,394 p=113821 u=bill n=ansible INFO| fatal: [wg]: FAILED! => {"changed": false, "msg": "Could not find or access '/home/bill/git/home.net/roles/common/../templates/sshd_config.j2' on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+2025-06-07 12:23:02,394 p=113821 u=bill n=ansible INFO| ...ignoring
+2025-06-07 12:23:02,403 p=113821 u=bill n=ansible INFO| An exception occurred during task execution. To see the full traceback, use -vvv. The error was: If you are using a module and expect the file to exist on the remote, see the remote_src option
+2025-06-07 12:23:02,403 p=113821 u=bill n=ansible INFO| fatal: [photoprism]: FAILED! => {"changed": false, "msg": "Could not find or access '/home/bill/git/home.net/roles/common/../templates/sshd_config.j2' on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+2025-06-07 12:23:02,404 p=113821 u=bill n=ansible INFO| ...ignoring
+2025-06-07 12:23:02,415 p=113821 u=bill n=ansible INFO| An exception occurred during task execution. To see the full traceback, use -vvv. The error was: If you are using a module and expect the file to exist on the remote, see the remote_src option
+2025-06-07 12:23:02,415 p=113821 u=bill n=ansible INFO| fatal: [desktop]: FAILED! => {"changed": false, "msg": "Could not find or access '/home/bill/git/home.net/roles/common/../templates/sshd_config.j2' on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+2025-06-07 12:23:02,415 p=113821 u=bill n=ansible INFO| ...ignoring
+2025-06-07 12:23:02,422 p=113821 u=bill n=ansible INFO| TASK [common : Ensure SSH service is running and enabled] ***********************************************************************************************************************************
+2025-06-07 12:23:02,811 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:02,815 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:02,870 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:02,877 p=113821 u=bill n=ansible INFO| TASK [common : users | hal | create user] ***************************************************************************************************************************************************
+2025-06-07 12:23:03,043 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:03,060 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:03,066 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:03,073 p=113821 u=bill n=ansible INFO| TASK [common : users | hal | add sudoers file] **********************************************************************************************************************************************
+2025-06-07 12:23:03,363 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:03,375 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:03,403 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:03,409 p=113821 u=bill n=ansible INFO| TASK [common : Ensure app user exists as a system user] *************************************************************************************************************************************
+2025-06-07 12:23:03,437 p=113821 u=bill n=ansible INFO| skipping: [wg]
+2025-06-07 12:23:03,446 p=113821 u=bill n=ansible INFO| skipping: [desktop]
+2025-06-07 12:23:03,577 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:03,583 p=113821 u=bill n=ansible INFO| TASK [common : Add app user to specified groups] ********************************************************************************************************************************************
+2025-06-07 12:23:03,600 p=113821 u=bill n=ansible INFO| skipping: [wg]
+2025-06-07 12:23:03,622 p=113821 u=bill n=ansible INFO| skipping: [desktop]
+2025-06-07 12:23:03,774 p=113821 u=bill n=ansible INFO| changed: [photoprism]
+2025-06-07 12:23:03,781 p=113821 u=bill n=ansible INFO| TASK [common : ansible setup | ensure group ansible exists] *********************************************************************************************************************************
+2025-06-07 12:23:03,915 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:03,931 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:03,939 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:03,947 p=113821 u=bill n=ansible INFO| TASK [common : ansible setup | ensure ansible is the latest version] ************************************************************************************************************************
+2025-06-07 12:23:04,521 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:04,694 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:04,694 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:04,701 p=113821 u=bill n=ansible INFO| TASK [common : ansible setup | install required packages] ***********************************************************************************************************************************
+2025-06-07 12:23:05,242 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:05,370 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:05,378 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:05,385 p=113821 u=bill n=ansible INFO| TASK [common : ansible setup | install acl package] *****************************************************************************************************************************************
+2025-06-07 12:23:05,931 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:06,069 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:06,078 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:06,085 p=113821 u=bill n=ansible INFO| TASK [common : ansible setup | create ansible log file] *************************************************************************************************************************************
+2025-06-07 12:23:06,234 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:06,241 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:06,242 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:06,248 p=113821 u=bill n=ansible INFO| TASK [common : ansible setup | add logrotate config for ansible log file] *******************************************************************************************************************
+2025-06-07 12:23:06,558 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:06,559 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:06,596 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:06,602 p=113821 u=bill n=ansible INFO| TASK [common : ansible setup | remove default ansible directory (/etc/ansible) from host] ***************************************************************************************************
+2025-06-07 12:23:06,739 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:06,750 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:06,780 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:06,786 p=113821 u=bill n=ansible INFO| TASK [common : ansible setup | generate provision script from template] *********************************************************************************************************************
+2025-06-07 12:23:07,106 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:07,133 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:07,176 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:07,182 p=113821 u=bill n=ansible INFO| TASK [common : Ensure pip3 and pipx are installed] ******************************************************************************************************************************************
+2025-06-07 12:23:07,732 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:07,881 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:07,890 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:07,897 p=113821 u=bill n=ansible INFO| TASK [common : Ensure psutil is installed] **************************************************************************************************************************************************
+2025-06-07 12:23:08,440 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:08,577 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:08,580 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:08,587 p=113821 u=bill n=ansible INFO| TASK [common : system setup | utilities | install utility packages] *************************************************************************************************************************
+2025-06-07 12:23:09,137 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:09,282 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:09,291 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:09,299 p=113821 u=bill n=ansible INFO| TASK [common : system setup | repositories | add sources.list for debian hosts] *************************************************************************************************************
+2025-06-07 12:23:09,314 p=113821 u=bill n=ansible INFO| skipping: [wg]
+2025-06-07 12:23:09,328 p=113821 u=bill n=ansible INFO| skipping: [photoprism]
+2025-06-07 12:23:09,333 p=113821 u=bill n=ansible INFO| skipping: [desktop]
+2025-06-07 12:23:09,341 p=113821 u=bill n=ansible INFO| TASK [common : system setup | repositories | add debian-backports] **************************************************************************************************************************
+2025-06-07 12:23:09,357 p=113821 u=bill n=ansible INFO| skipping: [wg]
+2025-06-07 12:23:09,372 p=113821 u=bill n=ansible INFO| skipping: [photoprism]
+2025-06-07 12:23:09,378 p=113821 u=bill n=ansible INFO| skipping: [desktop]
+2025-06-07 12:23:09,385 p=113821 u=bill n=ansible INFO| TASK [common : system setup | repositories | install package management tools (debian-based)] ***********************************************************************************************
+2025-06-07 12:23:09,941 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:10,076 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:10,077 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:10,083 p=113821 u=bill n=ansible INFO| TASK [common : system setup | clock | install systemd-timesyncd (ubuntu)] *******************************************************************************************************************
+2025-06-07 12:23:10,641 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:10,756 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:10,762 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:10,769 p=113821 u=bill n=ansible INFO| TASK [common : system setup | clock | install systemd-timesyncd (debian)] *******************************************************************************************************************
+2025-06-07 12:23:10,787 p=113821 u=bill n=ansible INFO| skipping: [wg]
+2025-06-07 12:23:10,801 p=113821 u=bill n=ansible INFO| skipping: [photoprism]
+2025-06-07 12:23:10,806 p=113821 u=bill n=ansible INFO| skipping: [desktop]
+2025-06-07 12:23:10,813 p=113821 u=bill n=ansible INFO| TASK [common : system setup | clock | start and enable systemd-timesyncd] *******************************************************************************************************************
+2025-06-07 12:23:11,060 p=113821 u=bill n=ansible INFO| changed: [photoprism]
+2025-06-07 12:23:11,077 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:11,106 p=113821 u=bill n=ansible INFO| changed: [wg]
+2025-06-07 12:23:11,112 p=113821 u=bill n=ansible INFO| TASK [common : system setup | clock | set time zone] ****************************************************************************************************************************************
+2025-06-07 12:23:11,421 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:11,426 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:11,446 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:11,452 p=113821 u=bill n=ansible INFO| TASK [common : system setup | locale | add en_US] *******************************************************************************************************************************************
+2025-06-07 12:23:11,679 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:11,686 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:11,710 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:11,717 p=113821 u=bill n=ansible INFO| TASK [common : system setup | locale | set locale to en_US] *********************************************************************************************************************************
+2025-06-07 12:23:11,896 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:11,933 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:11,951 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:11,958 p=113821 u=bill n=ansible INFO| TASK [common : system setup | locale | set en_US as default locale] *************************************************************************************************************************
+2025-06-07 12:23:11,972 p=113821 u=bill n=ansible INFO| skipping: [wg]
+2025-06-07 12:23:11,985 p=113821 u=bill n=ansible INFO| skipping: [photoprism]
+2025-06-07 12:23:11,991 p=113821 u=bill n=ansible INFO| skipping: [desktop]
+2025-06-07 12:23:11,997 p=113821 u=bill n=ansible INFO| TASK [common : system setup | locale | remove en_GB] ****************************************************************************************************************************************
+2025-06-07 12:23:12,010 p=113821 u=bill n=ansible INFO| skipping: [wg]
+2025-06-07 12:23:12,024 p=113821 u=bill n=ansible INFO| skipping: [photoprism]
+2025-06-07 12:23:12,030 p=113821 u=bill n=ansible INFO| skipping: [desktop]
+2025-06-07 12:23:12,037 p=113821 u=bill n=ansible INFO| TASK [common : system setup | logging | adjust retention period] ****************************************************************************************************************************
+2025-06-07 12:23:12,224 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:12,228 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:12,247 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:12,254 p=113821 u=bill n=ansible INFO| TASK [common : system setup | logging | restart journald (config changed)] ******************************************************************************************************************
+2025-06-07 12:23:12,268 p=113821 u=bill n=ansible INFO| skipping: [wg]
+2025-06-07 12:23:12,283 p=113821 u=bill n=ansible INFO| skipping: [photoprism]
+2025-06-07 12:23:12,290 p=113821 u=bill n=ansible INFO| skipping: [desktop]
+2025-06-07 12:23:12,297 p=113821 u=bill n=ansible INFO| TASK [common : system setup | openssh | install or update daemon package] *******************************************************************************************************************
+2025-06-07 12:23:12,845 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:12,979 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:12,984 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:12,990 p=113821 u=bill n=ansible INFO| TASK [common : system setup | openssh | enable daemon] **************************************************************************************************************************************
+2025-06-07 12:23:13,232 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:13,246 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:13,270 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:13,278 p=113821 u=bill n=ansible INFO| TASK [common : system setup | openssh | generate sshd_config file from template] ************************************************************************************************************
+2025-06-07 12:23:13,586 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:13,615 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:13,656 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:13,686 p=113821 u=bill n=ansible INFO| TASK [common : system setup | openssh | copy issue.net] *************************************************************************************************************************************
+2025-06-07 12:23:14,001 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:14,006 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:14,030 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:14,037 p=113821 u=bill n=ansible INFO| TASK [common : system setup | cron | install cron package] **********************************************************************************************************************************
+2025-06-07 12:23:14,589 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:14,709 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:14,720 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:14,729 p=113821 u=bill n=ansible INFO| TASK [common : system setup | cron | start and enable cronie daemon] ************************************************************************************************************************
+2025-06-07 12:23:14,744 p=113821 u=bill n=ansible INFO| skipping: [wg]
+2025-06-07 12:23:14,758 p=113821 u=bill n=ansible INFO| skipping: [photoprism]
+2025-06-07 12:23:14,764 p=113821 u=bill n=ansible INFO| skipping: [desktop]
+2025-06-07 12:23:14,771 p=113821 u=bill n=ansible INFO| TASK [common : system setup | cron | schedule automatic ansible provisioning] ***************************************************************************************************************
+2025-06-07 12:23:14,982 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:14,989 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:15,009 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:15,017 p=113821 u=bill n=ansible INFO| TASK [common : system setup | cron | schedule ansible cleanup at boot] **********************************************************************************************************************
+2025-06-07 12:23:15,170 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:15,177 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:15,195 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:15,201 p=113821 u=bill n=ansible INFO| TASK [common : Copy provision script] *******************************************************************************************************************************************************
+2025-06-07 12:23:15,533 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:15,535 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:15,578 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:15,618 p=113821 u=bill n=ansible INFO| PLAY [workstation] **************************************************************************************************************************************************************************
+2025-06-07 12:23:15,628 p=113821 u=bill n=ansible INFO| TASK [Gathering Facts] **********************************************************************************************************************************************************************
+2025-06-07 12:23:16,470 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:16,486 p=113821 u=bill n=ansible INFO| TASK [workstation : Load workstation variables] *********************************************************************************************************************************************
+2025-06-07 12:23:16,496 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:16,505 p=113821 u=bill n=ansible INFO| TASK [workstation : Load group variables] ***************************************************************************************************************************************************
+2025-06-07 12:23:16,514 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:16,523 p=113821 u=bill n=ansible INFO| TASK [workstation : include_tasks] **********************************************************************************************************************************************************
+2025-06-07 12:23:16,545 p=113821 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/workstation/tasks/home_directory.yml for desktop
+2025-06-07 12:23:16,553 p=113821 u=bill n=ansible INFO| TASK [workstation : Create desired directories] *********************************************************************************************************************************************
+2025-06-07 12:23:16,562 p=113821 u=bill n=ansible INFO| fatal: [desktop]: FAILED! => {"msg": "['/home/{{ nfs_user }}/desktop', '/home/{{ nfs_user }}/documents', '/home/{{ nfs_user }}/downloads', '/home/{{ nfs_user }}/media', '/home/bill/code', '/home/bill/git', 'home/lily/documents/paperless', 'home/loretta/documents/paperless', 'home/lily/downloads/paperless_consume', 'home/loretta/downloads/paperless_consume']: 'nfs_user' is undefined"}
+2025-06-07 12:23:16,562 p=113821 u=bill n=ansible INFO| ...ignoring
+2025-06-07 12:23:16,571 p=113821 u=bill n=ansible INFO| TASK [workstation : Check if unwanted directories are empty] ********************************************************************************************************************************
+2025-06-07 12:23:16,581 p=113821 u=bill n=ansible INFO| fatal: [desktop]: FAILED! => {"msg": "['/home/{{ nfs_user }}/Desktop', '/home/{{ nfs_user }}/Documents', '/home/{{ nfs_user }}/Downloads', '/home/{{ nfs_user }}/Music', '/home/{{ nfs_user }}/Pictures', '/home/{{ nfs_user }}/Public', '/home/{{ nfs_user }}/Templates', '/home/{{ nfs_user }}/Videos']: 'nfs_user' is undefined"}
+2025-06-07 12:23:16,581 p=113821 u=bill n=ansible INFO| ...ignoring
+2025-06-07 12:23:16,590 p=113821 u=bill n=ansible INFO| TASK [workstation : Remove empty unwanted directories] **************************************************************************************************************************************
+2025-06-07 12:23:16,599 p=113821 u=bill n=ansible INFO| fatal: [desktop]: FAILED! => {"msg": "'dict object' has no attribute 'results'"}
+2025-06-07 12:23:16,599 p=113821 u=bill n=ansible INFO| ...ignoring
+2025-06-07 12:23:16,608 p=113821 u=bill n=ansible INFO| TASK [workstation : Warn about non-empty unwanted directories] ******************************************************************************************************************************
+2025-06-07 12:23:16,618 p=113821 u=bill n=ansible INFO| fatal: [desktop]: FAILED! => {"msg": "'dict object' has no attribute 'results'"}
+2025-06-07 12:23:16,618 p=113821 u=bill n=ansible INFO| ...ignoring
+2025-06-07 12:23:16,627 p=113821 u=bill n=ansible INFO| TASK [workstation : Rename snap to .snap] ***************************************************************************************************************************************************
+2025-06-07 12:23:16,809 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:16,819 p=113821 u=bill n=ansible INFO| TASK [workstation : Ensure .snap directory exists] ******************************************************************************************************************************************
+2025-06-07 12:23:16,950 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:16,958 p=113821 u=bill n=ansible INFO| TASK [workstation : Update .config/user-dirs.dirs file] *************************************************************************************************************************************
+2025-06-07 12:23:17,231 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:17,239 p=113821 u=bill n=ansible INFO| TASK [workstation : Update .config/gtk-3.0/bookmarks file] **********************************************************************************************************************************
+2025-06-07 12:23:17,515 p=113821 u=bill n=ansible INFO| changed: [desktop]
+2025-06-07 12:23:17,524 p=113821 u=bill n=ansible INFO| TASK [workstation : Remove dead .desktop files from Desktop] ********************************************************************************************************************************
+2025-06-07 12:23:17,652 p=113821 u=bill n=ansible INFO| ok: [desktop] => (item=Documents)
+2025-06-07 12:23:17,765 p=113821 u=bill n=ansible INFO| ok: [desktop] => (item=Music)
+2025-06-07 12:23:17,882 p=113821 u=bill n=ansible INFO| ok: [desktop] => (item=Pictures)
+2025-06-07 12:23:17,997 p=113821 u=bill n=ansible INFO| ok: [desktop] => (item=Videos)
+2025-06-07 12:23:18,007 p=113821 u=bill n=ansible INFO| TASK [workstation : Check if Desktop directory is empty] ************************************************************************************************************************************
+2025-06-07 12:23:18,189 p=113821 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Desktop' path due to this access issue: '/home/bill/Desktop' is not a directory
+
+2025-06-07 12:23:18,190 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:18,199 p=113821 u=bill n=ansible INFO| TASK [workstation : Rename Desktop to desktop if empty] *************************************************************************************************************************************
+2025-06-07 12:23:18,316 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:18,326 p=113821 u=bill n=ansible INFO| TASK [workstation : Warn if Desktop directory is not empty] *********************************************************************************************************************************
+2025-06-07 12:23:18,336 p=113821 u=bill n=ansible INFO| skipping: [desktop]
+2025-06-07 12:23:18,345 p=113821 u=bill n=ansible INFO| TASK [workstation : Ensure desktop directory exists] ****************************************************************************************************************************************
+2025-06-07 12:23:18,470 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:18,479 p=113821 u=bill n=ansible INFO| TASK [workstation : Check if GNOME session needs restart] ***********************************************************************************************************************************
+2025-06-07 12:23:18,608 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:18,618 p=113821 u=bill n=ansible INFO| TASK [workstation : Check if running in graphical environment] ******************************************************************************************************************************
+2025-06-07 12:23:18,744 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:18,753 p=113821 u=bill n=ansible INFO| TASK [workstation : gnome | appearance | dconf update] **************************************************************************************************************************************
+2025-06-07 12:23:18,914 p=113821 u=bill n=ansible INFO| changed: [desktop]
+2025-06-07 12:23:18,923 p=113821 u=bill n=ansible INFO| TASK [workstation : Wait for system to come back] *******************************************************************************************************************************************
+2025-06-07 12:23:29,346 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:29,356 p=113821 u=bill n=ansible INFO| TASK [workstation : include_tasks] **********************************************************************************************************************************************************
+2025-06-07 12:23:29,375 p=113821 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/workstation/tasks/fstab.yml for desktop
+2025-06-07 12:23:29,386 p=113821 u=bill n=ansible INFO| TASK [workstation : Debug nfs_users] ********************************************************************************************************************************************************
+2025-06-07 12:23:29,397 p=113821 u=bill n=ansible INFO| ok: [desktop] => {
+    "nfs_users": [
+        "bill",
+        "lily",
+        "loretta"
+    ]
+}
+2025-06-07 12:23:29,406 p=113821 u=bill n=ansible INFO| TASK [workstation : Debug nfs_mounts] *******************************************************************************************************************************************************
+2025-06-07 12:23:29,418 p=113821 u=bill n=ansible INFO| ok: [desktop] => {
+    "nfs_mounts": [
+        {
+            "dest": "/home/DEFAULT_USER/media/books",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/books"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/media/movies",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/media/storage/movies"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/media/tv",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/media/storage/tv"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/media/music",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/media/storage/music"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/media/photos",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/media/storage/photos"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/media/home_videos",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/media/storage/home_videos"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/documents",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/ssd-files/home/DEFAULT_USER/Documents"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/downloads",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/ssd-files/home/DEFAULT_USER/Downloads"
+        }
+    ]
+}
+2025-06-07 12:23:29,427 p=113821 u=bill n=ansible INFO| TASK [workstation : Add managed fstab entries] **********************************************************************************************************************************************
+2025-06-07 12:23:29,606 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:29,616 p=113821 u=bill n=ansible INFO| TASK [workstation : Reload systemd daemon] **************************************************************************************************************************************************
+2025-06-07 12:23:30,139 p=113821 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:23:30,148 p=113821 u=bill n=ansible INFO| TASK [workstation : Remount all filesystems] ************************************************************************************************************************************************
+2025-06-07 12:23:30,279 p=113821 u=bill n=ansible INFO| changed: [desktop]
+2025-06-07 12:23:30,288 p=113821 u=bill n=ansible INFO| TASK [workstation : include_tasks] **********************************************************************************************************************************************************
+2025-06-07 12:23:30,303 p=113821 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/workstation/tasks/groups.yml for desktop
+2025-06-07 12:23:30,315 p=113821 u=bill n=ansible INFO| TASK [workstation : Ensure groups are created] **********************************************************************************************************************************************
+2025-06-07 12:23:30,446 p=113821 u=bill n=ansible INFO| ok: [desktop] => (item={'name': 'media', 'gid': 1776})
+2025-06-07 12:23:30,560 p=113821 u=bill n=ansible INFO| ok: [desktop] => (item={'name': 'docs', 'gid': 1787})
+2025-06-07 12:23:30,674 p=113821 u=bill n=ansible INFO| ok: [desktop] => (item={'name': 'hal', 'gid': 1999})
+2025-06-07 12:23:30,787 p=113821 u=bill n=ansible INFO| ok: [desktop] => (item={'name': 'ansible', 'gid': 1998})
+2025-06-07 12:23:30,902 p=113821 u=bill n=ansible INFO| ok: [desktop] => (item={'name': 'data', 'gid': 1997})
+2025-06-07 12:23:31,018 p=113821 u=bill n=ansible INFO| ok: [desktop] => (item={'name': 'git', 'gid': 1996})
+2025-06-07 12:23:31,133 p=113821 u=bill n=ansible INFO| ok: [desktop] => (item={'name': 'librarian', 'gid': 1995})
+2025-06-07 12:23:31,178 p=113821 u=bill n=ansible INFO| PLAY [proxmox_hosts] ************************************************************************************************************************************************************************
+2025-06-07 12:23:31,181 p=113821 u=bill n=ansible INFO| TASK [Gathering Facts] **********************************************************************************************************************************************************************
+2025-06-07 12:23:33,556 p=113821 u=bill n=ansible INFO| ok: [proxmox]
+2025-06-07 12:23:33,575 p=113821 u=bill n=ansible INFO| TASK [proxmox_hosts : Check if LXC configuration file exists] *******************************************************************************************************************************
+2025-06-07 12:23:33,724 p=113821 u=bill n=ansible INFO| ok: [proxmox] => (item=wg)
+2025-06-07 12:23:33,863 p=113821 u=bill n=ansible INFO| ok: [proxmox] => (item=photoprism)
+2025-06-07 12:23:33,884 p=113821 u=bill n=ansible INFO| TASK [proxmox_hosts : Read existing LXC configuration] **************************************************************************************************************************************
+2025-06-07 12:23:34,082 p=113821 u=bill n=ansible INFO| ok: [proxmox] => (item={'changed': False, 'stat': {'exists': True, 'path': '/etc/pve/lxc/101.conf', 'mode': '0640', 'isdir': False, 'ischr': False, 'isblk': False, 'isreg': True, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 0, 'gid': 33, 'size': 803, 'inode': 33342, 'dev': 44, 'nlink': 1, 'atime': 1749312423.0, 'mtime': 1749312423.0, 'ctime': 1749312423.0, 'wusr': True, 'rusr': True, 'xusr': False, 'wgrp': False, 'rgrp': True, 'xgrp': False, 'woth': False, 'roth': False, 'xoth': False, 'isuid': False, 'isgid': False, 'blocks': 1, 'block_size': 4096, 'device_type': 0, 'readable': True, 'writeable': True, 'executable': False, 'pw_name': 'root', 'gr_name': 'www-data', 'checksum': 'c0b4a4a7f8314858580a464facbd9eed03d4fc1d', 'mimetype': 'text/plain', 'charset': 'us-ascii', 'version': None, 'attributes': [], 'attr_flags': ''}, 'invocation': {'module_args': {'path': '/etc/pve/lxc/101.conf', 'follow': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': 'wg', 'ansible_loop_var': 'item'})
+2025-06-07 12:23:34,207 p=113821 u=bill n=ansible INFO| ok: [proxmox] => (item={'changed': False, 'stat': {'exists': True, 'path': '/etc/pve/lxc/103.conf', 'mode': '0640', 'isdir': False, 'ischr': False, 'isblk': False, 'isreg': True, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 0, 'gid': 33, 'size': 1228, 'inode': 33343, 'dev': 44, 'nlink': 1, 'atime': 1749312424.0, 'mtime': 1749312424.0, 'ctime': 1749312424.0, 'wusr': True, 'rusr': True, 'xusr': False, 'wgrp': False, 'rgrp': True, 'xgrp': False, 'woth': False, 'roth': False, 'xoth': False, 'isuid': False, 'isgid': False, 'blocks': 1, 'block_size': 4096, 'device_type': 0, 'readable': True, 'writeable': True, 'executable': False, 'pw_name': 'root', 'gr_name': 'www-data', 'checksum': '9292593c815357fc6255352845104eb2eb53c763', 'mimetype': 'text/plain', 'charset': 'us-ascii', 'version': None, 'attributes': [], 'attr_flags': ''}, 'invocation': {'module_args': {'path': '/etc/pve/lxc/103.conf', 'follow': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': 'photoprism', 'ansible_loop_var': 'item'})
+2025-06-07 12:23:34,230 p=113821 u=bill n=ansible INFO| TASK [proxmox_hosts : Generate mount configurations] ****************************************************************************************************************************************
+2025-06-07 12:23:34,315 p=113821 u=bill n=ansible INFO| ok: [proxmox] => (item=wg)
+2025-06-07 12:23:34,413 p=113821 u=bill n=ansible INFO| ok: [proxmox] => (item=photoprism)
+2025-06-07 12:23:34,434 p=113821 u=bill n=ansible INFO| TASK [proxmox_hosts : Update LXC configuration with mounts] *********************************************************************************************************************************
+2025-06-07 12:23:34,630 p=113821 u=bill n=ansible WARNING| [WARNING]: sftp transfer mechanism failed on [192.168.86.143]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-06-07 12:23:34,635 p=113821 u=bill n=ansible WARNING| [WARNING]: scp transfer mechanism failed on [192.168.86.143]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-06-07 12:23:34,848 p=113821 u=bill n=ansible INFO| changed: [proxmox] => (item=wg)
+2025-06-07 12:23:35,179 p=113821 u=bill n=ansible INFO| changed: [proxmox] => (item=photoprism)
+2025-06-07 12:23:35,202 p=113821 u=bill n=ansible INFO| PLAY [lxc] **********************************************************************************************************************************************************************************
+2025-06-07 12:23:35,210 p=113821 u=bill n=ansible INFO| TASK [Gathering Facts] **********************************************************************************************************************************************************************
+2025-06-07 12:23:35,827 p=113821 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:23:35,838 p=113821 u=bill n=ansible INFO| ok: [wg]
+2025-06-07 12:23:35,856 p=113821 u=bill n=ansible INFO| TASK [lxc : include_tasks] ******************************************************************************************************************************************************************
+2025-06-07 12:23:35,884 p=113821 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/lxc/tasks/groups.yml for wg, photoprism
+2025-06-07 12:23:35,890 p=113821 u=bill n=ansible INFO| TASK [lxc : Ensure groups are created] ******************************************************************************************************************************************************
+2025-06-07 12:23:36,049 p=113821 u=bill n=ansible INFO| ok: [photoprism] => (item={'name': 'media', 'gid': 1776})
+2025-06-07 12:23:36,064 p=113821 u=bill n=ansible INFO| ok: [wg] => (item={'name': 'media', 'gid': 1776})
+2025-06-07 12:23:36,203 p=113821 u=bill n=ansible INFO| ok: [wg] => (item={'name': 'docs', 'gid': 1787})
+2025-06-07 12:23:36,342 p=113821 u=bill n=ansible INFO| ok: [wg] => (item={'name': 'data', 'gid': 1997})
+2025-06-07 12:23:36,366 p=113821 u=bill n=ansible INFO| PLAY RECAP **********************************************************************************************************************************************************************************
+2025-06-07 12:23:36,366 p=113821 u=bill n=ansible INFO| dell                       : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-06-07 12:23:36,366 p=113821 u=bill n=ansible INFO| desktop                    : ok=73   changed=3    unreachable=0    failed=0    skipped=10   rescued=0    ignored=7   
+2025-06-07 12:23:36,367 p=113821 u=bill n=ansible INFO| photoprism                 : ok=50   changed=3    unreachable=0    failed=0    skipped=7    rescued=0    ignored=3   
+2025-06-07 12:23:36,367 p=113821 u=bill n=ansible INFO| proxmox                    : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-07 12:23:36,367 p=113821 u=bill n=ansible INFO| samsung                    : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-07 12:23:36,367 p=113821 u=bill n=ansible INFO| wg                         : ok=48   changed=1    unreachable=0    failed=0    skipped=9    rescued=0    ignored=3   
+2025-06-07 12:24:42,069 p=114721 u=bill n=ansible INFO| photoprism | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-06-07 12:24:42,449 p=114721 u=bill n=ansible INFO| proxmox | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-06-07 12:24:42,980 p=114721 u=bill n=ansible INFO| samsung | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-06-07 12:24:43,254 p=114721 u=bill n=ansible WARNING| [WARNING]: Platform linux on host dell is using the discovered Python interpreter at /usr/bin/python3.12, but future installation of another Python interpreter could change the meaning of
+that path. See https://docs.ansible.com/ansible-core/2.18/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-07 12:24:43,255 p=114721 u=bill n=ansible INFO| dell | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.12"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+2025-06-07 12:24:46,352 p=114721 u=bill n=ansible INFO| desktop | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-06-07 12:24:53,838 p=114721 u=bill n=ansible INFO| wg | FAILED! => {
+    "msg": "Timeout (12s) waiting for privilege escalation prompt: "
+}
+2025-06-07 12:27:22,754 p=114936 u=bill n=ansible WARNING| [WARNING]: Could not match supplied host pattern, ignoring: common
+
+2025-06-07 12:27:22,774 p=114936 u=bill n=ansible INFO| PLAY [workstation, lxc, common] *************************************************************************************************************************************************************
+2025-06-07 12:27:22,779 p=114936 u=bill n=ansible INFO| TASK [Gathering Facts] **********************************************************************************************************************************************************************
+2025-06-07 12:27:23,822 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:24,306 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:24,722 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:27:25,269 p=114936 u=bill n=ansible WARNING| [WARNING]: Platform linux on host dell is using the discovered Python interpreter at /usr/bin/python3.12, but future installation of another Python interpreter could change the meaning of
+that path. See https://docs.ansible.com/ansible-core/2.18/reference_appendices/interpreter_discovery.html for more information.
+
+2025-06-07 12:27:25,269 p=114936 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 12:27:35,173 p=114936 u=bill n=ansible INFO| fatal: [wg]: FAILED! => {"msg": "Timeout (12s) waiting for privilege escalation prompt: "}
+2025-06-07 12:27:35,181 p=114936 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] *****************************************************************************************************************************************
+2025-06-07 12:27:36,447 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:36,530 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:37,009 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:27:37,216 p=114936 u=bill n=ansible INFO| ok: [dell]
+2025-06-07 12:27:37,224 p=114936 u=bill n=ansible INFO| TASK [Include host variables dynamically] ***************************************************************************************************************************************************
+2025-06-07 12:27:37,242 p=114936 u=bill n=ansible INFO| ok: [desktop] => (item=host_vars/desktop.yml)
+2025-06-07 12:27:37,255 p=114936 u=bill n=ansible INFO| ok: [samsung] => (item=host_vars/samsung.yml)
+2025-06-07 12:27:37,259 p=114936 u=bill n=ansible INFO| failed: [dell] (item=host_vars/dell.yml) => {"ansible_facts": {}, "ansible_included_var_files": [], "ansible_loop_var": "item", "changed": false, "item": "host_vars/dell.yml", "message": "Could not find or access 'host_vars/dell.yml'\nSearched in:\n\t/home/bill/git/home.net/vars/host_vars/dell.yml\n\t/home/bill/git/home.net/host_vars/dell.yml\n\t/home/bill/git/home.net/vars/host_vars/dell.yml\n\t/home/bill/git/home.net/host_vars/dell.yml on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+2025-06-07 12:27:37,272 p=114936 u=bill n=ansible INFO| ok: [photoprism] => (item=host_vars/photoprism.yml)
+2025-06-07 12:27:37,275 p=114936 u=bill n=ansible INFO| PLAY [updates] ******************************************************************************************************************************************************************************
+2025-06-07 12:27:37,293 p=114936 u=bill n=ansible INFO| TASK [Gathering Facts] **********************************************************************************************************************************************************************
+2025-06-07 12:27:37,878 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:38,117 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:38,487 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:27:38,512 p=114936 u=bill n=ansible INFO| TASK [common : Load vault variables] ********************************************************************************************************************************************************
+2025-06-07 12:27:38,547 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:38,560 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:38,571 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:27:38,578 p=114936 u=bill n=ansible INFO| TASK [common : include_vars] ****************************************************************************************************************************************************************
+2025-06-07 12:27:38,605 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:38,606 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:38,613 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:27:38,619 p=114936 u=bill n=ansible INFO| TASK [common : Load group variables] ********************************************************************************************************************************************************
+2025-06-07 12:27:38,634 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:38,645 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:38,651 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:27:38,659 p=114936 u=bill n=ansible INFO| TASK [common : Debug groups_to_create] ******************************************************************************************************************************************************
+2025-06-07 12:27:38,701 p=114936 u=bill n=ansible INFO| ok: [photoprism] => {
+    "msg": "groups_to_create: ['media']"
+}
+2025-06-07 12:27:38,714 p=114936 u=bill n=ansible INFO| ok: [desktop] => {
+    "msg": "groups_to_create: ['media', 'ansible', 'data', 'docs']"
+}
+2025-06-07 12:27:38,723 p=114936 u=bill n=ansible INFO| ok: [samsung] => {
+    "msg": "groups_to_create: ['media', 'ansible', 'data', 'docs']"
+}
+2025-06-07 12:27:38,729 p=114936 u=bill n=ansible INFO| TASK [common : Debug group_definitions variable] ********************************************************************************************************************************************
+2025-06-07 12:27:38,744 p=114936 u=bill n=ansible INFO| ok: [photoprism] => {
+    "group_definitions": [
+        {
+            "gid": 1776,
+            "name": "media"
+        },
+        {
+            "gid": 1787,
+            "name": "docs"
+        },
+        {
+            "gid": 1999,
+            "name": "hal"
+        },
+        {
+            "gid": 1998,
+            "name": "ansible"
+        },
+        {
+            "gid": 1997,
+            "name": "data"
+        },
+        {
+            "gid": 1996,
+            "name": "git"
+        },
+        {
+            "gid": 1995,
+            "name": "librarian"
+        }
+    ]
+}
+2025-06-07 12:27:38,756 p=114936 u=bill n=ansible INFO| ok: [desktop] => {
+    "group_definitions": [
+        {
+            "gid": 1776,
+            "name": "media"
+        },
+        {
+            "gid": 1787,
+            "name": "docs"
+        },
+        {
+            "gid": 1999,
+            "name": "hal"
+        },
+        {
+            "gid": 1998,
+            "name": "ansible"
+        },
+        {
+            "gid": 1997,
+            "name": "data"
+        },
+        {
+            "gid": 1996,
+            "name": "git"
+        },
+        {
+            "gid": 1995,
+            "name": "librarian"
+        }
+    ]
+}
+2025-06-07 12:27:38,764 p=114936 u=bill n=ansible INFO| ok: [samsung] => {
+    "group_definitions": [
+        {
+            "gid": 1776,
+            "name": "media"
+        },
+        {
+            "gid": 1787,
+            "name": "docs"
+        },
+        {
+            "gid": 1999,
+            "name": "hal"
+        },
+        {
+            "gid": 1998,
+            "name": "ansible"
+        },
+        {
+            "gid": 1997,
+            "name": "data"
+        },
+        {
+            "gid": 1996,
+            "name": "git"
+        },
+        {
+            "gid": 1995,
+            "name": "librarian"
+        }
+    ]
+}
+2025-06-07 12:27:38,772 p=114936 u=bill n=ansible INFO| TASK [common : Ensure groups are created] ***************************************************************************************************************************************************
+2025-06-07 12:27:38,984 p=114936 u=bill n=ansible INFO| ok: [photoprism] => (item={'name': 'media', 'gid': 1776})
+2025-06-07 12:27:38,989 p=114936 u=bill n=ansible INFO| ok: [desktop] => (item={'name': 'media', 'gid': 1776})
+2025-06-07 12:27:39,102 p=114936 u=bill n=ansible INFO| ok: [desktop] => (item={'name': 'docs', 'gid': 1787})
+2025-06-07 12:27:39,172 p=114936 u=bill n=ansible INFO| ok: [samsung] => (item={'name': 'media', 'gid': 1776})
+2025-06-07 12:27:39,217 p=114936 u=bill n=ansible INFO| ok: [desktop] => (item={'name': 'ansible', 'gid': 1998})
+2025-06-07 12:27:39,332 p=114936 u=bill n=ansible INFO| ok: [desktop] => (item={'name': 'data', 'gid': 1997})
+2025-06-07 12:27:39,381 p=114936 u=bill n=ansible INFO| ok: [samsung] => (item={'name': 'docs', 'gid': 1787})
+2025-06-07 12:27:39,597 p=114936 u=bill n=ansible INFO| ok: [samsung] => (item={'name': 'ansible', 'gid': 1998})
+2025-06-07 12:27:39,782 p=114936 u=bill n=ansible INFO| ok: [samsung] => (item={'name': 'data', 'gid': 1997})
+2025-06-07 12:27:39,789 p=114936 u=bill n=ansible INFO| TASK [common : Create Bill user] ************************************************************************************************************************************************************
+2025-06-07 12:27:40,042 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:40,058 p=114936 u=bill n=ansible INFO| changed: [photoprism]
+2025-06-07 12:27:40,196 p=114936 u=bill n=ansible INFO| changed: [samsung]
+2025-06-07 12:27:40,204 p=114936 u=bill n=ansible INFO| TASK [common : Ensure .ssh directory exists] ************************************************************************************************************************************************
+2025-06-07 12:27:40,397 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:40,400 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:40,506 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:27:40,512 p=114936 u=bill n=ansible INFO| TASK [common : Set authorized keys for Bill from vault] *************************************************************************************************************************************
+2025-06-07 12:27:40,527 p=114936 u=bill n=ansible INFO| fatal: [photoprism]: FAILED! => {"censored": "the output has been hidden due to the fact that 'no_log: true' was specified for this result"}
+2025-06-07 12:27:40,527 p=114936 u=bill n=ansible INFO| ...ignoring
+2025-06-07 12:27:40,539 p=114936 u=bill n=ansible INFO| fatal: [desktop]: FAILED! => {"censored": "the output has been hidden due to the fact that 'no_log: true' was specified for this result"}
+2025-06-07 12:27:40,539 p=114936 u=bill n=ansible INFO| ...ignoring
+2025-06-07 12:27:40,545 p=114936 u=bill n=ansible INFO| fatal: [samsung]: FAILED! => {"censored": "the output has been hidden due to the fact that 'no_log: true' was specified for this result"}
+2025-06-07 12:27:40,545 p=114936 u=bill n=ansible INFO| ...ignoring
+2025-06-07 12:27:40,552 p=114936 u=bill n=ansible INFO| TASK [common : Copy bashrc for Bill] ********************************************************************************************************************************************************
+2025-06-07 12:27:40,898 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:40,902 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:40,907 p=114936 u=bill n=ansible WARNING| [WARNING]: sftp transfer mechanism failed on [192.168.86.94]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-06-07 12:27:40,918 p=114936 u=bill n=ansible WARNING| [WARNING]: scp transfer mechanism failed on [192.168.86.94]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-06-07 12:27:41,254 p=114936 u=bill n=ansible INFO| changed: [samsung]
+2025-06-07 12:27:41,261 p=114936 u=bill n=ansible INFO| TASK [common : Ensure sudo rights for Bill] *************************************************************************************************************************************************
+2025-06-07 12:27:41,544 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:41,559 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:41,790 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:27:41,797 p=114936 u=bill n=ansible INFO| TASK [common : Configure SSH daemon] ********************************************************************************************************************************************************
+2025-06-07 12:27:41,845 p=114936 u=bill n=ansible INFO| An exception occurred during task execution. To see the full traceback, use -vvv. The error was: If you are using a module and expect the file to exist on the remote, see the remote_src option
+2025-06-07 12:27:41,846 p=114936 u=bill n=ansible INFO| fatal: [photoprism]: FAILED! => {"changed": false, "msg": "Could not find or access '/home/bill/git/home.net/roles/common/../templates/sshd_config.j2' on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+2025-06-07 12:27:41,846 p=114936 u=bill n=ansible INFO| ...ignoring
+2025-06-07 12:27:41,860 p=114936 u=bill n=ansible INFO| An exception occurred during task execution. To see the full traceback, use -vvv. The error was: If you are using a module and expect the file to exist on the remote, see the remote_src option
+2025-06-07 12:27:41,860 p=114936 u=bill n=ansible INFO| fatal: [desktop]: FAILED! => {"changed": false, "msg": "Could not find or access '/home/bill/git/home.net/roles/common/../templates/sshd_config.j2' on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+2025-06-07 12:27:41,861 p=114936 u=bill n=ansible INFO| ...ignoring
+2025-06-07 12:27:41,896 p=114936 u=bill n=ansible INFO| An exception occurred during task execution. To see the full traceback, use -vvv. The error was: If you are using a module and expect the file to exist on the remote, see the remote_src option
+2025-06-07 12:27:41,896 p=114936 u=bill n=ansible INFO| fatal: [samsung]: FAILED! => {"changed": false, "msg": "Could not find or access '/home/bill/git/home.net/roles/common/../templates/sshd_config.j2' on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+2025-06-07 12:27:41,896 p=114936 u=bill n=ansible INFO| ...ignoring
+2025-06-07 12:27:41,903 p=114936 u=bill n=ansible INFO| TASK [common : Ensure SSH service is running and enabled] ***********************************************************************************************************************************
+2025-06-07 12:27:42,268 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:42,283 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:42,532 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:27:42,540 p=114936 u=bill n=ansible INFO| TASK [common : users | hal | create user] ***************************************************************************************************************************************************
+2025-06-07 12:27:42,702 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:42,721 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:42,844 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:27:42,851 p=114936 u=bill n=ansible INFO| TASK [common : users | hal | add sudoers file] **********************************************************************************************************************************************
+2025-06-07 12:27:43,119 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:43,134 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:43,337 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:27:43,345 p=114936 u=bill n=ansible INFO| TASK [common : Ensure app user exists as a system user] *************************************************************************************************************************************
+2025-06-07 12:27:43,374 p=114936 u=bill n=ansible INFO| skipping: [desktop]
+2025-06-07 12:27:43,382 p=114936 u=bill n=ansible INFO| skipping: [samsung]
+2025-06-07 12:27:43,506 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:43,512 p=114936 u=bill n=ansible INFO| TASK [common : Add app user to specified groups] ********************************************************************************************************************************************
+2025-06-07 12:27:43,542 p=114936 u=bill n=ansible INFO| skipping: [desktop]
+2025-06-07 12:27:43,551 p=114936 u=bill n=ansible INFO| skipping: [samsung]
+2025-06-07 12:27:43,693 p=114936 u=bill n=ansible INFO| changed: [photoprism]
+2025-06-07 12:27:43,699 p=114936 u=bill n=ansible INFO| TASK [common : ansible setup | ensure group ansible exists] *********************************************************************************************************************************
+2025-06-07 12:27:43,827 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:43,835 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:43,986 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:27:43,995 p=114936 u=bill n=ansible INFO| TASK [common : ansible setup | ensure ansible is the latest version] ************************************************************************************************************************
+2025-06-07 12:27:44,535 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:44,655 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:44,861 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:27:44,869 p=114936 u=bill n=ansible INFO| TASK [common : ansible setup | install required packages] ***********************************************************************************************************************************
+2025-06-07 12:27:45,403 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:45,513 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:45,711 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:27:45,718 p=114936 u=bill n=ansible INFO| TASK [common : ansible setup | install acl package] *****************************************************************************************************************************************
+2025-06-07 12:27:46,249 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:46,358 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:46,582 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:27:46,589 p=114936 u=bill n=ansible INFO| TASK [common : ansible setup | create ansible log file] *************************************************************************************************************************************
+2025-06-07 12:27:46,715 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:46,724 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:46,844 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:27:46,850 p=114936 u=bill n=ansible INFO| TASK [common : ansible setup | add logrotate config for ansible log file] *******************************************************************************************************************
+2025-06-07 12:27:47,118 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:47,140 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:47,380 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:27:47,386 p=114936 u=bill n=ansible INFO| TASK [common : ansible setup | remove default ansible directory (/etc/ansible) from host] ***************************************************************************************************
+2025-06-07 12:27:47,509 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:47,518 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:47,639 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:27:47,646 p=114936 u=bill n=ansible INFO| TASK [common : ansible setup | generate provision script from template] *********************************************************************************************************************
+2025-06-07 12:27:47,930 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:47,941 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:48,234 p=114936 u=bill n=ansible INFO| changed: [samsung]
+2025-06-07 12:27:48,240 p=114936 u=bill n=ansible INFO| TASK [common : Ensure pip3 and pipx are installed] ******************************************************************************************************************************************
+2025-06-07 12:27:48,772 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:48,879 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:49,083 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:27:49,110 p=114936 u=bill n=ansible INFO| TASK [common : Ensure psutil is installed] **************************************************************************************************************************************************
+2025-06-07 12:27:49,639 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:49,744 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:49,934 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:27:49,940 p=114936 u=bill n=ansible INFO| TASK [common : system setup | utilities | install utility packages] *************************************************************************************************************************
+2025-06-07 12:27:50,486 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:50,587 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:50,918 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:27:50,926 p=114936 u=bill n=ansible INFO| TASK [common : system setup | repositories | add sources.list for debian hosts] *************************************************************************************************************
+2025-06-07 12:27:50,939 p=114936 u=bill n=ansible INFO| skipping: [photoprism]
+2025-06-07 12:27:50,949 p=114936 u=bill n=ansible INFO| skipping: [desktop]
+2025-06-07 12:27:50,954 p=114936 u=bill n=ansible INFO| skipping: [samsung]
+2025-06-07 12:27:50,961 p=114936 u=bill n=ansible INFO| TASK [common : system setup | repositories | add debian-backports] **************************************************************************************************************************
+2025-06-07 12:27:50,976 p=114936 u=bill n=ansible INFO| skipping: [photoprism]
+2025-06-07 12:27:50,988 p=114936 u=bill n=ansible INFO| skipping: [desktop]
+2025-06-07 12:27:50,994 p=114936 u=bill n=ansible INFO| skipping: [samsung]
+2025-06-07 12:27:51,000 p=114936 u=bill n=ansible INFO| TASK [common : system setup | repositories | install package management tools (debian-based)] ***********************************************************************************************
+2025-06-07 12:27:51,527 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:51,658 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:51,934 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:27:51,940 p=114936 u=bill n=ansible INFO| TASK [common : system setup | clock | install systemd-timesyncd (ubuntu)] *******************************************************************************************************************
+2025-06-07 12:27:52,472 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:52,606 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:52,798 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:27:52,805 p=114936 u=bill n=ansible INFO| TASK [common : system setup | clock | install systemd-timesyncd (debian)] *******************************************************************************************************************
+2025-06-07 12:27:52,819 p=114936 u=bill n=ansible INFO| skipping: [photoprism]
+2025-06-07 12:27:52,829 p=114936 u=bill n=ansible INFO| skipping: [desktop]
+2025-06-07 12:27:52,835 p=114936 u=bill n=ansible INFO| skipping: [samsung]
+2025-06-07 12:27:52,842 p=114936 u=bill n=ansible INFO| TASK [common : system setup | clock | start and enable systemd-timesyncd] *******************************************************************************************************************
+2025-06-07 12:27:53,076 p=114936 u=bill n=ansible INFO| changed: [photoprism]
+2025-06-07 12:27:53,093 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:53,271 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:27:53,278 p=114936 u=bill n=ansible INFO| TASK [common : system setup | clock | set time zone] ****************************************************************************************************************************************
+2025-06-07 12:27:53,583 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:53,584 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:53,741 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:27:53,749 p=114936 u=bill n=ansible INFO| TASK [common : system setup | locale | add en_US] *******************************************************************************************************************************************
+2025-06-07 12:27:53,980 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:53,985 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:54,108 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:27:54,115 p=114936 u=bill n=ansible INFO| TASK [common : system setup | locale | set locale to en_US] *********************************************************************************************************************************
+2025-06-07 12:27:54,261 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:54,275 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:54,398 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:27:54,405 p=114936 u=bill n=ansible INFO| TASK [common : system setup | locale | set en_US as default locale] *************************************************************************************************************************
+2025-06-07 12:27:54,431 p=114936 u=bill n=ansible INFO| skipping: [photoprism]
+2025-06-07 12:27:54,431 p=114936 u=bill n=ansible INFO| skipping: [desktop]
+2025-06-07 12:27:54,436 p=114936 u=bill n=ansible INFO| skipping: [samsung]
+2025-06-07 12:27:54,443 p=114936 u=bill n=ansible INFO| TASK [common : system setup | locale | remove en_GB] ****************************************************************************************************************************************
+2025-06-07 12:27:54,459 p=114936 u=bill n=ansible INFO| skipping: [photoprism]
+2025-06-07 12:27:54,471 p=114936 u=bill n=ansible INFO| skipping: [desktop]
+2025-06-07 12:27:54,477 p=114936 u=bill n=ansible INFO| skipping: [samsung]
+2025-06-07 12:27:54,483 p=114936 u=bill n=ansible INFO| TASK [common : system setup | logging | adjust retention period] ****************************************************************************************************************************
+2025-06-07 12:27:54,668 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:27:54,671 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:54,835 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:27:54,841 p=114936 u=bill n=ansible INFO| TASK [common : system setup | logging | restart journald (config changed)] ******************************************************************************************************************
+2025-06-07 12:27:54,867 p=114936 u=bill n=ansible INFO| skipping: [photoprism]
+2025-06-07 12:27:54,869 p=114936 u=bill n=ansible INFO| skipping: [desktop]
+2025-06-07 12:27:54,873 p=114936 u=bill n=ansible INFO| skipping: [samsung]
+2025-06-07 12:27:54,880 p=114936 u=bill n=ansible INFO| TASK [common : system setup | openssh | install or update daemon package] *******************************************************************************************************************
+2025-06-07 12:27:55,411 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:27:55,527 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:28:02,672 p=114936 u=bill n=ansible INFO| changed: [samsung]
+2025-06-07 12:28:02,679 p=114936 u=bill n=ansible INFO| TASK [common : system setup | openssh | enable daemon] **************************************************************************************************************************************
+2025-06-07 12:28:02,910 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:28:02,938 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:28:03,218 p=114936 u=bill n=ansible INFO| changed: [samsung]
+2025-06-07 12:28:03,225 p=114936 u=bill n=ansible INFO| TASK [common : system setup | openssh | generate sshd_config file from template] ************************************************************************************************************
+2025-06-07 12:28:03,506 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:28:03,521 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:28:03,798 p=114936 u=bill n=ansible INFO| changed: [samsung]
+2025-06-07 12:28:03,805 p=114936 u=bill n=ansible INFO| TASK [common : system setup | openssh | copy issue.net] *************************************************************************************************************************************
+2025-06-07 12:28:04,074 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:28:04,086 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:28:04,465 p=114936 u=bill n=ansible INFO| changed: [samsung]
+2025-06-07 12:28:04,472 p=114936 u=bill n=ansible INFO| TASK [common : system setup | cron | install cron package] **********************************************************************************************************************************
+2025-06-07 12:28:05,013 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:28:05,109 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:28:05,316 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:28:05,322 p=114936 u=bill n=ansible INFO| TASK [common : system setup | cron | start and enable cronie daemon] ************************************************************************************************************************
+2025-06-07 12:28:05,336 p=114936 u=bill n=ansible INFO| skipping: [photoprism]
+2025-06-07 12:28:05,347 p=114936 u=bill n=ansible INFO| skipping: [desktop]
+2025-06-07 12:28:05,352 p=114936 u=bill n=ansible INFO| skipping: [samsung]
+2025-06-07 12:28:05,359 p=114936 u=bill n=ansible INFO| TASK [common : system setup | cron | schedule automatic ansible provisioning] ***************************************************************************************************************
+2025-06-07 12:28:05,580 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:28:05,586 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:28:05,816 p=114936 u=bill n=ansible INFO| changed: [samsung]
+2025-06-07 12:28:05,822 p=114936 u=bill n=ansible INFO| TASK [common : system setup | cron | schedule ansible cleanup at boot] **********************************************************************************************************************
+2025-06-07 12:28:05,954 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:28:06,008 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:28:06,125 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:28:06,131 p=114936 u=bill n=ansible INFO| TASK [common : Copy provision script] *******************************************************************************************************************************************************
+2025-06-07 12:28:06,439 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:28:06,443 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:28:06,672 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:28:06,704 p=114936 u=bill n=ansible INFO| RUNNING HANDLER [common : restart_sshd] *****************************************************************************************************************************************************
+2025-06-07 12:28:07,134 p=114936 u=bill n=ansible INFO| changed: [samsung]
+2025-06-07 12:28:07,157 p=114936 u=bill n=ansible INFO| PLAY [workstation] **************************************************************************************************************************************************************************
+2025-06-07 12:28:07,169 p=114936 u=bill n=ansible INFO| TASK [Gathering Facts] **********************************************************************************************************************************************************************
+2025-06-07 12:28:08,038 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:28:08,143 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:28:08,165 p=114936 u=bill n=ansible INFO| TASK [workstation : Load workstation variables] *********************************************************************************************************************************************
+2025-06-07 12:28:08,180 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:28:08,186 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:28:08,195 p=114936 u=bill n=ansible INFO| TASK [workstation : Load group variables] ***************************************************************************************************************************************************
+2025-06-07 12:28:08,207 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:28:08,213 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:28:08,222 p=114936 u=bill n=ansible INFO| TASK [workstation : include_tasks] **********************************************************************************************************************************************************
+2025-06-07 12:28:08,258 p=114936 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/workstation/tasks/home_directory.yml for desktop, samsung
+2025-06-07 12:28:08,267 p=114936 u=bill n=ansible INFO| TASK [workstation : Create desired directories] *********************************************************************************************************************************************
+2025-06-07 12:28:08,281 p=114936 u=bill n=ansible INFO| fatal: [desktop]: FAILED! => {"msg": "['/home/{{ nfs_user }}/desktop', '/home/{{ nfs_user }}/documents', '/home/{{ nfs_user }}/downloads', '/home/{{ nfs_user }}/media', '/home/bill/code', '/home/bill/git', 'home/lily/documents/paperless', 'home/loretta/documents/paperless', 'home/lily/downloads/paperless_consume', 'home/loretta/downloads/paperless_consume']: 'nfs_user' is undefined"}
+2025-06-07 12:28:08,281 p=114936 u=bill n=ansible INFO| ...ignoring
+2025-06-07 12:28:08,286 p=114936 u=bill n=ansible INFO| fatal: [samsung]: FAILED! => {"msg": "['/home/{{ nfs_user }}/desktop', '/home/{{ nfs_user }}/documents', '/home/{{ nfs_user }}/downloads', '/home/{{ nfs_user }}/media', '/home/bill/code', '/home/bill/git', 'home/lily/documents/paperless', 'home/loretta/documents/paperless', 'home/lily/downloads/paperless_consume', 'home/loretta/downloads/paperless_consume']: 'nfs_user' is undefined"}
+2025-06-07 12:28:08,286 p=114936 u=bill n=ansible INFO| ...ignoring
+2025-06-07 12:28:08,297 p=114936 u=bill n=ansible INFO| TASK [workstation : Check if unwanted directories are empty] ********************************************************************************************************************************
+2025-06-07 12:28:08,311 p=114936 u=bill n=ansible INFO| fatal: [desktop]: FAILED! => {"msg": "['/home/{{ nfs_user }}/Desktop', '/home/{{ nfs_user }}/Documents', '/home/{{ nfs_user }}/Downloads', '/home/{{ nfs_user }}/Music', '/home/{{ nfs_user }}/Pictures', '/home/{{ nfs_user }}/Public', '/home/{{ nfs_user }}/Templates', '/home/{{ nfs_user }}/Videos']: 'nfs_user' is undefined"}
+2025-06-07 12:28:08,311 p=114936 u=bill n=ansible INFO| ...ignoring
+2025-06-07 12:28:08,317 p=114936 u=bill n=ansible INFO| fatal: [samsung]: FAILED! => {"msg": "['/home/{{ nfs_user }}/Desktop', '/home/{{ nfs_user }}/Documents', '/home/{{ nfs_user }}/Downloads', '/home/{{ nfs_user }}/Music', '/home/{{ nfs_user }}/Pictures', '/home/{{ nfs_user }}/Public', '/home/{{ nfs_user }}/Templates', '/home/{{ nfs_user }}/Videos']: 'nfs_user' is undefined"}
+2025-06-07 12:28:08,318 p=114936 u=bill n=ansible INFO| ...ignoring
+2025-06-07 12:28:08,326 p=114936 u=bill n=ansible INFO| TASK [workstation : Remove empty unwanted directories] **************************************************************************************************************************************
+2025-06-07 12:28:08,341 p=114936 u=bill n=ansible INFO| fatal: [desktop]: FAILED! => {"msg": "'dict object' has no attribute 'results'"}
+2025-06-07 12:28:08,341 p=114936 u=bill n=ansible INFO| ...ignoring
+2025-06-07 12:28:08,347 p=114936 u=bill n=ansible INFO| fatal: [samsung]: FAILED! => {"msg": "'dict object' has no attribute 'results'"}
+2025-06-07 12:28:08,347 p=114936 u=bill n=ansible INFO| ...ignoring
+2025-06-07 12:28:08,357 p=114936 u=bill n=ansible INFO| TASK [workstation : Warn about non-empty unwanted directories] ******************************************************************************************************************************
+2025-06-07 12:28:08,370 p=114936 u=bill n=ansible INFO| fatal: [desktop]: FAILED! => {"msg": "'dict object' has no attribute 'results'"}
+2025-06-07 12:28:08,370 p=114936 u=bill n=ansible INFO| ...ignoring
+2025-06-07 12:28:08,377 p=114936 u=bill n=ansible INFO| fatal: [samsung]: FAILED! => {"msg": "'dict object' has no attribute 'results'"}
+2025-06-07 12:28:08,378 p=114936 u=bill n=ansible INFO| ...ignoring
+2025-06-07 12:28:08,388 p=114936 u=bill n=ansible INFO| TASK [workstation : Rename snap to .snap] ***************************************************************************************************************************************************
+2025-06-07 12:28:08,575 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:28:08,757 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:28:08,766 p=114936 u=bill n=ansible INFO| TASK [workstation : Ensure .snap directory exists] ******************************************************************************************************************************************
+2025-06-07 12:28:08,889 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:28:09,029 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:28:09,038 p=114936 u=bill n=ansible INFO| TASK [workstation : Update .config/user-dirs.dirs file] *************************************************************************************************************************************
+2025-06-07 12:28:09,314 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:28:09,528 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:28:09,538 p=114936 u=bill n=ansible INFO| TASK [workstation : Update .config/gtk-3.0/bookmarks file] **********************************************************************************************************************************
+2025-06-07 12:28:09,818 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:28:10,057 p=114936 u=bill n=ansible INFO| changed: [samsung]
+2025-06-07 12:28:10,066 p=114936 u=bill n=ansible INFO| TASK [workstation : Remove dead .desktop files from Desktop] ********************************************************************************************************************************
+2025-06-07 12:28:10,195 p=114936 u=bill n=ansible INFO| ok: [desktop] => (item=Documents)
+2025-06-07 12:28:10,311 p=114936 u=bill n=ansible INFO| ok: [desktop] => (item=Music)
+2025-06-07 12:28:10,313 p=114936 u=bill n=ansible INFO| ok: [samsung] => (item=Documents)
+2025-06-07 12:28:10,426 p=114936 u=bill n=ansible INFO| ok: [desktop] => (item=Pictures)
+2025-06-07 12:28:10,533 p=114936 u=bill n=ansible INFO| ok: [samsung] => (item=Music)
+2025-06-07 12:28:10,541 p=114936 u=bill n=ansible INFO| ok: [desktop] => (item=Videos)
+2025-06-07 12:28:10,744 p=114936 u=bill n=ansible INFO| ok: [samsung] => (item=Pictures)
+2025-06-07 12:28:10,948 p=114936 u=bill n=ansible INFO| ok: [samsung] => (item=Videos)
+2025-06-07 12:28:10,957 p=114936 u=bill n=ansible INFO| TASK [workstation : Check if Desktop directory is empty] ************************************************************************************************************************************
+2025-06-07 12:28:11,139 p=114936 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Desktop' path due to this access issue: '/home/bill/Desktop' is not a directory
+
+2025-06-07 12:28:11,139 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:28:11,244 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:28:11,255 p=114936 u=bill n=ansible INFO| TASK [workstation : Rename Desktop to desktop if empty] *************************************************************************************************************************************
+2025-06-07 12:28:11,376 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:28:11,512 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:28:11,522 p=114936 u=bill n=ansible INFO| TASK [workstation : Warn if Desktop directory is not empty] *********************************************************************************************************************************
+2025-06-07 12:28:11,535 p=114936 u=bill n=ansible INFO| skipping: [desktop]
+2025-06-07 12:28:11,541 p=114936 u=bill n=ansible INFO| skipping: [samsung]
+2025-06-07 12:28:11,550 p=114936 u=bill n=ansible INFO| TASK [workstation : Ensure desktop directory exists] ****************************************************************************************************************************************
+2025-06-07 12:28:11,674 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:28:11,791 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:28:11,807 p=114936 u=bill n=ansible INFO| TASK [workstation : Check if GNOME session needs restart] ***********************************************************************************************************************************
+2025-06-07 12:28:11,932 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:28:12,066 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:28:12,079 p=114936 u=bill n=ansible INFO| TASK [workstation : Check if running in graphical environment] ******************************************************************************************************************************
+2025-06-07 12:28:12,211 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:28:12,323 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:28:12,333 p=114936 u=bill n=ansible INFO| TASK [workstation : gnome | appearance | dconf update] **************************************************************************************************************************************
+2025-06-07 12:28:12,477 p=114936 u=bill n=ansible INFO| changed: [desktop]
+2025-06-07 12:28:12,589 p=114936 u=bill n=ansible INFO| changed: [samsung]
+2025-06-07 12:28:12,600 p=114936 u=bill n=ansible INFO| TASK [workstation : Wait for system to come back] *******************************************************************************************************************************************
+2025-06-07 12:28:23,059 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:28:23,306 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:28:23,316 p=114936 u=bill n=ansible INFO| TASK [workstation : include_tasks] **********************************************************************************************************************************************************
+2025-06-07 12:28:23,351 p=114936 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/workstation/tasks/fstab.yml for desktop, samsung
+2025-06-07 12:28:23,365 p=114936 u=bill n=ansible INFO| TASK [workstation : Debug nfs_users] ********************************************************************************************************************************************************
+2025-06-07 12:28:23,381 p=114936 u=bill n=ansible INFO| ok: [desktop] => {
+    "nfs_users": [
+        "bill",
+        "lily",
+        "loretta"
+    ]
+}
+2025-06-07 12:28:23,389 p=114936 u=bill n=ansible INFO| ok: [samsung] => {
+    "nfs_users": [
+        "bill",
+        "lily",
+        "loretta"
+    ]
+}
+2025-06-07 12:28:23,398 p=114936 u=bill n=ansible INFO| TASK [workstation : Debug nfs_mounts] *******************************************************************************************************************************************************
+2025-06-07 12:28:23,415 p=114936 u=bill n=ansible INFO| ok: [desktop] => {
+    "nfs_mounts": [
+        {
+            "dest": "/home/DEFAULT_USER/media/books",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/books"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/media/movies",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/media/storage/movies"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/media/tv",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/media/storage/tv"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/media/music",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/media/storage/music"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/media/photos",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/media/storage/photos"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/media/home_videos",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/media/storage/home_videos"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/documents",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/ssd-files/home/DEFAULT_USER/Documents"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/downloads",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/ssd-files/home/DEFAULT_USER/Downloads"
+        }
+    ]
+}
+2025-06-07 12:28:23,422 p=114936 u=bill n=ansible INFO| ok: [samsung] => {
+    "nfs_mounts": [
+        {
+            "dest": "/home/DEFAULT_USER/media/books",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/books"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/media/movies",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/media/storage/movies"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/media/tv",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/media/storage/tv"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/media/music",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/media/storage/music"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/media/photos",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/media/storage/photos"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/media/home_videos",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/Data/media/storage/home_videos"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/documents",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/ssd-files/home/DEFAULT_USER/Documents"
+        },
+        {
+            "dest": "/home/DEFAULT_USER/downloads",
+            "opts": "rw,comment=x-gvfs-hide",
+            "src": "192.168.86.90:/mnt/ssd-files/home/DEFAULT_USER/Downloads"
+        }
+    ]
+}
+2025-06-07 12:28:23,431 p=114936 u=bill n=ansible INFO| TASK [workstation : Add managed fstab entries] **********************************************************************************************************************************************
+2025-06-07 12:28:23,615 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:28:23,834 p=114936 u=bill n=ansible INFO| changed: [samsung]
+2025-06-07 12:28:23,845 p=114936 u=bill n=ansible INFO| TASK [workstation : Reload systemd daemon] **************************************************************************************************************************************************
+2025-06-07 12:28:24,376 p=114936 u=bill n=ansible INFO| ok: [desktop]
+2025-06-07 12:28:24,609 p=114936 u=bill n=ansible INFO| ok: [samsung]
+2025-06-07 12:28:24,619 p=114936 u=bill n=ansible INFO| TASK [workstation : Remount all filesystems] ************************************************************************************************************************************************
+2025-06-07 12:28:24,752 p=114936 u=bill n=ansible INFO| changed: [desktop]
+2025-06-07 12:28:25,524 p=114936 u=bill n=ansible INFO| changed: [samsung]
+2025-06-07 12:28:25,532 p=114936 u=bill n=ansible INFO| TASK [workstation : include_tasks] **********************************************************************************************************************************************************
+2025-06-07 12:28:25,569 p=114936 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/workstation/tasks/groups.yml for desktop, samsung
+2025-06-07 12:28:25,584 p=114936 u=bill n=ansible INFO| TASK [workstation : Ensure groups are created] **********************************************************************************************************************************************
+2025-06-07 12:28:25,720 p=114936 u=bill n=ansible INFO| ok: [desktop] => (item={'name': 'media', 'gid': 1776})
+2025-06-07 12:28:25,833 p=114936 u=bill n=ansible INFO| ok: [desktop] => (item={'name': 'docs', 'gid': 1787})
+2025-06-07 12:28:25,838 p=114936 u=bill n=ansible INFO| ok: [samsung] => (item={'name': 'media', 'gid': 1776})
+2025-06-07 12:28:25,947 p=114936 u=bill n=ansible INFO| ok: [desktop] => (item={'name': 'hal', 'gid': 1999})
+2025-06-07 12:28:26,048 p=114936 u=bill n=ansible INFO| ok: [samsung] => (item={'name': 'docs', 'gid': 1787})
+2025-06-07 12:28:26,062 p=114936 u=bill n=ansible INFO| ok: [desktop] => (item={'name': 'ansible', 'gid': 1998})
+2025-06-07 12:28:26,183 p=114936 u=bill n=ansible INFO| ok: [desktop] => (item={'name': 'data', 'gid': 1997})
+2025-06-07 12:28:26,255 p=114936 u=bill n=ansible INFO| ok: [samsung] => (item={'name': 'hal', 'gid': 1999})
+2025-06-07 12:28:26,303 p=114936 u=bill n=ansible INFO| ok: [desktop] => (item={'name': 'git', 'gid': 1996})
+2025-06-07 12:28:26,424 p=114936 u=bill n=ansible INFO| ok: [desktop] => (item={'name': 'librarian', 'gid': 1995})
+2025-06-07 12:28:26,480 p=114936 u=bill n=ansible INFO| ok: [samsung] => (item={'name': 'ansible', 'gid': 1998})
+2025-06-07 12:28:26,690 p=114936 u=bill n=ansible INFO| ok: [samsung] => (item={'name': 'data', 'gid': 1997})
+2025-06-07 12:28:26,886 p=114936 u=bill n=ansible INFO| ok: [samsung] => (item={'name': 'git', 'gid': 1996})
+2025-06-07 12:28:27,093 p=114936 u=bill n=ansible INFO| ok: [samsung] => (item={'name': 'librarian', 'gid': 1995})
+2025-06-07 12:28:27,127 p=114936 u=bill n=ansible INFO| PLAY [proxmox_hosts] ************************************************************************************************************************************************************************
+2025-06-07 12:28:27,130 p=114936 u=bill n=ansible INFO| TASK [Gathering Facts] **********************************************************************************************************************************************************************
+2025-06-07 12:28:29,572 p=114936 u=bill n=ansible INFO| ok: [proxmox]
+2025-06-07 12:28:29,593 p=114936 u=bill n=ansible INFO| TASK [proxmox_hosts : Check if LXC configuration file exists] *******************************************************************************************************************************
+2025-06-07 12:28:29,737 p=114936 u=bill n=ansible INFO| ok: [proxmox] => (item=wg)
+2025-06-07 12:28:29,880 p=114936 u=bill n=ansible INFO| ok: [proxmox] => (item=photoprism)
+2025-06-07 12:28:29,903 p=114936 u=bill n=ansible INFO| TASK [proxmox_hosts : Read existing LXC configuration] **************************************************************************************************************************************
+2025-06-07 12:28:30,094 p=114936 u=bill n=ansible INFO| ok: [proxmox] => (item={'changed': False, 'stat': {'exists': True, 'path': '/etc/pve/lxc/101.conf', 'mode': '0640', 'isdir': False, 'ischr': False, 'isblk': False, 'isreg': True, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 0, 'gid': 33, 'size': 827, 'inode': 33376, 'dev': 44, 'nlink': 1, 'atime': 1749313414.0, 'mtime': 1749313414.0, 'ctime': 1749313414.0, 'wusr': True, 'rusr': True, 'xusr': False, 'wgrp': False, 'rgrp': True, 'xgrp': False, 'woth': False, 'roth': False, 'xoth': False, 'isuid': False, 'isgid': False, 'blocks': 1, 'block_size': 4096, 'device_type': 0, 'readable': True, 'writeable': True, 'executable': False, 'pw_name': 'root', 'gr_name': 'www-data', 'checksum': '54725656e3d71efd6b7dcc5250db5085c34fdae2', 'mimetype': 'text/plain', 'charset': 'us-ascii', 'version': None, 'attributes': [], 'attr_flags': ''}, 'invocation': {'module_args': {'path': '/etc/pve/lxc/101.conf', 'follow': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': 'wg', 'ansible_loop_var': 'item'})
+2025-06-07 12:28:30,218 p=114936 u=bill n=ansible INFO| ok: [proxmox] => (item={'changed': False, 'stat': {'exists': True, 'path': '/etc/pve/lxc/103.conf', 'mode': '0640', 'isdir': False, 'ischr': False, 'isblk': False, 'isreg': True, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 0, 'gid': 33, 'size': 1252, 'inode': 33377, 'dev': 44, 'nlink': 1, 'atime': 1749313415.0, 'mtime': 1749313415.0, 'ctime': 1749313415.0, 'wusr': True, 'rusr': True, 'xusr': False, 'wgrp': False, 'rgrp': True, 'xgrp': False, 'woth': False, 'roth': False, 'xoth': False, 'isuid': False, 'isgid': False, 'blocks': 1, 'block_size': 4096, 'device_type': 0, 'readable': True, 'writeable': True, 'executable': False, 'pw_name': 'root', 'gr_name': 'www-data', 'checksum': 'bdc264d611d03ee2af4ecc4dffd93a23750adf07', 'mimetype': 'text/plain', 'charset': 'us-ascii', 'version': None, 'attributes': [], 'attr_flags': ''}, 'invocation': {'module_args': {'path': '/etc/pve/lxc/103.conf', 'follow': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': 'photoprism', 'ansible_loop_var': 'item'})
+2025-06-07 12:28:30,242 p=114936 u=bill n=ansible INFO| TASK [proxmox_hosts : Generate mount configurations] ****************************************************************************************************************************************
+2025-06-07 12:28:30,345 p=114936 u=bill n=ansible INFO| ok: [proxmox] => (item=wg)
+2025-06-07 12:28:30,414 p=114936 u=bill n=ansible INFO| ok: [proxmox] => (item=photoprism)
+2025-06-07 12:28:30,437 p=114936 u=bill n=ansible INFO| TASK [proxmox_hosts : Update LXC configuration with mounts] *********************************************************************************************************************************
+2025-06-07 12:28:30,617 p=114936 u=bill n=ansible WARNING| [WARNING]: sftp transfer mechanism failed on [192.168.86.143]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-06-07 12:28:30,622 p=114936 u=bill n=ansible WARNING| [WARNING]: scp transfer mechanism failed on [192.168.86.143]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-06-07 12:28:30,771 p=114936 u=bill n=ansible INFO| changed: [proxmox] => (item=wg)
+2025-06-07 12:28:31,095 p=114936 u=bill n=ansible INFO| changed: [proxmox] => (item=photoprism)
+2025-06-07 12:28:31,119 p=114936 u=bill n=ansible INFO| PLAY [lxc] **********************************************************************************************************************************************************************************
+2025-06-07 12:28:31,127 p=114936 u=bill n=ansible INFO| TASK [Gathering Facts] **********************************************************************************************************************************************************************
+2025-06-07 12:28:31,772 p=114936 u=bill n=ansible INFO| ok: [photoprism]
+2025-06-07 12:28:31,784 p=114936 u=bill n=ansible INFO| TASK [lxc : include_tasks] ******************************************************************************************************************************************************************
+2025-06-07 12:28:31,798 p=114936 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/lxc/tasks/groups.yml for photoprism
+2025-06-07 12:28:31,804 p=114936 u=bill n=ansible INFO| TASK [lxc : Ensure groups are created] ******************************************************************************************************************************************************
+2025-06-07 12:28:31,936 p=114936 u=bill n=ansible INFO| ok: [photoprism] => (item={'name': 'media', 'gid': 1776})
+2025-06-07 12:28:31,950 p=114936 u=bill n=ansible INFO| PLAY RECAP **********************************************************************************************************************************************************************************
+2025-06-07 12:28:31,950 p=114936 u=bill n=ansible INFO| dell                       : ok=2    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-06-07 12:28:31,950 p=114936 u=bill n=ansible INFO| desktop                    : ok=73   changed=2    unreachable=0    failed=0    skipped=10   rescued=0    ignored=6   
+2025-06-07 12:28:31,950 p=114936 u=bill n=ansible INFO| photoprism                 : ok=50   changed=3    unreachable=0    failed=0    skipped=7    rescued=0    ignored=2   
+2025-06-07 12:28:31,950 p=114936 u=bill n=ansible INFO| proxmox                    : ok=5    changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-06-07 12:28:31,950 p=114936 u=bill n=ansible INFO| samsung                    : ok=74   changed=13   unreachable=0    failed=0    skipped=10   rescued=0    ignored=6   
+2025-06-07 12:28:31,950 p=114936 u=bill n=ansible INFO| wg                         : ok=0    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
