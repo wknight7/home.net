@@ -16,11 +16,16 @@ mount_points:
     dest: "/media/books"
     owner: "bill"
     group: "media"
-  paperless:
-    source: "/mnt/docs"
-    dest: "/mnt/docs"
+  paperless_consume:
+    source: "/home/bill/downloads/consume"
+    dest: "/mnt/paperless/consume"
     owner: "bill"
-    group: "docs"  
+    group: "docs"
+  paperless_files:
+    source: "/home/bill/documents/paperless"
+    dest: "/mnt/paperless/files"
+    owner: "bill"
+    group: "docs"
   photoprism_import:
     source: "/media/downloads/photos"
     dest: "/opt/photoprism/photos/import"

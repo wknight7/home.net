@@ -1,6 +1,6 @@
 ---
 # tasks to complete before running roles
-- hosts: workstation, lxc
+- hosts: workstation, lxc, common
   tags: always
   become: true
   vars_files:
@@ -17,6 +17,16 @@
       with_items:
         - "host_vars/{{ inventory_hostname }}.yml"
       tags: always
+
+# Common configuration for all hosts
+- hosts: updates
+  become: yes
+  ignore_errors: yes
+  force_handlers: yes
+  vars:
+    ansible_user: hal
+  roles:
+    - common
 
 # Workstation configuration
 - hosts: workstation

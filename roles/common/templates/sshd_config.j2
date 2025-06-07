@@ -1,5 +1,5 @@
 # Enable root login for initial ansible run
-PermitRootLogin yes
+PermitRootLogin no
 
 # Limit authentication methods to prevent brute-force attacks
 PasswordAuthentication yes
@@ -19,7 +19,7 @@ KerberosAuthentication no
 GSSAPIAuthentication no
 
 # Define allowed users (if you have a specific set of users)
-AllowUsers bill hal root
+AllowUsers bill hal
 
 # Disable X11 forwarding unless necessary
 X11Forwarding no

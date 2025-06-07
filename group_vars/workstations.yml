@@ -4,55 +4,60 @@ nfs_users:
   - bill
   - lily
   - loretta
-  
-# NFS mounts for all workstations
+
+# NFS mounts for all workstations - Remove the placeholder {{ nfs_user }}
 nfs_mounts:
   - src: "192.168.86.90:/mnt/Data/books"
-    dest: "/home/{{ nfs_users }}/media/books"
+    dest: "/home/DEFAULT_USER/media/books"
     opts: "rw,comment=x-gvfs-hide"
   - src: "192.168.86.90:/mnt/Data/media/storage/movies"
-    dest: "/home/{{ nfs_users }}/media/movies"
+    dest: "/home/DEFAULT_USER/media/movies"
     opts: "rw,comment=x-gvfs-hide"
   - src: "192.168.86.90:/mnt/Data/media/storage/tv"
-    dest: "/home/{{ nfs_users }}/media/tv"
+    dest: "/home/DEFAULT_USER/media/tv"
     opts: "rw,comment=x-gvfs-hide"
   - src: "192.168.86.90:/mnt/Data/media/storage/music"
-    dest: "/home/{{ nfs_users }}/media/music"
+    dest: "/home/DEFAULT_USER/media/music"
     opts: "rw,comment=x-gvfs-hide"
   - src: "192.168.86.90:/mnt/Data/media/storage/photos"
-    dest: "/home/{{ nfs_users }}/media/photos"
+    dest: "/home/DEFAULT_USER/media/photos"
     opts: "rw,comment=x-gvfs-hide"
   - src: "192.168.86.90:/mnt/Data/media/storage/home_videos"
-    dest: "/home/{{ nfs_users }}/media/home_videos"
+    dest: "/home/DEFAULT_USER/media/home_videos"
     opts: "rw,comment=x-gvfs-hide"
-  - src: "192.168.86.90:/mnt/ssd-files/home/{{ item }}/Documents"
-    dest: "/home/{{ nfs_users }}/documents"
+  - src: "192.168.86.90:/mnt/ssd-files/home/DEFAULT_USER/Documents"
+    dest: "/home/DEFAULT_USER/documents"
     opts: "rw,comment=x-gvfs-hide"
-  - src: "192.168.86.90:/mnt/ssd-files/docs/paper"
-    dest: "/home/{{ nfs_users }}/downloads/paperless"
+  - src: "192.168.86.90:/mnt/ssd-files/home/DEFAULT_USER/Downloads"
+    dest: "/home/DEFAULT_USER/downloads"
     opts: "rw,comment=x-gvfs-hide"
+
 
 # List of desired_directories
 desired_directories:
-  - "/home/{{ nfs_users }}/desktop"
-  - "/home/{{ nfs_users }}/documents"
-  - "/home/{{ nfs_users }}/downloads"
-  - "/home/{{ nfs_users }}/media"
+  - "/home/{{ nfs_user }}/desktop"
+  - "/home/{{ nfs_user }}/documents"
+  - "/home/{{ nfs_user }}/downloads"
+  - "/home/{{ nfs_user }}/media"
   - "/home/bill/code"
   - "/home/bill/git"
+  - "home/lily/documents/paperless"
+  - "home/loretta/documents/paperless"
+  - "home/lily/downloads/paperless_consume"
+  - "home/loretta/downloads/paperless_consume"
 
 # List of unwanted directories
 unwanted_directories:
-  - "/home/{{ nfs_users }}/Desktop"
-  - "/home/{{ nfs_users }}/Documents"
-  - "/home/{{ nfs_users }}/Downloads"
-  - "/home/{{ nfs_users }}/Music"
-  - "/home/{{ nfs_users }}/Pictures"
-  - "/home/{{ nfs_users }}/Public"
-  - "/home/{{ nfs_users }}/Templates"
-  - "/home/{{ nfs_users }}/Videos"
+  - "/home/{{ nfs_user }}/Desktop"
+  - "/home/{{ nfs_user }}/Documents"
+  - "/home/{{ nfs_user }}/Downloads"
+  - "/home/{{ nfs_user }}/Music"
+  - "/home/{{ nfs_user }}/Pictures"
+  - "/home/{{ nfs_user }}/Public"
+  - "/home/{{ nfs_user }}/Templates"
+  - "/home/{{ nfs_user }}/Videos"
 
-#List of groups to create
+# List of groups to create
 groups_to_create:
   - media
   - docs

@@ -1,0 +1,12 @@
+- hosts: desktop
+  become: yes
+  vars_files:
+    - group_vars/workstations.yml
+  tasks:
+    - name: Debug nfs_users
+      debug:
+        var: nfs_users
+
+    - name: Debug nfs_mounts
+      debug:
+        var: nfs_mounts

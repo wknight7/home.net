@@ -39,6 +39,16 @@
   - import_tasks: system_setup/openssh.yml
   - import_tasks: system_setup/cron.yml
 
+  # Add the new task to copy the provision script
+  - name: Copy provision script
+    template:
+      src: provision.sh.j2
+      dest: /usr/local/bin/provision
+      owner: root
+      group: root
+      mode: '0755'
+
   rescue:
     - set_fact: task_failed=true
+
 

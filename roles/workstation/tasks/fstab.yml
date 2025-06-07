@@ -1,21 +1,29 @@
----
+- name: Debug nfs_users
+  debug:
+    var: nfs_users
+
+- name: Debug nfs_mounts
+  debug:
+    var: nfs_mounts
+
 - name: Add managed fstab entries
   blockinfile:
     path: /etc/fstab
+    marker: "# {mark} ANSIBLE MANAGED BLOCK FOR NFS MOUNTS"
     block: |
-      # Begin managed fstab entries
+      {% for user in nfs_users %}
       {% for mount in nfs_mounts %}
-      {{ mount.src }} {{ mount.dest }} nfs {{ mount.opts }} 0 0
+      {{ mount.src.replace('DEFAULT_USER', user) }} {{ mount.dest.replace('DEFAULT_USER', user) }} nfs {{ mount.opts }} 0 0
       {% endfor %}
-      # End managed fstab entries
-  when: nfs_mounts is defined
+      {% endfor %}
+    insertafter: EOF
+    backup: yes
 
 - name: Reload systemd daemon
-  command: systemctl daemon-reload
+  systemd:
+    daemon_reload: yes
   become: true
-  when: nfs_mounts is defined
 
 - name: Remount all filesystems
   command: mount -a
   become: true
-  when: nfs_mounts is defined

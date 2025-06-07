@@ -1,68 +1,54 @@
-- name: users | bill | create group
-  tags: groups,bill,users
-  group:
-    name: bill
-    state: present
-
-- name: users | bill | create user
-  tags: bill,sudo,users
+---
+- name: Create Bill user
   user:
     name: bill
-    group: bill
-    uid: 1000
-    groups: adm,{{ sudo_group }}
-    state: present
-    comment: "Bill Knight"
-    password: "{{ bill_password | password_hash('sha512') }}"
+    groups: sudo
     shell: /bin/bash
+    state: present
 
-- name: users | bill | bill | add sudoers file
-  tags: bill,settings,hal,sudo,system,users
-  copy:
-    src: ~/git/homelab/roles/common/files/users/bill/sudoer_bill
-    dest: /etc/sudoers.d/bill
-    owner: root
-    group: root
-    mode: 0440
-
-- name: users | bill | create .ssh directory
-  become_user: bill
-  tags: dotfiles,bill,ssh,users
+- name: Ensure .ssh directory exists
   file:
-    path: "{{ item.dir }}"
+    path: /home/bill/.ssh
     state: directory
     owner: bill
     group: bill
-    mode: 0700  
-  with_items:
-    - { dir: '/home/bill/.ssh' }
+    mode: '0700'
 
-- name: users | bill | add public key
-  tags: dotfiles,bill,ssh,ssh-keys,users
+- name: Set authorized keys for Bill from vault
   authorized_key:
     user: bill
-    key: "{{ item }}"
-  with_file:
-    - ~/git/homelab/roles/common/files/users/bill/bill.pub
+    state: present
+    key: "{{ vault_bill_authorized_keys }}"
+  no_log: true
 
-- name: users | bill | create config directories
-  tags: dotfiles,bill,users
-  file:
-    path: /home/bill/{{ item.dir }}
-    state: directory
-    owner: bill
-    group: bill
-    mode: 0700
-  with_items:
-    - { dir: '.bash' }
-    - { dir: '.config' }
-
-
-- name: users | bill | copy bashrc
-  tags: bashrc,users,bill,test
+- name: Copy bashrc for Bill
   copy:
-    src: ~/git/homelab/roles/common/files/users/bill/bashrc
-    dest: /home/bill/.bashrc
+    src: "{{ role_path }}/files/users/bill/bashrc"
+    dest: "/home/bill/.bashrc"
     owner: bill
     group: bill
-    mode: 0600
+    mode: '0644'
+
+- name: Ensure sudo rights for Bill
+  copy:
+    src: "{{ role_path }}/files/users/bill/sudoer_bill"
+    dest: "/etc/sudoers.d/bill"
+    owner: root
+    group: root
+    mode: '0440'
+    validate: 'visudo -cf %s'
+
+- name: Configure SSH daemon
+  template:
+    src: "{{ role_path }}/../templates/sshd_config.j2"
+    dest: "/etc/ssh/sshd_config"
+    owner: root
+    group: root
+    mode: '0600'
+  notify: Restart SSH service
+
+- name: Ensure SSH service is running and enabled
+  service:
+    name: sshd
+    state: started
+    enabled: yes
