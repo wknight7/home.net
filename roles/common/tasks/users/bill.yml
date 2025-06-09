@@ -5,6 +5,7 @@
     groups: sudo
     shell: /bin/bash
     state: present
+    password: "{{ vault_bill_password }}"
 
 - name: Ensure .ssh directory exists
   file:
