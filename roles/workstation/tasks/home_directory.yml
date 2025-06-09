@@ -38,11 +38,11 @@
   when: item.matched == 0
   loop: "{{ found_files.results }}"
 
-- name: Warn about non-empty unwanted directories
-  debug:
-    msg: "Warning: Directory {{ item.item }} is not empty and was not removed"
-  when: item.matched > 0
-  loop: "{{ found_files.results }}"
+# - name: Warn about non-empty unwanted directories
+#   debug:
+#     msg: "Warning: Directory {{ item.item }} is not empty and was not removed"
+#   when: item.matched > 0
+#   loop: "{{ found_files.results }}"
 
 - name: Rename snap to .snap
   command: mv /home/bill/snap /home/bill/.snap
@@ -91,10 +91,10 @@
     removes: /home/bill/Desktop
   when: desktop_files.matched == 0
 
-- name: Warn if Desktop directory is not empty
-  debug:
-    msg: "Warning: Desktop directory is not empty and was not renamed to desktop"
-  when: desktop_files.matched > 0
+# - name: Warn if Desktop directory is not empty
+#   debug:
+#     msg: "Warning: Desktop directory is not empty and was not renamed to desktop"
+#   when: desktop_files.matched > 0
 
 - name: Ensure desktop directory exists
   file:

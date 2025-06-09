@@ -1,5 +1,4 @@
 ---
-
 - name: Ensure groups are created
   group:
     name: "{{ item.name }}"

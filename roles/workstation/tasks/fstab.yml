@@ -1,11 +1,3 @@
-- name: Debug nfs_users
-  debug:
-    var: nfs_users
-
-- name: Debug nfs_mounts
-  debug:
-    var: nfs_mounts
-
 - name: Add managed fstab entries
   blockinfile:
     path: /etc/fstab
