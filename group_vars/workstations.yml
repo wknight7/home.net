@@ -5,7 +5,7 @@ nfs_users:
   - lily
   - loretta
 
-# NFS mounts for all workstations - Remove the placeholder {{ nfs_user }}
+# NFS mounts for all workstations - Remove the placeholder _
 nfs_mounts:
   - src: "192.168.86.90:/mnt/Data/books"
     dest: "/home/DEFAULT_USER/media/books"
@@ -34,28 +34,60 @@ nfs_mounts:
 
 
 # List of desired_directories
-desired_directories:
-  - "/home/{{ nfs_user }}/desktop"
-  - "/home/{{ nfs_user }}/documents"
-  - "/home/{{ nfs_user }}/downloads"
-  - "/home/{{ nfs_user }}/media"
+bill_directories:
+  - "/home/bill/desktop"
+  - "/home/bill/documents"
+  - "/home/bill/downloads"
+  - "/home/bill/media"
   - "/home/bill/code"
   - "/home/bill/git"
-  - "home/lily/documents/paperless"
-  - "home/loretta/documents/paperless"
-  - "home/lily/downloads/paperless_consume"
-  - "home/loretta/downloads/paperless_consume"
+
+lily_directories:
+  - "/home/lily/desktop"
+  - "/home/lily/documents"
+  - "/home/lily/downloads"
+  - "/home/lily/media"  
+  - "/home/lily/documents/paperless"  
+  - "/home/lily/downloads/paperless_consume"
+
+loretta_directories:
+  - "/home/loretta/desktop"
+  - "/home/loretta/documents"
+  - "/home/loretta/downloads"
+  - "/home/loretta/media" 
+  - "/home/loretta/downloads/paperless_consume"
+  - "/home/loretta/documents/paperless" 
 
 # List of unwanted directories
-unwanted_directories:
-  - "/home/{{ nfs_user }}/Desktop"
-  - "/home/{{ nfs_user }}/Documents"
-  - "/home/{{ nfs_user }}/Downloads"
-  - "/home/{{ nfs_user }}/Music"
-  - "/home/{{ nfs_user }}/Pictures"
-  - "/home/{{ nfs_user }}/Public"
-  - "/home/{{ nfs_user }}/Templates"
-  - "/home/{{ nfs_user }}/Videos"
+bill_unwanted_directories:
+  - "/home/bill/Desktop"
+  - "/home/bill/Documents"
+  - "/home/bill/Downloads"
+  - "/home/bill/Music"
+  - "/home/bill/Pictures"
+  - "/home/bill/Public"
+  - "/home/bill/Templates"
+  - "/home/bill/Videos"
+
+loretta_unwanted_directories:
+  - "/home/loretta/Desktop"
+  - "/home/loretta/Documents"
+  - "/home/loretta/Downloads"
+  - "/home/loretta/Music"
+  - "/home/loretta/Pictures"
+  - "/home/loretta/Public"
+  - "/home/loretta/Templates"
+  - "/home/loretta/Videos"
+
+lily_unwanted_directories:
+  - "/home/lily/Desktop"
+  - "/home/lily/Documents"
+  - "/home/lily/Downloads"
+  - "/home/lily/Music"
+  - "/home/lily/Pictures"
+  - "/home/lily/Public"
+  - "/home/lily/Templates"
+  - "/home/lily/Videos"
 
 # List of groups to create
 groups_to_create:

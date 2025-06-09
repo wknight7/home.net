@@ -1,28 +1,46 @@
----
-- name: Create desired directories
+- name: Create Lily directories
+  vars:
+    user_name: lily
   file:
-    path: "{{ desired_directories }}"
+    path: "{{ item }}"
     state: directory
     mode: '0755'
-  loop: "{{ desired_directories }}"
+  loop: "{{ lily_directories }}"
+  become: yes
+  become_user: "{{ user_name }}"
 
-- name: Check if unwanted directories are empty
-  find:
-    paths: "{{ unwanted_directories }}"
-    file_type: any
-  register: found_files
-  loop: "{{ unwanted_directories }}"
+- name: Create Loretta directories
+  vars:
+    user_name: loretta
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+  loop: "{{ loretta_directories }}"
+  become: yes
+  become_user: "{{ user_name }}"
+
+- name: Create Bill directories
+  vars:
+    user_name: bill
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+  loop: "{{ bill_directories }}"
+  become: yes
+  become_user: "{{ user_name }}"
 
 - name: Remove empty unwanted directories
   file:
-    path: "{{ unwanted_directories }}"
+    path: "{{ item.item }}"
     state: absent
   when: item.matched == 0
   loop: "{{ found_files.results }}"
 
 - name: Warn about non-empty unwanted directories
   debug:
-    msg: "Warning: Directory {{ unwanted_directories }} is not empty and was not removed"
+    msg: "Warning: Directory {{ item.item }} is not empty and was not removed"
   when: item.matched > 0
   loop: "{{ found_files.results }}"
 

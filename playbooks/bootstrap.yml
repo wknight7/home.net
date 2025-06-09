@@ -1,0 +1,106 @@
+- hosts: localhost
+  become: true
+  tasks:
+    - name: Update systems
+      tags: always
+      package:
+        update_cache: yes
+        upgrade: dist
+      when: ansible_distribution in ["Debian", "Ubuntu"]
+
+    - name: create bill user
+      tags: always
+      user: 
+        name: bill
+        create_home: yes
+        shell: /bin/bash
+        groups: sudo,adm,root
+        uid: 1000      
+
+    - name: create hal user
+      tags: always
+      user: 
+        name: hal
+        create_home: yes
+        shell: /bin/bash
+        groups: sudo
+        uid: 1999
+
+    - name: Ensure .ssh directory exists for hal with correct permissions
+      command: mkdir -p /home/hal/.ssh && chown hal:hal /home/hal/.ssh && chmod 0700 /home/hal/.ssh
+      become: true
+      become_user: root
+      ignore_errors: true
+
+    - name: add ssh key for hal
+      tags: always
+      authorized_key: 
+        user: hal
+        key: "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF5gDC417CFSRScxpTuMmAE7YIpao81dDN9rlnLFEAiN ansible-server"
+
+    - name: Ensure .ssh directory exists for bill with correct permissions
+      command: mkdir -p /home/bill/.ssh && chown bill:bill /home/bill/.ssh && chmod 0700 /home/bill/.ssh
+      become: true
+      become_user: root
+      ignore_errors: true
+
+    - name: add ssh keys for bill
+      tags: always
+      authorized_key: 
+        user: bill
+        key: "{{item}}"
+      with_items:
+        - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPk3wGv0026XIzEcUBkA4cHhs2fShkhTXB/OzTJXzX08"
+        - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKOMCby/SFAiqmzQwgntowbMApauQgvygFNhGlrOvBbo bill-ansible"
+        - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINZ0FCMLOtSPPMXbUfrsO/cOhpLZTmoXFiv3n7X4Lefk bill desktop"
+        - "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKq1IYYXpETYKODxDyToz6IhCo5oQHZ0Tx2yZtA5Rg6Z samsung"
+
+    - name: Download sudoers file for hal from remote server
+      tags: always
+      get_url:
+        url: http://192.168.86.83/sudoer_hal
+        dest: /etc/sudoers.d/hal
+        mode: 0440
+
+    - name: Download sudoers file for bill from remote server
+      tags: always
+      get_url:
+        url: http://192.168.86.83/sudoer_bill
+        dest: /etc/sudoers.d/bill
+        mode: 0440
+
+    - name: add packages all
+      tags: always
+      ansible.builtin.apt:
+        pkg:
+        - build-essential
+        - software-properties-common
+        - mc
+        - ubuntu-minimal
+        - python3-all
+        - tree
+
+    - name: Download sshd_config from remote server
+      tags: always
+      get_url:
+        url: http://192.168.86.83/sshd_config.j2
+        dest: /etc/ssh/sshd_config
+        mode: 0644
+
+    - name: Set ownership and permissions for sshd_config
+      tags: always
+      file:
+        path: /etc/ssh/sshd_config
+        owner: root
+        group: root
+        mode: 0644
+
+    - name: Restart ssh to apply changes
+      tags: always
+      service:
+        name: "{{item}}"
+        state: restarted
+      with_items:
+        - sshd
+        - ssh
+      ignore_errors: yes

@@ -1,0 +1,29 @@
+---
+# tasks to complete before running roles
+- hosts: workstation, lxc, common
+  tags: always
+  become: true
+  vars_files:
+    - ~/git/home.net/vault.yml
+  pre_tasks:
+    - name: pre-run | update package cache (debian, etc)
+      tags: always
+      apt: update_cache=yes
+      changed_when: False
+      when: ansible_distribution in ["Debian", "Ubuntu"]
+
+    - name: Include host variables dynamically
+      include_vars: "{{ item }}"
+      with_items:
+        - "host_vars/{{ inventory_hostname }}.yml"
+      tags: always
+
+# Common configuration for all hosts
+- hosts: updates
+  become: yes
+  ignore_errors: yes
+  force_handlers: yes
+  vars:
+    ansible_user: hal
+  roles:
+    - common

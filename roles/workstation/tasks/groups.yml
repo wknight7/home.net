@@ -7,3 +7,12 @@
     state: present
   with_items: "{{ group_definitions | selectattr('name', 'in', groups_to_create) | list }}"
   when: groups_to_create is defined
+
+- name: Add hal to each nfs_user group
+  user:
+    name: hal
+    groups: "{{ item }}"
+    append: yes
+  loop: "{{ nfs_users }}"
+  run_once: true
+  when: nfs_users is defined

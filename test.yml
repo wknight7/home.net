@@ -1,4 +1,4 @@
-- hosts: desktop
+- hosts: dell
   become: yes
   vars_files:
     - group_vars/workstations.yml
@@ -10,3 +10,10 @@
     - name: Debug nfs_mounts
       debug:
         var: nfs_mounts
+
+    - name: Debug directory paths
+      debug:
+        msg: "Creating directory: {{ item.1 | replace('DEFAULT_USER', item.0) }}"
+      with_nested:
+        - "{{ nfs_users }}"
+        - "{{ desired_directories }}"
