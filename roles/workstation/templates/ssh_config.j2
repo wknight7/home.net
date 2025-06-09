@@ -1,0 +1,6 @@
+{% for node in groups['all'] %}
+Host {{ node }}
+  HostName {{ hostvars[node]['ansible_host'] }}
+  User {{ item }}
+  IdentityFile ~/.ssh/{{ hostvars[inventory_hostname]['ssh_key'] }}
+{% endfor %}

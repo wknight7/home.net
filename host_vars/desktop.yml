@@ -42,3 +42,4 @@ xonotic: true
 gnome: true
 mate: false
 
+ssh_key: bill_desktop
