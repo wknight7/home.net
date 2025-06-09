@@ -1,6 +1,6 @@
 ---
 # tasks to complete before running roles
-- hosts: workstation, lxc, common
+- hosts: workstation, lxc, common, vm
   tags: always
   become: true
   vars_files:
@@ -40,13 +40,13 @@
   roles:
     - workstation
 
-# Proxmox LXC conf file config
-- hosts: proxmox_hosts
+# Local config
+- hosts: local
   become: yes
-  vars_files:
-    - group_vars/lxc_mounts.yml
+  # vars_files:
+  #   - group_vars/lxc_mounts.yml
   roles:
-    - proxmox_hosts
+    - local
 
 # LXC configuration
 - hosts: lxc

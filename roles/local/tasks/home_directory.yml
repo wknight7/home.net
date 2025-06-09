@@ -1,0 +1,109 @@
+- name: Create Bill directories
+  vars:
+    user_name: bill
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+  loop: "{{ bill_directories }}"
+  become: yes
+  become_user: "{{ user_name }}"
+
+- name: Remove empty unwanted directories
+  file:
+    path: "{{ item.item }}"
+    state: absent
+  when: item.matched == 0
+  loop: "{{ found_files.results }}"
+
+# - name: Warn about non-empty unwanted directories
+#   debug:
+#     msg: "Warning: Directory {{ item.item }} is not empty and was not removed"
+#   when: item.matched > 0
+#   loop: "{{ found_files.results }}"
+
+- name: Rename snap to .snap
+  command: mv /home/bill/snap /home/bill/.snap
+  args:
+    creates: /home/bill/.snap
+    removes: /home/bill/snap
+
+- name: Ensure .snap directory exists
+  file:
+    path: /home/bill/.snap
+    state: directory
+    mode: '0755'
+
+- name: Update .config/user-dirs.dirs file
+  template:
+    src: user-dirs.dirs.j2
+    dest: /home/bill/.config/user-dirs.dirs
+    mode: '0644'
+
+- name: Update .config/gtk-3.0/bookmarks file
+  template:
+    src: bookmarks.j2
+    dest: /home/bill/.config/gtk-3.0/bookmarks
+    mode: '0644'
+
+- name: Remove dead .desktop files from Desktop
+  file:
+    path: "/home/bill/Desktop/{{ item }}.desktop"
+    state: absent
+  loop:
+    - Documents
+    - Music
+    - Pictures
+    - Videos
+
+- name: Check if Desktop directory is empty
+  find:
+    paths: "/home/bill/Desktop"
+    file_type: any
+  register: desktop_files
+
+- name: Rename Desktop to desktop if empty
+  command: mv /home/bill/Desktop /home/bill/desktop
+  args:
+    creates: /home/bill/desktop
+    removes: /home/bill/Desktop
+  when: desktop_files.matched == 0
+
+# - name: Warn if Desktop directory is not empty
+#   debug:
+#     msg: "Warning: Desktop directory is not empty and was not renamed to desktop"
+#   when: desktop_files.matched > 0
+
+- name: Ensure desktop directory exists
+  file:
+    path: /home/bill/desktop
+    state: directory
+    mode: '0755'
+
+- name: Check if GNOME session needs restart
+  shell: |
+    dbus-send --session --dest=org.gnome.SessionManager \
+    --type=method_call --print-reply --reply-timeout=2000 \
+    /org/gnome/SessionManager \
+    org.gnome.SessionManager.Logout uint32:1
+  register: gnome_session_restart
+  changed_when: false
+  failed_when: false
+  become: yes
+  become_user: bill
+
+- name: Check if running in graphical environment
+  stat:
+    path: /usr/bin/gnome-session
+  register: gnome_session_check
+
+- name: gnome | appearance | dconf update  # Run dconf update as root
+  become: true
+  become_user: root
+  command: dconf update
+
+- name: Wait for system to come back
+  wait_for_connection:
+    delay: 10
+    timeout: 300
+  when: gnome_session_restart.rc != 0

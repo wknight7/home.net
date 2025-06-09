@@ -7,6 +7,9 @@ desktop ansible_host=192.168.86.40
 samsung ansible_host=192.168.86.94
 dell ansible_host=192.168.86.55
 
+[local]
+localhost ansible_connection=local
+
 [proxmox_hosts]
 proxmox ansible_host=192.168.86.143
 
