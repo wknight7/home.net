@@ -41,3 +41,5 @@ xonotic: true
 # Desktop environment selection
 gnome: true
 mate: false
+
+ssh_key: bill_dell

@@ -1,19 +1,15 @@
-- hosts: dell
-  become: yes
-  vars_files:
-    - group_vars/workstations.yml
+# test.yml
+---
+- name: Test SSH config for bill on a workstation
+  hosts: desktop           # or use --limit
+  gather_facts: yes
+  vars:
+    ansible_user: hal      # how Ansible *connects*
+    ssh_config_user: bill  # who “owns” the SSH config and who gets the User: directive
+
   tasks:
-    - name: Debug nfs_users
-      debug:
-        var: nfs_users
-
-    - name: Debug nfs_mounts
-      debug:
-        var: nfs_mounts
-
-    - name: Debug directory paths
-      debug:
-        msg: "Creating directory: {{ item.1 | replace('DEFAULT_USER', item.0) }}"
-      with_nested:
-        - "{{ nfs_users }}"
-        - "{{ desired_directories }}"
+    - name: Roll out only the ssh_config tasks
+      include_role:
+        name: workstation
+        tasks_from: ssh_config
+      tags: ssh_config      # if you still want to filter with --tags

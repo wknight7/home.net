@@ -1,6 +1,17 @@
-{% for node in groups['all'] %}
-Host {{ node }}
-  HostName {{ hostvars[node]['ansible_host'] }}
-  User {{ item }}
-  IdentityFile ~/.ssh/{{ hostvars[inventory_hostname]['ssh_key'] }}
+{# roles/workstation/templates/ssh_config.j2 #}
+
+{# the key on *this* workstation #}
+{% set my_key    = hostvars[inventory_hostname]['ssh_key'] | default(ssh_config_user) %}
+
+{# which hosts to include #}
+{% set ssh_hosts = groups['ssh'] | default([]) | unique %}
+
+{% for h in ssh_hosts %}
+{%   set alias = (h == 'localhost') and 'Ansible' or h %}
+
+Host {{ alias }}
+  HostName      {{ hostvars[h]['ansible_host'] | default(h) }}
+  User          {{ ssh_config_user }}               ## <— force “bill”
+  IdentityFile  ~/.ssh/{{ my_key }}
+
 {% endfor %}

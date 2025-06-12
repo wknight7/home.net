@@ -1,6 +1,7 @@
 [lxc]
 wg ansible_host=192.168.86.104 container_id=101
 photoprism ansible_host=192.168.86.72 container_id=103
+bazarr ansible_host=192.168.86.101 container_id=118
 
 [workstation]
 desktop ansible_host=192.168.86.40
@@ -19,3 +20,10 @@ photoprism ansible_host=192.168.86.72 container_id=103
 desktop ansible_host=192.168.86.40
 samsung ansible_host=192.168.86.94
 dell ansible_host=192.168.86.55
+bazarr ansible_host=192.168.86.101 container_id=118
+
+[ssh:children]
+lxc
+workstation
+proxmox_hosts
+local
