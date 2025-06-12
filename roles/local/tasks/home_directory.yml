@@ -16,12 +16,6 @@
   when: item.matched == 0
   loop: "{{ found_files.results }}"
 
-# - name: Warn about non-empty unwanted directories
-#   debug:
-#     msg: "Warning: Directory {{ item.item }} is not empty and was not removed"
-#   when: item.matched > 0
-#   loop: "{{ found_files.results }}"
-
 - name: Rename snap to .snap
   command: mv /home/bill/snap /home/bill/.snap
   args:

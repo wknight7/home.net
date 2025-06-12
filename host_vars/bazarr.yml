@@ -4,6 +4,7 @@ branch: master
 ansible_cron_minute: "40"
 ssh_port: 22
 ssh_users: "bill hal"
+ansible_python_interpreter: /usr/bin/python3
 app_user: bill
 app_user_groups:
   - media

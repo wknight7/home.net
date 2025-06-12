@@ -6,30 +6,23 @@ nfs_users:
   - loretta
 
 # NFS mounts for all workstations - Remove the placeholder _
-nfs_mounts:
-  - src: "192.168.86.90:/mnt/Data/books"
-    dest: "/home/DEFAULT_USER/media/books"
-    opts: "rw,comment=x-gvfs-hide"
-  - src: "192.168.86.90:/mnt/Data/media/storage/movies"
-    dest: "/home/DEFAULT_USER/media/movies"
-    opts: "rw,comment=x-gvfs-hide"
-  - src: "192.168.86.90:/mnt/Data/media/storage/tv"
-    dest: "/home/DEFAULT_USER/media/tv"
-    opts: "rw,comment=x-gvfs-hide"
-  - src: "192.168.86.90:/mnt/Data/media/storage/music"
-    dest: "/home/DEFAULT_USER/media/music"
-    opts: "rw,comment=x-gvfs-hide"
-  - src: "192.168.86.90:/mnt/Data/media/storage/photos"
-    dest: "/home/DEFAULT_USER/media/photos"
-    opts: "rw,comment=x-gvfs-hide"
-  - src: "192.168.86.90:/mnt/Data/media/storage/home_videos"
-    dest: "/home/DEFAULT_USER/media/home_videos"
+nfs_user_mounts:
+  - src: "192.168.86.90:/mnt/Data/media"
+    dest: "/home/DEFAULT_USER/media"
     opts: "rw,comment=x-gvfs-hide"
   - src: "192.168.86.90:/mnt/ssd-files/home/DEFAULT_USER/Documents"
     dest: "/home/DEFAULT_USER/documents"
     opts: "rw,comment=x-gvfs-hide"
   - src: "192.168.86.90:/mnt/ssd-files/home/DEFAULT_USER/Downloads"
     dest: "/home/DEFAULT_USER/downloads"
+    opts: "rw,comment=x-gvfs-hide"
+
+nfs_specific_mounts:
+  - src: "192.168.86.90:/mnt/ssd-files/docs/paper"
+    dest: "/home/loretta/paperless"
+    opts: "rw,comment=x-gvfs-hide"
+  - src: "192.168.86.90:/mnt/ssd-files/docs/paper"
+    dest: "/home/lily/paperless"
     opts: "rw,comment=x-gvfs-hide"
 
 
@@ -42,22 +35,20 @@ bill_directories:
   - "/home/bill/code"
   - "/home/bill/git"
 
-lily_directories:
-  - "/home/lily/desktop"
-  - "/home/lily/documents"
-  - "/home/lily/downloads"
-  - "/home/lily/media"  
-  - "/home/lily/documents/paperless"  
-  - "/home/lily/downloads/paperless_consume"
-
 loretta_directories:
-  - "/home/loretta/desktop"
-  - "/home/loretta/documents"
-  - "/home/loretta/downloads"
-  - "/home/loretta/media" 
-  - "/home/loretta/downloads/paperless_consume"
-  - "/home/loretta/documents/paperless" 
+  - { path: "/home/loretta/desktop", owner: "loretta", group: "loretta", mode: "0755" }
+  - { path: "/home/loretta/documents", owner: "loretta", group: "loretta", mode: "0755" }
+  - { path: "/home/loretta/downloads", owner: "loretta", group: "loretta", mode: "0755" }
+  - { path: "/home/loretta/media", owner: "bill", group: "media", mode: "0775" }
+  - { path: "/home/loretta/paperless", owner: "bill", group: "docs", mode: "0775" }
 
+lily_directories:
+  - { path: "/home/lily/desktop", owner: "lily", group: "lily", mode: "0755" }
+  - { path: "/home/lily/documents", owner: "lily", group: "lily", mode: "0755" }
+  - { path: "/home/lily/downloads", owner: "lily", group: "lily", mode: "0755" }
+  - { path: "/home/lily/media", owner: "bill", group: "media", mode: "0775" }
+  - { path: "/home/lily/paperless", owner: "bill", group: "docs", mode: "0775" }
+  
 # List of unwanted directories
 bill_unwanted_directories:
   - "/home/bill/Desktop"

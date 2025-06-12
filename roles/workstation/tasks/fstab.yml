@@ -4,9 +4,12 @@
     marker: "# {mark} ANSIBLE MANAGED BLOCK FOR NFS MOUNTS"
     block: |
       {% for user in nfs_users %}
-      {% for mount in nfs_mounts %}
+      {% for mount in nfs_user_mounts %}
       {{ mount.src.replace('DEFAULT_USER', user) }} {{ mount.dest.replace('DEFAULT_USER', user) }} nfs {{ mount.opts }} 0 0
       {% endfor %}
+      {% endfor %}
+      {% for mount in nfs_specific_mounts %}
+      {{ mount.src }} {{ mount.dest }} nfs {{ mount.opts }} 0 0
       {% endfor %}
     insertafter: EOF
     backup: yes

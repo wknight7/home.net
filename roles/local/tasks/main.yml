@@ -1,5 +1,5 @@
 ---
-# Load workstation variables
+# Load localhost variables
 - name: Load local variables
   include_vars: group_vars/local.yml
   tags: always

@@ -1,24 +1,65 @@
-- name: Create Lily directories
-  vars:
-    user_name: lily
-  file:
-    path: "{{ item }}"
-    state: directory
-    mode: '0755'
-  loop: "{{ lily_directories }}"
-  become: yes
-  become_user: "{{ user_name }}"
-
-- name: Create Loretta directories
-  vars:
-    user_name: loretta
-  file:
-    path: "{{ item }}"
-    state: directory
-    mode: '0755'
+---
+- name: Check if Loretta directories are NFS mounts
+  command: "findmnt -n -o FSTYPE --target {{ item.path }}"
+  register: loretta_mount_type
+  changed_when: false
+  failed_when: false
   loop: "{{ loretta_directories }}"
+  loop_control:
+    loop_var: item
+
+- name: Create Loretta directories (skip if NFS mount)
+  file:
+    path: "{{ loretta_directories[idx].path }}"
+    state: directory
+    owner: "{{ loretta_directories[idx].owner }}"
+    group: "{{ loretta_directories[idx].group }}"
+    mode: "{{ loretta_directories[idx].mode }}"
+  loop: "{{ range(0, loretta_directories | length) | list }}"
+  loop_control:
+    loop_var: idx
+  when: loretta_mount_type.results[idx].stdout != 'nfs'
   become: yes
-  become_user: "{{ user_name }}"
+  become_user: root
+
+- name: Warn if Loretta directory is NFS mounted and cannot be changed
+  debug:
+    msg: "Directory {{ loretta_directories[idx].path }} is NFS mounted. Ownership/permissions cannot be changed from client."
+  loop: "{{ range(0, loretta_directories | length) | list }}"
+  loop_control:
+    loop_var: idx
+  when: loretta_mount_type.results[idx].stdout == 'nfs'
+
+- name: Check if Lily directories are NFS mounts
+  command: "findmnt -n -o FSTYPE --target {{ item.path }}"
+  register: lily_mount_type
+  changed_when: false
+  failed_when: false
+  loop: "{{ lily_directories }}"
+  loop_control:
+    loop_var: item
+
+- name: Create Lily directories (skip if NFS mount)
+  file:
+    path: "{{ lily_directories[idx].path }}"
+    state: directory
+    owner: "{{ lily_directories[idx].owner }}"
+    group: "{{ lily_directories[idx].group }}"
+    mode: "{{ lily_directories[idx].mode }}"
+  loop: "{{ range(0, lily_directories | length) | list }}"
+  loop_control:
+    loop_var: idx
+  when: lily_mount_type.results[idx].stdout != 'nfs'
+  become: yes
+  become_user: root
+
+- name: Warn if Lily directory is NFS mounted and cannot be changed
+  debug:
+    msg: "Directory {{ lily_directories[idx].path }} is NFS mounted. Ownership/permissions cannot be changed from client."
+  loop: "{{ range(0, lily_directories | length) | list }}"
+  loop_control:
+    loop_var: idx
+  when: lily_mount_type.results[idx].stdout == 'nfs'
 
 - name: Create Bill directories
   vars:
@@ -30,19 +71,6 @@
   loop: "{{ bill_directories }}"
   become: yes
   become_user: "{{ user_name }}"
-
-- name: Remove empty unwanted directories
-  file:
-    path: "{{ item.item }}"
-    state: absent
-  when: item.matched == 0
-  loop: "{{ found_files.results }}"
-
-# - name: Warn about non-empty unwanted directories
-#   debug:
-#     msg: "Warning: Directory {{ item.item }} is not empty and was not removed"
-#   when: item.matched > 0
-#   loop: "{{ found_files.results }}"
 
 - name: Rename snap to .snap
   command: mv /home/bill/snap /home/bill/.snap
@@ -91,11 +119,6 @@
     removes: /home/bill/Desktop
   when: desktop_files.matched == 0
 
-# - name: Warn if Desktop directory is not empty
-#   debug:
-#     msg: "Warning: Desktop directory is not empty and was not renamed to desktop"
-#   when: desktop_files.matched > 0
-
 - name: Ensure desktop directory exists
   file:
     path: /home/bill/desktop
@@ -119,7 +142,7 @@
     path: /usr/bin/gnome-session
   register: gnome_session_check
 
-- name: gnome | appearance | dconf update  # Run dconf update as root
+- name: gnome | appearance | dconf update
   become: true
   become_user: root
   command: dconf update
