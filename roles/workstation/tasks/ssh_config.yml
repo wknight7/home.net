@@ -1,22 +1,24 @@
 # roles/workstation/tasks/ssh_config.yml
 ---
 
-- name: Ensure .ssh dir exists for {{ ssh_config_user }}
+- name: Ensure .ssh dir exists for each user
   become: yes
   file:
-    path: "/home/{{ ssh_config_user }}/.ssh"
+    path: "/home/{{ item }}/.ssh"
     state: directory
     mode: '0700'
-    owner: "{{ ssh_config_user }}"
-    group: "{{ ssh_config_user }}"
+    owner: "{{ item }}"
+    group: "{{ item }}"
+  loop: "{{ ssh_config_user }}"
   tags: ssh_config
 
-- name: Deploy aggregated SSH config for {{ ssh_config_user }}
+- name: Deploy aggregated SSH config for each user
   become: yes
   template:
     src: ssh_config.j2
-    dest: "/home/{{ ssh_config_user }}/.ssh/config"
+    dest: "/home/{{ item }}/.ssh/config"
     mode: '0644'
-    owner: "{{ ssh_config_user }}"
-    group: "{{ ssh_config_user }}"
+    owner: "{{ item }}"
+    group: "{{ item }}"
+  loop: "{{ ssh_config_user }}"
   tags: ssh_config

@@ -44,3 +44,39 @@ mate: false
 
 ssh_key: bill_ansible
 ansible_host: 192.168.86.83
+
+bill_directories:
+  - "/home/bill/desktop"
+  - "/home/bill/documents"
+  - "/home/bill/downloads"
+  - "/home/bill/media"
+  - "/home/bill/code"
+  - "/home/bill/git"
+
+bill_unwanted_directories:
+  - "/home/bill/Desktop"
+  - "/home/bill/Documents"
+  - "/home/bill/Downloads"
+  - "/home/bill/Music"
+  - "/home/bill/Pictures"
+  - "/home/bill/Public"
+  - "/home/bill/Templates"
+  - "/home/bill/Videos"
+
+nfs_users:
+  - bill
+ssh_config_user: 
+  - bill
+
+nfs_user_mounts:
+  - src: "192.168.86.90:/mnt/Data/media"
+    dest: "/home/bill/media"
+    opts: "rw,comment=x-gvfs-hide"
+  - src: "192.168.86.90:/mnt/ssd-files/home/bill/Documents"
+    dest: "/home/bill/documents"
+    opts: "rw,comment=x-gvfs-hide"
+  - src: "192.168.86.90:/mnt/ssd-files/home/bill/Downloads"
+    dest: "/home/bill/downloads"
+    opts: "rw,comment=x-gvfs-hide"
+
+nfs_specific_mounts: []

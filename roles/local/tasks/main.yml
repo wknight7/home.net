@@ -1,4 +1,11 @@
 ---
+# update cache
+- name: pre-run | update package cache (debian, etc)
+  tags: always
+  apt: update_cache=yes
+  changed_when: False
+  when: ansible_distribution in ["Debian", "Ubuntu"]
+
 # Load localhost variables
 - name: Load local variables
   include_vars: group_vars/local.yml
@@ -8,6 +15,14 @@
 - name: Load group variables
   include_vars: group_vars/groups.yml
   tags: always
+
+- name: Copy bashrc for Bill
+  copy:
+    src: "/home/bill/git/home.net/roles/common/files/users/bill/bashrc"
+    dest: "/home/bill/.bashrc"
+    owner: bill
+    group: bill
+    mode: '0644'
 
 - include_tasks: groups.yml
 - include_tasks: home_directory.yml

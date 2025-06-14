@@ -9,6 +9,13 @@
   become: yes
   become_user: "{{ user_name }}"
 
+- name: Find unwanted directories and check if empty
+  find:
+    paths: "{{ item }}"
+    file_type: any
+  loop: "{{ bill_unwanted_directories }}"
+  register: found_files
+
 - name: Remove empty unwanted directories
   file:
     path: "{{ item.item }}"

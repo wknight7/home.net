@@ -43,3 +43,5 @@ gnome: true
 mate: false
 
 ssh_key: bill
+ssh_config_user: 
+  - bill
