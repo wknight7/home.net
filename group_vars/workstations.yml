@@ -28,8 +28,22 @@ nfs_system_mounts:
   - src: "192.168.86.90:/mnt/ssd-files/docs/paper"
     dest: "/mnt/paperless"
     opts: "rw"
-
+  - src: "192.168.86.90:/mnt/ssd-files/home/shared_files"
+    dest: "/mnt/shared_files"
+    opts: "rw"
+  
 # List of desired_directories
+
+shared_directories:
+  - path: "/mnt/paperless"
+    owner: "bill"
+    group: "docs"
+    mode: "0775"
+  - path: "/mnt/shared_files"
+    owner: "bill"
+    group: "docs"
+    mode: "0775"
+
 bill_directories:
   - "/home/bill/desktop"
   - "/home/bill/documents"

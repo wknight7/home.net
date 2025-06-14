@@ -72,6 +72,17 @@
   become: yes
   become_user: "{{ user_name }}"
 
+- name: Create shared directories
+  file:
+    path: "{{ item.path }}"
+    state: directory
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+    mode: "{{ item.mode }}"
+  loop: "{{ shared_directories }}"
+  become: yes
+  become_user: root
+
 - name: Rename snap to .snap
   command: mv /home/bill/snap /home/bill/.snap
   args:
