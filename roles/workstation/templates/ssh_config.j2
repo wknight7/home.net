@@ -11,7 +11,7 @@
 
 Host {{ alias }}
   HostName      {{ hostvars[h]['ansible_host'] | default(h) }}
-  User          {{ ssh_config_user }}               ## <— force “bill”
+  User          bill
   IdentityFile  ~/.ssh/{{ my_key }}
 
 {% endfor %}

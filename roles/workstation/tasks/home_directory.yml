@@ -84,17 +84,59 @@
     state: directory
     mode: '0755'
 
-- name: Update .config/user-dirs.dirs file
+- name: Update .config/user-dirs.dirs file for bill
   template:
-    src: user-dirs.dirs.j2
+    src: user-dirs.dirs.bill.j2
     dest: /home/bill/.config/user-dirs.dirs
     mode: '0644'
+  become: yes
+  become_user: bill
 
-- name: Update .config/gtk-3.0/bookmarks file
+- name: Update .config/user-dirs.dirs file for loretta  
   template:
-    src: bookmarks.j2
+    src: user-dirs.dirs.loretta.j2
+    dest: /home/loretta/.config/user-dirs.dirs
+    mode: '0644'
+  become: yes
+  become_user: loretta
+
+- name: Update .config/user-dirs.dirs file for lily
+  template:
+    src: user-dirs.dirs.lily.j2
+    dest: /home/lily/.config/user-dirs.dirs
+    mode: '0644'
+  become: yes
+  become_user: lily
+
+- name: Update .config/gtk-3.0/bookmarks file for loretta
+  template:
+    src: bookmarks.loretta.j2
+    dest: /home/loretta/.config/gtk-3.0/bookmarks
+    mode: '0644'
+  vars:
+    user: loretta
+  become: yes
+  become_user: loretta
+
+- name: Update .config/gtk-3.0/bookmarks file for lily
+  template:
+    src: bookmarks.lily.j2
+    dest: /home/lily/.config/gtk-3.0/bookmarks
+    mode: '0644'
+  vars:
+    user: lily
+  become: yes
+  become_user: lily
+
+- name: Update .config/gtk-3.0/bookmarks file for bill
+  template:
+    src: bookmarks.bill.j2
     dest: /home/bill/.config/gtk-3.0/bookmarks
     mode: '0644'
+  vars:
+    user: bill
+  become: yes
+  become_user: bill
 
 - name: Remove dead .desktop files from Desktop
   file:
@@ -152,3 +194,71 @@
     delay: 10
     timeout: 300
   when: gnome_session_restart.rc != 0
+
+- name: Ensure .config/gtk-3.0 directory exists for loretta
+  file:
+    path: /home/loretta/.config/gtk-3.0
+    state: directory
+    mode: '0700'
+    owner: loretta
+    group: loretta
+
+- name: Ensure .config/gtk-3.0 directory exists for lily
+  file:
+    path: /home/lily/.config/gtk-3.0
+    state: directory
+    mode: '0700'
+    owner: lily
+    group: lily
+
+- name: Ensure .config/gtk-3.0 directory exists for bill
+  file:
+    path: /home/bill/.config/gtk-3.0
+    state: directory
+    mode: '0700'
+    owner: bill
+    group: bill
+  become: yes
+  become_user: bill
+
+- name: Update .config/user-dirs.dirs file for loretta
+  template:
+    src: user-dirs.dirs.j2
+    dest: /home/loretta/.config/user-dirs.dirs
+    mode: '0644'
+  become: yes
+  become_user: loretta
+
+- name: Update .config/user-dirs.dirs file for lily
+  template:
+    src: user-dirs.dirs.j2
+    dest: /home/lily/.config/user-dirs.dirs
+    mode: '0644'
+  become: yes
+  become_user: lily
+
+- name: Ensure directories from user-dirs.dirs exist for loretta
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+    owner: loretta
+    group: loretta
+  loop:
+    - "/home/loretta/desktop"
+    - "/home/loretta/documents"
+    - "/home/loretta/downloads"
+    # add others as needed
+
+- name: Ensure directories from user-dirs.dirs exist for lily
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+    owner: lily
+    group: lily
+  loop:
+    - "/home/lily/desktop"
+    - "/home/lily/documents"
+    - "/home/lily/downloads"
+    # add others as needed

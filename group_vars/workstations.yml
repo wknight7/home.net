@@ -5,11 +5,8 @@ nfs_users:
   - lily
   - loretta
 
-# NFS mounts for all workstations - Remove the placeholder _
+# NFS mounts for all workstations (remove media and paperless from here)
 nfs_user_mounts:
-  - src: "192.168.86.90:/mnt/Data/media"
-    dest: "/home/DEFAULT_USER/media"
-    opts: "rw,comment=x-gvfs-hide"
   - src: "192.168.86.90:/mnt/ssd-files/home/DEFAULT_USER/Documents"
     dest: "/home/DEFAULT_USER/documents"
     opts: "rw,comment=x-gvfs-hide"
@@ -17,14 +14,20 @@ nfs_user_mounts:
     dest: "/home/DEFAULT_USER/downloads"
     opts: "rw,comment=x-gvfs-hide"
 
+# NFS mounts for specific users
 nfs_specific_mounts:
-  - src: "192.168.86.90:/mnt/ssd-files/docs/paper"
-    dest: "/home/loretta/paperless"
-    opts: "rw,comment=x-gvfs-hide"
-  - src: "192.168.86.90:/mnt/ssd-files/docs/paper"
-    dest: "/home/lily/paperless"
+  - src: "192.168.86.90:/mnt/Data/media"
+    dest: "/home/bill/media"
     opts: "rw,comment=x-gvfs-hide"
 
+# System-wide NFS mounts (for all users to access via bookmarks)
+nfs_system_mounts:
+  - src: "192.168.86.90:/mnt/Data/media"
+    dest: "/media"
+    opts: "rw"
+  - src: "192.168.86.90:/mnt/ssd-files/docs/paper"
+    dest: "/mnt/paperless"
+    opts: "rw"
 
 # List of desired_directories
 bill_directories:
@@ -39,15 +42,11 @@ loretta_directories:
   - { path: "/home/loretta/desktop", owner: "loretta", group: "loretta", mode: "0755" }
   - { path: "/home/loretta/documents", owner: "loretta", group: "loretta", mode: "0755" }
   - { path: "/home/loretta/downloads", owner: "loretta", group: "loretta", mode: "0755" }
-  - { path: "/home/loretta/media", owner: "bill", group: "media", mode: "0775" }
-  - { path: "/home/loretta/paperless", owner: "bill", group: "docs", mode: "0775" }
 
 lily_directories:
   - { path: "/home/lily/desktop", owner: "lily", group: "lily", mode: "0755" }
   - { path: "/home/lily/documents", owner: "lily", group: "lily", mode: "0755" }
   - { path: "/home/lily/downloads", owner: "lily", group: "lily", mode: "0755" }
-  - { path: "/home/lily/media", owner: "bill", group: "media", mode: "0775" }
-  - { path: "/home/lily/paperless", owner: "bill", group: "docs", mode: "0775" }
   
 # List of unwanted directories
 bill_unwanted_directories:

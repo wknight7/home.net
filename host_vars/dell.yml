@@ -45,3 +45,9 @@ mate: false
 ssh_key: bill_dell
 ssh_config_user: 
   - bill
+
+included_users:
+  - bill
+  - hal
+  - loretta
+  - lily

@@ -34,8 +34,10 @@ alias ls=' ls -lhF --time-style=long-iso --color=auto'
 alias mkdir='mkdir -pv'
 alias speedtest='curl -s https://raw.githubusercontent.com/sivel/speedtest-cli/master/speedtest.py | python -'
 alias weather='curl wttr.in/Raleigh'
-alias mv='rsync -ai --info=progress2 --remove-source-files && rm -rf'
-alias cp='rsync -ai --info=progress2'
+#alias mv='rsync -ai --info=progress2 --remove-source-files && rm -rf'
+#alias cp='rsync -ai --info=progress2'
+alias reboot='sudo systemctl reboot'
+alias shutdown='sudo systemctl poweroff'
 
 # This command will display the disk usage of all mounted file systems, except for those of type squashfs, tmpfs, and devtmpfs, in a human-readable format.
 alias df='df -h -x squashfs -x tmpfs -x devtmpfs'  

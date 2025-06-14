@@ -19,6 +19,24 @@ users:
     sudo: yes
     state: present
     comment: "Ansible System User"
-    password: "{{ vault_hal_password }}"
     ssh_key: "{{ vault_hal_ssh_key }}"
 
+  - username: loretta  
+    groups:
+      - loretta  
+    uid: 1003
+    shell: /bin/bash    
+    sudo: yes
+    state: present
+    comment: "Loretta Knight"
+    password: "{{ vault_loretta_password }}"
+
+  - username: lily  
+    groups:
+      - lily  
+    uid: 1002
+    shell: /bin/bash    
+    sudo: yes
+    state: present
+    comment: "Lily Knight"
+    password: "{{ vault_lily_password }}"

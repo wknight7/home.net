@@ -9,8 +9,12 @@
   include_vars: group_vars/groups.yml
   tags: always
 
+- name: Load user variables
+  include_vars: group_vars/users.yml
+  tags: always
+
 - include_tasks: groups.yml
 - include_tasks: home_directory.yml
 - include_tasks: fstab.yml
 - include_tasks: ssh_config.yml
-
+- include_tasks: users.yml

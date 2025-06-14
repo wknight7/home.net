@@ -1,0 +1,26 @@
+---
+- name: Ensure included users are present on this workstation
+  vars:
+    included_users_list: "{{ included_users | default([]) }}"
+  user:
+    name: "{{ item.username }}"
+    groups: "{{ item.groups | default([]) }}"
+    uid: "{{ item.uid | default(omit) }}"
+    shell: "{{ item.shell | default('/bin/bash') }}"
+    state: "{{ item.state | default('present') }}"
+    comment: "{{ item.comment | default(omit) }}"
+    password: "{{ item.password | default(omit) }}"
+  loop: "{{ users | selectattr('username', 'in', included_users_list) | list }}"
+  loop_control:
+    label: "{{ item.username }}"
+
+- name: Ensure sudo is set for included users
+  lineinfile:
+    path: /etc/sudoers.d/{{ item.username }}
+    create: yes
+    mode: '0440'
+    line: "{{ item.username }} ALL=(ALL) NOPASSWD:ALL"
+  when: item.sudo | default(false)
+  loop: "{{ users | selectattr('username', 'in', included_users_list) | list }}"
+  loop_control:
+    label: "{{ item.username }}"
