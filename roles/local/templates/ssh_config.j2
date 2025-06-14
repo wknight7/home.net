@@ -15,3 +15,9 @@ Host {{ alias }}
   IdentityFile  ~/.ssh/{{ my_key }}
 
 {% endfor %}
+
+# GitHub configuration
+Host github.com
+  HostName      github.com
+  User          git
+  IdentityFile  ~/.ssh/{{ my_key }}
