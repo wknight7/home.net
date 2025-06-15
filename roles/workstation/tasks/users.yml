@@ -5,6 +5,7 @@
   user:
     name: "{{ item.username }}"
     groups: "{{ item.groups | default([]) }}"
+    append: yes
     uid: "{{ item.uid | default(omit) }}"
     shell: "{{ item.shell | default('/bin/bash') }}"
     state: "{{ item.state | default('present') }}"

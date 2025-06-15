@@ -15,6 +15,7 @@
         create_home: yes
         shell: /bin/bash
         groups: sudo,adm,root
+        append: yes
         uid: 1000      
 
     - name: create hal user
@@ -24,6 +25,7 @@
         create_home: yes
         shell: /bin/bash
         groups: sudo
+        append: yes
         uid: 1999
 
     - name: Ensure .ssh directory exists for hal with correct permissions

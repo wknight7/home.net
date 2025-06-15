@@ -3,6 +3,13 @@ users:
   - username: bill
     groups:
       - bill
+      - media
+      - docs
+      - data
+      - adm
+      - sudo
+      - lily
+      - loretta
     uid: 1000
     shell: /bin/bash    
     sudo: yes
@@ -23,7 +30,10 @@ users:
 
   - username: loretta  
     groups:
-      - loretta  
+      - loretta
+      - media
+      - docs
+      - data
     uid: 1003
     shell: /bin/bash    
     sudo: yes
@@ -33,7 +43,10 @@ users:
 
   - username: lily  
     groups:
-      - lily  
+      - lily
+      - media
+      - docs
+      - data
     uid: 1002
     shell: /bin/bash    
     sudo: yes
