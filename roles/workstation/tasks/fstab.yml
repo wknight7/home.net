@@ -11,6 +11,9 @@
       {% for mount in nfs_specific_mounts %}
       {{ mount.src }} {{ mount.dest }} nfs {{ mount.opts }} 0 0
       {% endfor %}
+      {% for mount in nfs_system_mounts %}
+      {{ mount.src }} {{ mount.dest }} nfs {{ mount.opts }} 0 0
+      {% endfor %}
     insertafter: EOF
     backup: yes
 
