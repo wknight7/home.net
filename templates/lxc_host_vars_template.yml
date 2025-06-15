@@ -15,10 +15,14 @@ ansible_python_interpreter: /usr/bin/python3
 #app_user_groups:
 #  - media
 #  - docs
+#  - data
+#  - hal
+#  - ansible
+#  - git
+#  - librarian
 
 # Platform-specific options
-microcode_amd_install: false
-microcode_intel_install: false
+
 proxmox_instance: false
 user_maps: true
 
@@ -37,24 +41,23 @@ web_server: false
 #needed_mounts:
 #  - trilium
 #  - photoprism_import
+#  - media
+#  - photoprism_originals
+#  - photoprism_storage
+#  - books_downloads
+#  - book_library
+#  - paperless_consume
+#  - paperless_files
+#  - plex
 
 # Groups to create
 groups_to_create:
-  - media
-  # - docs
-  # - data
-
-# Application selection (uncomment as needed)
-#audacity: true
-#chromium: true
-#darktable: true
-#expressvpn: true
-#firefox: true
-#games: true
-#libreoffice: true
-#steam: true
-#thunderbird: true
-#vlc: true
-#vscode: true
+  #  - media
+  #  - docs
+  #  - data
+  #  - hal
+  #  - ansible
+  #  - git
+  #  - librarian
 
 # Add any other host-specific variables below

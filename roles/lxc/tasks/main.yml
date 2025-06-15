@@ -1,1 +1,8 @@
 - include_tasks: groups.yml
+#- include_tasks: lxc_mounts.yml
+- include_tasks: unattended_upgrades.yml
+  when:
+    - ansible_distribution in ["Debian", "Ubuntu"]
+    - unattended_upgrades is defined
+    - unattended_upgrades == true
+  
