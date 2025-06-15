@@ -72,16 +72,36 @@
   become: yes
   become_user: "{{ user_name }}"
 
-- name: Create shared directories
-  file:
-    path: "{{ item.path }}"
-    state: directory
-    owner: "{{ item.owner }}"
-    group: "{{ item.group }}"
-    mode: "{{ item.mode }}"
+- name: Check if shared directories are NFS mounts
+  command: "findmnt -n -o FSTYPE --target {{ item.path }}"
+  register: shared_mount_type
+  changed_when: false
+  failed_when: false
   loop: "{{ shared_directories }}"
+  loop_control:
+    loop_var: item
+
+- name: Create shared directories (skip if NFS mount)
+  file:
+    path: "{{ shared_directories[idx].path }}"
+    state: directory
+    owner: "{{ shared_directories[idx].owner }}"
+    group: "{{ shared_directories[idx].group }}"
+    mode: "{{ shared_directories[idx].mode }}"
+  loop: "{{ range(0, shared_directories | length) | list }}"
+  loop_control:
+    loop_var: idx
+  when: shared_mount_type.results[idx].stdout != 'nfs'
   become: yes
   become_user: root
+
+- name: Warn if shared directory is NFS mounted and cannot be changed
+  debug:
+    msg: "Directory {{ shared_directories[idx].path }} is NFS mounted. Ownership/permissions cannot be changed from client."
+  loop: "{{ range(0, shared_directories | length) | list }}"
+  loop_control:
+    loop_var: idx
+  when: shared_mount_type.results[idx].stdout == 'nfs'
 
 - name: Rename snap to .snap
   command: mv /home/bill/snap /home/bill/.snap

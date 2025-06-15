@@ -2,7 +2,8 @@
 - name: Create Bill user
   user:
     name: bill
-    groups: sudo
+    groups: sudo,adm
+    append: yes
     shell: /bin/bash
     state: present
     password: "{{ vault_bill_password }}"

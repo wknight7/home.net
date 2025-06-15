@@ -7,3 +7,13 @@
     state: present
   with_items: "{{ group_definitions | selectattr('name', 'in', groups_to_create) | list }}"
   when: groups_to_create is defined
+
+- name: Ensure ssh_users are members of created groups
+  user:
+    name: "{{ user }}"
+    groups: "{{ groups_to_create | join(',') }}"
+    append: yes
+  loop: "{{ ssh_users.split() if ssh_users is string else ssh_users }}"
+  loop_control:
+    loop_var: user
+  when: groups_to_create is defined and ssh_users is defined

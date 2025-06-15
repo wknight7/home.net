@@ -15,3 +15,13 @@
   loop: "{{ nfs_users }}"
   run_once: true
   when: nfs_users is defined
+
+- name: Ensure nfs_users are members of all created groups
+  user:
+    name: "{{ user }}"
+    groups: "{{ groups_to_create | join(',') }}"
+    append: yes
+  loop: "{{ nfs_users }}"
+  loop_control:
+    loop_var: user
+  when: groups_to_create is defined and nfs_users is defined
