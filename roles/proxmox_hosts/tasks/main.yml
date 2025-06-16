@@ -1,25 +1,50 @@
-- name: Check if LXC configuration file exists
-  stat:
-    path: "/etc/pve/lxc/{{ hostvars[item]['container_id'] }}.conf"
-  register: lxc_conf_file
-  loop: "{{ groups['lxc'] }}"
+---
+# Load pve variables
+- name: Load pve variables
+  include_vars: host_vars/pve.yml
+  tags: always
 
-- name: Read existing LXC configuration
-  slurp:
-    src: "/etc/pve/lxc/{{ hostvars[item.item]['container_id'] }}.conf"
-  register: existing_config
-  loop: "{{ lxc_conf_file.results }}"
-  when: item.stat.exists
+# Load group variables
+- name: Load group variables
+  include_vars: group_vars/groups.yml
+  tags: always
 
-- name: Generate mount configurations
-  set_fact:
-    mount_configs: "{{ mount_configs | default({}) | combine({item: lookup('template', 'lxc_mount_config.j2')}) }}"
-  loop: "{{ groups['lxc'] }}"
-  when: hostvars[item]['needed_mounts'] is defined
+- name: Load user variables
+  include_vars: group_vars/users.yml
+  tags: always  
 
-- name: Update LXC configuration with mounts
-  template:
-    src: lxc_config_update.j2
-    dest: "/etc/pve/lxc/{{ hostvars[item]['container_id'] }}.conf"
-  loop: "{{ groups['lxc'] }}"
-  when: hostvars[item]['needed_mounts'] is defined
+- name: Load vault secrets
+  include_vars: /home/bill/git/home.net/vault.yml
+  tags: always
+
+- include_tasks: groups.yml
+- include_tasks: users.yml
+- include_tasks: fstab.yml
+
+
+
+# - name: Check if LXC configuration file exists
+#   stat:
+#     path: "/etc/pve/lxc/{{ hostvars[item]['container_id'] }}.conf"
+#   register: lxc_conf_file
+#   loop: "{{ groups['lxc'] }}"
+
+# - name: Read existing LXC configuration
+#   slurp:
+#     src: "/etc/pve/lxc/{{ hostvars[item.item]['container_id'] }}.conf"
+#   register: existing_config
+#   loop: "{{ lxc_conf_file.results }}"
+#   when: item.stat.exists
+
+# - name: Generate mount configurations
+#   set_fact:
+#     mount_configs: "{{ mount_configs | default({}) | combine({item: lookup('template', 'lxc_mount_config.j2')}) }}"
+#   loop: "{{ groups['lxc'] }}"
+#   when: hostvars[item]['needed_mounts'] is defined
+
+# - name: Update LXC configuration with mounts
+#   template:
+#     src: lxc_config_update.j2
+#     dest: "/etc/pve/lxc/{{ hostvars[item]['container_id'] }}.conf"
+#   loop: "{{ groups['lxc'] }}"
+#   when: hostvars[item]['needed_mounts'] is defined

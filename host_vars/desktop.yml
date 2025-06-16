@@ -51,3 +51,5 @@ included_users:
   - hal
   - loretta
   - lily
+
+bill_password: "{{ vault_bill_password }}"

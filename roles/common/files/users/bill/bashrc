@@ -98,3 +98,4 @@ if [ -f /usr/bin/apt ]; then
 fi
 
 export ANSIBLE_VAULT_PASSWORD_FILE=~/.vault_pass.txt
+export EDITOR=nano

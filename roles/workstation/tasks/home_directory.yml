@@ -94,6 +94,7 @@
   when: shared_mount_type.results[idx].stdout != 'nfs'
   become: yes
   become_user: root
+  failed_when: false
 
 - name: Warn if shared directory is NFS mounted and cannot be changed
   debug:
@@ -226,6 +227,47 @@
     timeout: 300
   when: gnome_session_restart.rc != 0
 
+- name: Ensure .config directory exists for loretta
+  file:
+    path: /home/loretta/.config
+    state: directory
+    mode: '0700'
+    owner: loretta
+    group: loretta
+
+- name: Ensure directories from user-dirs.dirs exist for lily
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+    owner: lily
+    group: lily
+  loop:
+    - "/home/lily/desktop"
+    - "/home/lily/documents"
+    - "/home/lily/downloads"
+    # add others as needed
+
+- name: Fix ownership of .config and user-dirs.dirs for loretta
+  file:
+    path: /home/loretta/.config
+    state: directory
+    owner: loretta
+    group: loretta
+    mode: '0700'
+  become: yes
+  become_user: root
+
+- name: Fix ownership of user-dirs.dirs for loretta
+  file:
+    path: /home/loretta/.config/user-dirs.dirs
+    state: touch
+    owner: loretta
+    group: loretta
+    mode: '0644'
+  become: yes
+  become_user: root
+
 - name: Ensure .config/gtk-3.0 directory exists for loretta
   file:
     path: /home/loretta/.config/gtk-3.0
@@ -281,15 +323,3 @@
     - "/home/loretta/downloads"
     # add others as needed
 
-- name: Ensure directories from user-dirs.dirs exist for lily
-  file:
-    path: "{{ item }}"
-    state: directory
-    mode: '0755'
-    owner: lily
-    group: lily
-  loop:
-    - "/home/lily/desktop"
-    - "/home/lily/documents"
-    - "/home/lily/downloads"
-    # add others as needed

@@ -14,39 +14,45 @@
   tags: always
 
 - block:
-  # Create necessary groups
-  - import_tasks: groups.yml
+    # Create necessary groups
+    - import_tasks: groups.yml
 
-  # Make sure users exist on the system
-  - import_tasks: users/bill.yml
-  - import_tasks: users/hal.yml
-  - import_tasks: users/app_user.yml
+    # Make sure users exist on the system
+    - import_tasks: users/bill.yml
+    - import_tasks: users/hal.yml
+    - import_tasks: users/app_user.yml
 
-  # Set up the ansible environment
-  - import_tasks: ansible_setup.yml
+    # Set up the ansible environment
+    - import_tasks: ansible_setup.yml
 
-  # Install Python3 and pip3
-  - import_tasks: system_setup/python_pip.yml
+    # Install Python3 and pip3
+    - import_tasks: system_setup/python_pip.yml
 
-  # Install software
-  - import_tasks: software/packages.yml
-  - import_tasks: software/repositories.yml
+    # Install software (skip on Proxmox)
+    - import_tasks: software/packages.yml
+      when: not is_proxmox | default(false)
+    - import_tasks: software/repositories.yml
+      when: not is_proxmox | default(false)
 
-  # Perform remaining tasks:
-  - import_tasks: system_setup/clock.yml
-  - import_tasks: system_setup/locale.yml
-  - import_tasks: system_setup/logging.yml
-  - import_tasks: system_setup/openssh.yml
-  - import_tasks: system_setup/cron.yml
+    # Perform remaining tasks (skip on Proxmox)
+    - import_tasks: system_setup/clock.yml
+      when: not is_proxmox | default(false)
+    - import_tasks: system_setup/locale.yml
+      when: not is_proxmox | default(false)
+    - import_tasks: system_setup/logging.yml
+    - import_tasks: system_setup/openssh.yml
+      when: not is_proxmox | default(false)
+    - import_tasks: system_setup/cron.yml
+      when: not is_proxmox | default(false)
 
-  # Add the new task to copy the provision script
-  - name: Copy provision script
-    template:
-      src: provision.sh.j2
-      dest: /usr/local/bin/provision
-      owner: root
-      group: root
-      mode: '0755'
+    # Add the new task to copy the provision script
+    - name: Copy provision script
+      template:
+        src: provision.sh.j2
+        dest: /usr/local/bin/provision
+        owner: root
+        group: root
+        mode: '0755'
 
   rescue:
     - set_fact: task_failed=true

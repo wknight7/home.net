@@ -27,3 +27,5 @@ groups_to_create:
   - media
   - docs
   - data
+
+bill_password: "{{ vault_bill_password }}"

@@ -1,0 +1,17 @@
+---
+branch: master
+
+ansible_cron_minute: "*/5"
+ssh_port: 22
+ssh_users: "bill hal"
+
+ansible_python_interpreter: /usr/bin/python3
+microcode_amd_install: true   
+is_proxmox: true
+
+included_users:
+  - bill
+  - hal
+
+# Add any PBS-specific variables below
+bill_password: "{{ vault_bill_pbs_passwd }}"

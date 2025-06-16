@@ -1,4 +1,7 @@
 ---
+# Container ID (for Proxmox or inventory reference)
+container_id: 
+
 # Branch to use for ansible-pull
 branch: master
 
@@ -24,18 +27,11 @@ ansible_python_interpreter: /usr/bin/python3
 # Platform-specific options
 
 proxmox_instance: false
-user_maps: true
+#user_maps: true
 
 # Server options
 unattended_upgrades: true
 web_server: false
-
-# Container ID (for Proxmox or inventory reference)
-#container_id: 100
-
-# List needed mount points (Proxmox syntax)
-#mount_points:
-#  - { mount_point: "mp0: /media,mp=/media" }
 
 # List needed mounts (generic)
 #needed_mounts:

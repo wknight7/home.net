@@ -1,6 +1,6 @@
 ---
 # tasks to complete before running roles
-- hosts: workstation, lxc, common, vm
+- hosts: all
   tags: always
   become: true
   vars_files:
@@ -59,3 +59,13 @@
     - group_vars/groups.yml
   roles:
     - lxc
+
+# Proxmox configuration
+- hosts: proxmox_hosts
+  become: yes
+  ignore_errors: yes
+  force_handlers: yes
+  vars:
+    ansible_user: hal
+  roles:
+    - proxmox_hosts

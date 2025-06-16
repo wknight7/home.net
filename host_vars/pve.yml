@@ -1,0 +1,41 @@
+---
+# General variables specific to ubuntu_test_desk
+branch: master
+
+ansible_cron_minute: "*/5"
+ssh_port: 22
+ssh_users: "bill hal"
+
+# Platform-specific variables
+ansible_python_interpreter: /usr/bin/python3
+microcode_amd_install: true
+
+nfs_mounts:
+  - src: "192.168.86.90:/mnt/ssd-files/docs"
+    dest: "/mnt/docs"
+    opts: "defaults,soft,timeo=300,retrans=2,_netdev"
+  - src: "192.168.86.90:/mnt/Data/media"
+    dest: "/media"
+    opts: "defaults,soft,timeo=300,retrans=2,_netdev"
+  - src: "192.168.86.90:/mnt/ssd-files/fileshare/trilium-data"
+    dest: "/mnt/trilium"
+    opts: "defaults,soft,timeo=300,retrans=2,_netdev"
+  - src: "192.168.86.90:/mnt/Data/books"
+    dest: "/home/media/books"
+    opts: "defaults,soft,timeo=300,retrans=2,_netdev"
+  - src: "192.168.86.90:/mnt/ssd-files/home/bill/Documents"
+    dest: "/home/bill/documents"
+    opts: "defaults,soft,timeo=300,retrans=2,_netdev"
+  - src: "192.168.86.90:/mnt/ssd-files/home/bill/Downloads"
+    dest: "/home/bill/downloads"
+    opts: "defaults,soft,timeo=300,retrans=2,_netdev"
+
+included_users:
+  - bill
+  - hal
+  - loretta 
+  - lily 
+
+is_proxmox: true
+
+bill_password: "{{ vault_bill_pve_passwd }}"

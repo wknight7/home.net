@@ -6,7 +6,7 @@
     append: yes
     shell: /bin/bash
     state: present
-    password: "{{ vault_bill_password }}"
+    password: "{{ bill_password }}"
 
 - name: Ensure .ssh directory exists
   file:

@@ -32,3 +32,5 @@ groups_to_create:
 
   # Add container_id
 container_id: 118
+
+bill_password: "{{ vault_bill_password }}"

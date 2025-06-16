@@ -80,3 +80,5 @@ nfs_user_mounts:
     opts: "rw,comment=x-gvfs-hide"
 
 nfs_specific_mounts: []
+
+bill_password: "{{ vault_bill_password }}"
