@@ -8,12 +8,15 @@
       {% endfor %}
     insertafter: EOF
     backup: yes
+  when: manage_nfs_mounts | default(true)
 
 - name: Reload systemd daemon
   systemd:
     daemon_reload: yes
   become: true
+  when: manage_nfs_mounts | default(true)
 
 - name: Remount all filesystems
   command: mount -a
   become: true
+  when: manage_nfs_mounts | default(true)

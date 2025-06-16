@@ -9,10 +9,6 @@
   include_vars: group_vars/groups.yml
   tags: always
 
-- name: Load user variables
-  include_vars: group_vars/users.yml
-  tags: always  
-
 - name: Load vault secrets
   include_vars: /home/bill/git/home.net/vault.yml
   tags: always

@@ -15,7 +15,7 @@ users:
     sudo: yes
     state: present
     comment: "Bill Knight"
-    password: "{{ vault_bill_password }}"
+    password: "{{ bill_password }}"
     ssh_keys: "{{ vault_bill_ssh_keys }}"
 
   - username: hal  

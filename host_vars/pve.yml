@@ -30,12 +30,6 @@ nfs_mounts:
     dest: "/home/bill/downloads"
     opts: "defaults,soft,timeo=300,retrans=2,_netdev"
 
-included_users:
-  - bill
-  - hal
-  - loretta 
-  - lily 
-
 is_proxmox: true
 
 bill_password: "{{ bill_pve_passwd }}"

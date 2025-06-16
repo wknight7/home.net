@@ -8,10 +8,24 @@ ssh_users: "bill hal"
 ansible_python_interpreter: /usr/bin/python3
 microcode_amd_install: true   
 is_proxmox: true
+manage_nfs_mounts: false
 
-included_users:
-  - bill
-  - hal
+users:
+  - username: bill
+    groups: []
+    shell: /bin/bash
+    sudo: yes
+    state: present
+    comment: "Bill Knight"
+    password: "{{ bill_pbs_passwd }}"
+    ssh_keys: "{{ vault_bill_ssh_keys }}"
+  - username: hal
+    groups: []
+    shell: /bin/bash
+    sudo: yes
+    state: present
+    comment: "Ansible System User"
+    ssh_keys: "{{ vault_hal_ssh_key }}"
 
 # Add any PBS-specific variables below
-bill_password: "{{ vault_bill_pbs_passwd }}"
+bill_password: "{{ bill_password }}"
