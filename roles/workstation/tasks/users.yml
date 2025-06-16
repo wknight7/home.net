@@ -1,4 +1,8 @@
 ---
+- name: Debug users variable
+  debug:
+    var: users
+    
 - name: Ensure included users are present on this workstation
   vars:
     included_users_list: "{{ included_users | default([]) }}"

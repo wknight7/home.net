@@ -26,7 +26,7 @@ users:
     sudo: yes
     state: present
     comment: "Ansible System User"
-    ssh_key: "{{ vault_hal_ssh_key }}"
+    ssh_keys: "{{ vault_hal_ssh_key }}"
 
   - username: loretta  
     groups:

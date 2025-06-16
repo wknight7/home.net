@@ -1,18 +1,9 @@
-- name: system setup | clock | install systemd-timesyncd (ubuntu)
+- name: system setup | clock | install systemd-timesyncd
   tags: ntp,system setup
   package:
     name: systemd-timesyncd
     state: latest
-  when: ansible_distribution in ["Pop!_OS", "Ubuntu"]
-
-# Currently systemd-timesyncd for debian is available only in buster-backports
-- name: system setup | clock | install systemd-timesyncd (debian)
-  tags: ntp,system setup
-  apt:
-    name: systemd-timesyncd
-    default_release: buster-backports
-    state: latest
-  when: ansible_distribution == "Debian"
+  when: ansible_distribution in ["Pop!_OS", "Ubuntu", "Debian"]
 
 - name: system setup | clock | start and enable systemd-timesyncd
   tags: ntp,system settiings

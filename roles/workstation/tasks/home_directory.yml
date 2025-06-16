@@ -1,325 +1,76 @@
 ---
-- name: Check if Loretta directories are NFS mounts
-  command: "findmnt -n -o FSTYPE --target {{ item.path }}"
-  register: loretta_mount_type
-  changed_when: false
-  failed_when: false
-  loop: "{{ loretta_directories }}"
-  loop_control:
-    loop_var: item
+- name: Define users and their config
+  set_fact:
+    user_configs:
+      - name: bill
+        home: /home/bill
+        user_dirs_template: user-dirs.dirs.bill.j2
+        bookmarks_template: bookmarks.bill.j2
+      - name: loretta
+        home: /home/loretta
+        user_dirs_template: user-dirs.dirs.loretta.j2
+        bookmarks_template: bookmarks.loretta.j2
+      - name: lily
+        home: /home/lily
+        user_dirs_template: user-dirs.dirs.lily.j2
+        bookmarks_template: bookmarks.lily.j2
 
-- name: Create Loretta directories (skip if NFS mount)
+- name: Ensure .config and .config/gtk-3.0 directories exist
   file:
-    path: "{{ loretta_directories[idx].path }}"
+    path: "{{ item.home }}/.config/gtk-3.0"
     state: directory
-    owner: "{{ loretta_directories[idx].owner }}"
-    group: "{{ loretta_directories[idx].group }}"
-    mode: "{{ loretta_directories[idx].mode }}"
-  loop: "{{ range(0, loretta_directories | length) | list }}"
+    mode: '0700'
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
+  loop: "{{ user_configs }}"
   loop_control:
-    loop_var: idx
-  when: loretta_mount_type.results[idx].stdout != 'nfs'
-  become: yes
-  become_user: root
+    label: "{{ item.name }}"
 
-- name: Warn if Loretta directory is NFS mounted and cannot be changed
-  debug:
-    msg: "Directory {{ loretta_directories[idx].path }} is NFS mounted. Ownership/permissions cannot be changed from client."
-  loop: "{{ range(0, loretta_directories | length) | list }}"
-  loop_control:
-    loop_var: idx
-  when: loretta_mount_type.results[idx].stdout == 'nfs'
-
-- name: Check if Lily directories are NFS mounts
-  command: "findmnt -n -o FSTYPE --target {{ item.path }}"
-  register: lily_mount_type
-  changed_when: false
-  failed_when: false
-  loop: "{{ lily_directories }}"
-  loop_control:
-    loop_var: item
-
-- name: Create Lily directories (skip if NFS mount)
+- name: Ensure .config directory exists
   file:
-    path: "{{ lily_directories[idx].path }}"
+    path: "{{ item.home }}/.config"
     state: directory
-    owner: "{{ lily_directories[idx].owner }}"
-    group: "{{ lily_directories[idx].group }}"
-    mode: "{{ lily_directories[idx].mode }}"
-  loop: "{{ range(0, lily_directories | length) | list }}"
+    mode: '0700'
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
+  loop: "{{ user_configs }}"
   loop_control:
-    loop_var: idx
-  when: lily_mount_type.results[idx].stdout != 'nfs'
-  become: yes
-  become_user: root
+    label: "{{ item.name }}"
 
-- name: Warn if Lily directory is NFS mounted and cannot be changed
-  debug:
-    msg: "Directory {{ lily_directories[idx].path }} is NFS mounted. Ownership/permissions cannot be changed from client."
-  loop: "{{ range(0, lily_directories | length) | list }}"
+- name: Update .config/user-dirs.dirs file
+  template:
+    src: "{{ item.user_dirs_template }}"
+    dest: "{{ item.home }}/.config/user-dirs.dirs"
+    mode: '0644'
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
+  loop: "{{ user_configs }}"
   loop_control:
-    loop_var: idx
-  when: lily_mount_type.results[idx].stdout == 'nfs'
+    label: "{{ item.name }}"
 
-- name: Create Bill directories
+- name: Update .config/gtk-3.0/bookmarks file
+  template:
+    src: "{{ item.bookmarks_template }}"
+    dest: "{{ item.home }}/.config/gtk-3.0/bookmarks"
+    mode: '0644'
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
+  loop: "{{ user_configs }}"
+  loop_control:
+    label: "{{ item.name }}"
+
+- name: Ensure user-dirs exist for each user
   vars:
-    user_name: bill
+    user_dirs:
+      - desktop
+      - documents
+      - downloads
+      # add more as needed
   file:
-    path: "{{ item }}"
+    path: "{{ item.0.home }}/{{ item.1 }}"
     state: directory
     mode: '0755'
-  loop: "{{ bill_directories }}"
-  become: yes
-  become_user: "{{ user_name }}"
-
-- name: Check if shared directories are NFS mounts
-  command: "findmnt -n -o FSTYPE --target {{ item.path }}"
-  register: shared_mount_type
-  changed_when: false
-  failed_when: false
-  loop: "{{ shared_directories }}"
-  loop_control:
-    loop_var: item
-
-- name: Create shared directories (skip if NFS mount)
-  file:
-    path: "{{ shared_directories[idx].path }}"
-    state: directory
-    owner: "{{ shared_directories[idx].owner }}"
-    group: "{{ shared_directories[idx].group }}"
-    mode: "{{ shared_directories[idx].mode }}"
-  loop: "{{ range(0, shared_directories | length) | list }}"
-  loop_control:
-    loop_var: idx
-  when: shared_mount_type.results[idx].stdout != 'nfs'
-  become: yes
-  become_user: root
-  failed_when: false
-
-- name: Warn if shared directory is NFS mounted and cannot be changed
-  debug:
-    msg: "Directory {{ shared_directories[idx].path }} is NFS mounted. Ownership/permissions cannot be changed from client."
-  loop: "{{ range(0, shared_directories | length) | list }}"
-  loop_control:
-    loop_var: idx
-  when: shared_mount_type.results[idx].stdout == 'nfs'
-
-- name: Rename snap to .snap
-  command: mv /home/bill/snap /home/bill/.snap
-  args:
-    creates: /home/bill/.snap
-    removes: /home/bill/snap
-
-- name: Ensure .snap directory exists
-  file:
-    path: /home/bill/.snap
-    state: directory
-    mode: '0755'
-
-- name: Update .config/user-dirs.dirs file for bill
-  template:
-    src: user-dirs.dirs.bill.j2
-    dest: /home/bill/.config/user-dirs.dirs
-    mode: '0644'
-  become: yes
-  become_user: bill
-
-- name: Update .config/user-dirs.dirs file for loretta  
-  template:
-    src: user-dirs.dirs.loretta.j2
-    dest: /home/loretta/.config/user-dirs.dirs
-    mode: '0644'
-  become: yes
-  become_user: loretta
-
-- name: Update .config/user-dirs.dirs file for lily
-  template:
-    src: user-dirs.dirs.lily.j2
-    dest: /home/lily/.config/user-dirs.dirs
-    mode: '0644'
-  become: yes
-  become_user: lily
-
-- name: Update .config/gtk-3.0/bookmarks file for loretta
-  template:
-    src: bookmarks.loretta.j2
-    dest: /home/loretta/.config/gtk-3.0/bookmarks
-    mode: '0644'
-  vars:
-    user: loretta
-  become: yes
-  become_user: loretta
-
-- name: Update .config/gtk-3.0/bookmarks file for lily
-  template:
-    src: bookmarks.lily.j2
-    dest: /home/lily/.config/gtk-3.0/bookmarks
-    mode: '0644'
-  vars:
-    user: lily
-  become: yes
-  become_user: lily
-
-- name: Update .config/gtk-3.0/bookmarks file for bill
-  template:
-    src: bookmarks.bill.j2
-    dest: /home/bill/.config/gtk-3.0/bookmarks
-    mode: '0644'
-  vars:
-    user: bill
-  become: yes
-  become_user: bill
-
-- name: Remove dead .desktop files from Desktop
-  file:
-    path: "/home/bill/Desktop/{{ item }}.desktop"
-    state: absent
-  loop:
-    - Documents
-    - Music
-    - Pictures
-    - Videos
-
-- name: Check if Desktop directory is empty
-  find:
-    paths: "/home/bill/Desktop"
-    file_type: any
-  register: desktop_files
-
-- name: Rename Desktop to desktop if empty
-  command: mv /home/bill/Desktop /home/bill/desktop
-  args:
-    creates: /home/bill/desktop
-    removes: /home/bill/Desktop
-  when: desktop_files.matched == 0
-
-- name: Ensure desktop directory exists
-  file:
-    path: /home/bill/desktop
-    state: directory
-    mode: '0755'
-
-- name: Check if GNOME session needs restart
-  shell: |
-    dbus-send --session --dest=org.gnome.SessionManager \
-    --type=method_call --print-reply --reply-timeout=2000 \
-    /org/gnome/SessionManager \
-    org.gnome.SessionManager.Logout uint32:1
-  register: gnome_session_restart
-  changed_when: false
-  failed_when: false
-  become: yes
-  become_user: bill
-
-- name: Check if running in graphical environment
-  stat:
-    path: /usr/bin/gnome-session
-  register: gnome_session_check
-
-- name: gnome | appearance | dconf update
-  become: true
-  become_user: root
-  command: dconf update
-
-- name: Wait for system to come back
-  wait_for_connection:
-    delay: 10
-    timeout: 300
-  when: gnome_session_restart.rc != 0
-
-- name: Ensure .config directory exists for loretta
-  file:
-    path: /home/loretta/.config
-    state: directory
-    mode: '0700'
-    owner: loretta
-    group: loretta
-
-- name: Ensure directories from user-dirs.dirs exist for lily
-  file:
-    path: "{{ item }}"
-    state: directory
-    mode: '0755'
-    owner: lily
-    group: lily
-  loop:
-    - "/home/lily/desktop"
-    - "/home/lily/documents"
-    - "/home/lily/downloads"
-    # add others as needed
-
-- name: Fix ownership of .config and user-dirs.dirs for loretta
-  file:
-    path: /home/loretta/.config
-    state: directory
-    owner: loretta
-    group: loretta
-    mode: '0700'
-  become: yes
-  become_user: root
-
-- name: Fix ownership of user-dirs.dirs for loretta
-  file:
-    path: /home/loretta/.config/user-dirs.dirs
-    state: touch
-    owner: loretta
-    group: loretta
-    mode: '0644'
-  become: yes
-  become_user: root
-
-- name: Ensure .config/gtk-3.0 directory exists for loretta
-  file:
-    path: /home/loretta/.config/gtk-3.0
-    state: directory
-    mode: '0700'
-    owner: loretta
-    group: loretta
-
-- name: Ensure .config/gtk-3.0 directory exists for lily
-  file:
-    path: /home/lily/.config/gtk-3.0
-    state: directory
-    mode: '0700'
-    owner: lily
-    group: lily
-
-- name: Ensure .config/gtk-3.0 directory exists for bill
-  file:
-    path: /home/bill/.config/gtk-3.0
-    state: directory
-    mode: '0700'
-    owner: bill
-    group: bill
-  become: yes
-  become_user: bill
-
-- name: Update .config/user-dirs.dirs file for loretta
-  template:
-    src: user-dirs.dirs.j2
-    dest: /home/loretta/.config/user-dirs.dirs
-    mode: '0644'
-  become: yes
-  become_user: loretta
-
-- name: Update .config/user-dirs.dirs file for lily
-  template:
-    src: user-dirs.dirs.j2
-    dest: /home/lily/.config/user-dirs.dirs
-    mode: '0644'
-  become: yes
-  become_user: lily
-
-- name: Ensure directories from user-dirs.dirs exist for loretta
-  file:
-    path: "{{ item }}"
-    state: directory
-    mode: '0755'
-    owner: loretta
-    group: loretta
-  loop:
-    - "/home/loretta/desktop"
-    - "/home/loretta/documents"
-    - "/home/loretta/downloads"
-    # add others as needed
+    owner: "{{ item.0.name }}"
+    group: "{{ item.0.name }}"
+  loop: "{{ user_configs | subelements('user_dirs', skip_missing=True) }}"
 

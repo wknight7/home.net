@@ -2,6 +2,8 @@
 # Container ID (for Proxmox or inventory reference)
 container_id: 
 
+bill_password: "{{ vault_bill_password }}"
+
 # Branch to use for ansible-pull
 branch: master
 

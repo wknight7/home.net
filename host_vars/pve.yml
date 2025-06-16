@@ -38,4 +38,4 @@ included_users:
 
 is_proxmox: true
 
-bill_password: "{{ vault_bill_pve_passwd }}"
+bill_password: "{{ bill_pve_passwd }}"
