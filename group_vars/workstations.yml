@@ -72,6 +72,7 @@ bill_unwanted_directories:
   - "/home/bill/Public"
   - "/home/bill/Templates"
   - "/home/bill/Videos"
+  - "/home/bill/downloads/consume"
 
 loretta_unwanted_directories:
   - "/home/loretta/Desktop"
