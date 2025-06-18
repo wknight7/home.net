@@ -5,6 +5,7 @@ bazarr ansible_host=192.168.86.101 container_id=118
 trilium ansible_host=192.168.86.78 container_id=102
 sonarr ansible_host=192.168.86.66 container_id=104
 paperless ansible_host=192.168.86.70 container_id=111
+books ansible_host=192.168.86.65 container_id=126
 
 [workstation]
 desktop ansible_host=192.168.86.40
@@ -28,6 +29,7 @@ bazarr ansible_host=192.168.86.101 container_id=118
 trilium ansible_host=192.168.86.78 container_id=102
 sonarr ansible_host=192.168.86.66 container_id=104
 paperless ansible_host=192.168.86.70 container_id=111
+books ansible_host=192.168.86.65 container_id=126
 
 [ssh:children]
 lxc

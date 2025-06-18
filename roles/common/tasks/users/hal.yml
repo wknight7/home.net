@@ -10,7 +10,7 @@
 - name: users | hal | add sudoers file
   tags: settings,hal,sudo,system,users
   copy:
-    src: ~/git/homelab/roles/common/files/users/hal/sudoer_hal
+    src: ~/git/home.net/roles/common/files/users/hal/sudoer_hal
     dest: /etc/sudoers.d/hal
     owner: root
     group: root
