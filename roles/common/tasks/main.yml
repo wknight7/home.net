@@ -31,8 +31,6 @@
     # Install software (skip on Proxmox)
     - import_tasks: software/packages.yml
       when: not is_proxmox | default(false)
-    - import_tasks: software/repositories.yml
-      when: not is_proxmox | default(false)
 
     # Perform remaining tasks (skip on Proxmox)
     - import_tasks: system_setup/clock.yml

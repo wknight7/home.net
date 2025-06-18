@@ -18,3 +18,10 @@
 - include_tasks: fstab.yml
 - include_tasks: ssh_config.yml
 - include_tasks: users.yml
+
+- name: Remove /etc/apt/sources.list as a one-time fix
+  file:
+    path: /etc/apt/sources.list
+    state: absent
+  when: "'workstation' in group_names"
+  tags: one_time_fix

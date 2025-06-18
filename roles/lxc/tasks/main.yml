@@ -1,8 +1,21 @@
-- include_tasks: groups.yml
+- name: Load group definitions
+  include_vars: "{{ playbook_dir }}/group_vars/groups.yml"
+  tags: always
+
 #- include_tasks: lxc_mounts.yml
 - include_tasks: unattended_upgrades.yml
   when:
     - ansible_distribution in ["Debian", "Ubuntu"]
     - unattended_upgrades is defined
     - unattended_upgrades == true
-  
+
+- name: Deploy paperless-ngx configuration
+  template:
+    src: files/paperless.conf.j2
+    dest: /opt/paperless/paperless.conf
+    owner: bill
+    group: docs
+    mode: '0640'
+  when: inventory_hostname == "paperless"
+
+- import_tasks: repositories.yml
