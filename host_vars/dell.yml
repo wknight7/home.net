@@ -9,7 +9,7 @@ ssh_users: "bill hal"
 # Platform-specific variables
 ansible_python_interpreter: /usr/bin/python3
 microcode_amd_install: false
-microcode_intel_install: false
+microcode_intel_install: true
 
 # groups to create
 groups_to_create:
