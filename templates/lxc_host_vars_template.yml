@@ -49,7 +49,7 @@ web_server: false
 #  - plex
 
 # Groups to create
-groups_to_create:
+groups_to_create: []  # this is intentionally empty to avoid creating groups, if groups are needed, uncomment the lines below and delete "[]"
   #  - media
   #  - docs
   #  - data

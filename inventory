@@ -9,6 +9,7 @@ books ansible_host=192.168.86.65 container_id=126
 overseer ansible_host=192.168.86.113 container_id=106
 radarr ansible_host=192.168.86.79 container_id=131
 ntfy ansible_host=192.168.86.97 container_id=130
+maintainerr ansible_host=192.168.86.96 container_id=112
 
 [workstation]
 desktop ansible_host=192.168.86.40
@@ -36,6 +37,7 @@ books ansible_host=192.168.86.65 container_id=126
 overseer ansible_host=192.168.86.113 container_id=106
 radarr ansible_host=192.168.86.79 container_id=131
 ntfy ansible_host=192.168.86.97 container_id=130
+maintainerr ansible_host=192.168.86.96 container_id=112
 
 [ssh:children]
 lxc
