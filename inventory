@@ -6,6 +6,7 @@ trilium ansible_host=192.168.86.78 container_id=102
 sonarr ansible_host=192.168.86.66 container_id=104
 paperless ansible_host=192.168.86.70 container_id=111
 books ansible_host=192.168.86.65 container_id=126
+overseer ansible_host=192.168.86.113 container_id=106
 
 [workstation]
 desktop ansible_host=192.168.86.40
@@ -30,6 +31,7 @@ trilium ansible_host=192.168.86.78 container_id=102
 sonarr ansible_host=192.168.86.66 container_id=104
 paperless ansible_host=192.168.86.70 container_id=111
 books ansible_host=192.168.86.65 container_id=126
+overseer ansible_host=192.168.86.113 container_id=106
 
 [ssh:children]
 lxc
