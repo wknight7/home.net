@@ -1,0 +1,61 @@
+---
+# Container ID (for Proxmox or inventory reference)
+container_id: 129
+
+bill_password: "{{ vault_bill_password }}"
+
+# Branch to use for ansible-pull
+branch: master
+
+# Cron schedule for ansible provisioning (minute field)
+ansible_cron_minute: "40"
+
+# SSH configuration
+ssh_port: 22
+ssh_users: "bill hal"
+ansible_python_interpreter: /usr/bin/python3
+
+# Application user and groups
+app_user: bill
+app_user_groups:
+  - media
+#  - docs
+#  - data
+#  - hal
+#  - ansible
+#  - git
+#  - librarian
+
+# Platform-specific options
+
+proxmox_instance: false
+user_maps: true
+
+# Server options
+unattended_upgrades: true
+web_server: false
+
+# List needed mounts (generic)
+needed_mounts:
+#  - trilium
+#  - photoprism_import
+  - media
+#  - photoprism_originals
+#  - photoprism_storage
+#  - books_downloads
+#  - book_library
+#  - paperless_consume
+#  - paperless_files
+#  - plex
+
+# Groups to create
+groups_to_create: #[]  # this is intentionally empty to avoid creating groups, if groups are needed, uncomment the lines below and delete "[]"
+  - media
+  #  - docs
+  #  - data
+  #  - hal
+  #  - ansible
+  #  - git
+  #  - librarian
+
+# Add any other host-specific variables below
