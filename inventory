@@ -10,6 +10,7 @@ overseer ansible_host=192.168.86.113 container_id=106
 radarr ansible_host=192.168.86.79 container_id=131
 ntfy ansible_host=192.168.86.97 container_id=130
 maintainerr ansible_host=192.168.86.96 container_id=112
+sab ansible_host=192.168.86.86 container_id=119
 
 [workstation]
 desktop ansible_host=192.168.86.40
@@ -38,6 +39,7 @@ overseer ansible_host=192.168.86.113 container_id=106
 radarr ansible_host=192.168.86.79 container_id=131
 ntfy ansible_host=192.168.86.97 container_id=130
 maintainerr ansible_host=192.168.86.96 container_id=112
+sab ansible_host=192.168.86.86 container_id=119
 
 [ssh:children]
 lxc
