@@ -5,8 +5,8 @@
     name: "{{ item.name }}"
     gid: "{{ item.gid }}"
     state: present
-  with_items: "{{ group_definitions | selectattr('name', 'in', groups_to_create) | list }}"
-  when: groups_to_create is defined
+  with_items: "{{ group_definitions | selectattr('name', 'in', groups_to_create | default([])) | list }}"
+  when: group_definitions is defined and (groups_to_create is defined and groups_to_create | length > 0)
 
 - name: Ensure ssh_users are members of created groups
   user:
