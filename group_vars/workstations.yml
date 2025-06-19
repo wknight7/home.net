@@ -46,6 +46,7 @@ shared_directories:
 
 bill_directories:
   - "/home/bill/desktop"
+  - "/home/bill/desktop/screenshots"
   - "/home/bill/documents"
   - "/home/bill/downloads"
   - "/home/bill/media"

@@ -19,6 +19,7 @@ homepage ansible_host=192.168.86.103 container_id=107
 desktop ansible_host=192.168.86.40
 samsung ansible_host=192.168.86.94
 dell ansible_host=192.168.86.55
+lily_laptop ansible_host=192.168.86.53
 
 [local]
 localhost ansible_connection=local
@@ -46,6 +47,7 @@ sab ansible_host=192.168.86.86 container_id=119
 tautulli ansible_host=192.168.86.76 container_id=129
 cloudflared ansible_host=192.168.86.43 container_id=113
 homepage ansible_host=192.168.86.103 container_id=107
+lily_laptop ansible_host=192.168.86.53
 
 [ssh:children]
 lxc
