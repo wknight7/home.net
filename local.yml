@@ -60,6 +60,16 @@
   roles:
     - lxc
 
+# VM configuration
+- hosts: vm
+  become: yes
+  ignore_errors: yes
+  force_handlers: yes
+  vars:
+    ansible_user: hal
+  roles:
+    - vm
+
 # Proxmox configuration
 - hosts: proxmox_hosts
   become: yes

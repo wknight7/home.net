@@ -13,22 +13,22 @@ microcode_amd_install: true
 nfs_mounts:
   - src: "192.168.86.90:/mnt/ssd-files/docs"
     dest: "/mnt/docs"
-    opts: "defaults,soft,timeo=300,retrans=2,_netdev"
+    opts: "defaults,soft,timeo=300,retrans=2,_netdev,x-systemd.automount"
   - src: "192.168.86.90:/mnt/Data/media"
     dest: "/media"
-    opts: "defaults,soft,timeo=300,retrans=2,_netdev"
+    opts: "defaults,soft,timeo=300,retrans=2,_netdev,x-systemd.automount"
   - src: "192.168.86.90:/mnt/ssd-files/fileshare/trilium-data"
     dest: "/mnt/trilium"
-    opts: "defaults,soft,timeo=300,retrans=2,_netdev"
+    opts: "defaults,soft,timeo=300,retrans=2,_netdev,x-systemd.automount"
   - src: "192.168.86.90:/mnt/Data/books"
     dest: "/home/media/books"
-    opts: "defaults,soft,timeo=300,retrans=2,_netdev"
+    opts: "defaults,soft,timeo=300,retrans=2,_netdev,x-systemd.automount"
   - src: "192.168.86.90:/mnt/ssd-files/home/bill/Documents"
     dest: "/home/bill/documents"
-    opts: "defaults,soft,timeo=300,retrans=2,_netdev"
+    opts: "defaults,soft,timeo=300,retrans=2,_netdev,x-systemd.automount"
   - src: "192.168.86.90:/mnt/ssd-files/home/bill/Downloads"
     dest: "/home/bill/downloads"
-    opts: "defaults,soft,timeo=300,retrans=2,_netdev"
+    opts: "defaults,soft,timeo=300,retrans=2,_netdev,x-systemd.automount"
 
 is_proxmox: true
 

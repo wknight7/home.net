@@ -28,6 +28,9 @@ localhost ansible_connection=local
 pve ansible_host=192.168.86.143
 pbs ansible_host=192.168.86.33
 
+[vm]
+plex ansible_host=192.168.86.82
+
 [updates]
 wg ansible_host=192.168.86.104 container_id=101
 photoprism ansible_host=192.168.86.72 container_id=103
@@ -48,6 +51,7 @@ tautulli ansible_host=192.168.86.76 container_id=129
 cloudflared ansible_host=192.168.86.43 container_id=113
 homepage ansible_host=192.168.86.103 container_id=107
 lily_laptop ansible_host=192.168.86.53
+plex ansible_host=192.168.86.82
 
 [ssh:children]
 lxc

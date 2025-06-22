@@ -1,0 +1,32 @@
+---
+- name: unattended upgrades | install unattended-upgrades for debian-based hosts
+  apt:
+    name: unattended-upgrades
+    state: present
+    update_cache: yes
+
+- name: unattended upgrades | copy 20auto-upgrades file
+  copy:
+    src: "{{ playbook_dir }}/files/unattended-upgrades/20auto-upgrades"
+    dest: /etc/apt/apt.conf.d/20auto-upgrades
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: unattended upgrades | copy 50unattended-upgrades file for ubuntu
+  copy:
+    src: "{{ playbook_dir }}/files/unattended-upgrades/50unattended-upgrades_ubuntu"
+    dest: /etc/apt/apt.conf.d/50unattended-upgrades
+    owner: root
+    group: root
+    mode: '0644'
+  when: ansible_distribution == "Ubuntu"
+
+- name: unattended upgrades | copy 50unattended-upgrades file for debian
+  copy:
+    src: "{{ playbook_dir }}/files/unattended-upgrades/50unattended-upgrades_debian"
+    dest: /etc/apt/apt.conf.d/50unattended-upgrades
+    owner: root
+    group: root
+    mode: '0644'
+  when: ansible_distribution == "Debian"

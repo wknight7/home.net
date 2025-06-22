@@ -1,0 +1,34 @@
+---
+- name: Include NFS mount tasks
+  include_tasks: nfs_mount.yml
+  when: nfs_mounts is defined
+
+- name: Create application user
+  user:
+    name: "{{ app_user }}"
+    groups: "{{ app_user_groups | default([]) }}"
+    append: yes
+    shell: /bin/bash
+    create_home: yes
+  when: app_user is defined
+
+- name: Create additional groups
+  group:
+    name: "{{ item }}"
+    state: present
+  loop: "{{ groups_to_create | default([]) }}"
+
+- name: Install NVIDIA drivers (for GPU passthrough VMs)
+  apt:
+    name:
+      - "nvidia-driver-{{ nvidia_driver_version | default('535') }}"
+      - "nvidia-utils-{{ nvidia_driver_version | default('535') }}"
+    state: present
+    update_cache: yes
+  when: 
+    - gpu_passthrough is defined
+    - gpu_passthrough | bool
+
+- name: Setup unattended upgrades
+  include_tasks: unattended_upgrades.yml
+  when: unattended_upgrades is defined and unattended_upgrades | bool

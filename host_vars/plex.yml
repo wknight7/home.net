@@ -1,0 +1,48 @@
+---
+# VM ID (for Proxmox or inventory reference)
+vm_id: 204  # Changed from container_id to vm_id
+
+bill_password: "{{ vault_bill_password }}"
+
+# Branch to use for ansible-pull
+branch: master
+
+# Cron schedule for ansible provisioning (minute field)
+ansible_cron_minute: "40"
+
+# SSH configuration
+ssh_port: 22
+ssh_users: "bill hal"
+ansible_python_interpreter: /usr/bin/python3
+
+# Application user and groups
+app_user: plex
+app_user_groups:
+  - media
+
+# Platform-specific options
+proxmox_instance: false  # Now it's a VM, not LXC
+user_maps: false         # VMs don't use user mapping like LXCs
+
+# Server options
+unattended_upgrades: true
+web_server: false
+
+# NFS mounts needed for Plex
+nfs_mounts:
+  - src: "192.168.86.90:/mnt/Data/media"
+    dest: "/media"
+    opts: "defaults,soft,timeo=300,retrans=2,_netdev,x-systemd.automount"
+
+# List needed mounts (generic)
+needed_mounts:
+  - plex
+
+# Groups to create
+groups_to_create:
+  - media
+
+# VM-specific additions
+is_vm: true
+gpu_passthrough: true
+nvidia_driver_version: "535"

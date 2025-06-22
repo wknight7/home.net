@@ -1,0 +1,28 @@
+---
+- name: Create NFS mount directories
+  file:
+    path: "{{ item.dest }}"
+    state: directory
+    mode: '0755'
+  loop: "{{ nfs_mounts | default([]) }}"
+  when: nfs_mounts is defined
+
+- name: Add NFS mounts to fstab
+  mount:
+    path: "{{ item.dest }}"
+    src: "{{ item.src }}"
+    fstype: nfs
+    opts: "{{ item.opts }}"
+    state: present
+  loop: "{{ nfs_mounts | default([]) }}"
+  when: nfs_mounts is defined
+
+- name: Mount NFS shares
+  mount:
+    path: "{{ item.dest }}"
+    src: "{{ item.src }}"
+    fstype: nfs
+    opts: "{{ item.opts }}"
+    state: mounted
+  loop: "{{ nfs_mounts | default([]) }}"
+  when: nfs_mounts is defined
