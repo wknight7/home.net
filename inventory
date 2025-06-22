@@ -58,6 +58,7 @@ lxc
 workstation
 proxmox_hosts
 local
+vm
 
 [proxmox_hosts]
 pve

@@ -18,6 +18,9 @@
 - include_tasks: fstab.yml
 - include_tasks: ssh_config.yml
 - include_tasks: users.yml
+- include_tasks: gnome_settings.yml
+- include_tasks: chrome.yml
+- include_tasks: vscode.yml
 
 - name: Remove /etc/apt/sources.list as a one-time fix
   file:

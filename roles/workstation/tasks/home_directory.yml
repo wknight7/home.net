@@ -65,6 +65,7 @@
       - desktop
       - documents
       - downloads
+      - desktop/screenshots  # Add this line
       # add more as needed
   file:
     path: "{{ item.0.home }}/{{ item.1 }}"

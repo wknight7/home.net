@@ -1,0 +1,55 @@
+---
+- name: Create keyrings directory
+  file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0755'
+  when: vscode is defined and vscode | bool
+
+- name: Download Microsoft GPG key for VS Code
+  get_url:
+    url: "https://packages.microsoft.com/keys/microsoft.asc"
+    dest: "/tmp/microsoft.asc"
+    mode: '0644'
+  when: vscode is defined and vscode | bool
+
+- name: Add Microsoft GPG key to keyring
+  shell: |
+    gpg --dearmor < /tmp/microsoft.asc > /etc/apt/keyrings/packages.microsoft.gpg
+    chmod 644 /etc/apt/keyrings/packages.microsoft.gpg
+  when: vscode is defined and vscode | bool
+
+- name: Add VS Code repository
+  apt_repository:
+    repo: "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main"
+    state: present
+    filename: vscode
+  when: vscode is defined and vscode | bool
+
+- name: Update apt cache
+  apt:
+    update_cache: yes
+  when: vscode is defined and vscode | bool
+
+- name: Install VS Code
+  apt:
+    name: code
+    state: present
+  when: vscode is defined and vscode | bool
+
+- name: Pin VS Code to dock/favorites for bill user only
+  become_user: bill
+  dconf:
+    key: "/org/gnome/shell/favorite-apps"
+    value: "['google-chrome.desktop', 'code.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop']"
+    state: present
+  when: 
+    - vscode is defined and vscode | bool
+    - gnome is defined and gnome | bool
+    - "'bill' in included_users"
+
+- name: Clean up temporary GPG key file
+  file:
+    path: "/tmp/microsoft.asc"
+    state: absent
+  when: vscode is defined and vscode | bool

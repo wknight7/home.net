@@ -1,0 +1,41 @@
+---
+- name: Set screenshot save location for each user
+  become_user: "{{ item }}"
+  dconf:
+    key: "/org/gnome/gnome-screenshot/auto-save-directory"
+    value: "'file:///home/{{ item }}/desktop/screenshots'"
+    state: present
+  loop: "{{ included_users }}"
+  when: gnome is defined and gnome | bool
+
+- name: Ensure screenshots directory exists for each user
+  file:
+    path: "/home/{{ item }}/desktop/screenshots"
+    state: directory
+    mode: '0755'
+    owner: "{{ item }}"
+    group: "{{ item }}"
+  loop: "{{ included_users }}"
+  when: gnome is defined and gnome | bool
+
+- name: Install python3-psutil (required for dconf module)
+  apt:
+    name: python3-psutil
+    state: present
+  when: gnome is defined and gnome | bool
+
+- name: Pin consistent apps to dock/favorites for each user
+  become_user: "{{ item }}"
+  dconf:
+    key: "/org/gnome/shell/favorite-apps"
+    value: "['org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop']"
+    state: present
+  loop: "{{ included_users }}"
+  when: 
+    - gnome is defined and gnome | bool
+
+- name: Set Nautilus as default file manager for each user
+  become_user: "{{ item }}"
+  command: xdg-mime default org.gnome.Nautilus.desktop inode/directory
+  loop: "{{ included_users }}"
+  when: gnome is defined and gnome | bool

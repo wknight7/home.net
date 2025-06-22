@@ -10,6 +10,7 @@ ssh_users: "bill hal"
 ansible_python_interpreter: /usr/bin/python3
 microcode_amd_install: false
 microcode_intel_install: true
+gnome: true
 
 # groups to create
 groups_to_create:
@@ -25,7 +26,7 @@ web_browser: flatpak run org.mozilla.firefox
 
 # Application selection
 audacity: true
-chromium: true
+chrome: true
 darktable: true # Darktable is a free, open-source photography application 
 expressvpn: true
 firefox: true
