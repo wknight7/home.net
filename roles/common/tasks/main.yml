@@ -52,6 +52,9 @@
         group: root
         mode: '0755'
 
+    - include_tasks: root_bashrc.yml
+      tags: root_bashrc
+
   rescue:
     - set_fact: task_failed=true
 

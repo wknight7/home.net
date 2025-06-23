@@ -13,6 +13,33 @@
   include_vars: group_vars/users.yml
   tags: always
 
+# One-time Firefox removal tasks
+- name: Remove all Firefox packages (apt and snap)
+  package:
+    name:
+      - firefox
+      - firefox-esr
+      - firefox-dev
+      - firefox-trunk
+    state: absent
+    purge: yes
+  ignore_errors: yes
+  tags: firefox_removal
+
+- name: Remove Firefox snap
+  snap:
+    name: firefox
+    state: absent
+  ignore_errors: yes
+  tags: firefox_removal
+
+- name: Remove Firefox snap data (but not user profiles)
+  file:
+    path: /var/lib/snapd/snaps/firefox_*
+    state: absent
+  ignore_errors: yes
+  tags: firefox_removal
+
 - include_tasks: groups.yml
 - include_tasks: home_directory.yml
 - include_tasks: fstab.yml

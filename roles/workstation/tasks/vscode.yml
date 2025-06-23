@@ -1,4 +1,32 @@
 ---
+- name: Remove snap version of VS Code (preserve config)
+  snap:
+    name: code
+    state: absent
+  when: vscode is defined and vscode | bool
+  ignore_errors: yes
+
+- name: Remove conflicting Microsoft repository entries
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - /etc/apt/sources.list.d/vscode.list
+    - /etc/apt/sources.list.d/packages.microsoft.com.list
+    - /etc/apt/sources.list.d/microsoft.list
+  when: vscode is defined and vscode | bool
+  ignore_errors: yes
+
+- name: Remove old Microsoft GPG keys
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - /usr/share/keyrings/microsoft.gpg
+    - /etc/apt/keyrings/packages.microsoft.gpg
+  when: vscode is defined and vscode | bool
+  ignore_errors: yes
+
 - name: Create keyrings directory
   file:
     path: /etc/apt/keyrings
@@ -19,6 +47,12 @@
     chmod 644 /etc/apt/keyrings/packages.microsoft.gpg
   when: vscode is defined and vscode | bool
 
+- name: Update apt cache to clear errors
+  apt:
+    update_cache: yes
+  when: vscode is defined and vscode | bool
+  ignore_errors: yes
+
 - name: Add VS Code repository
   apt_repository:
     repo: "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main"
@@ -26,7 +60,7 @@
     filename: vscode
   when: vscode is defined and vscode | bool
 
-- name: Update apt cache
+- name: Update apt cache again
   apt:
     update_cache: yes
   when: vscode is defined and vscode | bool

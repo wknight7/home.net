@@ -14,6 +14,7 @@ sab ansible_host=192.168.86.86 container_id=119
 tautulli ansible_host=192.168.86.76 container_id=129
 cloudflared ansible_host=192.168.86.43 container_id=113
 homepage ansible_host=192.168.86.103 container_id=107
+calibre-web ansible_host=192.168.86.121 container_id=109
 
 [workstation]
 desktop ansible_host=192.168.86.40
@@ -52,6 +53,7 @@ cloudflared ansible_host=192.168.86.43 container_id=113
 homepage ansible_host=192.168.86.103 container_id=107
 lily_laptop ansible_host=192.168.86.53
 plex ansible_host=192.168.86.82
+calibre-web ansible_host=192.168.86.121 container_id=109
 
 [ssh:children]
 lxc

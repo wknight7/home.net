@@ -1,0 +1,11 @@
+2025-06-22 16:15:36,031 p=54189 u=bill n=ansible INFO| calibre-web | UNREACHABLE! => {
+2025-06-22 16:15:36,342 p=54189 u=bill n=ansible INFO| desktop | UNREACHABLE! => {
+2025-06-22 16:15:36,343 p=54189 u=bill n=ansible INFO| dell | UNREACHABLE! => {
+2025-06-22 16:15:38,578 p=54189 u=bill n=ansible INFO| lily_laptop | UNREACHABLE! => {
+2025-06-22 16:21:53,751 p=54828 u=bill n=ansible INFO| dell | UNREACHABLE! => {
+2025-06-22 16:21:53,751 p=54828 u=bill n=ansible INFO| desktop | UNREACHABLE! => {
+2025-06-22 16:21:55,923 p=54828 u=bill n=ansible INFO| lily_laptop | UNREACHABLE! => {
+2025-06-22 16:22:26,008 p=55083 u=bill n=ansible INFO| fatal: [desktop]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.40\". Make sure this host can be reached over ssh: ssh: connect to host 192.168.86.40 port 22: No route to host\r\n", "unreachable": true}
+2025-06-22 16:22:26,016 p=55083 u=bill n=ansible INFO| fatal: [dell]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.55\". Make sure this host can be reached over ssh: ssh: connect to host 192.168.86.55 port 22: No route to host\r\n", "unreachable": true}
+2025-06-22 16:22:29,139 p=55083 u=bill n=ansible INFO| fatal: [lily_laptop]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.53\". Make sure this host can be reached over ssh: ssh: connect to host 192.168.86.53 port 22: No route to host\r\n", "unreachable": true}
+2025-06-22 16:22:29,511 p=55083 u=bill n=ansible INFO| fatal: [samsung]: FAILED! => {"changed": false, "msg": "E:Conflicting values set for option Signed-By regarding source https://packages.microsoft.com/repos/code/ stable: /etc/apt/keyrings/packages.microsoft.gpg != /usr/share/keyrings/microsoft.gpg, E:The list of sources could not be read."}

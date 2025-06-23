@@ -1,0 +1,20 @@
+---
+- name: Deploy root .bashrc file
+  copy:
+    src: "users/root/bashrc"
+    dest: "/root/.bashrc"
+    owner: root
+    group: root
+    mode: '0644'
+    backup: yes
+  tags: root_bashrc
+
+- name: Ensure root's .profile sources .bashrc
+  lineinfile:
+    path: /root/.profile
+    line: '[ -f ~/.bashrc ] && . ~/.bashrc'
+    create: yes
+    owner: root
+    group: root
+    mode: '0644'
+  tags: root_bashrc
