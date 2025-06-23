@@ -13,8 +13,8 @@ if pgrep -f ansible-pull; then
     exit 1
 else
     if [ ! $1 == "" ]; then
-        $PRECMD sudo -iH -u $ANSIBLEUSER ansible-pull -U $REPO playbooks/common.yml --tags $1 2>&1
+        $PRECMD sudo -iH -u $ANSIBLEUSER ansible-pull -U $REPO local.yml --tags $1 2>&1
     else
-        $PRECMD sudo -iH -u $ANSIBLEUSER ansible-pull -U $REPO playbooks/common.yml 2>&1
+        $PRECMD sudo -iH -u $ANSIBLEUSER ansible-pull -U $REPO local.yml 2>&1
     fi
 fi

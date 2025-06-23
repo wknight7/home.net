@@ -14,6 +14,7 @@
     - /etc/apt/sources.list.d/vscode.list
     - /etc/apt/sources.list.d/packages.microsoft.com.list
     - /etc/apt/sources.list.d/microsoft.list
+    - /etc/apt/sources.list.d/vscode.sources
   when: vscode is defined and vscode | bool
   ignore_errors: yes
 
