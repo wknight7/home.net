@@ -30,6 +30,7 @@
 
 # Workstation configuration
 - hosts: workstation
+  ignore_unreachable: yes
   become: yes
   ignore_errors: yes
   force_handlers: yes

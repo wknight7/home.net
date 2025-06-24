@@ -17,12 +17,16 @@
   apt:
     deb: "/tmp/google-chrome-stable_current_amd64.deb"
     state: present
-  when: chrome is defined and chrome | bool
+  when:
+    - chrome is defined and chrome | bool
+    - not chrome_installed.stat.exists
 
 - name: Fix any broken dependencies after Chrome installation
   apt:
     state: fixed
-  when: chrome is defined and chrome | bool
+  when:
+    - chrome is defined and chrome | bool
+    - not chrome_installed.stat.exists
 
 - name: Set Chrome as default browser for each user
   become_user: "{{ item }}"
@@ -31,6 +35,7 @@
   when: 
     - chrome is defined and chrome | bool
     - gnome is defined and gnome | bool
+    - not chrome_installed.stat.exists
   environment:
     DISPLAY: ":0"
 
@@ -38,4 +43,6 @@
   file:
     path: "/tmp/google-chrome-stable_current_amd64.deb"
     state: absent
-  when: chrome is defined and chrome | bool
+  when:
+    - chrome is defined and chrome | bool
+    - not chrome_installed.stat.exists

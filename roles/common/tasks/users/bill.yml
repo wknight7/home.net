@@ -55,3 +55,11 @@
     name: sshd
     state: started
     enabled: yes
+
+- name: Copy vault password file for Bill
+  copy:
+    src: "{{ role_path }}/files/.vault_pass.txt"
+    dest: "/home/bill/.vault_pass.txt"
+    owner: bill
+    group: bill
+    mode: '0600'

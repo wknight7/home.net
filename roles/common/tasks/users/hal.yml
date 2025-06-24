@@ -15,3 +15,11 @@
     owner: root
     group: root
     mode: 0440
+
+- name: users | hal | copy vault password file
+  copy:
+    src: "{{ role_path }}/files/.vault_pass.txt"
+    dest: "/home/hal/.vault_pass.txt"
+    owner: hal
+    group: hal
+    mode: '0600'
