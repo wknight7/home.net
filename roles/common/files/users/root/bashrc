@@ -16,8 +16,8 @@ HISTCONTROL=ignoreboth
 # Set history format to include timestamps
 HISTTIMEFORMAT="%Y-%m-%d %T "
 
-# PS1 Prompt - Red for root to indicate elevated privileges
-PS1='\[\e[91m\]\u@\h\[\e[0m\]: \[\e[94m\]\w\[\e[0m\]: '
+# PS1 Prompt - Red for user@host, Blue for working directory, reset at end
+PS1='\[\033[1;31m\]\u@\h\[\033[0m\]:\[\033[1;34m\]\w\[\033[0m\]\$ '
 
 # aliases
 alias ..='cd ..'

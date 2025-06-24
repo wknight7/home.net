@@ -5,7 +5,7 @@
 
 - name: users | root | copy dotfiles
   copy:
-    src: ~/git/homelab/roles/common/files/users/bill/bashrc
+    src: users/root/bashrc
     dest: /root/.bashrc
     owner: root
     group: root
