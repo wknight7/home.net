@@ -28,7 +28,7 @@
   become_user: "{{ item }}"
   dconf:
     key: "/org/gnome/shell/favorite-apps"
-    value: "['org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop']"
+    value: "['google-chrome.desktop', 'code.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop', 'org.gnome.Calculator.desktop', 'libreoffice-writer.desktop']"
     state: present
   loop: "{{ included_users }}"
   when: 

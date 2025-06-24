@@ -1,10 +1,17 @@
 ---
+- name: Check if Chrome is installed
+  stat:
+    path: /usr/bin/google-chrome
+  register: chrome_installed
+
 - name: Download Google Chrome .deb package
   get_url:
     url: "https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb"
     dest: "/tmp/google-chrome-stable_current_amd64.deb"
     mode: '0644'
-  when: chrome is defined and chrome | bool
+  when:
+    - chrome is defined and chrome | bool
+    - not chrome_installed.stat.exists
 
 - name: Install Google Chrome
   apt:
@@ -26,17 +33,6 @@
     - gnome is defined and gnome | bool
   environment:
     DISPLAY: ":0"
-
-- name: Pin Chrome and Nautilus to dock/favorites for each user
-  become_user: "{{ item }}"
-  dconf:
-    key: "/org/gnome/shell/favorite-apps"
-    value: "['google-chrome.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop']"
-    state: present
-  loop: "{{ included_users }}"
-  when: 
-    - chrome is defined and chrome | bool
-    - gnome is defined and gnome | bool
 
 - name: Clean up Chrome .deb package
   file:

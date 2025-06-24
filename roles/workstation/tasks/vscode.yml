@@ -1,90 +1,67 @@
 ---
+- name: Check if VS Code is installed
+  stat:
+    path: /usr/bin/code
+  register: vscode_installed
+
 - name: Remove snap version of VS Code (preserve config)
   snap:
     name: code
     state: absent
-  when: vscode is defined and vscode | bool
   ignore_errors: yes
 
 - name: Remove conflicting Microsoft repository entries
   file:
-    path: "{{ item }}"
+    path: /etc/apt/sources.list.d/vscode.list
     state: absent
-  loop:
-    - /etc/apt/sources.list.d/vscode.list
-    - /etc/apt/sources.list.d/packages.microsoft.com.list
-    - /etc/apt/sources.list.d/microsoft.list
-    - /etc/apt/sources.list.d/vscode.sources
-  when: vscode is defined and vscode | bool
   ignore_errors: yes
 
 - name: Remove old Microsoft GPG keys
   file:
-    path: "{{ item }}"
+    path: /etc/apt/trusted.gpg.d/microsoft.gpg
     state: absent
-  loop:
-    - /usr/share/keyrings/microsoft.gpg
-    - /etc/apt/keyrings/packages.microsoft.gpg
-  when: vscode is defined and vscode | bool
   ignore_errors: yes
 
 - name: Create keyrings directory
   file:
-    path: /etc/apt/keyrings
+    path: /usr/share/keyrings
     state: directory
     mode: '0755'
-  when: vscode is defined and vscode | bool
+  when: vscode is defined and vscode | bool and not vscode_installed.stat.exists
 
 - name: Download Microsoft GPG key for VS Code
   get_url:
     url: "https://packages.microsoft.com/keys/microsoft.asc"
-    dest: "/tmp/microsoft.asc"
+    dest: "/usr/share/keyrings/microsoft.gpg"
     mode: '0644'
-  when: vscode is defined and vscode | bool
+  when: vscode is defined and vscode | bool and not vscode_installed.stat.exists
 
 - name: Add Microsoft GPG key to keyring
   shell: |
-    gpg --dearmor < /tmp/microsoft.asc > /etc/apt/keyrings/packages.microsoft.gpg
-    chmod 644 /etc/apt/keyrings/packages.microsoft.gpg
-  when: vscode is defined and vscode | bool
+    gpg --dearmor < /usr/share/keyrings/microsoft.gpg > /usr/share/keyrings/microsoft-archive-keyring.gpg
+  args:
+    creates: /usr/share/keyrings/microsoft-archive-keyring.gpg
+  when: vscode is defined and vscode | bool and not vscode_installed.stat.exists
 
 - name: Update apt cache to clear errors
   apt:
     update_cache: yes
-  when: vscode is defined and vscode | bool
   ignore_errors: yes
 
 - name: Add VS Code repository
   apt_repository:
-    repo: "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main"
+    repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/microsoft-archive-keyring.gpg] https://packages.microsoft.com/repos/vscode stable main"
     state: present
     filename: vscode
-  when: vscode is defined and vscode | bool
-
-- name: Update apt cache again
-  apt:
-    update_cache: yes
-  when: vscode is defined and vscode | bool
+  when: vscode is defined and vscode | bool and not vscode_installed.stat.exists
 
 - name: Install VS Code
   apt:
     name: code
     state: present
-  when: vscode is defined and vscode | bool
+  when: vscode is defined and vscode | bool and not vscode_installed.stat.exists
 
-- name: Pin VS Code to dock/favorites for bill user only
-  become_user: bill
-  dconf:
-    key: "/org/gnome/shell/favorite-apps"
-    value: "['google-chrome.desktop', 'code.desktop', 'org.gnome.Nautilus.desktop', 'org.gnome.Terminal.desktop']"
-    state: present
-  when: 
-    - vscode is defined and vscode | bool
-    - gnome is defined and gnome | bool
-    - "'bill' in included_users"
-
-- name: Clean up temporary GPG key file
-  file:
-    path: "/tmp/microsoft.asc"
-    state: absent
-  when: vscode is defined and vscode | bool
+- name: Fix any broken dependencies after VS Code installation
+  apt:
+    state: fixed
+  ignore_errors: yes
