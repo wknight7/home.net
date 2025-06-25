@@ -18,8 +18,6 @@
   file:
     path: "{{ item.dest }}"
     state: directory
-    owner: root
-    group: root
     mode: '0755'
   loop: "{{ nfs_system_mounts }}"
   become: yes
