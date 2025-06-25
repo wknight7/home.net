@@ -52,6 +52,7 @@ bill_directories:
   - "/home/bill/media"
   - "/home/bill/code"
   - "/home/bill/git"
+  - "/mnt/workouts"
 
 bill_unwanted_directories:
   - "/home/bill/Desktop"
@@ -80,5 +81,9 @@ nfs_user_mounts:
     opts: "rw,comment=x-gvfs-hide"
 
 nfs_specific_mounts: []
+nfs_system_mounts:
+  - src: "192.168.86.90:/mnt/ssd-files/workouts"
+    dest: "/mnt/workouts"
+    opts: "rw,comment=x-gvfs-hide"
 
 bill_password: "{{ vault_bill_password }}"

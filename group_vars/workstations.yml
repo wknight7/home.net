@@ -19,7 +19,7 @@ nfs_specific_mounts:
   - src: "192.168.86.90:/mnt/Data/media"
     dest: "/home/bill/media"
     opts: "rw,comment=x-gvfs-hide"
-
+  
 # System-wide NFS mounts (for all users to access via bookmarks)
 nfs_system_mounts:
   - src: "192.168.86.90:/mnt/Data/media"
@@ -31,7 +31,10 @@ nfs_system_mounts:
   - src: "192.168.86.90:/mnt/ssd-files/home/shared_files"
     dest: "/mnt/shared_files"
     opts: "rw"
-  
+  - src: "192.168.86.90:/mnt/ssd-files/workouts"
+    dest: "/mnt/workouts"
+    opts: "rw,comment=x-gvfs-hide"
+
 # List of desired_directories
 
 shared_directories:
@@ -42,6 +45,10 @@ shared_directories:
   - path: "/mnt/shared_files"
     owner: "bill"
     group: "docs"
+    mode: "0775"
+  - path: "/mnt/workouts"
+    owner: "bill"
+    group: "data"
     mode: "0775"
 
 bill_directories:
