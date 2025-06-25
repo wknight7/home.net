@@ -29,6 +29,9 @@ nfs_mounts:
   - src: "192.168.86.90:/mnt/ssd-files/home/DEFAULT_USER/Downloads"
     dest: "/home/DEFAULT_USER/downloads"
     opts: "rw,comment=x-gvfs-hide"
+  - src: "192.168.86.90:/mnt/ssd-files/workouts"
+    dest: "/mnt/workouts"
+    opts: "rw,comment=x-gvfs-hide"
 
 # List of desired_directories
 bill_directories:

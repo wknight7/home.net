@@ -2,7 +2,7 @@
 
 # options
 ANSIBLEUSER="hal"
-BRANCH="{{ branch | default('master') }}"
+BRANCH="{{ branch | default('main') }}"
 LOGFILE="/var/log/ansible.log"
 REPO="https://github.com/wknight7/home.net.git"
 PRECMD="sudo systemd-inhibit --who='ansible-pull' --why='provisioning'"

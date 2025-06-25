@@ -17,6 +17,15 @@
     insertafter: EOF
     backup: yes
 
+- name: Ensure NFS mount points exist
+  file:
+    path: "{{ item.dest }}"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  loop: "{{ nfs_system_mounts }}"
+
 - name: Reload systemd daemon
   systemd:
     daemon_reload: yes

@@ -8,8 +8,21 @@
       {{ mount.src.replace('DEFAULT_USER', user) }} {{ mount.dest.replace('DEFAULT_USER', user) }} nfs {{ mount.opts }} 0 0
       {% endfor %}
       {% endfor %}
+      {% for mount in nfs_system_mounts %}
+      {{ mount.src }} {{ mount.dest }} nfs {{ mount.opts }} 0 0
+      {% endfor %}
     insertafter: EOF
     backup: yes
+
+- name: Ensure system NFS mount points exist
+  file:
+    path: "{{ item.dest }}"
+    state: directory
+    owner: root
+    group: root
+    mode: '0755'
+  loop: "{{ nfs_system_mounts }}"
+  become: yes
 
 - name: Reload systemd daemon
   systemd:
@@ -19,3 +32,4 @@
 - name: Remount all filesystems
   command: mount -a
   become: true
+

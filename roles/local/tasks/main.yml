@@ -8,7 +8,7 @@
 
 # Load localhost variables
 - name: Load local variables
-  include_vars: group_vars/local.yml
+  include_vars: group_vars/localhost.yml
   tags: always
 
 # Load group variables

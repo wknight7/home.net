@@ -20,3 +20,4 @@
       - wget
       - zsh  # shell with lots of features
       - nfs-common
+      - git
