@@ -6,11 +6,6 @@
   changed_when: False
   when: ansible_distribution in ["Debian", "Ubuntu"]
 
-# Load localhost variables
-- name: Load local variables
-  include_vars: group_vars/localhost.yml
-  tags: always
-
 # Load group variables
 - name: Load group variables
   include_vars: group_vars/groups.yml

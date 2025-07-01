@@ -1,0 +1,22 @@
+# tasks to complete before running roles
+- hosts: all
+  tags: always
+  become: true
+  vars_files:
+    - ~/git/home.net/vault.yml
+  pre_tasks:
+    - name: Include host variables dynamically
+      include_vars: "{{ item }}"
+      with_items:
+        - "host_vars/{{ inventory_hostname }}.yml"
+      tags: always
+
+# Proxmox configuration
+- hosts: proxmox_hosts
+  become: yes
+  ignore_errors: yes
+  force_handlers: yes
+  vars:
+    ansible_user: hal
+  roles:
+    - proxmox_hosts

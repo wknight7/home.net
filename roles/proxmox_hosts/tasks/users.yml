@@ -40,3 +40,29 @@
     group: bill
     mode: '0644'
 
+- name: Copy bashrc for root
+  copy:
+    src: "/home/bill/git/home.net/roles/common/files/users/root/bashrc"
+    dest: "/root/.bashrc"
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Add source ~/.bashrc to Bill's .bash_profile
+  lineinfile:
+    path: "/home/bill/.bash_profile"
+    line: "source ~/.bashrc"
+    create: yes
+    owner: bill
+    group: bill
+    mode: '0644'
+
+- name: Add source ~/.bashrc to root's .bash_profile
+  lineinfile:
+    path: "/root/.bash_profile"
+    line: "source ~/.bashrc"
+    create: yes
+    owner: root
+    group: root
+    mode: '0644'
+

@@ -30,7 +30,7 @@ web_server: false
 
 # NFS mounts needed for Plex
 nfs_mounts:
-  - src: "192.168.86.90:/mnt/Data/media"
+  - src: "192.168.86.109:/mnt/Data/media"
     dest: "/media"
     opts: "defaults,soft,timeo=300,retrans=2,_netdev,x-systemd.automount"
 

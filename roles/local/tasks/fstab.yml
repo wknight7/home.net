@@ -4,23 +4,12 @@
     marker: "# {mark} ANSIBLE MANAGED BLOCK FOR NFS MOUNTS"
     block: |
       {% for user in nfs_users %}
-      {% for mount in nfs_user_mounts %}
+      {% for mount in nfs_mounts %}
       {{ mount.src.replace('DEFAULT_USER', user) }} {{ mount.dest.replace('DEFAULT_USER', user) }} nfs {{ mount.opts }} 0 0
       {% endfor %}
       {% endfor %}
-      {% for mount in nfs_system_mounts %}
-      {{ mount.src }} {{ mount.dest }} nfs {{ mount.opts }} 0 0
-      {% endfor %}
     insertafter: EOF
     backup: yes
-
-- name: Ensure system NFS mount points exist
-  file:
-    path: "{{ item.dest }}"
-    state: directory
-    mode: '0755'
-  loop: "{{ nfs_system_mounts }}"
-  become: yes
 
 - name: Reload systemd daemon
   systemd:

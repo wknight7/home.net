@@ -4,6 +4,7 @@
 sudo apt update
 sudo apt install -y ansible
 sudo apt install -y openssh-server
+sudo apt install -y git
 sudo cp /etc/ssh/sshd_config /etc/ssh/sshd_config.original
 sudo chmod a-w /etc/ssh/sshd_config.original
 

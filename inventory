@@ -6,7 +6,7 @@ trilium ansible_host=192.168.86.78 container_id=102
 sonarr ansible_host=192.168.86.66 container_id=104
 paperless ansible_host=192.168.86.70 container_id=111
 books ansible_host=192.168.86.65 container_id=126
-overseer ansible_host=192.168.86.113 container_id=106
+overseer ansible_host=192.168.86.49 container_id=106
 radarr ansible_host=192.168.86.79 container_id=131
 ntfy ansible_host=192.168.86.97 container_id=130
 maintainerr ansible_host=192.168.86.96 container_id=112
@@ -14,7 +14,7 @@ sab ansible_host=192.168.86.86 container_id=119
 tautulli ansible_host=192.168.86.76 container_id=129
 cloudflared ansible_host=192.168.86.43 container_id=113
 homepage ansible_host=192.168.86.103 container_id=107
-calibre-web ansible_host=192.168.86.121 container_id=109
+calibre-web ansible_host=192.168.86.103 container_id=110
 
 [workstation]
 desktop ansible_host=192.168.86.40
@@ -30,7 +30,7 @@ pve ansible_host=192.168.86.143
 pbs ansible_host=192.168.86.33
 
 [vm]
-plex ansible_host=192.168.86.82
+plex ansible_host=192.168.86.110
 
 [updates]
 wg ansible_host=192.168.86.104 container_id=101
@@ -43,7 +43,7 @@ trilium ansible_host=192.168.86.78 container_id=102
 sonarr ansible_host=192.168.86.66 container_id=104
 paperless ansible_host=192.168.86.70 container_id=111
 books ansible_host=192.168.86.65 container_id=126
-overseer ansible_host=192.168.86.113 container_id=106
+overseer ansible_host=192.168.86.49 container_id=106
 radarr ansible_host=192.168.86.79 container_id=131
 ntfy ansible_host=192.168.86.97 container_id=130
 maintainerr ansible_host=192.168.86.96 container_id=112
@@ -52,8 +52,8 @@ tautulli ansible_host=192.168.86.76 container_id=129
 cloudflared ansible_host=192.168.86.43 container_id=113
 homepage ansible_host=192.168.86.103 container_id=107
 lily_laptop ansible_host=192.168.86.53
-plex ansible_host=192.168.86.82
-calibre-web ansible_host=192.168.86.121 container_id=109
+plex ansible_host=192.168.86.110
+calibre-web ansible_host=192.168.86.103 container_id=110
 
 [ssh:children]
 lxc

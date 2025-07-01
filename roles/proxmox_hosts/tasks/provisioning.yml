@@ -1,0 +1,42 @@
+---
+- name: provisioning | install required packages
+  tags: packages,provisioning
+  package:
+    name:
+      - ansible
+      - git
+      - cron
+    state: latest
+
+- name: provisioning | start and enable cron service
+  tags: provisioning
+  service:
+    name: cron
+    state: started
+    enabled: true
+
+- name: provisioning | create provision script
+  tags: provisioning
+  template:
+    src: provision.sh.j2
+    dest: /usr/local/bin/provision
+    owner: root
+    group: root
+    mode: '0755'
+
+- name: provisioning | schedule automatic ansible provisioning
+  tags: provisioning,cron
+  cron:
+    name: "ansible provision"
+    user: hal
+    hour: "{{ ansible_cron_hour | default('*') }}"
+    minute: "{{ ansible_cron_minute | default('*/30') }}"
+    job: "/usr/local/bin/provision > /dev/null"
+
+- name: provisioning | schedule ansible cleanup at boot
+  tags: provisioning,cron
+  cron:
+    name: "ansible refresh at boot"
+    user: hal
+    special_time: reboot
+    job: "/bin/rm -rf /home/hal/.ansible"

@@ -7,31 +7,31 @@ nfs_users:
 
 # NFS mounts for all workstations (remove media and paperless from here)
 nfs_user_mounts:
-  - src: "192.168.86.90:/mnt/ssd-files/home/DEFAULT_USER/Documents"
+  - src: "192.168.86.109:/mnt/ssd-files/home/DEFAULT_USER/Documents"
     dest: "/home/DEFAULT_USER/documents"
     opts: "rw,comment=x-gvfs-hide"
-  - src: "192.168.86.90:/mnt/ssd-files/home/DEFAULT_USER/Downloads"
+  - src: "192.168.86.109:/mnt/ssd-files/home/DEFAULT_USER/Downloads"
     dest: "/home/DEFAULT_USER/downloads"
     opts: "rw,comment=x-gvfs-hide"
 
 # NFS mounts for specific users
 nfs_specific_mounts:
-  - src: "192.168.86.90:/mnt/Data/media"
+  - src: "192.168.86.109:/mnt/Data/media"
     dest: "/home/bill/media"
     opts: "rw,comment=x-gvfs-hide"
   
 # System-wide NFS mounts (for all users to access via bookmarks)
 nfs_system_mounts:
-  - src: "192.168.86.90:/mnt/Data/media"
+  - src: "192.168.86.109:/mnt/Data/media"
     dest: "/media"
     opts: "rw"
-  - src: "192.168.86.90:/mnt/ssd-files/docs/paper"
+  - src: "192.168.86.109:/mnt/ssd-files/docs/paper"
     dest: "/mnt/paperless"
     opts: "rw"
-  - src: "192.168.86.90:/mnt/ssd-files/home/shared_files"
+  - src: "192.168.86.109:/mnt/ssd-files/home/shared_files"
     dest: "/mnt/shared_files"
     opts: "rw"
-  - src: "192.168.86.90:/mnt/ssd-files/workouts"
+  - src: "192.168.86.109:/mnt/ssd-files/workouts"
     dest: "/mnt/workouts"
     opts: "rw,comment=x-gvfs-hide"
 

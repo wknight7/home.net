@@ -52,7 +52,7 @@ bill_directories:
   - "/home/bill/media"
   - "/home/bill/code"
   - "/home/bill/git"
-  - "/mnt/workouts"
+#  - "/mnt/workouts"
 
 bill_unwanted_directories:
   - "/home/bill/Desktop"
@@ -69,22 +69,16 @@ nfs_users:
 ssh_config_user: 
   - bill
 
-nfs_user_mounts:
-  - src: "192.168.86.90:/mnt/Data/media"
-    dest: "/home/bill/media"
+nfs_mounts:
+  # Single media mount instead of multiple subdirectories
+  - src: "192.168.86.109:/mnt/Data/media/storage"
+    dest: "/home/DEFAULT_USER/media"
     opts: "rw,comment=x-gvfs-hide"
-  - src: "192.168.86.90:/mnt/ssd-files/home/bill/Documents"
-    dest: "/home/bill/documents"
+  - src: "192.168.86.109:/mnt/ssd-files/home/DEFAULT_USER/Documents"
+    dest: "/home/DEFAULT_USER/documents"
     opts: "rw,comment=x-gvfs-hide"
-  - src: "192.168.86.90:/mnt/ssd-files/home/bill/Downloads"
-    dest: "/home/bill/downloads"
-    opts: "rw,comment=x-gvfs-hide"
-
-nfs_specific_mounts: []
-
-nfs_system_mounts:
-  - src: "192.168.86.90:/mnt/ssd-files/workouts"
-    dest: "/mnt/workouts"
+  - src: "192.168.86.109:/mnt/ssd-files/home/DEFAULT_USER/Downloads"
+    dest: "/home/DEFAULT_USER/downloads"
     opts: "rw,comment=x-gvfs-hide"
 
 bill_password: "{{ vault_bill_password }}"

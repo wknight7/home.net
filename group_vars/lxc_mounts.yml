@@ -37,7 +37,7 @@ mount_points:
     owner: "bill"
     group: "media"
   photoprism_storage:
-    source: "/home/media/photo_storage"
+    source: "/mnt/photo_storage"
     dest: "/opt/photoprism/storage"
     owner: "bill"
     group: "media"

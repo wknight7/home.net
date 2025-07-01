@@ -17,30 +17,30 @@
 - include_tasks: users.yml
 - include_tasks: fstab.yml
 
+- name: Install prerequisites
+  ansible.builtin.import_tasks: prereq.yml
+  when: pve_addons_enable_dark_theme and inventory_hostname != 'pbs'
 
+- name: Enable Dark Theme
+  ansible.builtin.import_tasks: install_dark_theme.yml
+  when: pve_addons_enable_dark_theme and inventory_hostname != 'pbs'
 
-# - name: Check if LXC configuration file exists
-#   stat:
-#     path: "/etc/pve/lxc/{{ hostvars[item]['container_id'] }}.conf"
-#   register: lxc_conf_file
-#   loop: "{{ groups['lxc'] }}"
+- name: Removes Subscription Nag Box
+  ansible.builtin.import_tasks: remove_subscription_nag.yml
+  when: pve_addons_remove_subscription_nag and inventory_hostname != 'pbs'
 
-# - name: Read existing LXC configuration
-#   slurp:
-#     src: "/etc/pve/lxc/{{ hostvars[item.item]['container_id'] }}.conf"
-#   register: existing_config
-#   loop: "{{ lxc_conf_file.results }}"
-#   when: item.stat.exists
+- name: Remove enterprise repo
+  ansible.builtin.import_tasks: remove_enterprise_repo.yml
+  when: (pve_addons_remove_enterprise_repo or pve_addons_disable_enterprise_repo) and inventory_hostname != 'pbs'
 
-# - name: Generate mount configurations
-#   set_fact:
-#     mount_configs: "{{ mount_configs | default({}) | combine({item: lookup('template', 'lxc_mount_config.j2')}) }}"
-#   loop: "{{ groups['lxc'] }}"
-#   when: hostvars[item]['needed_mounts'] is defined
+- name: Add no subcription repo
+  ansible.builtin.import_tasks: add_no_subscription_repo.yml
+  when: pve_addons_add_no_subscription_repo and inventory_hostname != 'pbs'
 
-# - name: Update LXC configuration with mounts
-#   template:
-#     src: lxc_config_update.j2
-#     dest: "/etc/pve/lxc/{{ hostvars[item]['container_id'] }}.conf"
-#   loop: "{{ groups['lxc'] }}"
-#   when: hostvars[item]['needed_mounts'] is defined
+- name: Force handlers to avoid apt error
+  ansible.builtin.meta: flush_handlers
+
+# Add provisioning setup
+- name: Setup provisioning
+  ansible.builtin.import_tasks: provisioning.yml
+  when: enable_provisioning | default(true)

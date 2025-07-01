@@ -1,7 +1,0 @@
-2025-06-21 14:28:34,427 p=13154 u=bill n=ansible INFO| desktop | UNREACHABLE! => {
-2025-06-21 14:28:34,634 p=13154 u=bill n=ansible INFO| samsung | UNREACHABLE! => {
-2025-06-21 14:28:37,544 p=13154 u=bill n=ansible INFO| lily_laptop | UNREACHABLE! => {
-2025-06-21 14:29:01,741 p=13614 u=bill n=ansible INFO| fatal: [samsung]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.94\". Make sure this host can be reached over ssh: ssh: connect to host 192.168.86.94 port 22: No route to host\r\n", "unreachable": true}
-2025-06-21 14:29:01,748 p=13614 u=bill n=ansible INFO| fatal: [desktop]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.40\". Make sure this host can be reached over ssh: ssh: connect to host 192.168.86.40 port 22: No route to host\r\n", "unreachable": true}
-2025-06-21 14:29:05,128 p=13614 u=bill n=ansible INFO| fatal: [lily_laptop]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.53\". Make sure this host can be reached over ssh: ssh: connect to host 192.168.86.53 port 22: No route to host\r\n", "unreachable": true}
-2025-06-21 14:31:42,253 p=13614 u=bill n=ansible INFO| fatal: [plex]: FAILED! => {"changed": false, "msg": "No package matching 'python-psutil' is available"}
