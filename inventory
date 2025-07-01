@@ -1,6 +1,6 @@
 [lxc]
 wg ansible_host=192.168.86.104 container_id=101
-photoprism ansible_host=192.168.86.72 container_id=103
+photoprism ansible_host=192.168.86.95 container_id=103
 bazarr ansible_host=192.168.86.101 container_id=118
 trilium ansible_host=192.168.86.78 container_id=102
 sonarr ansible_host=192.168.86.66 container_id=104
@@ -34,7 +34,7 @@ plex ansible_host=192.168.86.110
 
 [updates]
 wg ansible_host=192.168.86.104 container_id=101
-photoprism ansible_host=192.168.86.72 container_id=103
+photoprism ansible_host=192.168.86.95 container_id=103
 desktop ansible_host=192.168.86.40
 samsung ansible_host=192.168.86.94
 dell ansible_host=192.168.86.55
