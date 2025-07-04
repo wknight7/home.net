@@ -1,4 +1,5 @@
 [lxc]
+prowlarr ansible_host=192.168.86.121 container_id=117
 wg ansible_host=192.168.86.104 container_id=101
 photoprism ansible_host=192.168.86.95 container_id=103
 bazarr ansible_host=192.168.86.101 container_id=118
@@ -57,7 +58,6 @@ homepage ansible_host=192.168.86.103 container_id=107
 lily_laptop ansible_host=192.168.86.53
 plex ansible_host=192.168.86.110
 calibre-web ansible_host=192.168.86.103 container_id=110
-windows11 ansible_host=192.168.86.89
 
 [ssh:children]
 lxc

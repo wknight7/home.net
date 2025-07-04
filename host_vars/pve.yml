@@ -37,3 +37,5 @@ nfs_mounts:
 is_proxmox: true
 
 bill_password: "{{ bill_pve_passwd }}"
+proxmox_api_user: "root@pam"
+proxmox_api_password: "MdLwbO29aIlhsm!"

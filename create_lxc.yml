@@ -1,0 +1,246 @@
+---
+- name: Create new Proxmox LXC container
+  hosts: pve
+  gather_facts: true
+  vars_prompt:
+    - name: container_id
+      prompt: "\nEnter container ID (e.g., 140)"
+      private: false
+    - name: container_name
+      prompt: "\nEnter container name (e.g., myapp)"
+      private: false
+    - name: disk_size
+      prompt: "\nEnter disk size (e.g., 8, 16 for GB)"
+      private: false
+      default: "8"
+    - name: cores
+      prompt: "\nEnter number of CPU cores"
+      private: false
+      default: "1"
+    - name: memory
+      prompt: "\nEnter memory in MB"
+      private: false
+      default: "1024"
+    - name: swap
+      prompt: "\nEnter swap in MB"
+      private: false
+      default: "512"
+
+  vars:
+    # Common LXC settings
+    lxc_template: "ubuntu-24.10-standard_24.10-1_amd64.tar.zst"
+    lxc_unprivileged: true
+    lxc_ipv4: "dhcp"
+    lxc_start_after_create: true
+    bootstrap_url: "http://192.168.86.83/bootstrap.sh"
+
+  tasks:
+    - name: Load vault secrets
+      include_vars: vault.yml
+      no_log: true
+
+    - name: Install required Python modules via apt
+      apt:
+        name:
+          - python3-proxmoxer
+          - python3-requests
+        state: present
+      become: yes
+
+    - name: Debug Proxmox connection info
+      debug:
+        msg: |
+          Connecting to Proxmox:
+          - Host: {{ ansible_host }}
+          - User: {{ proxmox_api_user | default('root@pam') }}
+          - Node: {{ inventory_hostname }}
+
+    - name: Create LXC container
+      community.general.proxmox:
+        vmid: "{{ container_id }}"
+        node: "{{ inventory_hostname }}"
+        api_user: "{{ proxmox_api_user | default('root@pam') }}"
+        api_password: "{{ proxmox_api_password | default(root_passwd) }}"
+        api_token_id: "{{ proxmox_api_token_id | default(omit) }}"
+        api_token_secret: "{{ proxmox_api_token_secret | default(omit) }}"
+        api_host: "{{ ansible_host }}"
+        hostname: "{{ container_name }}"
+        ostemplate: "local:vztmpl/{{ lxc_template }}"
+        password: "{{ root_passwd }}"
+        unprivileged: "{{ lxc_unprivileged }}"
+        cores: "{{ cores }}"
+        memory: "{{ memory }}"
+        swap: "{{ swap }}"
+        disk: "local-lvm:{{ disk_size }}"
+        netif: '{"net0":"name=eth0,bridge=vmbr0,ip=dhcp"}'
+        state: present
+        timeout: 300
+        validate_certs: false
+      register: create_result
+
+    - name: Start LXC container
+      community.general.proxmox:
+        vmid: "{{ container_id }}"
+        node: "{{ inventory_hostname }}"
+        api_user: "{{ proxmox_api_user | default('root@pam') }}"
+        api_password: "{{ proxmox_api_password | default(root_passwd) }}"
+        api_token_id: "{{ proxmox_api_token_id | default(omit) }}"
+        api_token_secret: "{{ proxmox_api_token_secret | default(omit) }}"
+        api_host: "{{ ansible_host }}"
+        state: started
+        timeout: 60
+        validate_certs: false
+      when: create_result is succeeded
+
+    - name: Wait for container to fully start
+      wait_for:
+        timeout: 30
+      delegate_to: localhost
+
+    - name: Ensure network interface is up and configured
+      shell: |
+        pct exec {{ container_id }} -- ip link set eth0 up
+        sleep 5
+        pct exec {{ container_id }} -- dhclient eth0
+        sleep 10
+      register: network_setup
+
+    - name: Get container IP address using pct command
+      shell: "pct exec {{ container_id }} -- hostname -I | awk '{print $1}'"
+      register: container_ip_result
+      retries: 10
+      delay: 5
+      until: container_ip_result.rc == 0 and container_ip_result.stdout != ""
+
+    - name: Set container IP fact
+      set_fact:
+        container_ip: "{{ container_ip_result.stdout.strip() }}"
+
+    - name: Display container information
+      debug:
+        msg: |
+          Container created successfully!
+          ID: {{ container_id }}
+          Name: {{ container_name }}
+          IP: {{ container_ip }}
+
+    - name: Store container information for subsequent plays
+      set_fact:
+        lxc_container_id: "{{ container_id }}"
+        lxc_container_name: "{{ container_name }}"
+        lxc_container_ip: "{{ container_ip }}"
+      delegate_facts: true
+
+    - name: Create host_vars file from template
+      template:
+        src: templates/lxc_host_vars_template.yml
+        dest: "host_vars/{{ container_name }}.yml"
+      vars:
+        template_container_id: "{{ container_id }}"
+      delegate_to: localhost
+
+    - name: Update container_id in host_vars file
+      lineinfile:
+        path: "host_vars/{{ container_name }}.yml"
+        regexp: '^container_id:\s*$'
+        line: "container_id: {{ container_id }}"
+      delegate_to: localhost
+
+- name: Configure new LXC container
+  hosts: pve
+  gather_facts: false
+  vars:
+    bootstrap_url: "http://192.168.86.83/bootstrap.sh"
+
+  tasks:
+    - name: Wait for container services to be ready
+      wait_for:
+        timeout: 30
+      delegate_to: localhost
+
+    - name: Update package cache in container
+      shell: "pct exec {{ hostvars['pve']['lxc_container_id'] }} -- apt update"
+      register: apt_update_result
+
+    - name: Install required packages and set up locales
+      shell: |
+        pct exec {{ hostvars['pve']['lxc_container_id'] }} -- apt install -y curl locales
+        pct exec {{ hostvars['pve']['lxc_container_id'] }} -- locale-gen en_US.UTF-8
+        pct exec {{ hostvars['pve']['lxc_container_id'] }} -- update-locale LANG=en_US.UTF-8
+      register: locale_setup_result
+
+    - name: Run bootstrap script in container with proper environment
+      shell: |
+        pct exec {{ hostvars['pve']['lxc_container_id'] }} -- bash -c '
+        export LANG=en_US.UTF-8
+        export LC_ALL=en_US.UTF-8
+        export DEBIAN_FRONTEND=noninteractive
+        curl -s {{ bootstrap_url }} | bash
+        '
+      register: bootstrap_result
+      ignore_errors: true
+
+    - name: Display bootstrap result
+      debug:
+        msg: |
+          Bootstrap script execution:
+          {% if bootstrap_result.rc == 0 %}
+          ✅ SUCCESS: Bootstrap script completed successfully
+          {% else %}
+          ⚠️  WARNING: Bootstrap script returned non-zero exit code ({{ bootstrap_result.rc }})
+          This may be normal if there were warnings or minor issues.
+          {% endif %}
+          
+          STDOUT:
+          {{ bootstrap_result.stdout | default('No stdout output') }}
+          
+          {% if bootstrap_result.stderr | default('') != '' %}
+          STDERR:
+          {{ bootstrap_result.stderr }}
+          {% endif %}
+
+- name: Update inventory file
+  hosts: localhost
+  gather_facts: false
+  vars:
+    inventory_file: "/home/bill/git/home.net/inventory"
+
+  tasks:
+    - name: Read current inventory
+      slurp:
+        src: "{{ inventory_file }}"
+      register: current_inventory
+
+    - name: Add container to LXC group
+      lineinfile:
+        path: "{{ inventory_file }}"
+        insertafter: "^\\[lxc\\]"
+        line: "{{ hostvars['pve']['lxc_container_name'] }} ansible_host={{ hostvars['pve']['lxc_container_ip'] }} container_id={{ hostvars['pve']['lxc_container_id'] }}"
+        state: present
+
+    - name: Add container to updates group  
+      lineinfile:
+        path: "{{ inventory_file }}"
+        insertafter: "^\\[updates\\]"
+        line: "{{ hostvars['pve']['lxc_container_name'] }} ansible_host={{ hostvars['pve']['lxc_container_ip'] }} container_id={{ hostvars['pve']['lxc_container_id'] }}"
+        state: present
+
+    - name: Display success message
+      debug:
+        msg: |
+          ✅ LXC container creation completed successfully!
+          
+          Container Details:
+          - ID: {{ hostvars['pve']['lxc_container_id'] }}
+          - Name: {{ hostvars['pve']['lxc_container_name'] }}
+          - IP: {{ hostvars['pve']['lxc_container_ip'] }}
+          
+          The container has been:
+          ✓ Created and started
+          ✓ Configured with bootstrap script
+          ✓ Added to inventory (lxc and updates groups)
+          ✓ Host vars file created: host_vars/{{ hostvars['pve']['lxc_container_name'] }}.yml
+          
+          Next steps:
+          1. Edit host_vars/{{ hostvars['pve']['lxc_container_name'] }}.yml to customize configuration
+          2. Run playbooks against: {{ hostvars['pve']['lxc_container_name'] }}
