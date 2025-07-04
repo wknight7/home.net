@@ -1,0 +1,83 @@
+# Ansible-managed Windows Network Drive Mapping Script
+# Generated on {{ ansible_date_time.iso8601 }}
+# TrueNAS Server: {{ truenas_server_ip }}
+
+param(
+    [switch]$Disconnect = $false,
+    [switch]$Test = $false
+)
+
+# TrueNAS Server Configuration
+$TrueNASIP = "{{ truenas_server_ip }}"
+$Username = "{{ ansible_user }}"
+
+# Network Drive Mappings
+$NetworkDrives = @(
+{% for drive in windows_network_drives %}
+    @{ 
+        Letter = "{{ drive.drive_letter }}"; 
+        Path = "{{ drive.remote_path }}"; 
+        Name = "{{ drive.name }}"
+    }{% if not loop.last %},{% endif %}
+{% endfor %}
+)
+
+Write-Host "Windows Network Drive Management" -ForegroundColor Cyan
+Write-Host "TrueNAS Server: $TrueNASIP" -ForegroundColor Gray
+Write-Host "User: $Username" -ForegroundColor Gray
+Write-Host "Generated: {{ ansible_date_time.iso8601 }}" -ForegroundColor Gray
+Write-Host ""
+
+if ($Test) {
+    Write-Host "Testing current drive mappings..." -ForegroundColor Yellow
+    foreach ($drive in $NetworkDrives) {
+        if (Test-Path $drive.Letter) {
+            Write-Host "$($drive.Letter) ($($drive.Name)): Connected" -ForegroundColor Green
+        } else {
+            Write-Host "$($drive.Letter) ($($drive.Name)): Not Connected" -ForegroundColor Red
+        }
+    }
+    return
+}
+
+if ($Disconnect) {
+    Write-Host "Disconnecting network drives..." -ForegroundColor Yellow
+    foreach ($drive in $NetworkDrives) {
+        try {
+            net use $drive.Letter /delete /yes 2>$null
+            Write-Host "Disconnected $($drive.Letter) ($($drive.Name))" -ForegroundColor Green
+        }
+        catch {
+            Write-Host "No drive mapped to $($drive.Letter)" -ForegroundColor Gray
+        }
+    }
+} else {
+    Write-Host "Mapping network drives..." -ForegroundColor Yellow
+    Write-Host "Note: You may be prompted for credentials if not cached" -ForegroundColor Gray
+    
+    foreach ($drive in $NetworkDrives) {
+        try {
+            # Disconnect existing drive if it exists
+            net use $drive.Letter /delete /yes 2>$null
+            
+            # Map the drive persistently
+            net use $drive.Letter $drive.Path /persistent:yes
+            Write-Host "Mapped $($drive.Letter) to $($drive.Path) ($($drive.Name))" -ForegroundColor Green
+        }
+        catch {
+            Write-Host "Failed to map $($drive.Letter): $($_.Exception.Message)" -ForegroundColor Red
+        }
+    }
+    
+    Write-Host "`nVerifying connections..." -ForegroundColor Yellow
+    foreach ($drive in $NetworkDrives) {
+        if (Test-Path $drive.Letter) {
+            Write-Host "$($drive.Letter) ($($drive.Name)): Connected" -ForegroundColor Green
+        } else {
+            Write-Host "$($drive.Letter) ($($drive.Name)): Failed to connect" -ForegroundColor Red
+        }
+    }
+}
+
+Write-Host "`nScript completed." -ForegroundColor Cyan
+Write-Host "Usage: Map-NetworkDrives-Auto.ps1 [-Disconnect] [-Test]" -ForegroundColor Gray

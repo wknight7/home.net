@@ -1,0 +1,30 @@
+---
+- name: Get current timezone
+  win_shell: "Get-TimeZone | Select-Object -ExpandProperty Id"
+  register: current_timezone
+  changed_when: false
+
+- name: Display current timezone
+  debug:
+    msg: "Current timezone: {{ current_timezone.stdout | trim }}"
+
+- name: Set timezone to Eastern Time (New York)
+  win_timezone:
+    timezone: "Eastern Standard Time"
+  register: timezone_result
+  when: current_timezone.stdout | trim != "Eastern Standard Time"
+
+- name: Display timezone change result
+  debug:
+    msg: "Timezone {% if timezone_result.changed %}changed to{% else %}already set to{% endif %} Eastern Time"
+
+- name: Verify timezone change
+  win_shell: "Get-TimeZone | Select-Object -ExpandProperty Id"
+  register: verify_timezone
+  changed_when: false
+  when: timezone_result.changed
+
+- name: Display final timezone
+  debug:
+    msg: "Final timezone: {{ verify_timezone.stdout | trim }}"
+  when: timezone_result.changed

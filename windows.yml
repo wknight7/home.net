@@ -1,0 +1,19 @@
+---
+- name: Windows System Management
+  hosts: windows
+  gather_facts: yes
+  vars_files:
+    - vault.yml
+  
+  pre_tasks:
+    - name: Ensure WinRM is accessible
+      wait_for_connection:
+        timeout: 60
+      
+  roles:
+    - windows
+    
+  post_tasks:
+    - name: Display network drive status
+      debug:
+        msg: "Windows network drive management completed for {{ inventory_hostname }}"

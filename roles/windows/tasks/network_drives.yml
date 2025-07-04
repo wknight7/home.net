@@ -1,0 +1,82 @@
+---
+- name: Debug - Check if windows_network_drives is defined
+  debug:
+    msg: "windows_network_drives is {% if windows_network_drives is defined %}defined with {{ windows_network_drives | length }} items{% else %}NOT defined{% endif %}"
+  tags: network_drives
+
+- name: Debug - Check TrueNAS connection variables
+  debug:
+    msg: 
+      - "TrueNAS server IP: {{ truenas_server_ip | default('NOT DEFINED') }}"
+      - "SMB user: {{ truenas_smb_user | default('NOT DEFINED') }}"
+      - "SMB password defined: {{ 'YES' if truenas_smb_password is defined else 'NO' }}"
+  tags: network_drives
+
+- name: Test connectivity to TrueNAS server
+  win_ping:
+    data: "{{ truenas_server_ip }}"
+  register: truenas_ping_result
+  failed_when: false
+  when: truenas_server_ip is defined
+  tags: network_drives
+
+- name: Display TrueNAS connectivity status
+  debug:
+    msg: "TrueNAS server ({{ truenas_server_ip }}): {% if truenas_ping_result is defined and truenas_ping_result.ping is defined %}✅ Reachable{% else %}❌ Not reachable{% endif %}"
+  when: truenas_server_ip is defined
+  tags: network_drives
+
+- name: Ensure network drives are disconnected before reconnecting
+  win_command: "net use {{ item.drive_letter }} /delete /yes"
+  loop: "{{ windows_network_drives }}"
+  ignore_errors: true
+  when: 
+    - windows_network_drives is defined
+    - item.drive_letter is defined
+  tags: network_drives
+
+- name: Map persistent network drives with credentials
+  win_mapped_drive:
+    letter: "{{ item.drive_letter | regex_replace(':','') }}"
+    path: "{{ item.remote_path }}"
+    username: "{{ truenas_smb_user }}"
+    password: "{{ truenas_smb_password }}"
+    state: present
+  loop: "{{ windows_network_drives }}"
+  register: drive_mapping_result
+  failed_when: false
+  when: 
+    - windows_network_drives is defined
+    - item.drive_letter is defined
+    - truenas_smb_password is defined
+    - truenas_smb_user is defined
+  tags: network_drives
+
+- name: Display drive mapping results
+  debug:
+    msg: "Drive {{ item.item.drive_letter }} ({{ item.item.name }}): {% if item.changed %}✅ Mapped successfully{% elif item.failed %}❌ Failed - {{ item.msg | default('Unknown error') }}{% else %}⚠️ No change{% endif %}"
+  loop: "{{ drive_mapping_result.results }}"
+  when: 
+    - drive_mapping_result is defined
+    - item is not skipped
+  tags: network_drives
+
+- name: Test network drive connectivity
+  win_shell: '(New-Object -ComObject Shell.Application).Namespace("{{ item.drive_letter }}").Self.Path'
+  loop: "{{ windows_network_drives }}"
+  register: drive_test_result
+  failed_when: false
+  when: 
+    - windows_network_drives is defined
+    - item.drive_letter is defined
+  tags: network_drives
+
+- name: Report connectivity status
+  debug:
+    msg: "Drive {{ item.item.drive_letter }} ({{ item.item.name }}): {% if item.rc == 0 and item.stdout | trim | regex_search(item.item.drive_letter | regex_replace(':','') + ':') %}✅ Connected{% else %}❌ Failed to connect{% endif %}"
+  loop: "{{ drive_test_result.results }}"
+  when: 
+    - drive_test_result is defined
+    - item is not skipped
+    - item.item.drive_letter is defined
+  tags: network_drives

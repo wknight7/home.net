@@ -1,0 +1,17 @@
+---
+- include_tasks: ssh_key_management.yml
+  when: 
+    - ansible_os_family == 'Windows' or ansible_connection == 'ssh'
+    - vault_bill_ssh_keys is defined
+
+- include_tasks: deploy_scripts.yml
+  when: ansible_os_family == 'Windows'
+  tags: ['scripts']
+
+- include_tasks: network_drives.yml
+  when: ansible_os_family == 'Windows'
+  tags: ['network_drives']
+
+- include_tasks: timezone.yml
+  when: ansible_os_family == 'Windows'
+  tags: ['timezone']

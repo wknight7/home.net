@@ -1,0 +1,68 @@
+---
+- name: Windows SMB Service and Context Test
+  hosts: windows11
+  gather_facts: no
+  vars_files:
+    - vault.yml
+  
+  tasks:
+    - name: Check Windows services related to SMB
+      win_shell: 'Get-Service | Where-Object {$_.Name -like "*smb*" -or $_.Name -like "*workstation*" -or $_.Name -like "*server*" -or $_.Name -like "*rdr*"} | Select-Object Name,Status'
+      register: smb_services
+      
+    - name: Show SMB services
+      debug:
+        msg: "{{ smb_services.stdout_lines }}"
+    
+    - name: Check if Workstation service is running
+      win_service:
+        name: lanmanworkstation
+        state: started
+      register: workstation_service
+      
+    - name: Show workstation service status
+      debug:
+        msg: "Workstation service: {{ workstation_service.state }}"
+    
+    - name: Clear all mappings
+      win_shell: "net use * /delete /yes"
+      failed_when: false
+      
+    - name: Try mapping with different syntax
+      win_shell: 'net use M: \\192.168.86.109\media /user:{{ truenas_smb_user }} "{{ truenas_smb_password }}"'
+      register: alt_mapping
+      failed_when: false
+      
+    - name: Show alternative mapping result
+      debug:
+        msg: "Alt mapping: {{ alt_mapping.stdout_lines if alt_mapping.rc == 0 else 'FAILED: ' + (alt_mapping.stderr | default('Unknown error')) }}"
+    
+    - name: Check net use immediately after
+      win_shell: "net use"
+      register: net_check
+      
+    - name: Show net use status
+      debug:
+        msg: "{{ net_check.stdout_lines }}"
+    
+    - name: Try to force refresh Windows network
+      win_shell: "net use * /delete /yes; gpupdate /force"
+      failed_when: false
+      register: refresh_network
+      
+    - name: Remap after refresh
+      win_shell: 'net use M: \\192.168.86.109\media /user:{{ truenas_smb_user }} "{{ truenas_smb_password }}" /persistent:yes'
+      register: remap_result
+      failed_when: false
+      
+    - name: Show remap result
+      debug:
+        msg: "Remap result: {{ remap_result.stdout_lines if remap_result.rc == 0 else 'FAILED: ' + (remap_result.stderr | default('Unknown error')) }}"
+    
+    - name: Check final status
+      win_shell: "net use"
+      register: final_status
+      
+    - name: Show final status
+      debug:
+        msg: "{{ final_status.stdout_lines }}"

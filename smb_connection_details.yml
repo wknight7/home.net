@@ -1,0 +1,65 @@
+---
+- name: Windows SMB Connection Details
+  hosts: windows11
+  gather_facts: no
+  vars_files:
+    - vault.yml
+  
+  tasks:
+    - name: Clear all mappings first
+      win_shell: "net use * /delete /yes"
+      failed_when: false
+      
+    - name: Map drive with detailed error checking
+      win_shell: 'net use M: \\192.168.86.109\media "{{ truenas_smb_password }}" /user:{{ truenas_smb_user }} /persistent:yes'
+      register: map_result
+      failed_when: false
+      
+    - name: Show mapping result
+      debug:
+        msg: "Mapping result: RC={{ map_result.rc }}, STDOUT={{ map_result.stdout }}, STDERR={{ map_result.stderr }}"
+    
+    - name: Get detailed SMB connection info
+      win_shell: "Get-SmbConnection"
+      register: smb_connections
+      failed_when: false
+      
+    - name: Show SMB connections
+      debug:
+        msg: "SMB connections: {{ smb_connections.stdout_lines }}"
+    
+    - name: Check SMB shares from Windows perspective
+      win_shell: "Get-SmbShare"
+      register: smb_shares
+      failed_when: false
+      
+    - name: Show SMB shares
+      debug:
+        msg: "SMB shares: {{ smb_shares.stdout_lines }}"
+    
+    - name: Check Windows event logs for SMB errors
+      win_shell: 'Get-EventLog -LogName System -Source "srv" -Newest 5 | Format-Table -AutoSize'
+      register: smb_events
+      failed_when: false
+      
+    - name: Show SMB events
+      debug:
+        msg: "SMB events: {{ smb_events.stdout_lines }}"
+    
+    - name: Try to access the share via PowerShell directly
+      win_shell: 'Get-ChildItem "\\192.168.86.109\media" -Force'
+      register: direct_access
+      failed_when: false
+      
+    - name: Show direct access result
+      debug:
+        msg: "Direct access: {{ 'SUCCESS' if direct_access.rc == 0 else 'FAILED: ' + (direct_access.stderr | default('Unknown error')) }}"
+    
+    - name: Check if the drive appears in Windows explorer
+      win_shell: '(New-Object -ComObject Shell.Application).Namespace("M:").Self.Path'
+      register: explorer_check
+      failed_when: false
+      
+    - name: Show explorer check
+      debug:
+        msg: "Explorer check: {{ explorer_check.stdout if explorer_check.rc == 0 else 'Drive not visible in explorer' }}"

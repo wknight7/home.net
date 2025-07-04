@@ -1,0 +1,55 @@
+---
+- name: Windows SMB Drive Fix Test
+  hosts: windows11
+  gather_facts: no
+  vars_files:
+    - vault.yml
+  
+  tasks:
+    - name: Clear all mappings
+      win_shell: "net use * /delete /yes"
+      failed_when: false
+      
+    - name: Test with cmd instead of PowerShell
+      win_command: 'net use M: "\\192.168.86.109\media" "{{ truenas_smb_password }}" /user:{{ truenas_smb_user }} /persistent:yes'
+      register: cmd_result
+      failed_when: false
+      
+    - name: Show cmd result
+      debug:
+        msg: "CMD result: {{ cmd_result.stdout_lines if cmd_result.rc == 0 else 'FAILED: ' + (cmd_result.stderr | default('Unknown error')) }}"
+    
+    - name: Test drive access with cmd
+      win_command: 'cmd /c "dir M:"'
+      register: cmd_access
+      failed_when: false
+      
+    - name: Show cmd access
+      debug:
+        msg: "CMD access: {{ 'SUCCESS' if cmd_access.rc == 0 else 'FAILED: ' + (cmd_access.stderr | default('Unknown error')) }}"
+    
+    - name: Check net use status
+      win_command: "net use"
+      register: net_status
+      
+    - name: Show net use status
+      debug:
+        msg: "{{ net_status.stdout_lines }}"
+    
+    - name: Try to refresh the connection
+      win_shell: 'net use M: /delete; net use M: "\\192.168.86.109\media" "{{ truenas_smb_password }}" /user:{{ truenas_smb_user }} /persistent:yes'
+      register: refresh_result
+      failed_when: false
+      
+    - name: Show refresh result
+      debug:
+        msg: "Refresh result: {{ refresh_result.stdout_lines if refresh_result.rc == 0 else 'FAILED: ' + (refresh_result.stderr | default('Unknown error')) }}"
+    
+    - name: Final test - try to access
+      win_command: 'cmd /c "dir M:"'
+      register: final_test
+      failed_when: false
+      
+    - name: Show final test
+      debug:
+        msg: "Final test: {{ 'SUCCESS' if final_test.rc == 0 else 'FAILED: ' + (final_test.stderr | default('Unknown error')) }}"

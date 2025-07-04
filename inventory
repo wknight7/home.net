@@ -32,6 +32,9 @@ pbs ansible_host=192.168.86.33
 [vm]
 plex ansible_host=192.168.86.110
 
+[windows]
+windows11 ansible_host=192.168.86.89 ansible_user=wknig ansible_connection=winrm
+
 [updates]
 wg ansible_host=192.168.86.104 container_id=101
 photoprism ansible_host=192.168.86.95 container_id=103
@@ -54,6 +57,7 @@ homepage ansible_host=192.168.86.103 container_id=107
 lily_laptop ansible_host=192.168.86.53
 plex ansible_host=192.168.86.110
 calibre-web ansible_host=192.168.86.103 container_id=110
+windows11 ansible_host=192.168.86.89
 
 [ssh:children]
 lxc
@@ -61,6 +65,7 @@ workstation
 proxmox_hosts
 local
 vm
+windows
 
 [proxmox_hosts]
 pve

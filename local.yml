@@ -41,11 +41,9 @@
   roles:
     - workstation
 
-# Local config
+# Local config (this will update SSH config with all hosts including Windows)
 - hosts: local
   become: yes
-  # vars_files:
-  #   - group_vars/lxc_mounts.yml
   roles:
     - local
 
@@ -80,3 +78,9 @@
     ansible_user: hal
   roles:
     - proxmox_hosts
+
+# Windows configuration
+- hosts: windows
+  gather_facts: no
+  roles:
+    - windows

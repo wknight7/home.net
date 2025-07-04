@@ -1,0 +1,16 @@
+---
+# SSH configuration for file operations and basic connectivity  
+ssh_key: ansible-server
+ansible_user: wknig
+ansible_host: 192.168.86.89
+
+# Use WinRM for Ansible modules
+ansible_connection: winrm
+ansible_winrm_server_cert_validation: ignore
+ansible_winrm_transport: basic
+ansible_port: 5985
+ansible_password: "{{ windows_password }}"
+
+# Windows-specific settings
+ansible_shell_type: powershell
+ansible_become: false

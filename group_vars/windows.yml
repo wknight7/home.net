@@ -1,0 +1,48 @@
+---
+# Windows SMB/CIFS network share configuration
+# This manages persistent network drives similar to how fstab manages NFS mounts on Linux
+
+# Your TrueNAS server IP (update this when your TrueNAS IP changes)
+truenas_server_ip: "192.168.86.109"
+
+# SMB username for TrueNAS authentication
+truenas_smb_user: "bill"
+
+# SMB password for TrueNAS authentication (stored in vault)
+# Note: Standardized to use truenas_password to match other vault variables
+truenas_smb_password: "{{ truenas_password }}"
+
+# Simplified network drives to map for the specified user
+windows_network_drives:
+  # User-specific drives (Documents, Downloads)
+  - name: "User Documents"
+    drive_letter: "H:"
+    remote_path: "\\\\{{ truenas_server_ip }}\\Documents"
+    persistent: true
+    
+  - name: "User Downloads"
+    drive_letter: "I:"
+    remote_path: "\\\\{{ truenas_server_ip }}\\Downloads"
+    persistent: true
+
+  # Shared drives (accessible by all users)
+  - name: "Media"
+    drive_letter: "M:"
+    remote_path: "\\\\{{ truenas_server_ip }}\\media"
+    persistent: true
+    
+  - name: "Paperless Documents"
+    drive_letter: "P:"
+    remote_path: "\\\\{{ truenas_server_ip }}\\paper"
+    persistent: true
+    
+  - name: "Shared Files"
+    drive_letter: "S:"
+    remote_path: "\\\\{{ truenas_server_ip }}\\shared_files"
+    persistent: true
+    
+  - name: "Workouts"
+    drive_letter: "W:"
+    remote_path: "\\\\{{ truenas_server_ip }}\\workouts"
+    persistent: true
+

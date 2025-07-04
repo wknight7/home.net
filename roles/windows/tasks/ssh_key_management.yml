@@ -1,0 +1,31 @@
+---
+- name: Deploy SSH public keys from vault to administrators_authorized_keys
+  win_copy:
+    content: "{{ vault_bill_ssh_keys | join('\n') }}\n"
+    dest: C:\ProgramData\ssh\administrators_authorized_keys
+    backup: yes
+
+- name: Set permissions on administrators_authorized_keys
+  win_acl:
+    path: C:\ProgramData\ssh\administrators_authorized_keys
+    user: "{{ item }}"
+    rights: FullControl
+    type: allow
+    state: present
+  loop:
+    - Administrators
+    - SYSTEM
+
+- name: Remove inherited permissions and set explicit permissions
+  win_acl:
+    path: C:\ProgramData\ssh\administrators_authorized_keys
+    user: "Administrators"
+    rights: FullControl
+    type: allow
+    state: present
+    inherit: none
+
+- name: Restart SSH service
+  win_service:
+    name: sshd
+    state: restarted
