@@ -1,4 +1,7 @@
 ---
+# Container ID (for Proxmox or inventory reference)
+container_id: 111
+
 branch: master
 
 ansible_cron_minute: "40"

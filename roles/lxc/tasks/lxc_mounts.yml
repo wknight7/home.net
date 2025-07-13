@@ -1,3 +1,7 @@
+- name: Load mount point definitions
+  include_vars: "{{ playbook_dir }}/group_vars/lxc_mounts.yml"
+  tags: lxc_mounts
+
 - name: Ensure mount point directories exist
   file:
     path: "{{ mount_points[item].dest }}"
@@ -5,13 +9,26 @@
     owner: "{{ mount_points[item].owner }}"
     group: "{{ mount_points[item].group }}"
     mode: '0755'
-  loop: "{{ needed_mounts }}"
+  loop: "{{ needed_mounts | default([]) }}"
+  when: needed_mounts is defined and mount_points[item] is defined
   become: yes
+  tags: lxc_mounts
 
-- name: Configure LXC mounts
+- name: Configure LXC mounts and settings
   template:
     src: lxc_config.j2
     dest: "/etc/pve/lxc/{{ container_id }}.conf"
+  delegate_to: pve
+  become: yes
   vars:
     container_id: "{{ container_id }}"
+  tags: lxc_mounts
+
+- name: Restart LXC container to apply configuration changes
+  shell: "pct stop {{ container_id }} && sleep 5 && pct start {{ container_id }}"
+  delegate_to: pve
   become: yes
+  vars:
+    container_id: "{{ container_id }}"
+  when: container_id is defined
+  tags: lxc_mounts

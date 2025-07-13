@@ -1,0 +1,41 @@
+arch: amd64
+cores: {{ cores | default(2) }}
+{% if features is defined %}
+features: {{ features }}
+{% else %}
+features: fuse=1,nesting=1
+{% endif %}
+hostname: {{ inventory_hostname }}
+memory: {{ memory | default(1024) }}
+{% if needed_mounts is defined %}
+{% for mount in needed_mounts %}
+{% if mount_points[mount] is defined %}
+mp{{ loop.index0 }}: {{ mount_points[mount].source }},mp={{ mount_points[mount].dest }}
+{% endif %}
+{% endfor %}
+{% endif %}
+net0: name=eth0,bridge=vmbr0,firewall=1,hwaddr={{ hwaddr | default('BC:24:11:' + ('%02X:%02X:%02X' | format((container_id | int) % 256, (ansible_default_ipv4.address.split('.')[-1] | int) % 256, (ansible_default_ipv4.address.split('.')[-2] | int) % 256))) }},ip=dhcp,type=veth
+onboot: {{ onboot | default(1) }}
+ostype: {{ ostype | default('ubuntu') }}
+rootfs: local-lvm:vm-{{ container_id }}-disk-0,size={{ disk_size | default('8G') }}
+{% if startup is defined %}
+startup: order={{ startup }}
+{% endif %}
+swap: {{ swap | default(512) }}
+unprivileged: 1
+{% if app_user is defined and app_user_uid is defined %}
+lxc.idmap: u 0 100000 1000
+lxc.idmap: u {{ app_user_uid }} {{ app_user_uid }} 1000
+lxc.idmap: u {{ app_user_uid + 1 }} {{ 100000 + app_user_uid + 1 }} {{ 65536 - app_user_uid - 1 }}
+lxc.idmap: g 0 100000 1000
+lxc.idmap: g {{ app_user_gid | default(app_user_uid) }} {{ app_user_gid | default(app_user_uid) }} 1000
+lxc.idmap: g {{ (app_user_gid | default(app_user_uid)) + 1 }} {{ 100000 + (app_user_gid | default(app_user_uid)) + 1 }} {{ 65536 - (app_user_gid | default(app_user_uid)) - 1 }}
+{% else %}
+lxc.idmap: u 0 100000 1000
+lxc.idmap: u 1000 1000 1000
+lxc.idmap: u 2000 101000 64536
+lxc.idmap: g 0 100000 1000
+lxc.idmap: g 1000 1000 1000
+lxc.idmap: g 2000 101000 64536
+{% endif %}
+lxc.mount.auto: cgroup:mixed proc:mixed sys:mixed

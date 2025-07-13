@@ -10,7 +10,8 @@
   become: yes
   tags: root_password
 
-#- include_tasks: lxc_mounts.yml
+- include_tasks: lxc_mounts.yml
+  tags: lxc_mounts
 - include_tasks: unattended_upgrades.yml
   when:
     - ansible_distribution in ["Debian", "Ubuntu"]
