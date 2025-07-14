@@ -6251,3 +6251,52 @@ The offending line appears to be:
     "changed": false,
     "ping": "pong"
 }
+2025-07-13 18:26:39,310 p=180638 u=bill n=ansible INFO| PLAY [Backup Proxmox Configuration Before Reinstall] ********************************
+2025-07-13 18:26:39,316 p=180638 u=bill n=ansible INFO| TASK [Gathering Facts] **************************************************************
+2025-07-13 18:26:42,010 p=180638 u=bill n=ansible INFO| ok: [pve]
+2025-07-13 18:26:42,029 p=180638 u=bill n=ansible INFO| TASK [Create backup directory on Proxmox host] **************************************
+2025-07-13 18:26:42,239 p=180638 u=bill n=ansible INFO| changed: [pve]
+2025-07-13 18:26:42,262 p=180638 u=bill n=ansible INFO| TASK [Create local backup directory] ************************************************
+2025-07-13 18:26:42,429 p=180638 u=bill n=ansible INFO| changed: [pve -> localhost(192.168.86.83)]
+2025-07-13 18:26:42,449 p=180638 u=bill n=ansible INFO| TASK [Backup VM configurations] *****************************************************
+2025-07-13 18:26:42,684 p=180638 u=bill n=ansible INFO| changed: [pve]
+2025-07-13 18:26:42,707 p=180638 u=bill n=ansible INFO| TASK [Backup LXC configurations] ****************************************************
+2025-07-13 18:26:42,880 p=180638 u=bill n=ansible INFO| changed: [pve]
+2025-07-13 18:26:42,901 p=180638 u=bill n=ansible INFO| TASK [Backup node configuration] ****************************************************
+2025-07-13 18:26:43,075 p=180638 u=bill n=ansible INFO| changed: [pve]
+2025-07-13 18:26:43,097 p=180638 u=bill n=ansible INFO| TASK [Backup storage configuration] *************************************************
+2025-07-13 18:26:43,265 p=180638 u=bill n=ansible INFO| changed: [pve]
+2025-07-13 18:26:43,284 p=180638 u=bill n=ansible INFO| TASK [Backup datacenter configuration] **********************************************
+2025-07-13 18:26:43,452 p=180638 u=bill n=ansible INFO| changed: [pve]
+2025-07-13 18:26:43,497 p=180638 u=bill n=ansible INFO| TASK [Backup firewall configurations] ***********************************************
+2025-07-13 18:26:43,663 p=180638 u=bill n=ansible INFO| changed: [pve]
+2025-07-13 18:26:43,683 p=180638 u=bill n=ansible INFO| TASK [Backup user configuration] ****************************************************
+2025-07-13 18:26:43,849 p=180638 u=bill n=ansible INFO| changed: [pve]
+2025-07-13 18:26:43,871 p=180638 u=bill n=ansible INFO| TASK [Backup network interfaces] ****************************************************
+2025-07-13 18:26:44,039 p=180638 u=bill n=ansible INFO| changed: [pve]
+2025-07-13 18:26:44,059 p=180638 u=bill n=ansible INFO| TASK [Backup hostname] **************************************************************
+2025-07-13 18:26:44,228 p=180638 u=bill n=ansible INFO| changed: [pve]
+2025-07-13 18:26:44,249 p=180638 u=bill n=ansible INFO| TASK [Backup hosts file] ************************************************************
+2025-07-13 18:26:44,416 p=180638 u=bill n=ansible INFO| changed: [pve]
+2025-07-13 18:26:44,437 p=180638 u=bill n=ansible INFO| TASK [Backup SSL certificates] ******************************************************
+2025-07-13 18:26:44,611 p=180638 u=bill n=ansible INFO| changed: [pve]
+2025-07-13 18:26:44,634 p=180638 u=bill n=ansible INFO| TASK [Backup root crontab] **********************************************************
+2025-07-13 18:26:44,842 p=180638 u=bill n=ansible INFO| fatal: [pve]: FAILED! => {"changed": true, "cmd": "crontab -l > /tmp/proxmox_backup_2025-07-13/root_crontab.txt", "delta": "0:00:00.005876", "end": "2025-07-13 18:26:44.827100", "msg": "non-zero return code", "rc": 1, "start": "2025-07-13 18:26:44.821224", "stderr": "no crontab for root", "stderr_lines": ["no crontab for root"], "stdout": "", "stdout_lines": []}
+2025-07-13 18:26:44,842 p=180638 u=bill n=ansible INFO| ...ignoring
+2025-07-13 18:26:44,864 p=180638 u=bill n=ansible INFO| TASK [Get VM list] ******************************************************************
+2025-07-13 18:26:45,637 p=180638 u=bill n=ansible INFO| changed: [pve]
+2025-07-13 18:26:45,659 p=180638 u=bill n=ansible INFO| TASK [Get container list] ***********************************************************
+2025-07-13 18:26:46,673 p=180638 u=bill n=ansible INFO| changed: [pve]
+2025-07-13 18:26:46,695 p=180638 u=bill n=ansible INFO| TASK [Get storage status] ***********************************************************
+2025-07-13 18:26:46,950 p=180638 u=bill n=ansible INFO| changed: [pve]
+2025-07-13 18:26:46,971 p=180638 u=bill n=ansible INFO| TASK [Get disk information] *********************************************************
+2025-07-13 18:26:48,792 p=180638 u=bill n=ansible INFO| changed: [pve]
+2025-07-13 18:26:48,813 p=180638 u=bill n=ansible INFO| TASK [Get network configuration] ****************************************************
+2025-07-13 18:26:48,957 p=180638 u=bill n=ansible INFO| changed: [pve]
+2025-07-13 18:26:48,980 p=180638 u=bill n=ansible INFO| TASK [Get installed packages] *******************************************************
+2025-07-13 18:26:49,129 p=180638 u=bill n=ansible INFO| changed: [pve]
+2025-07-13 18:26:49,149 p=180638 u=bill n=ansible INFO| TASK [Create backup commands reference] *********************************************
+2025-07-13 18:26:49,194 p=180638 u=bill n=ansible INFO| An exception occurred during task execution. To see the full traceback, use -vvv. The error was: If you are using a module and expect the file to exist on the remote, see the remote_src option
+2025-07-13 18:26:49,195 p=180638 u=bill n=ansible INFO| fatal: [pve]: FAILED! => {"changed": false, "msg": "Could not find or access 'backup_commands.j2'\nSearched in:\n\t/home/bill/git/home.net/playbooks/templates/backup_commands.j2\n\t/home/bill/git/home.net/playbooks/backup_commands.j2\n\t/home/bill/git/home.net/playbooks/templates/backup_commands.j2\n\t/home/bill/git/home.net/playbooks/backup_commands.j2 on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
+2025-07-13 18:26:49,195 p=180638 u=bill n=ansible INFO| PLAY RECAP **************************************************************************
+2025-07-13 18:26:49,195 p=180638 u=bill n=ansible INFO| pve                        : ok=21   changed=20   unreachable=0    failed=1    skipped=0    rescued=0    ignored=1   

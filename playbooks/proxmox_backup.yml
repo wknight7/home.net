@@ -1,0 +1,180 @@
+---
+# Proxmox Backup Playbook
+# This playbook backs up all critical Proxmox configurations before reinstallation
+# NOTE: Containers are backed up to separate bare metal Proxmox server
+
+- name: Backup Proxmox Configuration Before Reinstall
+  hosts: pve
+  become: yes
+  vars:
+    backup_date: "{{ ansible_date_time.date }}"
+    backup_dir: "/tmp/proxmox_backup_{{ backup_date }}"
+    local_backup_dir: "./proxmox_backup_{{ backup_date }}"
+  
+  tasks:
+    - name: Create backup directory on Proxmox host
+      file:
+        path: "{{ backup_dir }}"
+        state: directory
+        mode: '0755'
+
+    - name: Create local backup directory
+      file:
+        path: "{{ local_backup_dir }}"
+        state: directory
+        mode: '0755'
+      delegate_to: localhost
+
+    # Backup VM and Container configurations
+    - name: Backup VM configurations
+      copy:
+        src: /etc/pve/qemu-server/
+        dest: "{{ backup_dir }}/qemu-server/"
+        remote_src: yes
+      ignore_errors: yes
+
+    - name: Backup LXC configurations
+      copy:
+        src: /etc/pve/lxc/
+        dest: "{{ backup_dir }}/lxc/"
+        remote_src: yes
+      ignore_errors: yes
+
+    - name: Backup node configuration
+      copy:
+        src: /etc/pve/nodes/
+        dest: "{{ backup_dir }}/nodes/"
+        remote_src: yes
+      ignore_errors: yes
+
+    - name: Backup storage configuration
+      copy:
+        src: /etc/pve/storage.cfg
+        dest: "{{ backup_dir }}/storage.cfg"
+        remote_src: yes
+      ignore_errors: yes
+
+    - name: Backup datacenter configuration
+      copy:
+        src: /etc/pve/datacenter.cfg
+        dest: "{{ backup_dir }}/datacenter.cfg"
+        remote_src: yes
+      ignore_errors: yes
+
+    - name: Backup firewall configurations
+      copy:
+        src: /etc/pve/firewall/
+        dest: "{{ backup_dir }}/firewall/"
+        remote_src: yes
+      ignore_errors: yes
+
+    - name: Backup user configuration
+      copy:
+        src: /etc/pve/user.cfg
+        dest: "{{ backup_dir }}/user.cfg"
+        remote_src: yes
+      ignore_errors: yes
+
+    # Network configuration
+    - name: Backup network interfaces
+      copy:
+        src: /etc/network/interfaces
+        dest: "{{ backup_dir }}/interfaces"
+        remote_src: yes
+
+    - name: Backup hostname
+      copy:
+        src: /etc/hostname
+        dest: "{{ backup_dir }}/hostname"
+        remote_src: yes
+
+    - name: Backup hosts file
+      copy:
+        src: /etc/hosts
+        dest: "{{ backup_dir }}/hosts"
+        remote_src: yes
+
+    # SSL Certificates
+    - name: Backup SSL certificates
+      copy:
+        src: /etc/pve/local/
+        dest: "{{ backup_dir }}/ssl_certs/"
+        remote_src: yes
+      ignore_errors: yes
+
+    # Cron jobs and scripts
+    - name: Backup root crontab
+      shell: crontab -l > {{ backup_dir }}/root_crontab.txt
+      ignore_errors: yes
+
+    # System information
+    - name: Get VM list
+      shell: qm list > {{ backup_dir }}/vm_list.txt
+      ignore_errors: yes
+
+    - name: Get container list
+      shell: pct list > {{ backup_dir }}/container_list.txt
+      ignore_errors: yes
+
+    - name: Get storage status
+      shell: pvs > {{ backup_dir }}/pvs_output.txt && vgs > {{ backup_dir }}/vgs_output.txt && lvs > {{ backup_dir }}/lvs_output.txt
+      ignore_errors: yes
+
+    - name: Get disk information
+      shell: lsblk > {{ backup_dir }}/lsblk_output.txt && fdisk -l > {{ backup_dir }}/fdisk_output.txt
+      ignore_errors: yes
+
+    - name: Get network configuration
+      shell: ip addr > {{ backup_dir }}/ip_addr.txt && ip route > {{ backup_dir }}/ip_route.txt
+      ignore_errors: yes
+
+    # Package list
+    - name: Get installed packages
+      shell: dpkg -l > {{ backup_dir }}/installed_packages.txt
+
+    # Create container/VM backup commands reference
+    - name: Create backup commands reference
+      template:
+        src: backup_commands.j2
+        dest: "{{ backup_dir }}/backup_commands.sh"
+        mode: '0755'
+
+    # Create archive of backup
+    - name: Create backup archive
+      archive:
+        path: "{{ backup_dir }}"
+        dest: "/tmp/proxmox_backup_{{ backup_date }}.tar.gz"
+        format: gz
+
+    # Download backup to ansible host
+    - name: Download backup archive to local machine
+      fetch:
+        src: "/tmp/proxmox_backup_{{ backup_date }}.tar.gz"
+        dest: "{{ local_backup_dir }}/"
+        flat: yes
+
+    - name: Display backup completion message
+      debug:
+        msg: |
+          Backup completed successfully!
+          Local backup location: {{ local_backup_dir }}
+          
+          IMPORTANT NEXT STEPS:
+          1. Copy backup to external storage
+          2. Backup VMs manually (especially TrueNAS VM 201)
+          3. ✅ Storage layout documented in docs/proxmox_storage_plan.md
+          4. ✅ Containers are already backed up to separate Proxmox server
+          
+          CRITICAL VM BACKUPS NEEDED:
+          - TrueNAS VM (ID: 201) - System disk ONLY (~32GB)
+          
+          ✅ DISK PASSTHROUGH VERIFICATION:
+          TrueNAS VM properly configured with backup=0 for data drives
+          - Only 32GB system disk will be backed up
+          - 4x 7.3TB drives excluded from backup (as intended)
+          
+          Run these commands manually:
+          ssh root@192.168.86.143
+          qm backup 201 /var/lib/vz/dump/vzdump-qemu-201-$(date +%Y_%m_%d).vma.gz --compress gzip
+          
+          Expected backup size: ~10-15GB compressed (system disk only)

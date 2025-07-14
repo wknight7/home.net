@@ -1,0 +1,105 @@
+---
+# Container Data Backup Playbook
+# Backs up important container data before Proxmox reinstall
+
+- name: Backup Container Data
+  hosts: lxc
+  become: yes
+  vars:
+    backup_date: "{{ ansible_date_time.date }}"
+    container_backup_dir: "/tmp/container_data_backup_{{ backup_date }}"
+  
+  tasks:
+    - name: Create container backup directory
+      file:
+        path: "{{ container_backup_dir }}/{{ inventory_hostname }}"
+        state: directory
+        mode: '0755'
+      delegate_to: localhost
+
+    # Backup critical configuration files
+    - name: Backup container's important configs
+      synchronize:
+        src: "{{ item }}"
+        dest: "{{ container_backup_dir }}/{{ inventory_hostname }}/"
+        mode: pull
+        rsync_opts:
+          - "--exclude=*.log"
+          - "--exclude=cache"
+          - "--exclude=tmp"
+      loop:
+        - /etc/
+        - /opt/
+        - /home/
+        - /var/lib/
+      ignore_errors: yes
+
+    # Service-specific backups
+    - name: Backup systemd services
+      synchronize:
+        src: /etc/systemd/system/
+        dest: "{{ container_backup_dir }}/{{ inventory_hostname }}/systemd_services/"
+        mode: pull
+      ignore_errors: yes
+
+    - name: Get running services list
+      shell: systemctl list-units --type=service --state=running
+      register: running_services
+      ignore_errors: yes
+
+    - name: Save running services list
+      copy:
+        content: "{{ running_services.stdout }}"
+        dest: "{{ container_backup_dir }}/{{ inventory_hostname }}/running_services.txt"
+      delegate_to: localhost
+      ignore_errors: yes
+
+# Special backup tasks for specific services
+- name: Backup WireGuard Configuration
+  hosts: wg
+  become: yes
+  vars:
+    backup_date: "{{ ansible_date_time.date }}"
+    container_backup_dir: "/tmp/container_data_backup_{{ backup_date }}"
+  
+  tasks:
+    - name: Backup WireGuard configs
+      synchronize:
+        src: /etc/wireguard/
+        dest: "{{ container_backup_dir }}/{{ inventory_hostname }}/wireguard/"
+        mode: pull
+
+    - name: Backup WireGuard dashboard config
+      synchronize:
+        src: /opt/wg-dashboard/
+        dest: "{{ container_backup_dir }}/{{ inventory_hostname }}/wg-dashboard/"
+        mode: pull
+      ignore_errors: yes
+
+- name: Backup Homepage Configuration
+  hosts: homepage
+  become: yes
+  vars:
+    backup_date: "{{ ansible_date_time.date }}"
+    container_backup_dir: "/tmp/container_data_backup_{{ backup_date }}"
+  
+  tasks:
+    - name: Backup homepage configs
+      synchronize:
+        src: /opt/homepage/
+        dest: "{{ container_backup_dir }}/{{ inventory_hostname }}/homepage/"
+        mode: pull
+
+- name: Backup Cloudflared Configuration
+  hosts: cloudflared
+  become: yes
+  vars:
+    backup_date: "{{ ansible_date_time.date }}"
+    container_backup_dir: "/tmp/container_data_backup_{{ backup_date }}"
+  
+  tasks:
+    - name: Backup cloudflared configs
+      synchronize:
+        src: /home/bill/.cloudflared/
+        dest: "{{ container_backup_dir }}/{{ inventory_hostname }}/cloudflared/"
+        mode: pull

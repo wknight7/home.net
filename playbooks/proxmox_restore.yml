@@ -1,0 +1,230 @@
+---
+# Proxmox Restoration Playbook
+# Restores Proxmox configuration after fresh installation
+
+- name: Restore Proxmox Configuration After Reinstall
+  hosts: pve
+  become: yes
+  vars:
+    restore_date: "{{ restore_backup_date | default(ansible_date_time.date) }}"
+    backup_dir: "./proxmox_backup_{{ restore_date }}"
+  
+  pre_tasks:
+    - name: Check if backup directory exists
+      stat:
+        path: "{{ backup_dir }}"
+      delegate_to: localhost
+      register: backup_dir_stat
+
+    - name: Fail if backup directory doesn't exist
+      fail:
+        msg: "Backup directory {{ backup_dir }} not found. Please specify correct restore_backup_date."
+      when: not backup_dir_stat.stat.exists
+
+  tasks:
+    - name: Upload backup archive to new Proxmox host
+      copy:
+        src: "{{ backup_dir }}/proxmox_backup_{{ restore_date }}.tar.gz"
+        dest: "/tmp/"
+
+    - name: Extract backup archive
+      unarchive:
+        src: "/tmp/proxmox_backup_{{ restore_date }}.tar.gz"
+        dest: "/tmp/"
+        remote_src: yes
+
+    # Network configuration (restore carefully)
+    - name: Restore hostname
+      copy:
+        src: "/tmp/proxmox_backup_{{ restore_date }}/hostname"
+        dest: /etc/hostname
+        remote_src: yes
+        backup: yes
+
+    - name: Restore hosts file
+      copy:
+        src: "/tmp/proxmox_backup_{{ restore_date }}/hosts"
+        dest: /etc/hosts
+        remote_src: yes
+        backup: yes
+
+    # Note: Network interfaces should be reviewed manually
+    - name: Copy network interfaces for review
+      copy:
+        src: "/tmp/proxmox_backup_{{ restore_date }}/interfaces"
+        dest: /tmp/interfaces.backup
+        remote_src: yes
+
+    # Restore storage configuration (UPDATED for new multi-tier layout)
+    - name: Copy original storage config for reference
+      copy:
+        src: "/tmp/proxmox_backup_{{ restore_date }}/storage.cfg"
+        dest: /tmp/storage.cfg.original
+        remote_src: yes
+
+    - name: Create new storage configuration for multi-tier layout
+      copy:
+        content: |
+          # Updated storage configuration for new multi-tier layout
+          dir: local
+              path /var/lib/vz
+              content vztmpl,iso,backup
+
+          dir: local-fast
+              path /mnt/local-fast
+              content vztmpl,iso,backup,snippets
+              
+          dir: backup-local
+              path /mnt/backup-local
+              content backup,dump
+              
+          dir: media-storage
+              path /mnt/media-storage
+              content images,iso,backup
+              
+          dir: utility
+              path /mnt/bulk-utility
+              content snippets,dump
+
+          # LVM-Thin pools for new storage tiers
+          lvmthin: fast-lvm
+              thinpool fast-pool
+              vgname pve-fast
+              content rootdir,images
+              
+          lvmthin: standard-lvm
+              thinpool standard-pool
+              vgname pve-standard
+              content rootdir,images
+              
+          lvmthin: bulk-lvm
+              thinpool vm-bulk
+              vgname pve-bulk
+              content rootdir,images
+
+          # External backup server
+          pbs: backup
+              datastore backup
+              server 192.168.86.33
+              content backup
+              fingerprint 05:a5:a7:89:a3:c2:56:5b:b0:af:30:80:fb:23:04:04:48:a9:78:69:35:85:89:e7:9d:83:ca:0a:6a:a7:43:b0
+              prune-backups keep-all=1
+              username root@pam
+        dest: /etc/pve/storage.cfg
+        backup: yes
+
+    # Restore user configuration
+    - name: Restore user configuration
+      copy:
+        src: "/tmp/proxmox_backup_{{ restore_date }}/user.cfg"
+        dest: /etc/pve/user.cfg
+        remote_src: yes
+        backup: yes
+
+    # Restore datacenter configuration
+    - name: Restore datacenter configuration
+      copy:
+        src: "/tmp/proxmox_backup_{{ restore_date }}/datacenter.cfg"
+        dest: /etc/pve/datacenter.cfg
+        remote_src: yes
+        backup: yes
+
+    # SSL certificates
+    - name: Restore SSL certificates
+      copy:
+        src: "/tmp/proxmox_backup_{{ restore_date }}/ssl_certs/"
+        dest: /etc/pve/local/
+        remote_src: yes
+        backup: yes
+      ignore_errors: yes
+
+    # Firewall configurations
+    - name: Restore firewall configurations
+      copy:
+        src: "/tmp/proxmox_backup_{{ restore_date }}/firewall/"
+        dest: /etc/pve/firewall/
+        remote_src: yes
+        backup: yes
+      ignore_errors: yes
+
+    - name: Create VM restoration guide
+      copy:
+        content: |
+          #!/bin/bash
+          # VM Restoration Guide for New Storage Layout
+          
+          echo "=== VM RESTORATION GUIDE ==="
+          echo "Use this guide to restore VMs to the appropriate storage pools"
+          echo
+          
+          echo "CRITICAL VMs (restore to fast-lvm on NVMe):"
+          echo "  VM-201 (TrueNAS):     qmrestore /path/to/backup/vzdump-qemu-201-*.vma.zst 201 --storage fast-lvm"
+          echo "  VM-202 (Windows 11):  qmrestore /path/to/backup/vzdump-qemu-202-*.vma.zst 202 --storage fast-lvm"
+          echo "  VM-203 (Windows Srv): qmrestore /path/to/backup/vzdump-qemu-203-*.vma.zst 203 --storage fast-lvm"
+          echo
+          
+          echo "LARGE VMs (restore to bulk-lvm on HDD RAID):"
+          echo "  VM-204: qmrestore /path/to/backup/vzdump-qemu-204-*.vma.zst 204 --storage bulk-lvm"
+          echo "  VM-205: qmrestore /path/to/backup/vzdump-qemu-205-*.vma.zst 205 --storage bulk-lvm"
+          echo
+          
+          echo "LXC CONTAINERS:"
+          echo "  All containers (VM-100 to VM-117) are backed up to PBS server"
+          echo "  Use Proxmox web UI to restore from PBS (192.168.86.33)"
+          echo "  They will automatically use standard-lvm storage pool"
+          echo
+          
+          echo "STORAGE VERIFICATION:"
+          echo "  pvesm status                 # Check storage pool status"
+          echo "  lvs pve-fast                 # Verify fast storage"
+          echo "  lvs pve-standard             # Verify standard storage"
+          echo "  lvs pve-bulk                 # Verify bulk storage"
+          echo "  cat /proc/mdstat             # Check RAID status"
+          echo
+          
+          echo "BACKUP LOCATIONS:"
+          echo "  Manual VM backups: /mnt/backup-local/ or external drive"
+          echo "  PBS backups: https://192.168.86.33:8007"
+          echo "  Original storage config: /tmp/storage.cfg.original"
+          echo
+          
+          echo "POST-RESTORE CHECKLIST:"
+          echo "  1. Verify all VMs start correctly"
+          echo "  2. Test TrueNAS serial console: qm terminal 201"
+          echo "  3. Check network connectivity to all services"
+          echo "  4. Verify NFS/SMB shares from TrueNAS"
+          echo "  5. Test WireGuard VPN access"
+          echo "  6. Confirm Cloudflare tunnel connectivity"
+        dest: /root/vm_restore_guide.sh
+        mode: '0755'
+
+    - name: Display restoration notes
+      debug:
+        msg: |
+          Proxmox configuration restored with NEW STORAGE LAYOUT!
+          
+          COMPLETED:
+          ✓ Basic Proxmox configuration restored
+          ✓ Multi-tier storage pools configured
+          ✓ User and datacenter settings restored
+          ✓ SSL certificates and firewall rules restored
+          ✓ VM restoration guide created
+          
+          MANUAL STEPS REQUIRED:
+          1. Review and update /etc/network/interfaces if needed
+          2. Verify storage pools are working: pvesm status
+          3. Restore VMs using: /root/vm_restore_guide.sh
+          4. Restore LXC containers from PBS web UI
+          5. Test all services after restoration
+          
+          NEW STORAGE LAYOUT:
+          • fast-lvm (NVMe):     Critical VMs (201,202,203) 
+          • standard-lvm (SSD):  LXC containers (100-117)
+          • bulk-lvm (RAID):     Large VMs (204,205)
+          • backup-local:        Local backup storage
+          • media-storage:       Media files and archives
+          
+          REFERENCE FILES:
+          - Original storage config: /tmp/storage.cfg.original
+          - Network config backup: /tmp/interfaces.backup
+          - VM restore guide: /root/vm_restore_guide.sh

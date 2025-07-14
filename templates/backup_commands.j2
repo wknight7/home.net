@@ -1,0 +1,44 @@
+#!/bin/bash
+# Proxmox Backup Commands Reference
+# Generated on {{ ansible_date_time.date }}
+# NOTE: Containers are backed up to separate bare metal Proxmox server
+
+echo "=== VM BACKUP COMMANDS ==="
+{% for host in groups['vm'] %}
+echo "# {{ host }}"
+echo "qm backup 201 /var/lib/vz/dump/vzdump-qemu-201-$(date +%Y_%m_%d).vma.gz --compress gzip --notes '{{ host }} backup before reinstall'"
+echo ""
+{% endfor %}
+
+echo "=== CONTAINER STATUS (Backed up to separate server) ==="
+{% for host in groups['lxc'] %}
+{% set container_id = hostvars[host]['container_id'] %}
+echo "# {{ host }} (ID: {{ container_id }}) - BACKED UP TO SEPARATE SERVER"
+{% endfor %}
+
+echo ""
+echo "=== CURRENT STORAGE LAYOUT ==="
+echo "Physical Volumes:"
+pvs
+echo ""
+echo "Volume Groups:"
+vgs
+echo ""
+echo "Logical Volumes:"
+lvs
+echo ""
+
+echo "=== RESTORATION NOTES ==="
+cat << 'EOF'
+CONTAINERS: Already backed up to separate bare metal Proxmox server
+- Simply restore from other server after reinstall
+
+VMs:
+1. After Proxmox reinstall, recreate storage with proper LVM configuration
+2. Restore VMs: qm restore <new_id> <backup_file> --storage <storage_name>
+3. Update network configurations if needed
+4. Restore SSL certificates and user configurations
+5. Update /etc/pve/storage.cfg with new storage configuration
+
+CRITICAL: TrueNAS VM contains all your data - handle with care!
+EOF
