@@ -1,0 +1,13 @@
+---
+# Home Assistant VM-204 Configuration
+vm_id: 204
+ansible_user: root
+ssh_key: bill_ansible
+
+# Home Assistant specific settings
+ha_config_path: /config
+ha_version: "2025.6.3"
+
+# SSH connection details
+# Uses Advanced SSH & Web Terminal add-on
+# Requires root user for SFTP support

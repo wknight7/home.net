@@ -32,6 +32,7 @@ pbs ansible_host=192.168.86.33
 
 [vm]
 plex ansible_host=192.168.86.110
+homeassistant ansible_host=192.168.86.51 ansible_user=root ssh_key=bill_ansible
 
 [windows]
 windows11 ansible_host=192.168.86.89 ansible_user=wknig ansible_connection=winrm
