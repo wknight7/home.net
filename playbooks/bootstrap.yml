@@ -1,11 +1,61 @@
 - hosts: localhost
   become: true
   tasks:
+    - name: Fix /tmp directory permissions
+      tags: always
+      file:
+        path: /tmp
+        state: directory
+        mode: '1777'
+        owner: root
+        group: root
+
+    - name: Clean apt cache and temp files
+      tags: always
+      shell: |
+        rm -rf /var/lib/apt/lists/*
+        rm -rf /tmp/apt.conf.*
+        apt-get clean
+      ignore_errors: yes
+
+    - name: Ensure apt sources are available
+      tags: always
+      lineinfile:
+        path: /etc/apt/sources.list
+        line: "deb http://deb.debian.org/debian bookworm main"
+        create: yes
+      ignore_errors: yes
+      when: ansible_distribution == "Debian"
+
+    - name: Add Debian security updates
+      tags: always
+      lineinfile:
+        path: /etc/apt/sources.list
+        line: "deb http://security.debian.org/debian-security bookworm-security main"
+        create: yes
+      ignore_errors: yes
+      when: ansible_distribution == "Debian"
+
+    - name: Update apt cache
+      tags: always
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+      ignore_errors: yes
+      when: ansible_distribution in ["Debian", "Ubuntu"]
+
+    - name: Fix broken packages if any
+      tags: always
+      command: apt --fix-broken install -y
+      ignore_errors: yes
+      when: ansible_distribution in ["Debian", "Ubuntu"]
+
     - name: Update systems
       tags: always
-      package:
-        update_cache: yes
+      apt:
         upgrade: dist
+        update_cache: yes
+      ignore_errors: yes
       when: ansible_distribution in ["Debian", "Ubuntu"]
 
     - name: create bill user
@@ -78,7 +128,6 @@
         - build-essential
         - software-properties-common
         - mc
-        - ubuntu-minimal
         - python3-all
         - tree
 

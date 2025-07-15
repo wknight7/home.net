@@ -6300,3 +6300,13 @@ The offending line appears to be:
 2025-07-13 18:26:49,195 p=180638 u=bill n=ansible INFO| fatal: [pve]: FAILED! => {"changed": false, "msg": "Could not find or access 'backup_commands.j2'\nSearched in:\n\t/home/bill/git/home.net/playbooks/templates/backup_commands.j2\n\t/home/bill/git/home.net/playbooks/backup_commands.j2\n\t/home/bill/git/home.net/playbooks/templates/backup_commands.j2\n\t/home/bill/git/home.net/playbooks/backup_commands.j2 on the Ansible Controller.\nIf you are using a module and expect the file to exist on the remote, see the remote_src option"}
 2025-07-13 18:26:49,195 p=180638 u=bill n=ansible INFO| PLAY RECAP **************************************************************************
 2025-07-13 18:26:49,195 p=180638 u=bill n=ansible INFO| pve                        : ok=21   changed=20   unreachable=0    failed=1    skipped=0    rescued=0    ignored=1   
+2025-07-14 21:37:44,443 p=8523 u=bill n=ansible INFO| PLAY [Restore Proxmox Configuration After Reinstall] ********************************
+2025-07-14 21:37:44,452 p=8523 u=bill n=ansible INFO| TASK [Gathering Facts] **************************************************************
+2025-07-14 21:37:44,747 p=8523 u=bill n=ansible INFO| fatal: [pve]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.143\". Make sure this host can be reached over ssh: hal@192.168.86.143: Permission denied (publickey,password).\r\n", "unreachable": true}
+2025-07-14 21:37:44,748 p=8523 u=bill n=ansible INFO| PLAY RECAP **************************************************************************
+2025-07-14 21:37:44,748 p=8523 u=bill n=ansible INFO| pve                        : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-14 21:38:15,776 p=8565 u=bill n=ansible INFO| PLAY [Restore Proxmox Configuration After Reinstall] ********************************
+2025-07-14 21:38:15,780 p=8565 u=bill n=ansible INFO| TASK [Gathering Facts] **************************************************************
+2025-07-14 21:38:16,064 p=8565 u=bill n=ansible INFO| fatal: [pve]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.143\". Make sure this host can be reached over ssh: root@192.168.86.143: Permission denied (publickey,password).\r\n", "unreachable": true}
+2025-07-14 21:38:16,064 p=8565 u=bill n=ansible INFO| PLAY RECAP **************************************************************************
+2025-07-14 21:38:16,064 p=8565 u=bill n=ansible INFO| pve                        : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
