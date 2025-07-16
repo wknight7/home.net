@@ -5,7 +5,7 @@ echo Clearing existing network connections...
 net use * /delete /yes
 
 echo Adding stored credentials for TrueNAS server...
-cmdkey /add:"192.168.86.109" /user:"bill" /pass:"I4V69b^WOR!@8OxVD4mE"
+cmdkey /add:"192.168.86.109" /user:"bill" /pass:"[truenas password]"
 
 echo Waiting for credentials to be stored...
 timeout /t 2 /nobreak >nul
@@ -39,7 +39,7 @@ echo If drives show as 'Unavailable', try:
 echo 1. Open File Explorer
 echo 2. Click on each drive to authenticate  
 echo 3. Use username: bill
-echo 4. Use password: I4V69b^WOR!@8OxVD4mE
+echo 4. Use password: [truenas password]
 echo 5. Check 'Remember my credentials'
 
 pause
