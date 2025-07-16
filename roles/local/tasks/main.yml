@@ -15,6 +15,11 @@
   include_vars: group_vars/workstations_new.yml
   tags: always
 
+- name: Filter NFS mounts for local ansible server (only bill and shared mounts)
+  set_fact:
+    local_nfs_mounts: "{{ nfs_mounts | selectattr('dest', 'match', '.*(bill-|media|paperless|shared_files|workouts).*') | list }}"
+  tags: always
+
 - name: Copy bashrc for Bill
   copy:
     src: "/home/bill/git/home.net/roles/common/files/users/bill/bashrc"

@@ -2,10 +2,22 @@
 # Resilient NFS setup for local (ansible server) role
 # Based on workstation resilient NFS but adapted for local environment
 
+- name: Check if NFS mounts are already active
+  shell: mount | grep -c "/mnt/truenas"
+  register: nfs_already_mounted
+  failed_when: false
+  changed_when: false
+
+- name: Skip NFS setup if already mounted
+  debug:
+    msg: "NFS mounts already active ({{ nfs_already_mounted.stdout }} mounts found), skipping setup"
+  when: nfs_already_mounted.stdout | int > 0
+
 - name: Install NFS utilities
   package:
     name: nfs-common
     state: present
+  when: nfs_already_mounted.stdout | int == 0
 
 - name: Create /mnt/truenas base directory
   file:
@@ -14,6 +26,7 @@
     mode: '0755'
     owner: root
     group: root
+  when: nfs_already_mounted.stdout | int == 0
 
 # Remove old direct NFS mounts first
 - name: Unmount old direct NFS mounts for bill
@@ -21,7 +34,9 @@
     path: "/home/bill/{{ item.name }}"
     state: unmounted
   loop: "{{ user_directories.bill }}"
-  when: item.type == "symlink"
+  when: 
+    - nfs_already_mounted.stdout | int == 0
+    - item.type == "symlink"
   failed_when: false
 
 - name: Remove old direct NFS mount entries from fstab for bill
@@ -29,16 +44,17 @@
     path: "/home/bill/{{ item.name }}"
     state: absent
   loop: "{{ user_directories.bill }}"
-  when: item.type == "symlink"
+  when: 
+    - nfs_already_mounted.stdout | int == 0
+    - item.type == "symlink"
 
 - name: Create NFS mount point directories
   file:
     path: "{{ item.dest }}"
     state: directory
-    mode: '0755'
-    owner: root
-    group: root
-  loop: "{{ nfs_mounts }}"
+  loop: "{{ local_nfs_mounts }}"
+  when: nfs_already_mounted.stdout | int == 0
+  failed_when: false
 
 - name: Add NFS mounts to fstab
   mount:
@@ -47,7 +63,8 @@
     fstype: nfs
     opts: "{{ item.opts }}"
     state: present
-  loop: "{{ nfs_mounts }}"
+  loop: "{{ local_nfs_mounts }}"
+  when: nfs_already_mounted.stdout | int == 0
 
 - name: Create shared mount point directories with proper ownership
   file:
@@ -57,18 +74,22 @@
     group: "{{ item.group }}"
     mode: "{{ item.mode }}"
   loop: "{{ shared_mount_points }}"
+  when: nfs_already_mounted.stdout | int == 0
+  failed_when: false
 
 - name: Mount NFS shares (gracefully handle failures)
   shell: mount -a
+  when: nfs_already_mounted.stdout | int == 0
   failed_when: false
 
 - name: Check which NFS mounts are actually available
   stat:
     path: "{{ item.dest }}"
   register: nfs_mount_check
-  loop: "{{ nfs_mounts }}"
+  loop: "{{ local_nfs_mounts }}"
 
 - name: Display NFS mount status
   debug:
     msg: "NFS mount {{ item.item.dest }} is {{ 'available' if item.stat.exists else 'unavailable' }}"
   loop: "{{ nfs_mount_check.results }}"
+  when: nfs_mount_check.results is defined

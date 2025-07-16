@@ -1,0 +1,964 @@
+2025-07-16 16:36:51,775 p=57026 u=bill n=ansible INFO| PLAY [all] *******************************************************************************************************************
+2025-07-16 16:36:51,781 p=57026 u=bill n=ansible INFO| TASK [Gathering Facts] *******************************************************************************************************
+2025-07-16 16:36:52,498 p=57026 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:36:52,503 p=57026 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] **************************************************************************
+2025-07-16 16:36:53,986 p=57026 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:36:53,992 p=57026 u=bill n=ansible INFO| TASK [Include host variables dynamically] ************************************************************************************
+2025-07-16 16:36:54,006 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item=host_vars/localhost.yml)
+2025-07-16 16:36:54,007 p=57026 u=bill n=ansible INFO| PLAY [updates] ***************************************************************************************************************
+2025-07-16 16:36:54,007 p=57026 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-16 16:36:54,010 p=57026 u=bill n=ansible INFO| PLAY [workstation] ***********************************************************************************************************
+2025-07-16 16:36:54,010 p=57026 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-16 16:36:54,011 p=57026 u=bill n=ansible INFO| PLAY [local] *****************************************************************************************************************
+2025-07-16 16:36:54,018 p=57026 u=bill n=ansible INFO| TASK [Gathering Facts] *******************************************************************************************************
+2025-07-16 16:36:54,593 p=57026 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:36:54,598 p=57026 u=bill n=ansible INFO| TASK [local : pre-run | update package cache (debian, etc)] ******************************************************************
+2025-07-16 16:36:55,938 p=57026 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:36:55,944 p=57026 u=bill n=ansible INFO| TASK [local : Load group variables] ******************************************************************************************
+2025-07-16 16:36:55,954 p=57026 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:36:55,959 p=57026 u=bill n=ansible INFO| TASK [local : Load workstations_new variables for resilient NFS] *************************************************************
+2025-07-16 16:36:55,970 p=57026 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:36:55,976 p=57026 u=bill n=ansible INFO| TASK [local : Filter NFS mounts for local ansible server (only bill and shared mounts)] **************************************
+2025-07-16 16:36:55,993 p=57026 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:36:55,999 p=57026 u=bill n=ansible INFO| TASK [local : Copy bashrc for Bill] ******************************************************************************************
+2025-07-16 16:36:56,437 p=57026 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:36:56,443 p=57026 u=bill n=ansible INFO| TASK [local : include_tasks] *************************************************************************************************
+2025-07-16 16:36:56,457 p=57026 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/local/tasks/groups.yml for localhost
+2025-07-16 16:36:56,465 p=57026 u=bill n=ansible INFO| TASK [local : Ensure groups are created] *************************************************************************************
+2025-07-16 16:36:56,701 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'media', 'gid': 1776})
+2025-07-16 16:36:56,857 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'docs', 'gid': 1787})
+2025-07-16 16:36:57,008 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'hal', 'gid': 1999})
+2025-07-16 16:36:57,156 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'ansible', 'gid': 1998})
+2025-07-16 16:36:57,305 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'data', 'gid': 1997})
+2025-07-16 16:36:57,455 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'git', 'gid': 1996})
+2025-07-16 16:36:57,601 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'librarian', 'gid': 1995})
+2025-07-16 16:36:57,609 p=57026 u=bill n=ansible INFO| TASK [local : Add hal to each nfs_user group] ********************************************************************************
+2025-07-16 16:36:57,910 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item=bill)
+2025-07-16 16:36:57,917 p=57026 u=bill n=ansible INFO| TASK [local : include_tasks] *************************************************************************************************
+2025-07-16 16:36:57,935 p=57026 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/local/tasks/home_directory.yml for localhost
+2025-07-16 16:36:57,940 p=57026 u=bill n=ansible INFO| TASK [local : Create Bill directories] ***************************************************************************************
+2025-07-16 16:36:58,094 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/desktop)
+2025-07-16 16:36:58,240 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/documents)
+2025-07-16 16:36:58,384 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/downloads)
+2025-07-16 16:36:58,533 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/media)
+2025-07-16 16:36:58,676 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/code)
+2025-07-16 16:36:58,824 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/git)
+2025-07-16 16:36:58,831 p=57026 u=bill n=ansible INFO| TASK [local : Find unwanted directories and check if empty] ******************************************************************
+2025-07-16 16:36:59,051 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Desktop)
+2025-07-16 16:36:59,193 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Documents)
+2025-07-16 16:36:59,337 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Downloads)
+2025-07-16 16:36:59,484 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Music)
+2025-07-16 16:36:59,635 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Pictures)
+2025-07-16 16:36:59,781 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Public)
+2025-07-16 16:36:59,929 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Templates)
+2025-07-16 16:37:00,086 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Videos)
+2025-07-16 16:37:00,088 p=57026 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Desktop' path due to this access issue: '/home/bill/Desktop' is not a directory
+
+2025-07-16 16:37:00,088 p=57026 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Documents' path due to this access issue: '/home/bill/Documents' is not a directory
+
+2025-07-16 16:37:00,088 p=57026 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Downloads' path due to this access issue: '/home/bill/Downloads' is not a directory
+
+2025-07-16 16:37:00,088 p=57026 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Music' path due to this access issue: '/home/bill/Music' is not a directory
+
+2025-07-16 16:37:00,089 p=57026 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Pictures' path due to this access issue: '/home/bill/Pictures' is not a directory
+
+2025-07-16 16:37:00,089 p=57026 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Public' path due to this access issue: '/home/bill/Public' is not a directory
+
+2025-07-16 16:37:00,089 p=57026 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Templates' path due to this access issue: '/home/bill/Templates' is not a directory
+
+2025-07-16 16:37:00,089 p=57026 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Videos' path due to this access issue: '/home/bill/Videos' is not a directory
+
+2025-07-16 16:37:00,096 p=57026 u=bill n=ansible INFO| TASK [local : Remove empty unwanted directories] *****************************************************************************
+2025-07-16 16:37:00,268 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Desktop': "'/home/bill/Desktop' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Desktop'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Desktop', 'ansible_loop_var': 'item'})
+2025-07-16 16:37:00,417 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Documents': "'/home/bill/Documents' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Documents'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Documents', 'ansible_loop_var': 'item'})
+2025-07-16 16:37:00,577 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Downloads': "'/home/bill/Downloads' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Downloads'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Downloads', 'ansible_loop_var': 'item'})
+2025-07-16 16:37:00,732 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Music': "'/home/bill/Music' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Music'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Music', 'ansible_loop_var': 'item'})
+2025-07-16 16:37:00,886 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Pictures': "'/home/bill/Pictures' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Pictures'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Pictures', 'ansible_loop_var': 'item'})
+2025-07-16 16:37:01,040 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Public': "'/home/bill/Public' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Public'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Public', 'ansible_loop_var': 'item'})
+2025-07-16 16:37:01,191 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Templates': "'/home/bill/Templates' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Templates'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Templates', 'ansible_loop_var': 'item'})
+2025-07-16 16:37:01,342 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Videos': "'/home/bill/Videos' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Videos'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Videos', 'ansible_loop_var': 'item'})
+2025-07-16 16:37:01,350 p=57026 u=bill n=ansible INFO| TASK [local : Rename snap to .snap] ******************************************************************************************
+2025-07-16 16:37:01,567 p=57026 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:01,573 p=57026 u=bill n=ansible INFO| TASK [local : Ensure .snap directory exists] *********************************************************************************
+2025-07-16 16:37:01,732 p=57026 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:01,738 p=57026 u=bill n=ansible INFO| TASK [local : Update .config/user-dirs.dirs file] ****************************************************************************
+2025-07-16 16:37:02,054 p=57026 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:02,061 p=57026 u=bill n=ansible INFO| TASK [local : Update .config/gtk-3.0/bookmarks file] *************************************************************************
+2025-07-16 16:37:02,375 p=57026 u=bill n=ansible INFO| changed: [localhost]
+2025-07-16 16:37:02,381 p=57026 u=bill n=ansible INFO| TASK [local : Remove dead .desktop files from Desktop] ***********************************************************************
+2025-07-16 16:37:02,554 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item=Documents)
+2025-07-16 16:37:02,717 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item=Music)
+2025-07-16 16:37:02,866 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item=Pictures)
+2025-07-16 16:37:03,017 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item=Videos)
+2025-07-16 16:37:03,024 p=57026 u=bill n=ansible INFO| TASK [local : Check if Desktop directory is empty] ***************************************************************************
+2025-07-16 16:37:03,182 p=57026 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:03,190 p=57026 u=bill n=ansible INFO| TASK [local : Rename Desktop to desktop if empty] ****************************************************************************
+2025-07-16 16:37:03,346 p=57026 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:03,352 p=57026 u=bill n=ansible INFO| TASK [local : Ensure desktop directory exists] *******************************************************************************
+2025-07-16 16:37:03,516 p=57026 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:03,522 p=57026 u=bill n=ansible INFO| TASK [local : Check if GNOME session needs restart] **************************************************************************
+2025-07-16 16:37:03,710 p=57026 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:03,723 p=57026 u=bill n=ansible INFO| TASK [local : Check if running in graphical environment] *********************************************************************
+2025-07-16 16:37:04,076 p=57026 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:04,087 p=57026 u=bill n=ansible INFO| TASK [local : gnome | appearance | dconf update] *****************************************************************************
+2025-07-16 16:37:04,470 p=57026 u=bill n=ansible INFO| changed: [localhost]
+2025-07-16 16:37:04,489 p=57026 u=bill n=ansible INFO| TASK [local : Wait for system to come back] **********************************************************************************
+2025-07-16 16:37:04,505 p=57026 u=bill n=ansible INFO| skipping: [localhost]
+2025-07-16 16:37:04,512 p=57026 u=bill n=ansible INFO| TASK [local : include_tasks] *************************************************************************************************
+2025-07-16 16:37:04,531 p=57026 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/local/tasks/fstab_new.yml for localhost
+2025-07-16 16:37:04,543 p=57026 u=bill n=ansible INFO| TASK [local : Install NFS utilities] *****************************************************************************************
+2025-07-16 16:37:05,447 p=57026 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:05,456 p=57026 u=bill n=ansible INFO| TASK [local : Create /mnt/truenas base directory] ****************************************************************************
+2025-07-16 16:37:05,629 p=57026 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:05,636 p=57026 u=bill n=ansible INFO| TASK [local : Unmount old direct NFS mounts for bill] ************************************************************************
+2025-07-16 16:37:05,651 p=57026 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'desktop', 'type': 'local'}) 
+2025-07-16 16:37:05,944 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'documents', 'type': 'symlink', 'target': '/mnt/truenas/bill-documents', 'fallback': True})
+2025-07-16 16:37:06,259 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'downloads', 'type': 'symlink', 'target': '/mnt/truenas/bill-downloads', 'fallback': True})
+2025-07-16 16:37:06,716 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'media', 'type': 'symlink', 'target': '/mnt/truenas/media', 'fallback': False})
+2025-07-16 16:37:06,726 p=57026 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'code', 'type': 'local'}) 
+2025-07-16 16:37:06,746 p=57026 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'git', 'type': 'local'}) 
+2025-07-16 16:37:06,781 p=57026 u=bill n=ansible INFO| TASK [local : Remove old direct NFS mount entries from fstab for bill] *******************************************************
+2025-07-16 16:37:06,831 p=57026 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'desktop', 'type': 'local'}) 
+2025-07-16 16:37:07,115 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'documents', 'type': 'symlink', 'target': '/mnt/truenas/bill-documents', 'fallback': True})
+2025-07-16 16:37:07,353 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'downloads', 'type': 'symlink', 'target': '/mnt/truenas/bill-downloads', 'fallback': True})
+2025-07-16 16:37:07,681 p=57026 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'media', 'type': 'symlink', 'target': '/mnt/truenas/media', 'fallback': False})
+2025-07-16 16:37:07,681 p=57026 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'code', 'type': 'local'}) 
+2025-07-16 16:37:07,682 p=57026 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'git', 'type': 'local'}) 
+2025-07-16 16:37:07,688 p=57026 u=bill n=ansible INFO| TASK [local : Create NFS mount point directories] ****************************************************************************
+2025-07-16 16:37:07,872 p=57026 u=bill n=ansible INFO| failed: [localhost] (item={'src': '192.168.86.109:/mnt/ssd-files/home/bill/Documents', 'dest': '/mnt/truenas/bill-documents', 'opts': 'rw,soft,intr,timeo=30,retrans=3,uid=1000,gid=1000'}) => {"ansible_loop_var": "item", "changed": false, "gid": 1000, "group": "bill", "item": {"dest": "/mnt/truenas/bill-documents", "opts": "rw,soft,intr,timeo=30,retrans=3,uid=1000,gid=1000", "src": "192.168.86.109:/mnt/ssd-files/home/bill/Documents"}, "mode": "0755", "msg": "chown failed: [Errno 1] Operation not permitted: b'/mnt/truenas/bill-documents'", "owner": "bill", "path": "/mnt/truenas/bill-documents", "size": 4, "state": "directory", "uid": 1000}
+2025-07-16 16:37:08,248 p=57026 u=bill n=ansible INFO| failed: [localhost] (item={'src': '192.168.86.109:/mnt/ssd-files/home/bill/Downloads', 'dest': '/mnt/truenas/bill-downloads', 'opts': 'rw,soft,intr,timeo=30,retrans=3,uid=1000,gid=1000'}) => {"ansible_loop_var": "item", "changed": false, "gid": 1000, "group": "bill", "item": {"dest": "/mnt/truenas/bill-downloads", "opts": "rw,soft,intr,timeo=30,retrans=3,uid=1000,gid=1000", "src": "192.168.86.109:/mnt/ssd-files/home/bill/Downloads"}, "mode": "0755", "msg": "chown failed: [Errno 1] Operation not permitted: b'/mnt/truenas/bill-downloads'", "owner": "bill", "path": "/mnt/truenas/bill-downloads", "size": 2, "state": "directory", "uid": 1000}
+2025-07-16 16:37:08,439 p=57026 u=bill n=ansible INFO| failed: [localhost] (item={'src': '192.168.86.109:/mnt/Data/media', 'dest': '/mnt/truenas/media', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}) => {"ansible_loop_var": "item", "changed": false, "gid": 1776, "group": "media", "item": {"dest": "/mnt/truenas/media", "opts": "rw,soft,intr,timeo=30,retrans=3", "src": "192.168.86.109:/mnt/Data/media"}, "mode": "0755", "msg": "chown failed: [Errno 1] Operation not permitted: b'/mnt/truenas/media'", "owner": "bill", "path": "/mnt/truenas/media", "size": 7, "state": "directory", "uid": 1000}
+2025-07-16 16:37:08,617 p=57026 u=bill n=ansible INFO| failed: [localhost] (item={'src': '192.168.86.109:/mnt/ssd-files/docs/paper', 'dest': '/mnt/truenas/paperless', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}) => {"ansible_loop_var": "item", "changed": false, "gid": 1787, "group": "docs", "item": {"dest": "/mnt/truenas/paperless", "opts": "rw,soft,intr,timeo=30,retrans=3", "src": "192.168.86.109:/mnt/ssd-files/docs/paper"}, "mode": "0775", "msg": "chown failed: [Errno 1] Operation not permitted: b'/mnt/truenas/paperless'", "owner": "bill", "path": "/mnt/truenas/paperless", "size": 10, "state": "directory", "uid": 1000}
+2025-07-16 16:37:08,799 p=57026 u=bill n=ansible INFO| failed: [localhost] (item={'src': '192.168.86.109:/mnt/ssd-files/home/shared_files', 'dest': '/mnt/truenas/shared_files', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}) => {"ansible_loop_var": "item", "changed": false, "gid": 1787, "group": "docs", "item": {"dest": "/mnt/truenas/shared_files", "opts": "rw,soft,intr,timeo=30,retrans=3", "src": "192.168.86.109:/mnt/ssd-files/home/shared_files"}, "mode": "0755", "msg": "chown failed: [Errno 1] Operation not permitted: b'/mnt/truenas/shared_files'", "owner": "bill", "path": "/mnt/truenas/shared_files", "size": 5, "state": "directory", "uid": 1000}
+2025-07-16 16:37:08,990 p=57026 u=bill n=ansible INFO| failed: [localhost] (item={'src': '192.168.86.109:/mnt/ssd-files/workouts', 'dest': '/mnt/truenas/workouts', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}) => {"ansible_loop_var": "item", "changed": false, "gid": 1997, "group": "data", "item": {"dest": "/mnt/truenas/workouts", "opts": "rw,soft,intr,timeo=30,retrans=3", "src": "192.168.86.109:/mnt/ssd-files/workouts"}, "mode": "0777", "msg": "chown failed: [Errno 1] Operation not permitted: b'/mnt/truenas/workouts'", "owner": "bill", "path": "/mnt/truenas/workouts", "size": 16, "state": "directory", "uid": 1000}
+2025-07-16 16:37:08,996 p=57026 u=bill n=ansible INFO| PLAY RECAP *******************************************************************************************************************
+2025-07-16 16:37:08,997 p=57026 u=bill n=ansible INFO| localhost                  : ok=32   changed=2    unreachable=0    failed=1    skipped=1    rescued=0    ignored=0   
+2025-07-16 16:37:30,217 p=62688 u=bill n=ansible INFO| PLAY [all] *******************************************************************************************************************
+2025-07-16 16:37:30,223 p=62688 u=bill n=ansible INFO| TASK [Gathering Facts] *******************************************************************************************************
+2025-07-16 16:37:30,969 p=62688 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:30,976 p=62688 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] **************************************************************************
+2025-07-16 16:37:32,509 p=62688 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:32,515 p=62688 u=bill n=ansible INFO| TASK [Include host variables dynamically] ************************************************************************************
+2025-07-16 16:37:32,528 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item=host_vars/localhost.yml)
+2025-07-16 16:37:32,530 p=62688 u=bill n=ansible INFO| PLAY [updates] ***************************************************************************************************************
+2025-07-16 16:37:32,530 p=62688 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-16 16:37:32,532 p=62688 u=bill n=ansible INFO| PLAY [workstation] ***********************************************************************************************************
+2025-07-16 16:37:32,532 p=62688 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-16 16:37:32,533 p=62688 u=bill n=ansible INFO| PLAY [local] *****************************************************************************************************************
+2025-07-16 16:37:32,540 p=62688 u=bill n=ansible INFO| TASK [Gathering Facts] *******************************************************************************************************
+2025-07-16 16:37:33,096 p=62688 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:33,101 p=62688 u=bill n=ansible INFO| TASK [local : pre-run | update package cache (debian, etc)] ******************************************************************
+2025-07-16 16:37:34,579 p=62688 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:34,584 p=62688 u=bill n=ansible INFO| TASK [local : Load group variables] ******************************************************************************************
+2025-07-16 16:37:34,593 p=62688 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:34,598 p=62688 u=bill n=ansible INFO| TASK [local : Load workstations_new variables for resilient NFS] *************************************************************
+2025-07-16 16:37:34,608 p=62688 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:34,613 p=62688 u=bill n=ansible INFO| TASK [local : Filter NFS mounts for local ansible server (only bill and shared mounts)] **************************************
+2025-07-16 16:37:34,630 p=62688 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:34,635 p=62688 u=bill n=ansible INFO| TASK [local : Copy bashrc for Bill] ******************************************************************************************
+2025-07-16 16:37:35,061 p=62688 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:35,066 p=62688 u=bill n=ansible INFO| TASK [local : include_tasks] *************************************************************************************************
+2025-07-16 16:37:35,078 p=62688 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/local/tasks/groups.yml for localhost
+2025-07-16 16:37:35,085 p=62688 u=bill n=ansible INFO| TASK [local : Ensure groups are created] *************************************************************************************
+2025-07-16 16:37:35,317 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'media', 'gid': 1776})
+2025-07-16 16:37:35,464 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'docs', 'gid': 1787})
+2025-07-16 16:37:35,610 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'hal', 'gid': 1999})
+2025-07-16 16:37:35,759 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'ansible', 'gid': 1998})
+2025-07-16 16:37:35,911 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'data', 'gid': 1997})
+2025-07-16 16:37:36,062 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'git', 'gid': 1996})
+2025-07-16 16:37:36,214 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'librarian', 'gid': 1995})
+2025-07-16 16:37:36,223 p=62688 u=bill n=ansible INFO| TASK [local : Add hal to each nfs_user group] ********************************************************************************
+2025-07-16 16:37:36,549 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item=bill)
+2025-07-16 16:37:36,555 p=62688 u=bill n=ansible INFO| TASK [local : include_tasks] *************************************************************************************************
+2025-07-16 16:37:36,572 p=62688 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/local/tasks/home_directory.yml for localhost
+2025-07-16 16:37:36,579 p=62688 u=bill n=ansible INFO| TASK [local : Create Bill directories] ***************************************************************************************
+2025-07-16 16:37:36,734 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/desktop)
+2025-07-16 16:37:36,873 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/documents)
+2025-07-16 16:37:37,020 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/downloads)
+2025-07-16 16:37:37,177 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/media)
+2025-07-16 16:37:37,333 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/code)
+2025-07-16 16:37:37,485 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/git)
+2025-07-16 16:37:37,493 p=62688 u=bill n=ansible INFO| TASK [local : Find unwanted directories and check if empty] ******************************************************************
+2025-07-16 16:37:37,729 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Desktop)
+2025-07-16 16:37:37,884 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Documents)
+2025-07-16 16:37:38,034 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Downloads)
+2025-07-16 16:37:38,193 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Music)
+2025-07-16 16:37:38,341 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Pictures)
+2025-07-16 16:37:38,495 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Public)
+2025-07-16 16:37:38,647 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Templates)
+2025-07-16 16:37:38,793 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Videos)
+2025-07-16 16:37:38,797 p=62688 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Desktop' path due to this access issue: '/home/bill/Desktop' is not a directory
+
+2025-07-16 16:37:38,797 p=62688 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Documents' path due to this access issue: '/home/bill/Documents' is not a directory
+
+2025-07-16 16:37:38,797 p=62688 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Downloads' path due to this access issue: '/home/bill/Downloads' is not a directory
+
+2025-07-16 16:37:38,797 p=62688 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Music' path due to this access issue: '/home/bill/Music' is not a directory
+
+2025-07-16 16:37:38,797 p=62688 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Pictures' path due to this access issue: '/home/bill/Pictures' is not a directory
+
+2025-07-16 16:37:38,798 p=62688 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Public' path due to this access issue: '/home/bill/Public' is not a directory
+
+2025-07-16 16:37:38,798 p=62688 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Templates' path due to this access issue: '/home/bill/Templates' is not a directory
+
+2025-07-16 16:37:38,798 p=62688 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Videos' path due to this access issue: '/home/bill/Videos' is not a directory
+
+2025-07-16 16:37:38,804 p=62688 u=bill n=ansible INFO| TASK [local : Remove empty unwanted directories] *****************************************************************************
+2025-07-16 16:37:38,972 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Desktop': "'/home/bill/Desktop' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Desktop'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Desktop', 'ansible_loop_var': 'item'})
+2025-07-16 16:37:39,122 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Documents': "'/home/bill/Documents' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Documents'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Documents', 'ansible_loop_var': 'item'})
+2025-07-16 16:37:39,276 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Downloads': "'/home/bill/Downloads' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Downloads'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Downloads', 'ansible_loop_var': 'item'})
+2025-07-16 16:37:39,446 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Music': "'/home/bill/Music' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Music'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Music', 'ansible_loop_var': 'item'})
+2025-07-16 16:37:39,599 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Pictures': "'/home/bill/Pictures' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Pictures'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Pictures', 'ansible_loop_var': 'item'})
+2025-07-16 16:37:39,760 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Public': "'/home/bill/Public' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Public'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Public', 'ansible_loop_var': 'item'})
+2025-07-16 16:37:39,910 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Templates': "'/home/bill/Templates' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Templates'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Templates', 'ansible_loop_var': 'item'})
+2025-07-16 16:37:40,070 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Videos': "'/home/bill/Videos' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Videos'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Videos', 'ansible_loop_var': 'item'})
+2025-07-16 16:37:40,078 p=62688 u=bill n=ansible INFO| TASK [local : Rename snap to .snap] ******************************************************************************************
+2025-07-16 16:37:40,313 p=62688 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:40,321 p=62688 u=bill n=ansible INFO| TASK [local : Ensure .snap directory exists] *********************************************************************************
+2025-07-16 16:37:40,494 p=62688 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:40,500 p=62688 u=bill n=ansible INFO| TASK [local : Update .config/user-dirs.dirs file] ****************************************************************************
+2025-07-16 16:37:40,831 p=62688 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:40,838 p=62688 u=bill n=ansible INFO| TASK [local : Update .config/gtk-3.0/bookmarks file] *************************************************************************
+2025-07-16 16:37:41,178 p=62688 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:41,190 p=62688 u=bill n=ansible INFO| TASK [local : Remove dead .desktop files from Desktop] ***********************************************************************
+2025-07-16 16:37:41,391 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item=Documents)
+2025-07-16 16:37:41,572 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item=Music)
+2025-07-16 16:37:41,751 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item=Pictures)
+2025-07-16 16:37:41,912 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item=Videos)
+2025-07-16 16:37:41,919 p=62688 u=bill n=ansible INFO| TASK [local : Check if Desktop directory is empty] ***************************************************************************
+2025-07-16 16:37:42,083 p=62688 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:42,088 p=62688 u=bill n=ansible INFO| TASK [local : Rename Desktop to desktop if empty] ****************************************************************************
+2025-07-16 16:37:42,247 p=62688 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:42,254 p=62688 u=bill n=ansible INFO| TASK [local : Ensure desktop directory exists] *******************************************************************************
+2025-07-16 16:37:42,416 p=62688 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:42,422 p=62688 u=bill n=ansible INFO| TASK [local : Check if GNOME session needs restart] **************************************************************************
+2025-07-16 16:37:42,580 p=62688 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:42,585 p=62688 u=bill n=ansible INFO| TASK [local : Check if running in graphical environment] *********************************************************************
+2025-07-16 16:37:42,742 p=62688 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:42,749 p=62688 u=bill n=ansible INFO| TASK [local : gnome | appearance | dconf update] *****************************************************************************
+2025-07-16 16:37:42,910 p=62688 u=bill n=ansible INFO| changed: [localhost]
+2025-07-16 16:37:42,918 p=62688 u=bill n=ansible INFO| TASK [local : Wait for system to come back] **********************************************************************************
+2025-07-16 16:37:52,929 p=62688 u=bill n=ansible WARNING| [WARNING]: Reset is not implemented for this connection
+
+2025-07-16 16:37:53,138 p=62688 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:53,144 p=62688 u=bill n=ansible INFO| TASK [local : include_tasks] *************************************************************************************************
+2025-07-16 16:37:53,160 p=62688 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/local/tasks/fstab_new.yml for localhost
+2025-07-16 16:37:53,169 p=62688 u=bill n=ansible INFO| TASK [local : Install NFS utilities] *****************************************************************************************
+2025-07-16 16:37:53,869 p=62688 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:53,875 p=62688 u=bill n=ansible INFO| TASK [local : Create /mnt/truenas base directory] ****************************************************************************
+2025-07-16 16:37:54,033 p=62688 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:37:54,039 p=62688 u=bill n=ansible INFO| TASK [local : Unmount old direct NFS mounts for bill] ************************************************************************
+2025-07-16 16:37:54,051 p=62688 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'desktop', 'type': 'local'}) 
+2025-07-16 16:37:54,279 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'documents', 'type': 'symlink', 'target': '/mnt/truenas/bill-documents', 'fallback': True})
+2025-07-16 16:37:54,437 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'downloads', 'type': 'symlink', 'target': '/mnt/truenas/bill-downloads', 'fallback': True})
+2025-07-16 16:37:54,589 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'media', 'type': 'symlink', 'target': '/mnt/truenas/media', 'fallback': False})
+2025-07-16 16:37:54,589 p=62688 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'code', 'type': 'local'}) 
+2025-07-16 16:37:54,590 p=62688 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'git', 'type': 'local'}) 
+2025-07-16 16:37:54,596 p=62688 u=bill n=ansible INFO| TASK [local : Remove old direct NFS mount entries from fstab for bill] *******************************************************
+2025-07-16 16:37:54,607 p=62688 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'desktop', 'type': 'local'}) 
+2025-07-16 16:37:54,766 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'documents', 'type': 'symlink', 'target': '/mnt/truenas/bill-documents', 'fallback': True})
+2025-07-16 16:37:54,920 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'downloads', 'type': 'symlink', 'target': '/mnt/truenas/bill-downloads', 'fallback': True})
+2025-07-16 16:37:55,073 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'media', 'type': 'symlink', 'target': '/mnt/truenas/media', 'fallback': False})
+2025-07-16 16:37:55,074 p=62688 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'code', 'type': 'local'}) 
+2025-07-16 16:37:55,076 p=62688 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'git', 'type': 'local'}) 
+2025-07-16 16:37:55,083 p=62688 u=bill n=ansible INFO| TASK [local : Create NFS mount point directories] ****************************************************************************
+2025-07-16 16:37:55,257 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/home/bill/Documents', 'dest': '/mnt/truenas/bill-documents', 'opts': 'rw,soft,intr,timeo=30,retrans=3,uid=1000,gid=1000'})
+2025-07-16 16:37:55,415 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/home/bill/Downloads', 'dest': '/mnt/truenas/bill-downloads', 'opts': 'rw,soft,intr,timeo=30,retrans=3,uid=1000,gid=1000'})
+2025-07-16 16:37:55,573 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item={'src': '192.168.86.109:/mnt/Data/media', 'dest': '/mnt/truenas/media', 'opts': 'rw,soft,intr,timeo=30,retrans=3'})
+2025-07-16 16:37:55,721 p=62688 u=bill n=ansible INFO| An exception occurred during task execution. To see the full traceback, use -vvv. The error was: PermissionError: [Errno 1] Operation not permitted: b'/mnt/truenas/paperless'
+2025-07-16 16:37:55,722 p=62688 u=bill n=ansible INFO| failed: [localhost] (item={'src': '192.168.86.109:/mnt/ssd-files/docs/paper', 'dest': '/mnt/truenas/paperless', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}) => {"ansible_loop_var": "item", "changed": false, "item": {"dest": "/mnt/truenas/paperless", "opts": "rw,soft,intr,timeo=30,retrans=3", "src": "192.168.86.109:/mnt/ssd-files/docs/paper"}, "module_stderr": "Traceback (most recent call last):\n  File \"/home/bill/.ansible/tmp/ansible-tmp-1752698275.5749075-65275-117664809420223/AnsiballZ_file.py\", line 107, in <module>\n    _ansiballz_main()\n  File \"/home/bill/.ansible/tmp/ansible-tmp-1752698275.5749075-65275-117664809420223/AnsiballZ_file.py\", line 99, in _ansiballz_main\n    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)\n  File \"/home/bill/.ansible/tmp/ansible-tmp-1752698275.5749075-65275-117664809420223/AnsiballZ_file.py\", line 47, in invoke_module\n    runpy.run_module(mod_name='ansible.modules.file', init_globals=dict(_module_fqn='ansible.modules.file', _modlib_path=modlib_path),\n  File \"<frozen runpy>\", line 226, in run_module\n  File \"<frozen runpy>\", line 98, in _run_module_code\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/tmp/ansible_file_payload_p9zgmqwj/ansible_file_payload.zip/ansible/modules/file.py\", line 990, in <module>\n  File \"/tmp/ansible_file_payload_p9zgmqwj/ansible_file_payload.zip/ansible/modules/file.py\", line 976, in main\n  File \"/tmp/ansible_file_payload_p9zgmqwj/ansible_file_payload.zip/ansible/modules/file.py\", line 681, in ensure_directory\n  File \"/tmp/ansible_file_payload_p9zgmqwj/ansible_file_payload.zip/ansible/module_utils/basic.py\", line 1100, in set_fs_attributes_if_different\n  File \"/tmp/ansible_file_payload_p9zgmqwj/ansible_file_payload.zip/ansible/module_utils/basic.py\", line 860, in set_mode_if_different\nPermissionError: [Errno 1] Operation not permitted: b'/mnt/truenas/paperless'\n", "module_stdout": "", "msg": "MODULE FAILURE: No start of json char found\nSee stdout/stderr for the exact error", "rc": 1}
+2025-07-16 16:37:55,871 p=62688 u=bill n=ansible INFO| ok: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/home/shared_files', 'dest': '/mnt/truenas/shared_files', 'opts': 'rw,soft,intr,timeo=30,retrans=3'})
+2025-07-16 16:37:56,025 p=62688 u=bill n=ansible INFO| An exception occurred during task execution. To see the full traceback, use -vvv. The error was: PermissionError: [Errno 1] Operation not permitted: b'/mnt/truenas/workouts'
+2025-07-16 16:37:56,025 p=62688 u=bill n=ansible INFO| failed: [localhost] (item={'src': '192.168.86.109:/mnt/ssd-files/workouts', 'dest': '/mnt/truenas/workouts', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}) => {"ansible_loop_var": "item", "changed": false, "item": {"dest": "/mnt/truenas/workouts", "opts": "rw,soft,intr,timeo=30,retrans=3", "src": "192.168.86.109:/mnt/ssd-files/workouts"}, "module_stderr": "Traceback (most recent call last):\n  File \"/home/bill/.ansible/tmp/ansible-tmp-1752698275.8744082-65275-66284228127257/AnsiballZ_file.py\", line 107, in <module>\n    _ansiballz_main()\n  File \"/home/bill/.ansible/tmp/ansible-tmp-1752698275.8744082-65275-66284228127257/AnsiballZ_file.py\", line 99, in _ansiballz_main\n    invoke_module(zipped_mod, temp_path, ANSIBALLZ_PARAMS)\n  File \"/home/bill/.ansible/tmp/ansible-tmp-1752698275.8744082-65275-66284228127257/AnsiballZ_file.py\", line 47, in invoke_module\n    runpy.run_module(mod_name='ansible.modules.file', init_globals=dict(_module_fqn='ansible.modules.file', _modlib_path=modlib_path),\n  File \"<frozen runpy>\", line 226, in run_module\n  File \"<frozen runpy>\", line 98, in _run_module_code\n  File \"<frozen runpy>\", line 88, in _run_code\n  File \"/tmp/ansible_file_payload_xakdt7xi/ansible_file_payload.zip/ansible/modules/file.py\", line 990, in <module>\n  File \"/tmp/ansible_file_payload_xakdt7xi/ansible_file_payload.zip/ansible/modules/file.py\", line 976, in main\n  File \"/tmp/ansible_file_payload_xakdt7xi/ansible_file_payload.zip/ansible/modules/file.py\", line 681, in ensure_directory\n  File \"/tmp/ansible_file_payload_xakdt7xi/ansible_file_payload.zip/ansible/module_utils/basic.py\", line 1100, in set_fs_attributes_if_different\n  File \"/tmp/ansible_file_payload_xakdt7xi/ansible_file_payload.zip/ansible/module_utils/basic.py\", line 860, in set_mode_if_different\nPermissionError: [Errno 1] Operation not permitted: b'/mnt/truenas/workouts'\n", "module_stdout": "", "msg": "MODULE FAILURE: No start of json char found\nSee stdout/stderr for the exact error", "rc": 1}
+2025-07-16 16:37:56,027 p=62688 u=bill n=ansible INFO| PLAY RECAP *******************************************************************************************************************
+2025-07-16 16:37:56,027 p=62688 u=bill n=ansible INFO| localhost                  : ok=33   changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-07-16 16:38:18,129 p=65470 u=bill n=ansible INFO| PLAY [all] *******************************************************************************************************************
+2025-07-16 16:38:18,133 p=65470 u=bill n=ansible INFO| PLAY [updates] ***************************************************************************************************************
+2025-07-16 16:38:18,134 p=65470 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-16 16:38:18,137 p=65470 u=bill n=ansible INFO| PLAY [workstation] ***********************************************************************************************************
+2025-07-16 16:38:18,137 p=65470 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-16 16:38:18,137 p=65470 u=bill n=ansible INFO| PLAY [local] *****************************************************************************************************************
+2025-07-16 16:38:18,141 p=65470 u=bill n=ansible INFO| PLAY [lxc] *******************************************************************************************************************
+2025-07-16 16:38:18,141 p=65470 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-16 16:38:18,141 p=65470 u=bill n=ansible INFO| PLAY [vm] ********************************************************************************************************************
+2025-07-16 16:38:18,141 p=65470 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-16 16:38:18,142 p=65470 u=bill n=ansible INFO| PLAY [proxmox_hosts] *********************************************************************************************************
+2025-07-16 16:38:18,142 p=65470 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-16 16:38:18,142 p=65470 u=bill n=ansible INFO| PLAY [windows] ***************************************************************************************************************
+2025-07-16 16:38:18,142 p=65470 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-16 16:38:18,142 p=65470 u=bill n=ansible INFO| PLAY RECAP *******************************************************************************************************************
+2025-07-16 16:38:18,142 p=65470 u=bill n=ansible ERROR|  [ERROR]: No matching task "local : Create NFS mount point directories" found. Note: --start-at-task can only follow static
+includes.
+
+2025-07-16 16:38:27,471 p=65509 u=bill n=ansible INFO| PLAY [all] *******************************************************************************************************************
+2025-07-16 16:38:27,477 p=65509 u=bill n=ansible INFO| TASK [Gathering Facts] *******************************************************************************************************
+2025-07-16 16:38:28,220 p=65509 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:38:28,226 p=65509 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] **************************************************************************
+2025-07-16 16:38:29,771 p=65509 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:38:29,777 p=65509 u=bill n=ansible INFO| TASK [Include host variables dynamically] ************************************************************************************
+2025-07-16 16:38:29,791 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item=host_vars/localhost.yml)
+2025-07-16 16:38:29,793 p=65509 u=bill n=ansible INFO| PLAY [updates] ***************************************************************************************************************
+2025-07-16 16:38:29,793 p=65509 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-16 16:38:29,796 p=65509 u=bill n=ansible INFO| PLAY [workstation] ***********************************************************************************************************
+2025-07-16 16:38:29,796 p=65509 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-16 16:38:29,797 p=65509 u=bill n=ansible INFO| PLAY [local] *****************************************************************************************************************
+2025-07-16 16:38:29,804 p=65509 u=bill n=ansible INFO| TASK [Gathering Facts] *******************************************************************************************************
+2025-07-16 16:38:30,389 p=65509 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:38:30,394 p=65509 u=bill n=ansible INFO| TASK [local : pre-run | update package cache (debian, etc)] ******************************************************************
+2025-07-16 16:38:31,829 p=65509 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:38:31,834 p=65509 u=bill n=ansible INFO| TASK [local : Load group variables] ******************************************************************************************
+2025-07-16 16:38:31,844 p=65509 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:38:31,849 p=65509 u=bill n=ansible INFO| TASK [local : Load workstations_new variables for resilient NFS] *************************************************************
+2025-07-16 16:38:31,861 p=65509 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:38:31,869 p=65509 u=bill n=ansible INFO| TASK [local : Filter NFS mounts for local ansible server (only bill and shared mounts)] **************************************
+2025-07-16 16:38:31,887 p=65509 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:38:31,893 p=65509 u=bill n=ansible INFO| TASK [local : Copy bashrc for Bill] ******************************************************************************************
+2025-07-16 16:38:32,361 p=65509 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:38:32,367 p=65509 u=bill n=ansible INFO| TASK [local : include_tasks] *************************************************************************************************
+2025-07-16 16:38:32,379 p=65509 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/local/tasks/groups.yml for localhost
+2025-07-16 16:38:32,387 p=65509 u=bill n=ansible INFO| TASK [local : Ensure groups are created] *************************************************************************************
+2025-07-16 16:38:32,630 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'media', 'gid': 1776})
+2025-07-16 16:38:32,777 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'docs', 'gid': 1787})
+2025-07-16 16:38:32,938 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'hal', 'gid': 1999})
+2025-07-16 16:38:33,091 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'ansible', 'gid': 1998})
+2025-07-16 16:38:33,240 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'data', 'gid': 1997})
+2025-07-16 16:38:33,391 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'git', 'gid': 1996})
+2025-07-16 16:38:33,541 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'librarian', 'gid': 1995})
+2025-07-16 16:38:33,549 p=65509 u=bill n=ansible INFO| TASK [local : Add hal to each nfs_user group] ********************************************************************************
+2025-07-16 16:38:33,851 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item=bill)
+2025-07-16 16:38:33,857 p=65509 u=bill n=ansible INFO| TASK [local : include_tasks] *************************************************************************************************
+2025-07-16 16:38:33,875 p=65509 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/local/tasks/home_directory.yml for localhost
+2025-07-16 16:38:33,881 p=65509 u=bill n=ansible INFO| TASK [local : Create Bill directories] ***************************************************************************************
+2025-07-16 16:38:34,037 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/desktop)
+2025-07-16 16:38:34,192 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/documents)
+2025-07-16 16:38:34,338 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/downloads)
+2025-07-16 16:38:34,502 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/media)
+2025-07-16 16:38:34,655 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/code)
+2025-07-16 16:38:34,798 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/git)
+2025-07-16 16:38:34,806 p=65509 u=bill n=ansible INFO| TASK [local : Find unwanted directories and check if empty] ******************************************************************
+2025-07-16 16:38:35,032 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Desktop)
+2025-07-16 16:38:35,176 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Documents)
+2025-07-16 16:38:35,325 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Downloads)
+2025-07-16 16:38:35,470 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Music)
+2025-07-16 16:38:35,616 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Pictures)
+2025-07-16 16:38:35,769 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Public)
+2025-07-16 16:38:35,919 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Templates)
+2025-07-16 16:38:36,064 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Videos)
+2025-07-16 16:38:36,067 p=65509 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Desktop' path due to this access issue: '/home/bill/Desktop' is not a directory
+
+2025-07-16 16:38:36,067 p=65509 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Documents' path due to this access issue: '/home/bill/Documents' is not a directory
+
+2025-07-16 16:38:36,068 p=65509 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Downloads' path due to this access issue: '/home/bill/Downloads' is not a directory
+
+2025-07-16 16:38:36,068 p=65509 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Music' path due to this access issue: '/home/bill/Music' is not a directory
+
+2025-07-16 16:38:36,068 p=65509 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Pictures' path due to this access issue: '/home/bill/Pictures' is not a directory
+
+2025-07-16 16:38:36,068 p=65509 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Public' path due to this access issue: '/home/bill/Public' is not a directory
+
+2025-07-16 16:38:36,068 p=65509 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Templates' path due to this access issue: '/home/bill/Templates' is not a directory
+
+2025-07-16 16:38:36,068 p=65509 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Videos' path due to this access issue: '/home/bill/Videos' is not a directory
+
+2025-07-16 16:38:36,074 p=65509 u=bill n=ansible INFO| TASK [local : Remove empty unwanted directories] *****************************************************************************
+2025-07-16 16:38:36,245 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Desktop': "'/home/bill/Desktop' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Desktop'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Desktop', 'ansible_loop_var': 'item'})
+2025-07-16 16:38:36,401 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Documents': "'/home/bill/Documents' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Documents'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Documents', 'ansible_loop_var': 'item'})
+2025-07-16 16:38:36,566 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Downloads': "'/home/bill/Downloads' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Downloads'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Downloads', 'ansible_loop_var': 'item'})
+2025-07-16 16:38:36,733 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Music': "'/home/bill/Music' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Music'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Music', 'ansible_loop_var': 'item'})
+2025-07-16 16:38:36,893 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Pictures': "'/home/bill/Pictures' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Pictures'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Pictures', 'ansible_loop_var': 'item'})
+2025-07-16 16:38:37,045 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Public': "'/home/bill/Public' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Public'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Public', 'ansible_loop_var': 'item'})
+2025-07-16 16:38:37,197 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Templates': "'/home/bill/Templates' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Templates'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Templates', 'ansible_loop_var': 'item'})
+2025-07-16 16:38:37,354 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Videos': "'/home/bill/Videos' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Videos'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Videos', 'ansible_loop_var': 'item'})
+2025-07-16 16:38:37,362 p=65509 u=bill n=ansible INFO| TASK [local : Rename snap to .snap] ******************************************************************************************
+2025-07-16 16:38:37,587 p=65509 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:38:37,593 p=65509 u=bill n=ansible INFO| TASK [local : Ensure .snap directory exists] *********************************************************************************
+2025-07-16 16:38:37,751 p=65509 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:38:37,757 p=65509 u=bill n=ansible INFO| TASK [local : Update .config/user-dirs.dirs file] ****************************************************************************
+2025-07-16 16:38:38,064 p=65509 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:38:38,071 p=65509 u=bill n=ansible INFO| TASK [local : Update .config/gtk-3.0/bookmarks file] *************************************************************************
+2025-07-16 16:38:38,386 p=65509 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:38:38,392 p=65509 u=bill n=ansible INFO| TASK [local : Remove dead .desktop files from Desktop] ***********************************************************************
+2025-07-16 16:38:38,557 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item=Documents)
+2025-07-16 16:38:38,717 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item=Music)
+2025-07-16 16:38:38,870 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item=Pictures)
+2025-07-16 16:38:39,018 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item=Videos)
+2025-07-16 16:38:39,024 p=65509 u=bill n=ansible INFO| TASK [local : Check if Desktop directory is empty] ***************************************************************************
+2025-07-16 16:38:39,182 p=65509 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:38:39,188 p=65509 u=bill n=ansible INFO| TASK [local : Rename Desktop to desktop if empty] ****************************************************************************
+2025-07-16 16:38:39,342 p=65509 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:38:39,347 p=65509 u=bill n=ansible INFO| TASK [local : Ensure desktop directory exists] *******************************************************************************
+2025-07-16 16:38:39,507 p=65509 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:38:39,515 p=65509 u=bill n=ansible INFO| TASK [local : Check if GNOME session needs restart] **************************************************************************
+2025-07-16 16:38:39,667 p=65509 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:38:39,674 p=65509 u=bill n=ansible INFO| TASK [local : Check if running in graphical environment] *********************************************************************
+2025-07-16 16:38:39,837 p=65509 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:38:39,843 p=65509 u=bill n=ansible INFO| TASK [local : gnome | appearance | dconf update] *****************************************************************************
+2025-07-16 16:38:40,021 p=65509 u=bill n=ansible INFO| changed: [localhost]
+2025-07-16 16:38:40,030 p=65509 u=bill n=ansible INFO| TASK [local : Wait for system to come back] **********************************************************************************
+2025-07-16 16:38:50,042 p=65509 u=bill n=ansible WARNING| [WARNING]: Reset is not implemented for this connection
+
+2025-07-16 16:38:50,248 p=65509 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:38:50,254 p=65509 u=bill n=ansible INFO| TASK [local : include_tasks] *************************************************************************************************
+2025-07-16 16:38:50,271 p=65509 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/local/tasks/fstab_new.yml for localhost
+2025-07-16 16:38:50,280 p=65509 u=bill n=ansible INFO| TASK [local : Install NFS utilities] *****************************************************************************************
+2025-07-16 16:38:51,007 p=65509 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:38:51,013 p=65509 u=bill n=ansible INFO| TASK [local : Create /mnt/truenas base directory] ****************************************************************************
+2025-07-16 16:38:51,173 p=65509 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:38:51,178 p=65509 u=bill n=ansible INFO| TASK [local : Unmount old direct NFS mounts for bill] ************************************************************************
+2025-07-16 16:38:51,190 p=65509 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'desktop', 'type': 'local'}) 
+2025-07-16 16:38:51,415 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'documents', 'type': 'symlink', 'target': '/mnt/truenas/bill-documents', 'fallback': True})
+2025-07-16 16:38:51,566 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'downloads', 'type': 'symlink', 'target': '/mnt/truenas/bill-downloads', 'fallback': True})
+2025-07-16 16:38:51,739 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'media', 'type': 'symlink', 'target': '/mnt/truenas/media', 'fallback': False})
+2025-07-16 16:38:51,740 p=65509 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'code', 'type': 'local'}) 
+2025-07-16 16:38:51,742 p=65509 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'git', 'type': 'local'}) 
+2025-07-16 16:38:51,749 p=65509 u=bill n=ansible INFO| TASK [local : Remove old direct NFS mount entries from fstab for bill] *******************************************************
+2025-07-16 16:38:51,762 p=65509 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'desktop', 'type': 'local'}) 
+2025-07-16 16:38:51,926 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'documents', 'type': 'symlink', 'target': '/mnt/truenas/bill-documents', 'fallback': True})
+2025-07-16 16:38:52,081 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'downloads', 'type': 'symlink', 'target': '/mnt/truenas/bill-downloads', 'fallback': True})
+2025-07-16 16:38:52,236 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'media', 'type': 'symlink', 'target': '/mnt/truenas/media', 'fallback': False})
+2025-07-16 16:38:52,238 p=65509 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'code', 'type': 'local'}) 
+2025-07-16 16:38:52,240 p=65509 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'git', 'type': 'local'}) 
+2025-07-16 16:38:52,247 p=65509 u=bill n=ansible INFO| TASK [local : Create NFS mount point directories] ****************************************************************************
+2025-07-16 16:38:52,428 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/home/bill/Documents', 'dest': '/mnt/truenas/bill-documents', 'opts': 'rw,soft,intr,timeo=30,retrans=3,uid=1000,gid=1000'})
+2025-07-16 16:38:52,585 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/home/bill/Downloads', 'dest': '/mnt/truenas/bill-downloads', 'opts': 'rw,soft,intr,timeo=30,retrans=3,uid=1000,gid=1000'})
+2025-07-16 16:38:52,735 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'src': '192.168.86.109:/mnt/Data/media', 'dest': '/mnt/truenas/media', 'opts': 'rw,soft,intr,timeo=30,retrans=3'})
+2025-07-16 16:38:52,895 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/docs/paper', 'dest': '/mnt/truenas/paperless', 'opts': 'rw,soft,intr,timeo=30,retrans=3'})
+2025-07-16 16:38:53,053 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/home/shared_files', 'dest': '/mnt/truenas/shared_files', 'opts': 'rw,soft,intr,timeo=30,retrans=3'})
+2025-07-16 16:38:53,204 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/workouts', 'dest': '/mnt/truenas/workouts', 'opts': 'rw,soft,intr,timeo=30,retrans=3'})
+2025-07-16 16:38:53,212 p=65509 u=bill n=ansible INFO| TASK [local : Add NFS mounts to fstab] ***************************************************************************************
+2025-07-16 16:38:53,379 p=65509 u=bill n=ansible INFO| changed: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/home/bill/Documents', 'dest': '/mnt/truenas/bill-documents', 'opts': 'rw,soft,intr,timeo=30,retrans=3,uid=1000,gid=1000'})
+2025-07-16 16:38:53,531 p=65509 u=bill n=ansible INFO| changed: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/home/bill/Downloads', 'dest': '/mnt/truenas/bill-downloads', 'opts': 'rw,soft,intr,timeo=30,retrans=3,uid=1000,gid=1000'})
+2025-07-16 16:38:53,682 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'src': '192.168.86.109:/mnt/Data/media', 'dest': '/mnt/truenas/media', 'opts': 'rw,soft,intr,timeo=30,retrans=3'})
+2025-07-16 16:38:53,831 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/docs/paper', 'dest': '/mnt/truenas/paperless', 'opts': 'rw,soft,intr,timeo=30,retrans=3'})
+2025-07-16 16:38:53,985 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/home/shared_files', 'dest': '/mnt/truenas/shared_files', 'opts': 'rw,soft,intr,timeo=30,retrans=3'})
+2025-07-16 16:38:54,134 p=65509 u=bill n=ansible INFO| ok: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/workouts', 'dest': '/mnt/truenas/workouts', 'opts': 'rw,soft,intr,timeo=30,retrans=3'})
+2025-07-16 16:38:54,142 p=65509 u=bill n=ansible INFO| TASK [local : Create shared mount point directories with proper ownership] ***************************************************
+2025-07-16 16:38:54,307 p=65509 u=bill n=ansible INFO| failed: [localhost] (item={'path': '/mnt/truenas/media', 'owner': 'root', 'group': 'media', 'mode': '0755'}) => {"ansible_loop_var": "item", "changed": false, "gid": 1776, "group": "media", "item": {"group": "media", "mode": "0755", "owner": "root", "path": "/mnt/truenas/media"}, "mode": "0755", "msg": "chown failed: [Errno 1] Operation not permitted: b'/mnt/truenas/media'", "owner": "bill", "path": "/mnt/truenas/media", "size": 7, "state": "directory", "uid": 1000}
+2025-07-16 16:38:54,457 p=65509 u=bill n=ansible INFO| failed: [localhost] (item={'path': '/mnt/truenas/paperless', 'owner': 'root', 'group': 'docs', 'mode': '0775'}) => {"ansible_loop_var": "item", "changed": false, "gid": 1787, "group": "docs", "item": {"group": "docs", "mode": "0775", "owner": "root", "path": "/mnt/truenas/paperless"}, "mode": "0775", "msg": "chown failed: [Errno 1] Operation not permitted: b'/mnt/truenas/paperless'", "owner": "bill", "path": "/mnt/truenas/paperless", "size": 10, "state": "directory", "uid": 1000}
+2025-07-16 16:38:54,611 p=65509 u=bill n=ansible INFO| failed: [localhost] (item={'path': '/mnt/truenas/shared_files', 'owner': 'root', 'group': 'docs', 'mode': '0775'}) => {"ansible_loop_var": "item", "changed": false, "gid": 1787, "group": "docs", "item": {"group": "docs", "mode": "0775", "owner": "root", "path": "/mnt/truenas/shared_files"}, "mode": "0755", "msg": "chown failed: [Errno 1] Operation not permitted: b'/mnt/truenas/shared_files'", "owner": "bill", "path": "/mnt/truenas/shared_files", "size": 5, "state": "directory", "uid": 1000}
+2025-07-16 16:38:54,762 p=65509 u=bill n=ansible INFO| failed: [localhost] (item={'path': '/mnt/truenas/workouts', 'owner': 'root', 'group': 'data', 'mode': '0775'}) => {"ansible_loop_var": "item", "changed": false, "gid": 1997, "group": "data", "item": {"group": "data", "mode": "0775", "owner": "root", "path": "/mnt/truenas/workouts"}, "mode": "0777", "msg": "chown failed: [Errno 1] Operation not permitted: b'/mnt/truenas/workouts'", "owner": "bill", "path": "/mnt/truenas/workouts", "size": 16, "state": "directory", "uid": 1000}
+2025-07-16 16:38:54,765 p=65509 u=bill n=ansible INFO| PLAY RECAP *******************************************************************************************************************
+2025-07-16 16:38:54,765 p=65509 u=bill n=ansible INFO| localhost                  : ok=35   changed=2    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-07-16 16:41:15,231 p=68610 u=bill n=ansible INFO| PLAY [all] *******************************************************************************************************************
+2025-07-16 16:41:15,236 p=68610 u=bill n=ansible INFO| TASK [Gathering Facts] *******************************************************************************************************
+2025-07-16 16:41:15,952 p=68610 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:41:15,958 p=68610 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] **************************************************************************
+2025-07-16 16:41:17,464 p=68610 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:41:17,470 p=68610 u=bill n=ansible INFO| TASK [Include host variables dynamically] ************************************************************************************
+2025-07-16 16:41:17,482 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item=host_vars/localhost.yml)
+2025-07-16 16:41:17,485 p=68610 u=bill n=ansible INFO| PLAY [updates] ***************************************************************************************************************
+2025-07-16 16:41:17,485 p=68610 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-16 16:41:17,488 p=68610 u=bill n=ansible INFO| PLAY [workstation] ***********************************************************************************************************
+2025-07-16 16:41:17,488 p=68610 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-16 16:41:17,488 p=68610 u=bill n=ansible INFO| PLAY [local] *****************************************************************************************************************
+2025-07-16 16:41:17,495 p=68610 u=bill n=ansible INFO| TASK [Gathering Facts] *******************************************************************************************************
+2025-07-16 16:41:18,057 p=68610 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:41:18,062 p=68610 u=bill n=ansible INFO| TASK [local : pre-run | update package cache (debian, etc)] ******************************************************************
+2025-07-16 16:41:19,376 p=68610 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:41:19,381 p=68610 u=bill n=ansible INFO| TASK [local : Load group variables] ******************************************************************************************
+2025-07-16 16:41:19,391 p=68610 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:41:19,397 p=68610 u=bill n=ansible INFO| TASK [local : Load workstations_new variables for resilient NFS] *************************************************************
+2025-07-16 16:41:19,411 p=68610 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:41:19,418 p=68610 u=bill n=ansible INFO| TASK [local : Filter NFS mounts for local ansible server (only bill and shared mounts)] **************************************
+2025-07-16 16:41:19,439 p=68610 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:41:19,445 p=68610 u=bill n=ansible INFO| TASK [local : Copy bashrc for Bill] ******************************************************************************************
+2025-07-16 16:41:19,876 p=68610 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:41:19,881 p=68610 u=bill n=ansible INFO| TASK [local : include_tasks] *************************************************************************************************
+2025-07-16 16:41:19,893 p=68610 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/local/tasks/groups.yml for localhost
+2025-07-16 16:41:19,900 p=68610 u=bill n=ansible INFO| TASK [local : Ensure groups are created] *************************************************************************************
+2025-07-16 16:41:20,125 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'media', 'gid': 1776})
+2025-07-16 16:41:20,269 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'docs', 'gid': 1787})
+2025-07-16 16:41:20,414 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'hal', 'gid': 1999})
+2025-07-16 16:41:20,561 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'ansible', 'gid': 1998})
+2025-07-16 16:41:20,704 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'data', 'gid': 1997})
+2025-07-16 16:41:20,852 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'git', 'gid': 1996})
+2025-07-16 16:41:20,996 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'librarian', 'gid': 1995})
+2025-07-16 16:41:21,002 p=68610 u=bill n=ansible INFO| TASK [local : Add hal to each nfs_user group] ********************************************************************************
+2025-07-16 16:41:21,293 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item=bill)
+2025-07-16 16:41:21,299 p=68610 u=bill n=ansible INFO| TASK [local : include_tasks] *************************************************************************************************
+2025-07-16 16:41:21,315 p=68610 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/local/tasks/home_directory.yml for localhost
+2025-07-16 16:41:21,321 p=68610 u=bill n=ansible INFO| TASK [local : Create Bill directories] ***************************************************************************************
+2025-07-16 16:41:21,478 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/desktop)
+2025-07-16 16:41:21,627 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/documents)
+2025-07-16 16:41:21,781 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/downloads)
+2025-07-16 16:41:21,934 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/media)
+2025-07-16 16:41:22,083 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/code)
+2025-07-16 16:41:22,227 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/git)
+2025-07-16 16:41:22,233 p=68610 u=bill n=ansible INFO| TASK [local : Find unwanted directories and check if empty] ******************************************************************
+2025-07-16 16:41:22,452 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Desktop)
+2025-07-16 16:41:22,593 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Documents)
+2025-07-16 16:41:22,733 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Downloads)
+2025-07-16 16:41:22,877 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Music)
+2025-07-16 16:41:23,021 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Pictures)
+2025-07-16 16:41:23,171 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Public)
+2025-07-16 16:41:23,312 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Templates)
+2025-07-16 16:41:23,454 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Videos)
+2025-07-16 16:41:23,456 p=68610 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Desktop' path due to this access issue: '/home/bill/Desktop' is not a directory
+
+2025-07-16 16:41:23,456 p=68610 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Documents' path due to this access issue: '/home/bill/Documents' is not a directory
+
+2025-07-16 16:41:23,456 p=68610 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Downloads' path due to this access issue: '/home/bill/Downloads' is not a directory
+
+2025-07-16 16:41:23,456 p=68610 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Music' path due to this access issue: '/home/bill/Music' is not a directory
+
+2025-07-16 16:41:23,456 p=68610 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Pictures' path due to this access issue: '/home/bill/Pictures' is not a directory
+
+2025-07-16 16:41:23,456 p=68610 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Public' path due to this access issue: '/home/bill/Public' is not a directory
+
+2025-07-16 16:41:23,457 p=68610 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Templates' path due to this access issue: '/home/bill/Templates' is not a directory
+
+2025-07-16 16:41:23,457 p=68610 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Videos' path due to this access issue: '/home/bill/Videos' is not a directory
+
+2025-07-16 16:41:23,462 p=68610 u=bill n=ansible INFO| TASK [local : Remove empty unwanted directories] *****************************************************************************
+2025-07-16 16:41:23,627 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Desktop': "'/home/bill/Desktop' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Desktop'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Desktop', 'ansible_loop_var': 'item'})
+2025-07-16 16:41:23,777 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Documents': "'/home/bill/Documents' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Documents'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Documents', 'ansible_loop_var': 'item'})
+2025-07-16 16:41:23,926 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Downloads': "'/home/bill/Downloads' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Downloads'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Downloads', 'ansible_loop_var': 'item'})
+2025-07-16 16:41:24,075 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Music': "'/home/bill/Music' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Music'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Music', 'ansible_loop_var': 'item'})
+2025-07-16 16:41:24,225 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Pictures': "'/home/bill/Pictures' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Pictures'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Pictures', 'ansible_loop_var': 'item'})
+2025-07-16 16:41:24,377 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Public': "'/home/bill/Public' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Public'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Public', 'ansible_loop_var': 'item'})
+2025-07-16 16:41:24,530 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Templates': "'/home/bill/Templates' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Templates'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Templates', 'ansible_loop_var': 'item'})
+2025-07-16 16:41:24,684 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Videos': "'/home/bill/Videos' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Videos'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Videos', 'ansible_loop_var': 'item'})
+2025-07-16 16:41:24,693 p=68610 u=bill n=ansible INFO| TASK [local : Rename snap to .snap] ******************************************************************************************
+2025-07-16 16:41:24,912 p=68610 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:41:24,918 p=68610 u=bill n=ansible INFO| TASK [local : Ensure .snap directory exists] *********************************************************************************
+2025-07-16 16:41:25,072 p=68610 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:41:25,078 p=68610 u=bill n=ansible INFO| TASK [local : Update .config/user-dirs.dirs file] ****************************************************************************
+2025-07-16 16:41:25,383 p=68610 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:41:25,389 p=68610 u=bill n=ansible INFO| TASK [local : Update .config/gtk-3.0/bookmarks file] *************************************************************************
+2025-07-16 16:41:25,691 p=68610 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:41:25,697 p=68610 u=bill n=ansible INFO| TASK [local : Remove dead .desktop files from Desktop] ***********************************************************************
+2025-07-16 16:41:25,857 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item=Documents)
+2025-07-16 16:41:26,004 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item=Music)
+2025-07-16 16:41:26,156 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item=Pictures)
+2025-07-16 16:41:26,301 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item=Videos)
+2025-07-16 16:41:26,308 p=68610 u=bill n=ansible INFO| TASK [local : Check if Desktop directory is empty] ***************************************************************************
+2025-07-16 16:41:26,460 p=68610 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:41:26,466 p=68610 u=bill n=ansible INFO| TASK [local : Rename Desktop to desktop if empty] ****************************************************************************
+2025-07-16 16:41:26,617 p=68610 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:41:26,623 p=68610 u=bill n=ansible INFO| TASK [local : Ensure desktop directory exists] *******************************************************************************
+2025-07-16 16:41:26,779 p=68610 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:41:26,785 p=68610 u=bill n=ansible INFO| TASK [local : Check if GNOME session needs restart] **************************************************************************
+2025-07-16 16:41:26,932 p=68610 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:41:26,937 p=68610 u=bill n=ansible INFO| TASK [local : Check if running in graphical environment] *********************************************************************
+2025-07-16 16:41:27,094 p=68610 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:41:27,099 p=68610 u=bill n=ansible INFO| TASK [local : gnome | appearance | dconf update] *****************************************************************************
+2025-07-16 16:41:27,258 p=68610 u=bill n=ansible INFO| changed: [localhost]
+2025-07-16 16:41:27,267 p=68610 u=bill n=ansible INFO| TASK [local : Wait for system to come back] **********************************************************************************
+2025-07-16 16:41:37,278 p=68610 u=bill n=ansible WARNING| [WARNING]: Reset is not implemented for this connection
+
+2025-07-16 16:41:37,483 p=68610 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:41:37,489 p=68610 u=bill n=ansible INFO| TASK [local : include_tasks] *************************************************************************************************
+2025-07-16 16:41:37,506 p=68610 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/local/tasks/fstab_new.yml for localhost
+2025-07-16 16:41:37,514 p=68610 u=bill n=ansible INFO| TASK [local : Check if NFS mounts are already active] ************************************************************************
+2025-07-16 16:41:37,673 p=68610 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:41:37,680 p=68610 u=bill n=ansible INFO| TASK [local : Skip NFS setup if already mounted] *****************************************************************************
+2025-07-16 16:41:37,697 p=68610 u=bill n=ansible INFO| ok: [localhost] => {
+    "msg": "NFS mounts already active (6 mounts found), skipping setup"
+}
+2025-07-16 16:41:37,704 p=68610 u=bill n=ansible INFO| TASK [local : Install NFS utilities] *****************************************************************************************
+2025-07-16 16:41:37,717 p=68610 u=bill n=ansible INFO| skipping: [localhost]
+2025-07-16 16:41:37,723 p=68610 u=bill n=ansible INFO| TASK [local : Create /mnt/truenas base directory] ****************************************************************************
+2025-07-16 16:41:37,738 p=68610 u=bill n=ansible INFO| skipping: [localhost]
+2025-07-16 16:41:37,744 p=68610 u=bill n=ansible INFO| TASK [local : Unmount old direct NFS mounts for bill] ************************************************************************
+2025-07-16 16:41:37,760 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'desktop', 'type': 'local'}) 
+2025-07-16 16:41:37,765 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'documents', 'type': 'symlink', 'target': '/mnt/truenas/bill-documents', 'fallback': True}) 
+2025-07-16 16:41:37,767 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'downloads', 'type': 'symlink', 'target': '/mnt/truenas/bill-downloads', 'fallback': True}) 
+2025-07-16 16:41:37,769 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'media', 'type': 'symlink', 'target': '/mnt/truenas/media', 'fallback': False}) 
+2025-07-16 16:41:37,772 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'code', 'type': 'local'}) 
+2025-07-16 16:41:37,775 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'git', 'type': 'local'}) 
+2025-07-16 16:41:37,775 p=68610 u=bill n=ansible INFO| skipping: [localhost]
+2025-07-16 16:41:37,781 p=68610 u=bill n=ansible INFO| TASK [local : Remove old direct NFS mount entries from fstab for bill] *******************************************************
+2025-07-16 16:41:37,799 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'desktop', 'type': 'local'}) 
+2025-07-16 16:41:37,801 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'documents', 'type': 'symlink', 'target': '/mnt/truenas/bill-documents', 'fallback': True}) 
+2025-07-16 16:41:37,804 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'downloads', 'type': 'symlink', 'target': '/mnt/truenas/bill-downloads', 'fallback': True}) 
+2025-07-16 16:41:37,807 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'media', 'type': 'symlink', 'target': '/mnt/truenas/media', 'fallback': False}) 
+2025-07-16 16:41:37,809 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'code', 'type': 'local'}) 
+2025-07-16 16:41:37,812 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'git', 'type': 'local'}) 
+2025-07-16 16:41:37,812 p=68610 u=bill n=ansible INFO| skipping: [localhost]
+2025-07-16 16:41:37,819 p=68610 u=bill n=ansible INFO| TASK [local : Create NFS mount point directories] ****************************************************************************
+2025-07-16 16:41:37,834 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/home/bill/Documents', 'dest': '/mnt/truenas/bill-documents', 'opts': 'rw,soft,intr,timeo=30,retrans=3,uid=1000,gid=1000'}) 
+2025-07-16 16:41:37,837 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/home/bill/Downloads', 'dest': '/mnt/truenas/bill-downloads', 'opts': 'rw,soft,intr,timeo=30,retrans=3,uid=1000,gid=1000'}) 
+2025-07-16 16:41:37,839 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'src': '192.168.86.109:/mnt/Data/media', 'dest': '/mnt/truenas/media', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}) 
+2025-07-16 16:41:37,842 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/docs/paper', 'dest': '/mnt/truenas/paperless', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}) 
+2025-07-16 16:41:37,844 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/home/shared_files', 'dest': '/mnt/truenas/shared_files', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}) 
+2025-07-16 16:41:37,846 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/workouts', 'dest': '/mnt/truenas/workouts', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}) 
+2025-07-16 16:41:37,847 p=68610 u=bill n=ansible INFO| skipping: [localhost]
+2025-07-16 16:41:37,853 p=68610 u=bill n=ansible INFO| TASK [local : Add NFS mounts to fstab] ***************************************************************************************
+2025-07-16 16:41:37,868 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/home/bill/Documents', 'dest': '/mnt/truenas/bill-documents', 'opts': 'rw,soft,intr,timeo=30,retrans=3,uid=1000,gid=1000'}) 
+2025-07-16 16:41:37,870 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/home/bill/Downloads', 'dest': '/mnt/truenas/bill-downloads', 'opts': 'rw,soft,intr,timeo=30,retrans=3,uid=1000,gid=1000'}) 
+2025-07-16 16:41:37,872 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'src': '192.168.86.109:/mnt/Data/media', 'dest': '/mnt/truenas/media', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}) 
+2025-07-16 16:41:37,874 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/docs/paper', 'dest': '/mnt/truenas/paperless', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}) 
+2025-07-16 16:41:37,877 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/home/shared_files', 'dest': '/mnt/truenas/shared_files', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}) 
+2025-07-16 16:41:37,879 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/workouts', 'dest': '/mnt/truenas/workouts', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}) 
+2025-07-16 16:41:37,880 p=68610 u=bill n=ansible INFO| skipping: [localhost]
+2025-07-16 16:41:37,886 p=68610 u=bill n=ansible INFO| TASK [local : Create shared mount point directories with proper ownership] ***************************************************
+2025-07-16 16:41:37,901 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'path': '/mnt/truenas/media', 'owner': 'root', 'group': 'media', 'mode': '0755'}) 
+2025-07-16 16:41:37,905 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'path': '/mnt/truenas/paperless', 'owner': 'root', 'group': 'docs', 'mode': '0775'}) 
+2025-07-16 16:41:37,908 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'path': '/mnt/truenas/shared_files', 'owner': 'root', 'group': 'docs', 'mode': '0775'}) 
+2025-07-16 16:41:37,910 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'path': '/mnt/truenas/workouts', 'owner': 'root', 'group': 'data', 'mode': '0775'}) 
+2025-07-16 16:41:37,911 p=68610 u=bill n=ansible INFO| skipping: [localhost]
+2025-07-16 16:41:37,916 p=68610 u=bill n=ansible INFO| TASK [local : Mount NFS shares (gracefully handle failures)] *****************************************************************
+2025-07-16 16:41:37,929 p=68610 u=bill n=ansible INFO| skipping: [localhost]
+2025-07-16 16:41:37,935 p=68610 u=bill n=ansible INFO| TASK [local : Check which NFS mounts are actually available] *****************************************************************
+2025-07-16 16:41:38,102 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/home/bill/Documents', 'dest': '/mnt/truenas/bill-documents', 'opts': 'rw,soft,intr,timeo=30,retrans=3,uid=1000,gid=1000'})
+2025-07-16 16:41:38,252 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/home/bill/Downloads', 'dest': '/mnt/truenas/bill-downloads', 'opts': 'rw,soft,intr,timeo=30,retrans=3,uid=1000,gid=1000'})
+2025-07-16 16:41:38,411 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'src': '192.168.86.109:/mnt/Data/media', 'dest': '/mnt/truenas/media', 'opts': 'rw,soft,intr,timeo=30,retrans=3'})
+2025-07-16 16:41:38,568 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/docs/paper', 'dest': '/mnt/truenas/paperless', 'opts': 'rw,soft,intr,timeo=30,retrans=3'})
+2025-07-16 16:41:38,720 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/home/shared_files', 'dest': '/mnt/truenas/shared_files', 'opts': 'rw,soft,intr,timeo=30,retrans=3'})
+2025-07-16 16:41:38,868 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/workouts', 'dest': '/mnt/truenas/workouts', 'opts': 'rw,soft,intr,timeo=30,retrans=3'})
+2025-07-16 16:41:38,876 p=68610 u=bill n=ansible INFO| TASK [local : Display NFS mount status] **************************************************************************************
+2025-07-16 16:41:38,899 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'changed': False, 'stat': {'exists': True, 'path': '/mnt/truenas/bill-documents', 'mode': '0755', 'isdir': True, 'ischr': False, 'isblk': False, 'isreg': False, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 1000, 'gid': 1000, 'size': 4, 'inode': 34, 'dev': 75, 'nlink': 2, 'atime': 1733443122.3153572, 'mtime': 1752694527.433836, 'ctime': 1752694527.433836, 'wusr': True, 'rusr': True, 'xusr': True, 'wgrp': False, 'rgrp': True, 'xgrp': True, 'woth': False, 'roth': True, 'xoth': True, 'isuid': False, 'isgid': False, 'blocks': 49, 'block_size': 1048576, 'device_type': 0, 'readable': True, 'writeable': False, 'executable': True, 'pw_name': 'bill', 'gr_name': 'bill', 'mimetype': 'inode/directory', 'charset': 'binary', 'version': None, 'attributes': [], 'attr_flags': ''}, 'invocation': {'module_args': {'path': '/mnt/truenas/bill-documents', 'follow': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': {'src': '192.168.86.109:/mnt/ssd-files/home/bill/Documents', 'dest': '/mnt/truenas/bill-documents', 'opts': 'rw,soft,intr,timeo=30,retrans=3,uid=1000,gid=1000'}, 'ansible_loop_var': 'item'}) => {
+    "msg": "NFS mount /mnt/truenas/bill-documents is available"
+}
+2025-07-16 16:41:38,904 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'changed': False, 'stat': {'exists': True, 'path': '/mnt/truenas/bill-downloads', 'mode': '0755', 'isdir': True, 'ischr': False, 'isblk': False, 'isreg': False, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 1000, 'gid': 1000, 'size': 2, 'inode': 34, 'dev': 76, 'nlink': 2, 'atime': 1733443240.478003, 'mtime': 1752696114.7111633, 'ctime': 1752696114.7111633, 'wusr': True, 'rusr': True, 'xusr': True, 'wgrp': False, 'rgrp': True, 'xgrp': True, 'woth': False, 'roth': True, 'xoth': True, 'isuid': False, 'isgid': False, 'blocks': 49, 'block_size': 1048576, 'device_type': 0, 'readable': True, 'writeable': False, 'executable': True, 'pw_name': 'bill', 'gr_name': 'bill', 'mimetype': 'inode/directory', 'charset': 'binary', 'version': None, 'attributes': [], 'attr_flags': ''}, 'invocation': {'module_args': {'path': '/mnt/truenas/bill-downloads', 'follow': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': {'src': '192.168.86.109:/mnt/ssd-files/home/bill/Downloads', 'dest': '/mnt/truenas/bill-downloads', 'opts': 'rw,soft,intr,timeo=30,retrans=3,uid=1000,gid=1000'}, 'ansible_loop_var': 'item'}) => {
+    "msg": "NFS mount /mnt/truenas/bill-downloads is available"
+}
+2025-07-16 16:41:38,909 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'changed': False, 'stat': {'exists': True, 'path': '/mnt/truenas/media', 'mode': '0755', 'isdir': True, 'ischr': False, 'isblk': False, 'isreg': False, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 1000, 'gid': 1776, 'size': 7, 'inode': 34, 'dev': 70, 'nlink': 7, 'atime': 1733251756.254411, 'mtime': 1751579383.2919805, 'ctime': 1751641816.5477104, 'wusr': True, 'rusr': True, 'xusr': True, 'wgrp': False, 'rgrp': True, 'xgrp': True, 'woth': False, 'roth': True, 'xoth': True, 'isuid': False, 'isgid': False, 'blocks': 22, 'block_size': 1048576, 'device_type': 0, 'readable': True, 'writeable': False, 'executable': True, 'pw_name': 'bill', 'gr_name': 'media', 'mimetype': 'inode/directory', 'charset': 'binary', 'version': None, 'attributes': [], 'attr_flags': ''}, 'invocation': {'module_args': {'path': '/mnt/truenas/media', 'follow': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': {'src': '192.168.86.109:/mnt/Data/media', 'dest': '/mnt/truenas/media', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}, 'ansible_loop_var': 'item'}) => {
+    "msg": "NFS mount /mnt/truenas/media is available"
+}
+2025-07-16 16:41:38,915 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'changed': False, 'stat': {'exists': True, 'path': '/mnt/truenas/paperless', 'mode': '0775', 'isdir': True, 'ischr': False, 'isblk': False, 'isreg': False, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 1000, 'gid': 1787, 'size': 10, 'inode': 34, 'dev': 77, 'nlink': 10, 'atime': 1739313007.1526165, 'mtime': 1750182418.659946, 'ctime': 1750182418.659946, 'wusr': True, 'rusr': True, 'xusr': True, 'wgrp': True, 'rgrp': True, 'xgrp': True, 'woth': False, 'roth': True, 'xoth': True, 'isuid': False, 'isgid': False, 'blocks': 17, 'block_size': 1048576, 'device_type': 0, 'readable': True, 'writeable': False, 'executable': True, 'pw_name': 'bill', 'gr_name': 'docs', 'mimetype': 'inode/directory', 'charset': 'binary', 'version': None, 'attributes': [], 'attr_flags': ''}, 'invocation': {'module_args': {'path': '/mnt/truenas/paperless', 'follow': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': {'src': '192.168.86.109:/mnt/ssd-files/docs/paper', 'dest': '/mnt/truenas/paperless', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}, 'ansible_loop_var': 'item'}) => {
+    "msg": "NFS mount /mnt/truenas/paperless is available"
+}
+2025-07-16 16:41:38,920 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'changed': False, 'stat': {'exists': True, 'path': '/mnt/truenas/shared_files', 'mode': '0755', 'isdir': True, 'ischr': False, 'isblk': False, 'isreg': False, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 1000, 'gid': 1787, 'size': 5, 'inode': 8, 'dev': 78, 'nlink': 5, 'atime': 1749933597.3132617, 'mtime': 1750002087.5725596, 'ctime': 1750002087.5725596, 'wusr': True, 'rusr': True, 'xusr': True, 'wgrp': False, 'rgrp': True, 'xgrp': True, 'woth': False, 'roth': True, 'xoth': True, 'isuid': False, 'isgid': False, 'blocks': 1, 'block_size': 1048576, 'device_type': 0, 'readable': True, 'writeable': False, 'executable': True, 'pw_name': 'bill', 'gr_name': 'docs', 'mimetype': 'inode/directory', 'charset': 'binary', 'version': None, 'attributes': [], 'attr_flags': ''}, 'invocation': {'module_args': {'path': '/mnt/truenas/shared_files', 'follow': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': {'src': '192.168.86.109:/mnt/ssd-files/home/shared_files', 'dest': '/mnt/truenas/shared_files', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}, 'ansible_loop_var': 'item'}) => {
+    "msg": "NFS mount /mnt/truenas/shared_files is available"
+}
+2025-07-16 16:41:38,925 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'changed': False, 'stat': {'exists': True, 'path': '/mnt/truenas/workouts', 'mode': '0777', 'isdir': True, 'ischr': False, 'isblk': False, 'isreg': False, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 1000, 'gid': 1997, 'size': 16, 'inode': 34, 'dev': 74, 'nlink': 2, 'atime': 1750698772.8179214, 'mtime': 1751040198.329379, 'ctime': 1751566494.6837077, 'wusr': True, 'rusr': True, 'xusr': True, 'wgrp': True, 'rgrp': True, 'xgrp': True, 'woth': True, 'roth': True, 'xoth': True, 'isuid': False, 'isgid': False, 'blocks': 17, 'block_size': 1048576, 'device_type': 0, 'readable': True, 'writeable': True, 'executable': True, 'pw_name': 'bill', 'gr_name': 'data', 'mimetype': 'inode/directory', 'charset': 'binary', 'version': None, 'attributes': [], 'attr_flags': ''}, 'invocation': {'module_args': {'path': '/mnt/truenas/workouts', 'follow': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': {'src': '192.168.86.109:/mnt/ssd-files/workouts', 'dest': '/mnt/truenas/workouts', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}, 'ansible_loop_var': 'item'}) => {
+    "msg": "NFS mount /mnt/truenas/workouts is available"
+}
+2025-07-16 16:41:38,932 p=68610 u=bill n=ansible INFO| TASK [local : include_tasks] *************************************************************************************************
+2025-07-16 16:41:38,948 p=68610 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/local/tasks/user_directories_resilient.yml for localhost
+2025-07-16 16:41:38,981 p=68610 u=bill n=ansible INFO| TASK [local : Create bill user home directory] *******************************************************************************
+2025-07-16 16:41:39,142 p=68610 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:41:39,147 p=68610 u=bill n=ansible INFO| TASK [local : Remove unwanted default directories for bill] ******************************************************************
+2025-07-16 16:41:39,305 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item=Desktop)
+2025-07-16 16:41:39,456 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item=Documents)
+2025-07-16 16:41:39,600 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item=Downloads)
+2025-07-16 16:41:39,749 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item=Music)
+2025-07-16 16:41:39,898 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item=Pictures)
+2025-07-16 16:41:40,046 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item=Public)
+2025-07-16 16:41:40,194 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item=Templates)
+2025-07-16 16:41:40,343 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item=Videos)
+2025-07-16 16:41:40,351 p=68610 u=bill n=ansible INFO| TASK [local : Create fallback directories for bill's symlink directories] ****************************************************
+2025-07-16 16:41:40,362 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'desktop', 'type': 'local'}) 
+2025-07-16 16:41:40,521 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'documents', 'type': 'symlink', 'target': '/mnt/truenas/bill-documents', 'fallback': True})
+2025-07-16 16:41:40,672 p=68610 u=bill n=ansible INFO| changed: [localhost] => (item={'name': 'downloads', 'type': 'symlink', 'target': '/mnt/truenas/bill-downloads', 'fallback': True})
+2025-07-16 16:41:40,675 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'media', 'type': 'symlink', 'target': '/mnt/truenas/media', 'fallback': False}) 
+2025-07-16 16:41:40,677 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'code', 'type': 'local'}) 
+2025-07-16 16:41:40,679 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'git', 'type': 'local'}) 
+2025-07-16 16:41:40,685 p=68610 u=bill n=ansible INFO| TASK [local : Copy existing content to fallback directories for bill] ********************************************************
+2025-07-16 16:41:40,696 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'desktop', 'type': 'local'}) 
+2025-07-16 16:41:40,852 p=68610 u=bill n=ansible INFO| changed: [localhost] => (item={'name': 'documents', 'type': 'symlink', 'target': '/mnt/truenas/bill-documents', 'fallback': True})
+2025-07-16 16:41:41,002 p=68610 u=bill n=ansible INFO| changed: [localhost] => (item={'name': 'downloads', 'type': 'symlink', 'target': '/mnt/truenas/bill-downloads', 'fallback': True})
+2025-07-16 16:41:41,004 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'media', 'type': 'symlink', 'target': '/mnt/truenas/media', 'fallback': False}) 
+2025-07-16 16:41:41,005 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'code', 'type': 'local'}) 
+2025-07-16 16:41:41,007 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'git', 'type': 'local'}) 
+2025-07-16 16:41:41,013 p=68610 u=bill n=ansible INFO| TASK [local : Remove old directories to prepare for symlinks for bill] *******************************************************
+2025-07-16 16:41:41,024 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'desktop', 'type': 'local'}) 
+2025-07-16 16:41:41,181 p=68610 u=bill n=ansible INFO| changed: [localhost] => (item={'name': 'documents', 'type': 'symlink', 'target': '/mnt/truenas/bill-documents', 'fallback': True})
+2025-07-16 16:41:41,339 p=68610 u=bill n=ansible INFO| changed: [localhost] => (item={'name': 'downloads', 'type': 'symlink', 'target': '/mnt/truenas/bill-downloads', 'fallback': True})
+2025-07-16 16:41:41,493 p=68610 u=bill n=ansible INFO| changed: [localhost] => (item={'name': 'media', 'type': 'symlink', 'target': '/mnt/truenas/media', 'fallback': False})
+2025-07-16 16:41:41,494 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'code', 'type': 'local'}) 
+2025-07-16 16:41:41,496 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'git', 'type': 'local'}) 
+2025-07-16 16:41:41,503 p=68610 u=bill n=ansible INFO| TASK [local : Create local directories for bill] *****************************************************************************
+2025-07-16 16:41:41,669 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'desktop', 'type': 'local'})
+2025-07-16 16:41:41,671 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'documents', 'type': 'symlink', 'target': '/mnt/truenas/bill-documents', 'fallback': True}) 
+2025-07-16 16:41:41,673 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'downloads', 'type': 'symlink', 'target': '/mnt/truenas/bill-downloads', 'fallback': True}) 
+2025-07-16 16:41:41,675 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'media', 'type': 'symlink', 'target': '/mnt/truenas/media', 'fallback': False}) 
+2025-07-16 16:41:41,829 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'code', 'type': 'local'})
+2025-07-16 16:41:41,986 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'git', 'type': 'local'})
+2025-07-16 16:41:41,992 p=68610 u=bill n=ansible INFO| TASK [local : Check NFS targets availability for bill] ***********************************************************************
+2025-07-16 16:41:42,002 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'desktop', 'type': 'local'}) 
+2025-07-16 16:41:42,153 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'documents', 'type': 'symlink', 'target': '/mnt/truenas/bill-documents', 'fallback': True})
+2025-07-16 16:41:42,299 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'downloads', 'type': 'symlink', 'target': '/mnt/truenas/bill-downloads', 'fallback': True})
+2025-07-16 16:41:42,445 p=68610 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'media', 'type': 'symlink', 'target': '/mnt/truenas/media', 'fallback': False})
+2025-07-16 16:41:42,447 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'code', 'type': 'local'}) 
+2025-07-16 16:41:42,449 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'git', 'type': 'local'}) 
+2025-07-16 16:41:42,456 p=68610 u=bill n=ansible INFO| TASK [local : Create NFS symlinks when available for bill] *******************************************************************
+2025-07-16 16:41:42,474 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'changed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': 'item.type == "symlink"', 'item': {'name': 'desktop', 'type': 'local'}, 'ansible_loop_var': 'item'}) 
+2025-07-16 16:41:42,627 p=68610 u=bill n=ansible INFO| changed: [localhost] => (item={'changed': False, 'stat': {'exists': True, 'path': '/mnt/truenas/bill-documents', 'mode': '0755', 'isdir': True, 'ischr': False, 'isblk': False, 'isreg': False, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 1000, 'gid': 1000, 'size': 4, 'inode': 34, 'dev': 75, 'nlink': 2, 'atime': 1733443122.3153572, 'mtime': 1752694527.433836, 'ctime': 1752694527.433836, 'wusr': True, 'rusr': True, 'xusr': True, 'wgrp': False, 'rgrp': True, 'xgrp': True, 'woth': False, 'roth': True, 'xoth': True, 'isuid': False, 'isgid': False, 'blocks': 49, 'block_size': 1048576, 'device_type': 0, 'readable': True, 'writeable': False, 'executable': True, 'pw_name': 'bill', 'gr_name': 'bill', 'mimetype': 'inode/directory', 'charset': 'binary', 'version': None, 'attributes': [], 'attr_flags': ''}, 'invocation': {'module_args': {'path': '/mnt/truenas/bill-documents', 'follow': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': {'name': 'documents', 'type': 'symlink', 'target': '/mnt/truenas/bill-documents', 'fallback': True}, 'ansible_loop_var': 'item'})
+2025-07-16 16:41:42,778 p=68610 u=bill n=ansible INFO| changed: [localhost] => (item={'changed': False, 'stat': {'exists': True, 'path': '/mnt/truenas/bill-downloads', 'mode': '0755', 'isdir': True, 'ischr': False, 'isblk': False, 'isreg': False, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 1000, 'gid': 1000, 'size': 2, 'inode': 34, 'dev': 76, 'nlink': 2, 'atime': 1733443240.478003, 'mtime': 1752696114.7111633, 'ctime': 1752696114.7111633, 'wusr': True, 'rusr': True, 'xusr': True, 'wgrp': False, 'rgrp': True, 'xgrp': True, 'woth': False, 'roth': True, 'xoth': True, 'isuid': False, 'isgid': False, 'blocks': 49, 'block_size': 1048576, 'device_type': 0, 'readable': True, 'writeable': False, 'executable': True, 'pw_name': 'bill', 'gr_name': 'bill', 'mimetype': 'inode/directory', 'charset': 'binary', 'version': None, 'attributes': [], 'attr_flags': ''}, 'invocation': {'module_args': {'path': '/mnt/truenas/bill-downloads', 'follow': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': {'name': 'downloads', 'type': 'symlink', 'target': '/mnt/truenas/bill-downloads', 'fallback': True}, 'ansible_loop_var': 'item'})
+2025-07-16 16:41:42,928 p=68610 u=bill n=ansible INFO| failed: [localhost] (item={'changed': False, 'stat': {'exists': True, 'path': '/mnt/truenas/media', 'mode': '0755', 'isdir': True, 'ischr': False, 'isblk': False, 'isreg': False, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 1000, 'gid': 1776, 'size': 7, 'inode': 34, 'dev': 70, 'nlink': 7, 'atime': 1733251756.254411, 'mtime': 1751579383.2919805, 'ctime': 1751641816.5477104, 'wusr': True, 'rusr': True, 'xusr': True, 'wgrp': False, 'rgrp': True, 'xgrp': True, 'woth': False, 'roth': True, 'xoth': True, 'isuid': False, 'isgid': False, 'blocks': 22, 'block_size': 1048576, 'device_type': 0, 'readable': True, 'writeable': False, 'executable': True, 'pw_name': 'bill', 'gr_name': 'media', 'mimetype': 'inode/directory', 'charset': 'binary', 'version': None, 'attributes': [], 'attr_flags': ''}, 'invocation': {'module_args': {'path': '/mnt/truenas/media', 'follow': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': {'name': 'media', 'type': 'symlink', 'target': '/mnt/truenas/media', 'fallback': False}, 'ansible_loop_var': 'item'}) => {"ansible_loop_var": "item", "changed": false, "gid": 1776, "group": "media", "item": {"ansible_loop_var": "item", "changed": false, "failed": false, "invocation": {"module_args": {"checksum_algorithm": "sha1", "follow": false, "get_attributes": true, "get_checksum": true, "get_mime": true, "path": "/mnt/truenas/media"}}, "item": {"fallback": false, "name": "media", "target": "/mnt/truenas/media", "type": "symlink"}, "stat": {"atime": 1733251756.254411, "attr_flags": "", "attributes": [], "block_size": 1048576, "blocks": 22, "charset": "binary", "ctime": 1751641816.5477104, "dev": 70, "device_type": 0, "executable": true, "exists": true, "gid": 1776, "gr_name": "media", "inode": 34, "isblk": false, "ischr": false, "isdir": true, "isfifo": false, "isgid": false, "islnk": false, "isreg": false, "issock": false, "isuid": false, "mimetype": "inode/directory", "mode": "0755", "mtime": 1751579383.2919805, "nlink": 7, "path": "/mnt/truenas/media", "pw_name": "bill", "readable": true, "rgrp": true, "roth": true, "rusr": true, "size": 7, "uid": 1000, "version": null, "wgrp": false, "woth": false, "writeable": false, "wusr": true, "xgrp": true, "xoth": true, "xusr": true}}, "mode": "0755", "msg": "chgrp failed", "owner": "bill", "path": "/mnt/truenas/media", "size": 7, "state": "directory", "uid": 1000}
+2025-07-16 16:41:42,930 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'changed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': 'item.type == "symlink"', 'item': {'name': 'code', 'type': 'local'}, 'ansible_loop_var': 'item'}) 
+2025-07-16 16:41:42,932 p=68610 u=bill n=ansible INFO| skipping: [localhost] => (item={'changed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': 'item.type == "symlink"', 'item': {'name': 'git', 'type': 'local'}, 'ansible_loop_var': 'item'}) 
+2025-07-16 16:41:42,936 p=68610 u=bill n=ansible INFO| PLAY RECAP *******************************************************************************************************************
+2025-07-16 16:41:42,936 p=68610 u=bill n=ansible INFO| localhost                  : ok=41   changed=4    unreachable=0    failed=1    skipped=8    rescued=0    ignored=0   
+2025-07-16 16:42:09,726 p=71905 u=bill n=ansible INFO| PLAY [all] *******************************************************************************************************************
+2025-07-16 16:42:09,732 p=71905 u=bill n=ansible INFO| TASK [Gathering Facts] *******************************************************************************************************
+2025-07-16 16:42:10,453 p=71905 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:42:10,458 p=71905 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] **************************************************************************
+2025-07-16 16:42:12,311 p=71905 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:42:12,318 p=71905 u=bill n=ansible INFO| TASK [Include host variables dynamically] ************************************************************************************
+2025-07-16 16:42:12,333 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item=host_vars/localhost.yml)
+2025-07-16 16:42:12,335 p=71905 u=bill n=ansible INFO| PLAY [updates] ***************************************************************************************************************
+2025-07-16 16:42:12,336 p=71905 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-16 16:42:12,338 p=71905 u=bill n=ansible INFO| PLAY [workstation] ***********************************************************************************************************
+2025-07-16 16:42:12,338 p=71905 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-16 16:42:12,339 p=71905 u=bill n=ansible INFO| PLAY [local] *****************************************************************************************************************
+2025-07-16 16:42:12,346 p=71905 u=bill n=ansible INFO| TASK [Gathering Facts] *******************************************************************************************************
+2025-07-16 16:42:13,819 p=71905 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:42:13,824 p=71905 u=bill n=ansible INFO| TASK [local : pre-run | update package cache (debian, etc)] ******************************************************************
+2025-07-16 16:42:15,207 p=71905 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:42:15,212 p=71905 u=bill n=ansible INFO| TASK [local : Load group variables] ******************************************************************************************
+2025-07-16 16:42:15,222 p=71905 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:42:15,227 p=71905 u=bill n=ansible INFO| TASK [local : Load workstations_new variables for resilient NFS] *************************************************************
+2025-07-16 16:42:15,240 p=71905 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:42:15,246 p=71905 u=bill n=ansible INFO| TASK [local : Filter NFS mounts for local ansible server (only bill and shared mounts)] **************************************
+2025-07-16 16:42:15,265 p=71905 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:42:15,271 p=71905 u=bill n=ansible INFO| TASK [local : Copy bashrc for Bill] ******************************************************************************************
+2025-07-16 16:42:15,713 p=71905 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:42:15,718 p=71905 u=bill n=ansible INFO| TASK [local : include_tasks] *************************************************************************************************
+2025-07-16 16:42:15,731 p=71905 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/local/tasks/groups.yml for localhost
+2025-07-16 16:42:15,738 p=71905 u=bill n=ansible INFO| TASK [local : Ensure groups are created] *************************************************************************************
+2025-07-16 16:42:15,974 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'media', 'gid': 1776})
+2025-07-16 16:42:16,121 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'docs', 'gid': 1787})
+2025-07-16 16:42:16,275 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'hal', 'gid': 1999})
+2025-07-16 16:42:16,421 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'ansible', 'gid': 1998})
+2025-07-16 16:42:16,569 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'data', 'gid': 1997})
+2025-07-16 16:42:16,723 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'git', 'gid': 1996})
+2025-07-16 16:42:16,879 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'librarian', 'gid': 1995})
+2025-07-16 16:42:16,885 p=71905 u=bill n=ansible INFO| TASK [local : Add hal to each nfs_user group] ********************************************************************************
+2025-07-16 16:42:17,193 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item=bill)
+2025-07-16 16:42:17,200 p=71905 u=bill n=ansible INFO| TASK [local : include_tasks] *************************************************************************************************
+2025-07-16 16:42:17,218 p=71905 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/local/tasks/home_directory.yml for localhost
+2025-07-16 16:42:17,224 p=71905 u=bill n=ansible INFO| TASK [local : Create Bill directories] ***************************************************************************************
+2025-07-16 16:42:17,380 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/desktop)
+2025-07-16 16:42:17,528 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/documents)
+2025-07-16 16:42:17,673 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/downloads)
+2025-07-16 16:42:17,823 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/media)
+2025-07-16 16:42:17,965 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/code)
+2025-07-16 16:42:18,109 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/git)
+2025-07-16 16:42:18,116 p=71905 u=bill n=ansible INFO| TASK [local : Find unwanted directories and check if empty] ******************************************************************
+2025-07-16 16:42:18,338 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Desktop)
+2025-07-16 16:42:18,488 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Documents)
+2025-07-16 16:42:18,634 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Downloads)
+2025-07-16 16:42:18,782 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Music)
+2025-07-16 16:42:18,927 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Pictures)
+2025-07-16 16:42:19,092 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Public)
+2025-07-16 16:42:19,237 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Templates)
+2025-07-16 16:42:19,386 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item=/home/bill/Videos)
+2025-07-16 16:42:19,388 p=71905 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Desktop' path due to this access issue: '/home/bill/Desktop' is not a directory
+
+2025-07-16 16:42:19,389 p=71905 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Documents' path due to this access issue: '/home/bill/Documents' is not a directory
+
+2025-07-16 16:42:19,389 p=71905 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Downloads' path due to this access issue: '/home/bill/Downloads' is not a directory
+
+2025-07-16 16:42:19,389 p=71905 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Music' path due to this access issue: '/home/bill/Music' is not a directory
+
+2025-07-16 16:42:19,389 p=71905 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Pictures' path due to this access issue: '/home/bill/Pictures' is not a directory
+
+2025-07-16 16:42:19,389 p=71905 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Public' path due to this access issue: '/home/bill/Public' is not a directory
+
+2025-07-16 16:42:19,389 p=71905 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Templates' path due to this access issue: '/home/bill/Templates' is not a directory
+
+2025-07-16 16:42:19,389 p=71905 u=bill n=ansible WARNING| [WARNING]: Skipped '/home/bill/Videos' path due to this access issue: '/home/bill/Videos' is not a directory
+
+2025-07-16 16:42:19,395 p=71905 u=bill n=ansible INFO| TASK [local : Remove empty unwanted directories] *****************************************************************************
+2025-07-16 16:42:19,561 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Desktop': "'/home/bill/Desktop' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Desktop'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Desktop', 'ansible_loop_var': 'item'})
+2025-07-16 16:42:19,714 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Documents': "'/home/bill/Documents' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Documents'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Documents', 'ansible_loop_var': 'item'})
+2025-07-16 16:42:19,862 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Downloads': "'/home/bill/Downloads' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Downloads'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Downloads', 'ansible_loop_var': 'item'})
+2025-07-16 16:42:20,014 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Music': "'/home/bill/Music' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Music'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Music', 'ansible_loop_var': 'item'})
+2025-07-16 16:42:20,164 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Pictures': "'/home/bill/Pictures' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Pictures'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Pictures', 'ansible_loop_var': 'item'})
+2025-07-16 16:42:20,322 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Public': "'/home/bill/Public' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Public'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Public', 'ansible_loop_var': 'item'})
+2025-07-16 16:42:20,473 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Templates': "'/home/bill/Templates' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Templates'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Templates', 'ansible_loop_var': 'item'})
+2025-07-16 16:42:20,622 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'files': [], 'changed': False, 'msg': 'Not all paths examined, check warnings for details', 'matched': 0, 'examined': 0, 'skipped_paths': {'/home/bill/Videos': "'/home/bill/Videos' is not a directory"}, 'invocation': {'module_args': {'paths': ['/home/bill/Videos'], 'file_type': 'any', 'patterns': ['*'], 'read_whole_file': False, 'age_stamp': 'mtime', 'recurse': False, 'hidden': False, 'follow': False, 'get_checksum': False, 'use_regex': False, 'exact_mode': True, 'excludes': None, 'contains': None, 'age': None, 'size': None, 'depth': None, 'mode': None, 'encoding': None, 'limit': None}}, 'failed': False, 'item': '/home/bill/Videos', 'ansible_loop_var': 'item'})
+2025-07-16 16:42:20,632 p=71905 u=bill n=ansible INFO| TASK [local : Rename snap to .snap] ******************************************************************************************
+2025-07-16 16:42:20,840 p=71905 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:42:20,846 p=71905 u=bill n=ansible INFO| TASK [local : Ensure .snap directory exists] *********************************************************************************
+2025-07-16 16:42:21,014 p=71905 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:42:21,022 p=71905 u=bill n=ansible INFO| TASK [local : Update .config/user-dirs.dirs file] ****************************************************************************
+2025-07-16 16:42:21,376 p=71905 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:42:21,382 p=71905 u=bill n=ansible INFO| TASK [local : Update .config/gtk-3.0/bookmarks file] *************************************************************************
+2025-07-16 16:42:21,705 p=71905 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:42:21,712 p=71905 u=bill n=ansible INFO| TASK [local : Remove dead .desktop files from Desktop] ***********************************************************************
+2025-07-16 16:42:21,879 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item=Documents)
+2025-07-16 16:42:22,033 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item=Music)
+2025-07-16 16:42:22,187 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item=Pictures)
+2025-07-16 16:42:22,341 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item=Videos)
+2025-07-16 16:42:22,347 p=71905 u=bill n=ansible INFO| TASK [local : Check if Desktop directory is empty] ***************************************************************************
+2025-07-16 16:42:22,505 p=71905 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:42:22,510 p=71905 u=bill n=ansible INFO| TASK [local : Rename Desktop to desktop if empty] ****************************************************************************
+2025-07-16 16:42:22,667 p=71905 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:42:22,673 p=71905 u=bill n=ansible INFO| TASK [local : Ensure desktop directory exists] *******************************************************************************
+2025-07-16 16:42:22,832 p=71905 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:42:22,839 p=71905 u=bill n=ansible INFO| TASK [local : Check if GNOME session needs restart] **************************************************************************
+2025-07-16 16:42:22,990 p=71905 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:42:22,995 p=71905 u=bill n=ansible INFO| TASK [local : Check if running in graphical environment] *********************************************************************
+2025-07-16 16:42:23,155 p=71905 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:42:23,160 p=71905 u=bill n=ansible INFO| TASK [local : gnome | appearance | dconf update] *****************************************************************************
+2025-07-16 16:42:23,324 p=71905 u=bill n=ansible INFO| changed: [localhost]
+2025-07-16 16:42:23,333 p=71905 u=bill n=ansible INFO| TASK [local : Wait for system to come back] **********************************************************************************
+2025-07-16 16:42:33,344 p=71905 u=bill n=ansible WARNING| [WARNING]: Reset is not implemented for this connection
+
+2025-07-16 16:42:33,557 p=71905 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:42:33,563 p=71905 u=bill n=ansible INFO| TASK [local : include_tasks] *************************************************************************************************
+2025-07-16 16:42:33,580 p=71905 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/local/tasks/fstab_new.yml for localhost
+2025-07-16 16:42:33,589 p=71905 u=bill n=ansible INFO| TASK [local : Check if NFS mounts are already active] ************************************************************************
+2025-07-16 16:42:33,750 p=71905 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:42:33,756 p=71905 u=bill n=ansible INFO| TASK [local : Skip NFS setup if already mounted] *****************************************************************************
+2025-07-16 16:42:33,772 p=71905 u=bill n=ansible INFO| ok: [localhost] => {
+    "msg": "NFS mounts already active (6 mounts found), skipping setup"
+}
+2025-07-16 16:42:33,778 p=71905 u=bill n=ansible INFO| TASK [local : Install NFS utilities] *****************************************************************************************
+2025-07-16 16:42:33,791 p=71905 u=bill n=ansible INFO| skipping: [localhost]
+2025-07-16 16:42:33,796 p=71905 u=bill n=ansible INFO| TASK [local : Create /mnt/truenas base directory] ****************************************************************************
+2025-07-16 16:42:33,809 p=71905 u=bill n=ansible INFO| skipping: [localhost]
+2025-07-16 16:42:33,815 p=71905 u=bill n=ansible INFO| TASK [local : Unmount old direct NFS mounts for bill] ************************************************************************
+2025-07-16 16:42:33,829 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'desktop', 'type': 'local'}) 
+2025-07-16 16:42:33,834 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'documents', 'type': 'symlink', 'target': '/mnt/truenas/bill-documents', 'fallback': True}) 
+2025-07-16 16:42:33,836 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'downloads', 'type': 'symlink', 'target': '/mnt/truenas/bill-downloads', 'fallback': True}) 
+2025-07-16 16:42:33,839 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'media', 'type': 'symlink', 'target': '/mnt/truenas/media', 'fallback': False}) 
+2025-07-16 16:42:33,841 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'code', 'type': 'local'}) 
+2025-07-16 16:42:33,843 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'git', 'type': 'local'}) 
+2025-07-16 16:42:33,844 p=71905 u=bill n=ansible INFO| skipping: [localhost]
+2025-07-16 16:42:33,850 p=71905 u=bill n=ansible INFO| TASK [local : Remove old direct NFS mount entries from fstab for bill] *******************************************************
+2025-07-16 16:42:33,867 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'desktop', 'type': 'local'}) 
+2025-07-16 16:42:33,869 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'documents', 'type': 'symlink', 'target': '/mnt/truenas/bill-documents', 'fallback': True}) 
+2025-07-16 16:42:33,872 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'downloads', 'type': 'symlink', 'target': '/mnt/truenas/bill-downloads', 'fallback': True}) 
+2025-07-16 16:42:33,874 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'media', 'type': 'symlink', 'target': '/mnt/truenas/media', 'fallback': False}) 
+2025-07-16 16:42:33,877 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'code', 'type': 'local'}) 
+2025-07-16 16:42:33,879 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'git', 'type': 'local'}) 
+2025-07-16 16:42:33,881 p=71905 u=bill n=ansible INFO| skipping: [localhost]
+2025-07-16 16:42:33,888 p=71905 u=bill n=ansible INFO| TASK [local : Create NFS mount point directories] ****************************************************************************
+2025-07-16 16:42:33,905 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/home/bill/Documents', 'dest': '/mnt/truenas/bill-documents', 'opts': 'rw,soft,intr,timeo=30,retrans=3,uid=1000,gid=1000'}) 
+2025-07-16 16:42:33,908 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/home/bill/Downloads', 'dest': '/mnt/truenas/bill-downloads', 'opts': 'rw,soft,intr,timeo=30,retrans=3,uid=1000,gid=1000'}) 
+2025-07-16 16:42:33,911 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'src': '192.168.86.109:/mnt/Data/media', 'dest': '/mnt/truenas/media', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}) 
+2025-07-16 16:42:33,913 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/docs/paper', 'dest': '/mnt/truenas/paperless', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}) 
+2025-07-16 16:42:33,916 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/home/shared_files', 'dest': '/mnt/truenas/shared_files', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}) 
+2025-07-16 16:42:33,918 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/workouts', 'dest': '/mnt/truenas/workouts', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}) 
+2025-07-16 16:42:33,919 p=71905 u=bill n=ansible INFO| skipping: [localhost]
+2025-07-16 16:42:33,925 p=71905 u=bill n=ansible INFO| TASK [local : Add NFS mounts to fstab] ***************************************************************************************
+2025-07-16 16:42:33,940 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/home/bill/Documents', 'dest': '/mnt/truenas/bill-documents', 'opts': 'rw,soft,intr,timeo=30,retrans=3,uid=1000,gid=1000'}) 
+2025-07-16 16:42:33,943 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/home/bill/Downloads', 'dest': '/mnt/truenas/bill-downloads', 'opts': 'rw,soft,intr,timeo=30,retrans=3,uid=1000,gid=1000'}) 
+2025-07-16 16:42:33,947 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'src': '192.168.86.109:/mnt/Data/media', 'dest': '/mnt/truenas/media', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}) 
+2025-07-16 16:42:33,950 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/docs/paper', 'dest': '/mnt/truenas/paperless', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}) 
+2025-07-16 16:42:33,952 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/home/shared_files', 'dest': '/mnt/truenas/shared_files', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}) 
+2025-07-16 16:42:33,954 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/workouts', 'dest': '/mnt/truenas/workouts', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}) 
+2025-07-16 16:42:33,955 p=71905 u=bill n=ansible INFO| skipping: [localhost]
+2025-07-16 16:42:33,961 p=71905 u=bill n=ansible INFO| TASK [local : Create shared mount point directories with proper ownership] ***************************************************
+2025-07-16 16:42:33,976 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'path': '/mnt/truenas/media', 'owner': 'root', 'group': 'media', 'mode': '0755'}) 
+2025-07-16 16:42:33,978 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'path': '/mnt/truenas/paperless', 'owner': 'root', 'group': 'docs', 'mode': '0775'}) 
+2025-07-16 16:42:33,982 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'path': '/mnt/truenas/shared_files', 'owner': 'root', 'group': 'docs', 'mode': '0775'}) 
+2025-07-16 16:42:33,985 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'path': '/mnt/truenas/workouts', 'owner': 'root', 'group': 'data', 'mode': '0775'}) 
+2025-07-16 16:42:33,986 p=71905 u=bill n=ansible INFO| skipping: [localhost]
+2025-07-16 16:42:33,992 p=71905 u=bill n=ansible INFO| TASK [local : Mount NFS shares (gracefully handle failures)] *****************************************************************
+2025-07-16 16:42:34,005 p=71905 u=bill n=ansible INFO| skipping: [localhost]
+2025-07-16 16:42:34,010 p=71905 u=bill n=ansible INFO| TASK [local : Check which NFS mounts are actually available] *****************************************************************
+2025-07-16 16:42:34,179 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/home/bill/Documents', 'dest': '/mnt/truenas/bill-documents', 'opts': 'rw,soft,intr,timeo=30,retrans=3,uid=1000,gid=1000'})
+2025-07-16 16:42:34,334 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/home/bill/Downloads', 'dest': '/mnt/truenas/bill-downloads', 'opts': 'rw,soft,intr,timeo=30,retrans=3,uid=1000,gid=1000'})
+2025-07-16 16:42:34,492 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'src': '192.168.86.109:/mnt/Data/media', 'dest': '/mnt/truenas/media', 'opts': 'rw,soft,intr,timeo=30,retrans=3'})
+2025-07-16 16:42:34,642 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/docs/paper', 'dest': '/mnt/truenas/paperless', 'opts': 'rw,soft,intr,timeo=30,retrans=3'})
+2025-07-16 16:42:34,795 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/home/shared_files', 'dest': '/mnt/truenas/shared_files', 'opts': 'rw,soft,intr,timeo=30,retrans=3'})
+2025-07-16 16:42:34,945 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'src': '192.168.86.109:/mnt/ssd-files/workouts', 'dest': '/mnt/truenas/workouts', 'opts': 'rw,soft,intr,timeo=30,retrans=3'})
+2025-07-16 16:42:34,953 p=71905 u=bill n=ansible INFO| TASK [local : Display NFS mount status] **************************************************************************************
+2025-07-16 16:42:34,978 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'changed': False, 'stat': {'exists': True, 'path': '/mnt/truenas/bill-documents', 'mode': '0755', 'isdir': True, 'ischr': False, 'isblk': False, 'isreg': False, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 1000, 'gid': 1000, 'size': 4, 'inode': 34, 'dev': 75, 'nlink': 2, 'atime': 1733443122.3153572, 'mtime': 1752694527.433836, 'ctime': 1752694527.433836, 'wusr': True, 'rusr': True, 'xusr': True, 'wgrp': False, 'rgrp': True, 'xgrp': True, 'woth': False, 'roth': True, 'xoth': True, 'isuid': False, 'isgid': False, 'blocks': 49, 'block_size': 1048576, 'device_type': 0, 'readable': True, 'writeable': False, 'executable': True, 'pw_name': 'bill', 'gr_name': 'bill', 'mimetype': 'inode/directory', 'charset': 'binary', 'version': None, 'attributes': [], 'attr_flags': ''}, 'invocation': {'module_args': {'path': '/mnt/truenas/bill-documents', 'follow': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': {'src': '192.168.86.109:/mnt/ssd-files/home/bill/Documents', 'dest': '/mnt/truenas/bill-documents', 'opts': 'rw,soft,intr,timeo=30,retrans=3,uid=1000,gid=1000'}, 'ansible_loop_var': 'item'}) => {
+    "msg": "NFS mount /mnt/truenas/bill-documents is available"
+}
+2025-07-16 16:42:34,982 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'changed': False, 'stat': {'exists': True, 'path': '/mnt/truenas/bill-downloads', 'mode': '0755', 'isdir': True, 'ischr': False, 'isblk': False, 'isreg': False, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 1000, 'gid': 1000, 'size': 2, 'inode': 34, 'dev': 76, 'nlink': 2, 'atime': 1733443240.478003, 'mtime': 1752696114.7111633, 'ctime': 1752696114.7111633, 'wusr': True, 'rusr': True, 'xusr': True, 'wgrp': False, 'rgrp': True, 'xgrp': True, 'woth': False, 'roth': True, 'xoth': True, 'isuid': False, 'isgid': False, 'blocks': 49, 'block_size': 1048576, 'device_type': 0, 'readable': True, 'writeable': False, 'executable': True, 'pw_name': 'bill', 'gr_name': 'bill', 'mimetype': 'inode/directory', 'charset': 'binary', 'version': None, 'attributes': [], 'attr_flags': ''}, 'invocation': {'module_args': {'path': '/mnt/truenas/bill-downloads', 'follow': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': {'src': '192.168.86.109:/mnt/ssd-files/home/bill/Downloads', 'dest': '/mnt/truenas/bill-downloads', 'opts': 'rw,soft,intr,timeo=30,retrans=3,uid=1000,gid=1000'}, 'ansible_loop_var': 'item'}) => {
+    "msg": "NFS mount /mnt/truenas/bill-downloads is available"
+}
+2025-07-16 16:42:34,987 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'changed': False, 'stat': {'exists': True, 'path': '/mnt/truenas/media', 'mode': '0755', 'isdir': True, 'ischr': False, 'isblk': False, 'isreg': False, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 1000, 'gid': 1776, 'size': 7, 'inode': 34, 'dev': 70, 'nlink': 7, 'atime': 1733251756.254411, 'mtime': 1751579383.2919805, 'ctime': 1751641816.5477104, 'wusr': True, 'rusr': True, 'xusr': True, 'wgrp': False, 'rgrp': True, 'xgrp': True, 'woth': False, 'roth': True, 'xoth': True, 'isuid': False, 'isgid': False, 'blocks': 22, 'block_size': 1048576, 'device_type': 0, 'readable': True, 'writeable': False, 'executable': True, 'pw_name': 'bill', 'gr_name': 'media', 'mimetype': 'inode/directory', 'charset': 'binary', 'version': None, 'attributes': [], 'attr_flags': ''}, 'invocation': {'module_args': {'path': '/mnt/truenas/media', 'follow': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': {'src': '192.168.86.109:/mnt/Data/media', 'dest': '/mnt/truenas/media', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}, 'ansible_loop_var': 'item'}) => {
+    "msg": "NFS mount /mnt/truenas/media is available"
+}
+2025-07-16 16:42:34,992 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'changed': False, 'stat': {'exists': True, 'path': '/mnt/truenas/paperless', 'mode': '0775', 'isdir': True, 'ischr': False, 'isblk': False, 'isreg': False, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 1000, 'gid': 1787, 'size': 10, 'inode': 34, 'dev': 77, 'nlink': 10, 'atime': 1739313007.1526165, 'mtime': 1750182418.659946, 'ctime': 1750182418.659946, 'wusr': True, 'rusr': True, 'xusr': True, 'wgrp': True, 'rgrp': True, 'xgrp': True, 'woth': False, 'roth': True, 'xoth': True, 'isuid': False, 'isgid': False, 'blocks': 17, 'block_size': 1048576, 'device_type': 0, 'readable': True, 'writeable': False, 'executable': True, 'pw_name': 'bill', 'gr_name': 'docs', 'mimetype': 'inode/directory', 'charset': 'binary', 'version': None, 'attributes': [], 'attr_flags': ''}, 'invocation': {'module_args': {'path': '/mnt/truenas/paperless', 'follow': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': {'src': '192.168.86.109:/mnt/ssd-files/docs/paper', 'dest': '/mnt/truenas/paperless', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}, 'ansible_loop_var': 'item'}) => {
+    "msg": "NFS mount /mnt/truenas/paperless is available"
+}
+2025-07-16 16:42:34,997 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'changed': False, 'stat': {'exists': True, 'path': '/mnt/truenas/shared_files', 'mode': '0755', 'isdir': True, 'ischr': False, 'isblk': False, 'isreg': False, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 1000, 'gid': 1787, 'size': 5, 'inode': 8, 'dev': 78, 'nlink': 5, 'atime': 1749933597.3132617, 'mtime': 1750002087.5725596, 'ctime': 1750002087.5725596, 'wusr': True, 'rusr': True, 'xusr': True, 'wgrp': False, 'rgrp': True, 'xgrp': True, 'woth': False, 'roth': True, 'xoth': True, 'isuid': False, 'isgid': False, 'blocks': 1, 'block_size': 1048576, 'device_type': 0, 'readable': True, 'writeable': False, 'executable': True, 'pw_name': 'bill', 'gr_name': 'docs', 'mimetype': 'inode/directory', 'charset': 'binary', 'version': None, 'attributes': [], 'attr_flags': ''}, 'invocation': {'module_args': {'path': '/mnt/truenas/shared_files', 'follow': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': {'src': '192.168.86.109:/mnt/ssd-files/home/shared_files', 'dest': '/mnt/truenas/shared_files', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}, 'ansible_loop_var': 'item'}) => {
+    "msg": "NFS mount /mnt/truenas/shared_files is available"
+}
+2025-07-16 16:42:35,002 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'changed': False, 'stat': {'exists': True, 'path': '/mnt/truenas/workouts', 'mode': '0777', 'isdir': True, 'ischr': False, 'isblk': False, 'isreg': False, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 1000, 'gid': 1997, 'size': 16, 'inode': 34, 'dev': 74, 'nlink': 2, 'atime': 1750698772.8179214, 'mtime': 1751040198.329379, 'ctime': 1751566494.6837077, 'wusr': True, 'rusr': True, 'xusr': True, 'wgrp': True, 'rgrp': True, 'xgrp': True, 'woth': True, 'roth': True, 'xoth': True, 'isuid': False, 'isgid': False, 'blocks': 17, 'block_size': 1048576, 'device_type': 0, 'readable': True, 'writeable': True, 'executable': True, 'pw_name': 'bill', 'gr_name': 'data', 'mimetype': 'inode/directory', 'charset': 'binary', 'version': None, 'attributes': [], 'attr_flags': ''}, 'invocation': {'module_args': {'path': '/mnt/truenas/workouts', 'follow': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': {'src': '192.168.86.109:/mnt/ssd-files/workouts', 'dest': '/mnt/truenas/workouts', 'opts': 'rw,soft,intr,timeo=30,retrans=3'}, 'ansible_loop_var': 'item'}) => {
+    "msg": "NFS mount /mnt/truenas/workouts is available"
+}
+2025-07-16 16:42:35,010 p=71905 u=bill n=ansible INFO| TASK [local : include_tasks] *************************************************************************************************
+2025-07-16 16:42:35,027 p=71905 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/local/tasks/user_directories_resilient.yml for localhost
+2025-07-16 16:42:35,062 p=71905 u=bill n=ansible INFO| TASK [local : Create bill user home directory] *******************************************************************************
+2025-07-16 16:42:35,227 p=71905 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:42:35,232 p=71905 u=bill n=ansible INFO| TASK [local : Remove unwanted default directories for bill] ******************************************************************
+2025-07-16 16:42:35,400 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item=Desktop)
+2025-07-16 16:42:35,549 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item=Documents)
+2025-07-16 16:42:35,696 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item=Downloads)
+2025-07-16 16:42:35,851 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item=Music)
+2025-07-16 16:42:36,002 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item=Pictures)
+2025-07-16 16:42:36,152 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item=Public)
+2025-07-16 16:42:36,312 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item=Templates)
+2025-07-16 16:42:36,470 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item=Videos)
+2025-07-16 16:42:36,476 p=71905 u=bill n=ansible INFO| TASK [local : Create fallback directories for bill's symlink directories] ****************************************************
+2025-07-16 16:42:36,488 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'desktop', 'type': 'local'}) 
+2025-07-16 16:42:36,647 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'documents', 'type': 'symlink', 'target': '/mnt/truenas/bill-documents', 'fallback': True})
+2025-07-16 16:42:36,806 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'downloads', 'type': 'symlink', 'target': '/mnt/truenas/bill-downloads', 'fallback': True})
+2025-07-16 16:42:36,810 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'media', 'type': 'symlink', 'target': '/mnt/truenas/media', 'fallback': False}) 
+2025-07-16 16:42:36,811 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'code', 'type': 'local'}) 
+2025-07-16 16:42:36,813 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'git', 'type': 'local'}) 
+2025-07-16 16:42:36,820 p=71905 u=bill n=ansible INFO| TASK [local : Copy existing content to fallback directories for bill] ********************************************************
+2025-07-16 16:42:36,831 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'desktop', 'type': 'local'}) 
+2025-07-16 16:42:36,997 p=71905 u=bill n=ansible INFO| changed: [localhost] => (item={'name': 'documents', 'type': 'symlink', 'target': '/mnt/truenas/bill-documents', 'fallback': True})
+2025-07-16 16:42:37,154 p=71905 u=bill n=ansible INFO| changed: [localhost] => (item={'name': 'downloads', 'type': 'symlink', 'target': '/mnt/truenas/bill-downloads', 'fallback': True})
+2025-07-16 16:42:37,158 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'media', 'type': 'symlink', 'target': '/mnt/truenas/media', 'fallback': False}) 
+2025-07-16 16:42:37,160 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'code', 'type': 'local'}) 
+2025-07-16 16:42:37,161 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'git', 'type': 'local'}) 
+2025-07-16 16:42:37,168 p=71905 u=bill n=ansible INFO| TASK [local : Remove old directories to prepare for symlinks for bill] *******************************************************
+2025-07-16 16:42:37,180 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'desktop', 'type': 'local'}) 
+2025-07-16 16:42:37,340 p=71905 u=bill n=ansible INFO| changed: [localhost] => (item={'name': 'documents', 'type': 'symlink', 'target': '/mnt/truenas/bill-documents', 'fallback': True})
+2025-07-16 16:42:37,497 p=71905 u=bill n=ansible INFO| changed: [localhost] => (item={'name': 'downloads', 'type': 'symlink', 'target': '/mnt/truenas/bill-downloads', 'fallback': True})
+2025-07-16 16:42:37,648 p=71905 u=bill n=ansible INFO| changed: [localhost] => (item={'name': 'media', 'type': 'symlink', 'target': '/mnt/truenas/media', 'fallback': False})
+2025-07-16 16:42:37,650 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'code', 'type': 'local'}) 
+2025-07-16 16:42:37,651 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'git', 'type': 'local'}) 
+2025-07-16 16:42:37,658 p=71905 u=bill n=ansible INFO| TASK [local : Create local directories for bill] *****************************************************************************
+2025-07-16 16:42:37,826 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'desktop', 'type': 'local'})
+2025-07-16 16:42:37,828 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'documents', 'type': 'symlink', 'target': '/mnt/truenas/bill-documents', 'fallback': True}) 
+2025-07-16 16:42:37,830 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'downloads', 'type': 'symlink', 'target': '/mnt/truenas/bill-downloads', 'fallback': True}) 
+2025-07-16 16:42:37,832 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'media', 'type': 'symlink', 'target': '/mnt/truenas/media', 'fallback': False}) 
+2025-07-16 16:42:37,982 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'code', 'type': 'local'})
+2025-07-16 16:42:38,138 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'git', 'type': 'local'})
+2025-07-16 16:42:38,146 p=71905 u=bill n=ansible INFO| TASK [local : Check NFS targets availability for bill] ***********************************************************************
+2025-07-16 16:42:38,157 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'desktop', 'type': 'local'}) 
+2025-07-16 16:42:38,311 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'documents', 'type': 'symlink', 'target': '/mnt/truenas/bill-documents', 'fallback': True})
+2025-07-16 16:42:38,467 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'downloads', 'type': 'symlink', 'target': '/mnt/truenas/bill-downloads', 'fallback': True})
+2025-07-16 16:42:38,615 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'name': 'media', 'type': 'symlink', 'target': '/mnt/truenas/media', 'fallback': False})
+2025-07-16 16:42:38,617 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'code', 'type': 'local'}) 
+2025-07-16 16:42:38,620 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'name': 'git', 'type': 'local'}) 
+2025-07-16 16:42:38,626 p=71905 u=bill n=ansible INFO| TASK [local : Create NFS symlinks when available for bill] *******************************************************************
+2025-07-16 16:42:38,644 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'changed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': 'item.type == "symlink"', 'item': {'name': 'desktop', 'type': 'local'}, 'ansible_loop_var': 'item'}) 
+2025-07-16 16:42:38,800 p=71905 u=bill n=ansible INFO| changed: [localhost] => (item={'changed': False, 'stat': {'exists': True, 'path': '/mnt/truenas/bill-documents', 'mode': '0755', 'isdir': True, 'ischr': False, 'isblk': False, 'isreg': False, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 1000, 'gid': 1000, 'size': 4, 'inode': 34, 'dev': 75, 'nlink': 2, 'atime': 1733443122.3153572, 'mtime': 1752694527.433836, 'ctime': 1752694527.433836, 'wusr': True, 'rusr': True, 'xusr': True, 'wgrp': False, 'rgrp': True, 'xgrp': True, 'woth': False, 'roth': True, 'xoth': True, 'isuid': False, 'isgid': False, 'blocks': 49, 'block_size': 1048576, 'device_type': 0, 'readable': True, 'writeable': False, 'executable': True, 'pw_name': 'bill', 'gr_name': 'bill', 'mimetype': 'inode/directory', 'charset': 'binary', 'version': None, 'attributes': [], 'attr_flags': ''}, 'invocation': {'module_args': {'path': '/mnt/truenas/bill-documents', 'follow': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': {'name': 'documents', 'type': 'symlink', 'target': '/mnt/truenas/bill-documents', 'fallback': True}, 'ansible_loop_var': 'item'})
+2025-07-16 16:42:38,956 p=71905 u=bill n=ansible INFO| changed: [localhost] => (item={'changed': False, 'stat': {'exists': True, 'path': '/mnt/truenas/bill-downloads', 'mode': '0755', 'isdir': True, 'ischr': False, 'isblk': False, 'isreg': False, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 1000, 'gid': 1000, 'size': 2, 'inode': 34, 'dev': 76, 'nlink': 2, 'atime': 1733443240.478003, 'mtime': 1752696114.7111633, 'ctime': 1752696114.7111633, 'wusr': True, 'rusr': True, 'xusr': True, 'wgrp': False, 'rgrp': True, 'xgrp': True, 'woth': False, 'roth': True, 'xoth': True, 'isuid': False, 'isgid': False, 'blocks': 49, 'block_size': 1048576, 'device_type': 0, 'readable': True, 'writeable': False, 'executable': True, 'pw_name': 'bill', 'gr_name': 'bill', 'mimetype': 'inode/directory', 'charset': 'binary', 'version': None, 'attributes': [], 'attr_flags': ''}, 'invocation': {'module_args': {'path': '/mnt/truenas/bill-downloads', 'follow': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': {'name': 'downloads', 'type': 'symlink', 'target': '/mnt/truenas/bill-downloads', 'fallback': True}, 'ansible_loop_var': 'item'})
+2025-07-16 16:42:39,112 p=71905 u=bill n=ansible INFO| ok: [localhost] => (item={'changed': False, 'stat': {'exists': True, 'path': '/mnt/truenas/media', 'mode': '0755', 'isdir': True, 'ischr': False, 'isblk': False, 'isreg': False, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 1000, 'gid': 1776, 'size': 7, 'inode': 34, 'dev': 70, 'nlink': 7, 'atime': 1733251756.254411, 'mtime': 1751579383.2919805, 'ctime': 1751641816.5477104, 'wusr': True, 'rusr': True, 'xusr': True, 'wgrp': False, 'rgrp': True, 'xgrp': True, 'woth': False, 'roth': True, 'xoth': True, 'isuid': False, 'isgid': False, 'blocks': 22, 'block_size': 1048576, 'device_type': 0, 'readable': True, 'writeable': False, 'executable': True, 'pw_name': 'bill', 'gr_name': 'media', 'mimetype': 'inode/directory', 'charset': 'binary', 'version': None, 'attributes': [], 'attr_flags': ''}, 'invocation': {'module_args': {'path': '/mnt/truenas/media', 'follow': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': {'name': 'media', 'type': 'symlink', 'target': '/mnt/truenas/media', 'fallback': False}, 'ansible_loop_var': 'item'})
+2025-07-16 16:42:39,115 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'changed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': 'item.type == "symlink"', 'item': {'name': 'code', 'type': 'local'}, 'ansible_loop_var': 'item'}) 
+2025-07-16 16:42:39,117 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'changed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': 'item.type == "symlink"', 'item': {'name': 'git', 'type': 'local'}, 'ansible_loop_var': 'item'}) 
+2025-07-16 16:42:39,125 p=71905 u=bill n=ansible INFO| TASK [local : Create fallback symlinks when NFS unavailable for bill] ********************************************************
+2025-07-16 16:42:39,147 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'changed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': 'item.type == "symlink"', 'item': {'name': 'desktop', 'type': 'local'}, 'ansible_loop_var': 'item'}) 
+2025-07-16 16:42:39,156 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'changed': False, 'stat': {'exists': True, 'path': '/mnt/truenas/bill-documents', 'mode': '0755', 'isdir': True, 'ischr': False, 'isblk': False, 'isreg': False, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 1000, 'gid': 1000, 'size': 4, 'inode': 34, 'dev': 75, 'nlink': 2, 'atime': 1733443122.3153572, 'mtime': 1752694527.433836, 'ctime': 1752694527.433836, 'wusr': True, 'rusr': True, 'xusr': True, 'wgrp': False, 'rgrp': True, 'xgrp': True, 'woth': False, 'roth': True, 'xoth': True, 'isuid': False, 'isgid': False, 'blocks': 49, 'block_size': 1048576, 'device_type': 0, 'readable': True, 'writeable': False, 'executable': True, 'pw_name': 'bill', 'gr_name': 'bill', 'mimetype': 'inode/directory', 'charset': 'binary', 'version': None, 'attributes': [], 'attr_flags': ''}, 'invocation': {'module_args': {'path': '/mnt/truenas/bill-documents', 'follow': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': {'name': 'documents', 'type': 'symlink', 'target': '/mnt/truenas/bill-documents', 'fallback': True}, 'ansible_loop_var': 'item'}) 
+2025-07-16 16:42:39,162 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'changed': False, 'stat': {'exists': True, 'path': '/mnt/truenas/bill-downloads', 'mode': '0755', 'isdir': True, 'ischr': False, 'isblk': False, 'isreg': False, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 1000, 'gid': 1000, 'size': 2, 'inode': 34, 'dev': 76, 'nlink': 2, 'atime': 1733443240.478003, 'mtime': 1752696114.7111633, 'ctime': 1752696114.7111633, 'wusr': True, 'rusr': True, 'xusr': True, 'wgrp': False, 'rgrp': True, 'xgrp': True, 'woth': False, 'roth': True, 'xoth': True, 'isuid': False, 'isgid': False, 'blocks': 49, 'block_size': 1048576, 'device_type': 0, 'readable': True, 'writeable': False, 'executable': True, 'pw_name': 'bill', 'gr_name': 'bill', 'mimetype': 'inode/directory', 'charset': 'binary', 'version': None, 'attributes': [], 'attr_flags': ''}, 'invocation': {'module_args': {'path': '/mnt/truenas/bill-downloads', 'follow': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': {'name': 'downloads', 'type': 'symlink', 'target': '/mnt/truenas/bill-downloads', 'fallback': True}, 'ansible_loop_var': 'item'}) 
+2025-07-16 16:42:39,166 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'changed': False, 'stat': {'exists': True, 'path': '/mnt/truenas/media', 'mode': '0755', 'isdir': True, 'ischr': False, 'isblk': False, 'isreg': False, 'isfifo': False, 'islnk': False, 'issock': False, 'uid': 1000, 'gid': 1776, 'size': 7, 'inode': 34, 'dev': 70, 'nlink': 7, 'atime': 1733251756.254411, 'mtime': 1751579383.2919805, 'ctime': 1751641816.5477104, 'wusr': True, 'rusr': True, 'xusr': True, 'wgrp': False, 'rgrp': True, 'xgrp': True, 'woth': False, 'roth': True, 'xoth': True, 'isuid': False, 'isgid': False, 'blocks': 22, 'block_size': 1048576, 'device_type': 0, 'readable': True, 'writeable': False, 'executable': True, 'pw_name': 'bill', 'gr_name': 'media', 'mimetype': 'inode/directory', 'charset': 'binary', 'version': None, 'attributes': [], 'attr_flags': ''}, 'invocation': {'module_args': {'path': '/mnt/truenas/media', 'follow': False, 'get_checksum': True, 'get_mime': True, 'get_attributes': True, 'checksum_algorithm': 'sha1'}}, 'failed': False, 'item': {'name': 'media', 'type': 'symlink', 'target': '/mnt/truenas/media', 'fallback': False}, 'ansible_loop_var': 'item'}) 
+2025-07-16 16:42:39,169 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'changed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': 'item.type == "symlink"', 'item': {'name': 'code', 'type': 'local'}, 'ansible_loop_var': 'item'}) 
+2025-07-16 16:42:39,171 p=71905 u=bill n=ansible INFO| skipping: [localhost] => (item={'changed': False, 'skipped': True, 'skip_reason': 'Conditional result was False', 'false_condition': 'item.type == "symlink"', 'item': {'name': 'git', 'type': 'local'}, 'ansible_loop_var': 'item'}) 
+2025-07-16 16:42:39,173 p=71905 u=bill n=ansible INFO| skipping: [localhost]
+2025-07-16 16:42:39,180 p=71905 u=bill n=ansible INFO| TASK [local : include_tasks] *************************************************************************************************
+2025-07-16 16:42:39,193 p=71905 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/local/tasks/ssh_config.yml for localhost
+2025-07-16 16:42:39,206 p=71905 u=bill n=ansible INFO| TASK [local : Ensure .ssh dir exists for bill] *******************************************************************************
+2025-07-16 16:42:39,369 p=71905 u=bill n=ansible INFO| ok: [localhost]
+2025-07-16 16:42:39,376 p=71905 u=bill n=ansible INFO| TASK [local : Deploy aggregated SSH config for bill] *************************************************************************
+2025-07-16 16:42:39,412 p=71905 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/bazarr.yml, line 3, column 1, found a
+duplicate dict key (container_id). Using last defined value only.
+
+2025-07-16 16:42:39,428 p=71905 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/desktop.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-16 16:42:39,429 p=71905 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/samsung.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-16 16:42:39,431 p=71905 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/dell.yml, line 3, column 1, found a duplicate
+dict key (gnome). Using last defined value only.
+
+2025-07-16 16:42:39,433 p=71905 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/lily_laptop.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-16 16:42:39,815 p=71905 u=bill n=ansible INFO| changed: [localhost]
+2025-07-16 16:42:39,823 p=71905 u=bill n=ansible INFO| PLAY [lxc] *******************************************************************************************************************
+2025-07-16 16:42:39,823 p=71905 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-16 16:42:39,823 p=71905 u=bill n=ansible INFO| PLAY [vm] ********************************************************************************************************************
+2025-07-16 16:42:39,823 p=71905 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-16 16:42:39,824 p=71905 u=bill n=ansible INFO| PLAY [proxmox_hosts] *********************************************************************************************************
+2025-07-16 16:42:39,824 p=71905 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-16 16:42:39,824 p=71905 u=bill n=ansible INFO| PLAY [windows] ***************************************************************************************************************
+2025-07-16 16:42:39,824 p=71905 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-16 16:42:39,824 p=71905 u=bill n=ansible INFO| PLAY RECAP *******************************************************************************************************************
+2025-07-16 16:42:39,824 p=71905 u=bill n=ansible INFO| localhost                  : ok=45   changed=5    unreachable=0    failed=0    skipped=9    rescued=0    ignored=0   
