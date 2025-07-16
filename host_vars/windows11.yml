@@ -2,7 +2,7 @@
 # SSH configuration for file operations and basic connectivity  
 ssh_key: ansible-server
 ansible_user: wknig
-ansible_host: 192.168.86.89
+ansible_host: 192.168.86.121
 
 # Use WinRM for Ansible modules
 ansible_connection: winrm
@@ -14,3 +14,38 @@ ansible_password: "{{ windows_password }}"
 # Windows-specific settings
 ansible_shell_type: powershell
 ansible_become: false
+
+# TrueNAS Connection Settings
+truenas_server_ip: "192.168.86.109"  # Update this to your actual TrueNAS IP
+truenas_smb_user: "bill"              # Your TrueNAS SMB username
+truenas_smb_password: "{{ truenas_password }}"
+
+# Network Drive Mappings
+windows_network_drives:
+  - name: "User Documents"
+    drive_letter: "H:"
+    remote_path: "\\\\{{ truenas_server_ip }}\\Documents"
+  
+  - name: "User Downloads"
+    drive_letter: "I:"
+    remote_path: "\\\\{{ truenas_server_ip }}\\Downloads"
+  
+  - name: "Media"
+    drive_letter: "M:"
+    remote_path: "\\\\{{ truenas_server_ip }}\\media"
+  
+  - name: "Paperless Documents"
+    drive_letter: "P:"
+    remote_path: "\\\\{{ truenas_server_ip }}\\paper"
+  
+  - name: "Shared Files"
+    drive_letter: "S:"
+    remote_path: "\\\\{{ truenas_server_ip }}\\shared_files"
+  
+  - name: "Workouts"
+    drive_letter: "W:"
+    remote_path: "\\\\{{ truenas_server_ip }}\\workouts"
+
+# WinRM Configuration
+ansible_winrm_operation_timeout_sec: 60
+ansible_winrm_read_timeout_sec: 70

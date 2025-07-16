@@ -1,0 +1,83 @@
+---
+# List of users to create directory structures for
+workstation_users:
+  - bill
+  - lily
+  - loretta
+
+# Centralized NFS mount points - all under /mnt/truenas/
+nfs_mounts:
+  # User-specific shares
+  - src: "192.168.86.109:/mnt/ssd-files/home/bill/Documents"
+    dest: "/mnt/truenas/bill-documents"
+    opts: "rw,soft,intr,timeo=30,retrans=3,uid=1000,gid=1000"
+  - src: "192.168.86.109:/mnt/ssd-files/home/bill/Downloads"
+    dest: "/mnt/truenas/bill-downloads"
+    opts: "rw,soft,intr,timeo=30,retrans=3,uid=1000,gid=1000"
+  - src: "192.168.86.109:/mnt/ssd-files/home/lily/Documents"
+    dest: "/mnt/truenas/lily-documents"
+    opts: "rw,soft,intr,timeo=30,retrans=3,uid=1001,gid=1001"
+  - src: "192.168.86.109:/mnt/ssd-files/home/lily/Downloads"
+    dest: "/mnt/truenas/lily-downloads"
+    opts: "rw,soft,intr,timeo=30,retrans=3,uid=1001,gid=1001"
+  - src: "192.168.86.109:/mnt/ssd-files/home/loretta/Documents"
+    dest: "/mnt/truenas/loretta-documents"
+    opts: "rw,soft,intr,timeo=30,retrans=3,uid=1002,gid=1002"
+  - src: "192.168.86.109:/mnt/ssd-files/home/loretta/Downloads"
+    dest: "/mnt/truenas/loretta-downloads"
+    opts: "rw,soft,intr,timeo=30,retrans=3,uid=1002,gid=1002"
+  
+  # Shared resources
+  - src: "192.168.86.109:/mnt/Data/media"
+    dest: "/mnt/truenas/media"
+    opts: "rw,soft,intr,timeo=30,retrans=3"
+  - src: "192.168.86.109:/mnt/ssd-files/docs/paper"
+    dest: "/mnt/truenas/paperless"
+    opts: "rw,soft,intr,timeo=30,retrans=3"
+  - src: "192.168.86.109:/mnt/ssd-files/home/shared_files"
+    dest: "/mnt/truenas/shared_files"
+    opts: "rw,soft,intr,timeo=30,retrans=3"
+  - src: "192.168.86.109:/mnt/ssd-files/workouts"
+    dest: "/mnt/truenas/workouts"
+    opts: "rw,soft,intr,timeo=30,retrans=3"
+
+# Local directories to create in each user's home
+# These will either be symlinks to NFS or local fallbacks
+user_directories:
+  bill:
+    - { name: "desktop", type: "local" }
+    - { name: "documents", type: "symlink", target: "/mnt/truenas/bill-documents", fallback: true }
+    - { name: "downloads", type: "symlink", target: "/mnt/truenas/bill-downloads", fallback: true }
+    - { name: "media", type: "symlink", target: "/mnt/truenas/media", fallback: false }
+    - { name: "code", type: "local" }
+    - { name: "git", type: "local" }
+  lily:
+    - { name: "desktop", type: "local" }
+    - { name: "documents", type: "symlink", target: "/mnt/truenas/lily-documents", fallback: true }
+    - { name: "downloads", type: "symlink", target: "/mnt/truenas/lily-downloads", fallback: true }
+  loretta:
+    - { name: "desktop", type: "local" }
+    - { name: "documents", type: "symlink", target: "/mnt/truenas/loretta-documents", fallback: true }
+    - { name: "downloads", type: "symlink", target: "/mnt/truenas/loretta-downloads", fallback: true }
+
+# Shared mount points (accessible to all users via bookmarks)
+shared_mount_points:
+  - { path: "/mnt/truenas/media", owner: "root", group: "media", mode: "0755" }
+  - { path: "/mnt/truenas/paperless", owner: "root", group: "docs", mode: "0775" }
+  - { path: "/mnt/truenas/shared_files", owner: "root", group: "docs", mode: "0775" }
+  - { path: "/mnt/truenas/workouts", owner: "root", group: "data", mode: "0775" }
+
+# Groups to create
+groups_to_create:
+  - media
+  - docs
+  - hal
+  - ansible
+  - data
+  - git
+  - librarian
+
+# NFS mount options explanation:
+# soft,intr - fail gracefully if server unavailable instead of hanging
+# timeo=30 - timeout after 30 seconds
+# retrans=3 - retry 3 times before giving up

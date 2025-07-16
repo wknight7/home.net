@@ -11,6 +11,10 @@
   include_vars: group_vars/groups.yml
   tags: always
 
+- name: Load workstations_new variables for resilient NFS
+  include_vars: group_vars/workstations_new.yml
+  tags: always
+
 - name: Copy bashrc for Bill
   copy:
     src: "/home/bill/git/home.net/roles/common/files/users/bill/bashrc"
@@ -21,6 +25,7 @@
 
 - include_tasks: groups.yml
 - include_tasks: home_directory.yml
-- include_tasks: fstab.yml
+- include_tasks: fstab_new.yml
+- include_tasks: user_directories_resilient.yml
 - include_tasks: ssh_config.yml
 

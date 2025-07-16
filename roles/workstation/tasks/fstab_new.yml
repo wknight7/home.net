@@ -1,0 +1,61 @@
+---
+- name: Create /mnt/truenas base directory
+  file:
+    path: /mnt/truenas
+    state: directory
+    mode: '0755'
+    owner: root
+    group: root
+
+- name: Unmount any existing NFS mounts in /mnt/truenas
+  mount:
+    path: "{{ item.dest }}"
+    state: unmounted
+  loop: "{{ nfs_mounts }}"
+  failed_when: false
+
+- name: Create NFS mount point directories
+  file:
+    path: "{{ item.dest }}"
+    state: directory
+    mode: '0755'
+    owner: root
+    group: root
+  loop: "{{ nfs_mounts }}"
+
+- name: Add NFS mounts to fstab
+  blockinfile:
+    path: /etc/fstab
+    marker: "# {mark} ANSIBLE MANAGED BLOCK FOR TRUENAS NFS MOUNTS"
+    block: |
+      {% for mount in nfs_mounts %}
+      {{ mount.src }} {{ mount.dest }} nfs {{ mount.opts }} 0 0
+      {% endfor %}
+    insertafter: EOF
+    backup: yes
+
+- name: Create shared mount point directories with proper ownership
+  file:
+    path: "{{ item.path }}"
+    state: directory
+    mode: "{{ item.mode }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+  loop: "{{ shared_mount_points }}"
+
+- name: Mount NFS shares (gracefully handle failures)
+  command: mount -a
+  register: mount_result
+  failed_when: false
+  changed_when: mount_result.rc == 0
+
+- name: Check which NFS mounts are actually available
+  stat:
+    path: "{{ item.dest }}"
+  register: nfs_mount_status
+  loop: "{{ nfs_mounts }}"
+
+- name: Display NFS mount status
+  debug:
+    msg: "NFS mount {{ item.item.dest }} is {{ 'available' if item.stat.exists and item.stat.isdir else 'unavailable' }}"
+  loop: "{{ nfs_mount_status.results }}"

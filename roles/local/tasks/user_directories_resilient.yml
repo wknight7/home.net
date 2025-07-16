@@ -1,0 +1,93 @@
+---
+# User directory setup for local role with resilient NFS
+# Only bill user exists on ansible server
+
+- name: Create bill user home directory
+  file:
+    path: "/home/bill"
+    state: directory
+    mode: '0755'
+    owner: "bill"
+    group: "bill"
+
+- name: Remove unwanted default directories for bill
+  file:
+    path: "/home/bill/{{ item }}"
+    state: absent
+  loop: ['Desktop', 'Documents', 'Downloads', 'Music', 'Pictures', 'Public', 'Templates', 'Videos']
+
+# Backup existing content before creating symlinks
+- name: Create fallback directories for bill's symlink directories  
+  file:
+    path: "/home/bill/.local-{{ item.name }}"
+    state: directory
+    mode: '0755'
+    owner: "bill"
+    group: "bill"
+  loop: "{{ user_directories.bill }}"
+  when: 
+    - item.type == "symlink" 
+    - item.fallback | default(false)
+
+- name: Copy existing content to fallback directories for bill
+  shell: |
+    if [ -d "/home/bill/{{ item.name }}" ] && [ "$(ls -A /home/bill/{{ item.name }} 2>/dev/null)" ]; then
+      cp -r "/home/bill/{{ item.name }}"/* "/home/bill/.local-{{ item.name }}/" 2>/dev/null || true
+    fi
+  loop: "{{ user_directories.bill }}"
+  when: 
+    - item.type == "symlink" 
+    - item.fallback | default(false)
+
+- name: Remove old directories to prepare for symlinks for bill
+  file:
+    path: "/home/bill/{{ item.name }}"
+    state: absent
+  loop: "{{ user_directories.bill }}"
+  when: item.type == "symlink"
+
+# Create local directories (non-symlink ones)
+- name: Create local directories for bill
+  file:
+    path: "/home/bill/{{ item.name }}"
+    state: directory
+    mode: '0755'
+    owner: "bill"
+    group: "bill"
+  loop: "{{ user_directories.bill }}"
+  when: item.type == "local"
+
+# Check NFS availability and create appropriate symlinks
+- name: Check NFS targets availability for bill
+  stat:
+    path: "{{ item.target }}"
+  register: nfs_availability_check
+  loop: "{{ user_directories.bill }}"
+  when: item.type == "symlink"
+
+- name: Create NFS symlinks when available for bill
+  file:
+    src: "{{ item.item.target }}"
+    dest: "/home/bill/{{ item.item.name }}"
+    state: link
+    force: yes
+    owner: "bill"
+    group: "bill"
+  loop: "{{ nfs_availability_check.results }}"
+  when: 
+    - item.skipped is not defined
+    - item.stat.exists and item.stat.isdir
+
+- name: Create fallback symlinks when NFS unavailable for bill
+  file:
+    src: "/home/bill/.local-{{ item.item.name }}"
+    dest: "/home/bill/{{ item.item.name }}"
+    state: link
+    force: yes
+    owner: "bill"
+    group: "bill"
+  loop: "{{ nfs_availability_check.results }}"
+  when: 
+    - item.skipped is not defined
+    - item.item.fallback | default(false)
+    - not (item.stat.exists and item.stat.isdir)

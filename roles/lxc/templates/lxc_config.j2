@@ -31,11 +31,7 @@ lxc.idmap: g 0 100000 1000
 lxc.idmap: g {{ app_user_gid | default(app_user_uid) }} {{ app_user_gid | default(app_user_uid) }} 1000
 lxc.idmap: g {{ (app_user_gid | default(app_user_uid)) + 1 }} {{ 100000 + (app_user_gid | default(app_user_uid)) + 1 }} {{ 65536 - (app_user_gid | default(app_user_uid)) - 1 }}
 {% else %}
-lxc.idmap: u 0 100000 1000
-lxc.idmap: u 1000 1000 1000
-lxc.idmap: u 2000 101000 64536
-lxc.idmap: g 0 100000 1000
-lxc.idmap: g 1000 1000 1000
-lxc.idmap: g 2000 101000 64536
+lxc.idmap: u 0 100000 65536
+lxc.idmap: g 0 100000 65536
 {% endif %}
 lxc.mount.auto: cgroup:mixed proc:mixed sys:mixed

@@ -19,6 +19,7 @@
     arguments: "-ExecutionPolicy Bypass -File C:\\Scripts\\Map-NetworkDrives.ps1"
     description: "Map TrueNAS network drives"
     icon: "shell32.dll,137"
+  ignore_errors: yes
   tags: ['network_drives', 'scripts']
 
 # Disabled until template variable resolution is fixed

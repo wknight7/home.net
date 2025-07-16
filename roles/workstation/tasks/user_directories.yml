@@ -1,0 +1,83 @@
+---
+# Post-migration user directory setup
+# This assumes manual preparation has been done (see migration guide)
+
+- name: Create user home directories
+  ansible.builtin.file:
+    path: "{{ item.home }}"
+    state: directory
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
+    mode: '0755'
+  loop: "{{ workstation_users }}"
+
+# Create symlinks to NFS mounts (assumes directories are clean)
+- name: Create NFS symlinks for bill
+  ansible.builtin.file:
+    src: "{{ item.target }}"
+    dest: "/home/bill/{{ item.name }}"
+    state: link
+    owner: bill
+    group: bill
+  loop:
+    - { name: "documents", target: "/mnt/truenas/bill-documents" }
+    - { name: "downloads", target: "/mnt/truenas/bill-downloads" }
+    - { name: "media", target: "/mnt/truenas/media" }
+
+- name: Create local directories for bill
+  ansible.builtin.file:
+    path: "/home/bill/{{ item }}"
+    state: directory
+    owner: bill
+    group: bill
+    mode: '0755'
+  loop:
+    - desktop
+    - code
+    - git
+
+- name: Create NFS symlinks for lily
+  ansible.builtin.file:
+    src: "{{ item.target }}"
+    dest: "/home/lily/{{ item.name }}"
+    state: link
+    owner: lily
+    group: lily
+  loop:
+    - { name: "documents", target: "/mnt/truenas/lily-documents" }
+    - { name: "downloads", target: "/mnt/truenas/lily-downloads" }
+  when: workstation_users | selectattr('name', 'equalto', 'lily') | list | length > 0
+
+- name: Create local directories for lily
+  ansible.builtin.file:
+    path: "/home/lily/{{ item }}"
+    state: directory
+    owner: lily
+    group: lily
+    mode: '0755'
+  loop:
+    - desktop
+  when: workstation_users | selectattr('name', 'equalto', 'lily') | list | length > 0
+
+- name: Create NFS symlinks for loretta
+  ansible.builtin.file:
+    src: "{{ item.target }}"
+    dest: "/home/loretta/{{ item.name }}"
+    state: link
+    owner: loretta
+    group: loretta
+  loop:
+    - { name: "documents", target: "/mnt/truenas/loretta-documents" }
+    - { name: "downloads", target: "/mnt/truenas/loretta-downloads" }
+  when: workstation_users | selectattr('name', 'equalto', 'loretta') | list | length > 0
+
+- name: Create local directories for loretta
+  ansible.builtin.file:
+    path: "/home/loretta/{{ item }}"
+    state: directory
+    owner: loretta
+    group: loretta
+    mode: '0755'
+  loop:
+    - desktop
+  when: workstation_users | selectattr('name', 'equalto', 'loretta') | list | length > 0

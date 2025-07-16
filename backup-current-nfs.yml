@@ -1,0 +1,24 @@
+---
+- name: Backup Current NFS Setup
+  hosts: workstation
+  become: yes
+  
+  tasks:
+    - name: Backup current fstab
+      copy:
+        src: /etc/fstab
+        dest: /etc/fstab.backup-{{ ansible_date_time.epoch }}
+        remote_src: yes
+
+    - name: Backup current user directories
+      archive:
+        path: "/home/{{ item }}"
+        dest: "/tmp/home-{{ item }}-backup-{{ ansible_date_time.epoch }}.tar.gz"
+        owner: "{{ item }}"
+        group: "{{ item }}"
+      loop: ["bill", "lily", "loretta"]
+      ignore_errors: yes
+
+    - name: Show backup locations
+      debug:
+        msg: "Backups created in /tmp/ and /etc/fstab.backup-{{ ansible_date_time.epoch }}"

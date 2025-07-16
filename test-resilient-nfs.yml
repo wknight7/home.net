@@ -1,0 +1,46 @@
+---
+- name: Test resilient NFS setup
+  hosts: workstations
+  become: yes
+  tasks:
+    - name: Load workstation variables
+      include_vars: group_vars/workstations_new.yml
+
+    - name: Display NFS mount status
+      debug:
+        msg: "Testing NFS mount availability for {{ item.dest }}"
+      loop: "{{ nfs_mounts }}"
+
+    - name: Check NFS mount points
+      stat:
+        path: "{{ item.dest }}"
+      register: mount_check
+      loop: "{{ nfs_mounts }}"
+
+    - name: Display mount status
+      debug:
+        msg: "Mount {{ item.item.dest }} is {{ 'available' if item.stat.exists else 'unavailable' }}"
+      loop: "{{ mount_check.results }}"
+
+- name: Test resilient NFS setup on localhost
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Load workstation variables
+      include_vars: group_vars/workstations_new.yml
+
+    - name: Display local NFS mount status
+      debug:
+        msg: "Testing local NFS mount availability for {{ item.dest }}"
+      loop: "{{ nfs_mounts }}"
+
+    - name: Check local NFS mount points
+      stat:
+        path: "{{ item.dest }}"
+      register: local_mount_check
+      loop: "{{ nfs_mounts }}"
+
+    - name: Display local mount status
+      debug:
+        msg: "Local mount {{ item.item.dest }} is {{ 'available' if item.stat.exists else 'unavailable' }}"
+      loop: "{{ local_mount_check.results }}"

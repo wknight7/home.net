@@ -1,0 +1,21 @@
+---
+- hosts: dell
+  become: yes
+  vars:
+    workstation_users:
+      - name: bill
+        uid: 1000
+        gid: 1000
+        home: /home/bill
+      - name: lily
+        uid: 1001
+        gid: 1001
+        home: /home/lily
+      - name: loretta
+        uid: 1002
+        gid: 1002
+        home: /home/loretta
+
+  tasks:
+    - name: Test user directory symlink creation
+      include_tasks: roles/workstation/tasks/user_directories.yml

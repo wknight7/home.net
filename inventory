@@ -33,9 +33,10 @@ pbs ansible_host=192.168.86.33
 [vm]
 plex ansible_host=192.168.86.110
 homeassistant ansible_host=192.168.86.51 ansible_user=root ssh_key=bill_ansible
+truenas ansible_host=192.168.86.109 ansible_user=bill ansible_ssh_private_key_file=~/.ssh/bill_ansible
 
 [windows]
-windows11 ansible_host=192.168.86.89 ansible_user=wknig ansible_connection=winrm
+windows11 ansible_host=192.168.86.121 ansible_user=wknig ansible_connection=winrm ansible_winrm_transport=basic ansible_winrm_server_cert_validation=ignore ansible_password="{{ windows_password }}"
 
 [updates]
 prowlarr ansible_host=192.168.86.123 container_id=117
@@ -57,11 +58,7 @@ sab ansible_host=192.168.86.86 container_id=116
 tautulli ansible_host=192.168.86.72 container_id=110
 cloudflared ansible_host=192.168.86.43 container_id=102
 homepage ansible_host=192.168.86.101 container_id=114
-lily_laptop ansible_host=192.168.86.53
-plex ansible_host=192.168.86.110
-lily_laptop ansible_host=192.168.86.53
-plex ansible_host=192.168.86.110
-calibre-web ansible_host=192.168.86.103 container_id=110
+calibre-web ansible_host=192.168.86.103 container_id=115
 
 [ssh:children]
 lxc
@@ -71,6 +68,3 @@ local
 vm
 windows
 
-[proxmox_hosts]
-pve
-pbs
