@@ -43,7 +43,7 @@ xonotic: true
 gnome: true
 mate: false
 
-ssh_key: bill_dell
+ssh_key: bill_dell-laptop
 ssh_config_user: 
   - bill
 
