@@ -8307,3 +8307,67 @@ core/2.18/reference_appendices/interpreter_discovery.html for more information.
 2025-07-18 15:22:39,067 p=131329 u=bill n=ansible INFO| skipping: no hosts matched
 2025-07-18 15:22:39,067 p=131329 u=bill n=ansible INFO| PLAY RECAP *******************************************************************************************************************
 2025-07-18 15:22:39,067 p=131329 u=bill n=ansible INFO| paperless                  : ok=22   changed=7    unreachable=0    failed=0    skipped=1    rescued=0    ignored=1   
+2025-07-18 15:28:39,551 p=131879 u=bill n=ansible INFO| PLAY [all] ***********************************************************************************************************
+2025-07-18 15:28:39,556 p=131879 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 15:28:40,642 p=131879 u=bill n=ansible INFO| ok: [photoprism]
+2025-07-18 15:28:40,649 p=131879 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] ******************************************************************
+2025-07-18 15:28:41,508 p=131879 u=bill n=ansible INFO| ok: [photoprism]
+2025-07-18 15:28:41,515 p=131879 u=bill n=ansible INFO| TASK [Include host variables dynamically] ****************************************************************************
+2025-07-18 15:28:41,533 p=131879 u=bill n=ansible INFO| ok: [photoprism] => (item=host_vars/photoprism.yml)
+2025-07-18 15:28:41,537 p=131879 u=bill n=ansible INFO| PLAY [updates] *******************************************************************************************************
+2025-07-18 15:28:41,555 p=131879 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 15:28:42,152 p=131879 u=bill n=ansible INFO| ok: [photoprism]
+2025-07-18 15:28:42,165 p=131879 u=bill n=ansible INFO| TASK [common : Load vault variables] *********************************************************************************
+2025-07-18 15:28:42,195 p=131879 u=bill n=ansible INFO| ok: [photoprism]
+2025-07-18 15:28:42,202 p=131879 u=bill n=ansible INFO| TASK [common : include_vars] *****************************************************************************************
+2025-07-18 15:28:42,215 p=131879 u=bill n=ansible INFO| ok: [photoprism]
+2025-07-18 15:28:42,222 p=131879 u=bill n=ansible INFO| TASK [common : Load group variables] *********************************************************************************
+2025-07-18 15:28:42,233 p=131879 u=bill n=ansible INFO| ok: [photoprism]
+2025-07-18 15:28:42,252 p=131879 u=bill n=ansible INFO| PLAY [workstation] ***************************************************************************************************
+2025-07-18 15:28:42,252 p=131879 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 15:28:42,252 p=131879 u=bill n=ansible INFO| PLAY [local] *********************************************************************************************************
+2025-07-18 15:28:42,252 p=131879 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 15:28:42,254 p=131879 u=bill n=ansible INFO| PLAY [lxc] ***********************************************************************************************************
+2025-07-18 15:28:42,262 p=131879 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 15:28:42,855 p=131879 u=bill n=ansible INFO| ok: [photoprism]
+2025-07-18 15:28:42,868 p=131879 u=bill n=ansible INFO| TASK [lxc : include_tasks] *******************************************************************************************
+2025-07-18 15:28:42,888 p=131879 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/lxc/tasks/lxc_mounts_safe.yml for photoprism
+2025-07-18 15:28:42,894 p=131879 u=bill n=ansible INFO| TASK [lxc : Load mount point definitions] ****************************************************************************
+2025-07-18 15:28:42,907 p=131879 u=bill n=ansible INFO| ok: [photoprism]
+2025-07-18 15:28:42,914 p=131879 u=bill n=ansible INFO| TASK [lxc : Get container ID from inventory] *************************************************************************
+2025-07-18 15:28:42,942 p=131879 u=bill n=ansible INFO| ok: [photoprism]
+2025-07-18 15:28:42,949 p=131879 u=bill n=ansible INFO| TASK [lxc : Fail if container_id not found] **************************************************************************
+2025-07-18 15:28:42,961 p=131879 u=bill n=ansible INFO| skipping: [photoprism]
+2025-07-18 15:28:42,970 p=131879 u=bill n=ansible INFO| TASK [lxc : Check if LXC config file exists] *************************************************************************
+2025-07-18 15:28:43,684 p=131879 u=bill n=ansible INFO| ok: [photoprism -> pve(192.168.86.143)]
+2025-07-18 15:28:43,722 p=131879 u=bill n=ansible INFO| TASK [lxc : Backup original LXC config] ******************************************************************************
+2025-07-18 15:28:43,973 p=131879 u=bill n=ansible INFO| changed: [photoprism -> pve(192.168.86.143)]
+2025-07-18 15:28:43,981 p=131879 u=bill n=ansible INFO| TASK [lxc : Remove existing managed mount points from LXC config] ****************************************************
+2025-07-18 15:28:44,191 p=131879 u=bill n=ansible INFO| changed: [photoprism -> pve(192.168.86.143)]
+2025-07-18 15:28:44,203 p=131879 u=bill n=ansible INFO| TASK [lxc : Remove existing managed user mappings from LXC config] ***************************************************
+2025-07-18 15:28:44,350 p=131879 u=bill n=ansible INFO| changed: [photoprism -> pve(192.168.86.143)]
+2025-07-18 15:28:44,358 p=131879 u=bill n=ansible INFO| TASK [lxc : Generate mount points and user mappings] *****************************************************************
+2025-07-18 15:28:44,530 p=131879 u=bill n=ansible INFO| changed: [photoprism -> pve(192.168.86.143)]
+2025-07-18 15:28:44,539 p=131879 u=bill n=ansible INFO| TASK [lxc : Append new mount points and user mappings to LXC config] *************************************************
+2025-07-18 15:28:44,741 p=131879 u=bill n=ansible INFO| skipping: [photoprism]
+2025-07-18 15:28:44,749 p=131879 u=bill n=ansible INFO| TASK [lxc : Clean up temporary file] *********************************************************************************
+2025-07-18 15:28:44,957 p=131879 u=bill n=ansible INFO| ok: [photoprism -> pve(192.168.86.143)]
+2025-07-18 15:28:44,965 p=131879 u=bill n=ansible INFO| TASK [lxc : Check container status before restart] *******************************************************************
+2025-07-18 15:28:45,104 p=131879 u=bill n=ansible INFO| skipping: [photoprism]
+2025-07-18 15:28:45,111 p=131879 u=bill n=ansible INFO| TASK [lxc : Restart container if it was running (to apply mount/idmap changes)] **************************************
+2025-07-18 15:28:45,130 p=131879 u=bill n=ansible INFO| skipping: [photoprism]
+2025-07-18 15:28:45,139 p=131879 u=bill n=ansible INFO| TASK [lxc : Display configuration changes] ***************************************************************************
+2025-07-18 15:28:45,162 p=131879 u=bill n=ansible INFO| ok: [photoprism] => {
+    "msg": [
+        "Updated LXC 103 configuration with 3 mount points and user mappings",
+        "Container restart: RESTARTED"
+    ]
+}
+2025-07-18 15:28:45,179 p=131879 u=bill n=ansible INFO| PLAY [vm] ************************************************************************************************************
+2025-07-18 15:28:45,179 p=131879 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 15:28:45,180 p=131879 u=bill n=ansible INFO| PLAY [proxmox_hosts] *************************************************************************************************
+2025-07-18 15:28:45,180 p=131879 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 15:28:45,180 p=131879 u=bill n=ansible INFO| PLAY [windows] *******************************************************************************************************
+2025-07-18 15:28:45,180 p=131879 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 15:28:45,180 p=131879 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-18 15:28:45,180 p=131879 u=bill n=ansible INFO| photoprism                 : ok=18   changed=4    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   

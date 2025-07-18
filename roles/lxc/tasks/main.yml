@@ -1,7 +1,4 @@
-- name: Load group definitions
-  include_vars: "{{ playbook_dir }}/group_vars/groups.yml"
-  tags: always
-
+---
 - name: Set root password on LXC containers
   user:
     name: root
