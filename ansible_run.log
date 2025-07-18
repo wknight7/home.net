@@ -8722,3 +8722,726 @@ https://docs.ansible.com/ansible-core/2.18/reference_appendices/interpreter_disc
 2025-07-18 16:24:56,508 p=135271 u=bill n=ansible INFO| skipping: no hosts matched
 2025-07-18 16:24:56,508 p=135271 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
 2025-07-18 16:24:56,508 p=135271 u=bill n=ansible INFO| truenas                    : ok=6    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-07-18 16:26:48,425 p=135402 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-18 16:26:48,722 p=135402 u=bill n=ansible INFO| homeassistant | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: root@192.168.86.51: Permission denied (publickey).",
+    "unreachable": true
+}
+2025-07-18 16:29:55,864 p=135564 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-18 16:29:55,992 p=135564 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/desktop.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-18 16:29:56,029 p=135564 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/samsung.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-18 16:29:56,591 p=135564 u=bill n=ansible INFO| wg | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 16:29:56,595 p=135564 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/dell.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-18 16:29:56,664 p=135564 u=bill n=ansible INFO| photoprism | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 16:29:56,817 p=135564 u=bill n=ansible INFO| desktop | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 16:29:56,936 p=135564 u=bill n=ansible INFO| truenas | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 16:29:57,298 p=135564 u=bill n=ansible INFO| bazarr | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 16:29:57,417 p=135564 u=bill n=ansible INFO| trilium | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 16:29:57,806 p=135564 u=bill n=ansible INFO| sonarr | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 16:29:57,859 p=135564 u=bill n=ansible INFO| paperless | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 16:29:58,259 p=135564 u=bill n=ansible INFO| books | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 16:29:58,371 p=135564 u=bill n=ansible INFO| overseer | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 16:29:58,828 p=135564 u=bill n=ansible INFO| radarr | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 16:29:58,835 p=135564 u=bill n=ansible INFO| ntfy | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 16:29:59,053 p=135564 u=bill n=ansible INFO| maintainerr | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Data could not be sent to remote host \"192.168.86.65\". Make sure this host can be reached over ssh: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\r\n@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @\r\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\r\nIT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!\r\nSomeone could be eavesdropping on you right now (man-in-the-middle attack)!\r\nIt is also possible that a host key has just been changed.\r\nThe fingerprint for the ED25519 key sent by the remote host is\nSHA256:U1zJq/odIZDuR6itrbQYSul32AUl2r4DmB+7nesWJEY.\r\nPlease contact your system administrator.\r\nAdd correct host key in /home/bill/.ssh/known_hosts to get rid of this message.\r\nOffending ED25519 key in /home/bill/.ssh/known_hosts:21\r\n  remove with:\r\n  ssh-keygen -f '/home/bill/.ssh/known_hosts' -R '192.168.86.65'\r\nAgent forwarding is disabled to avoid man-in-the-middle attacks.\r\nUpdateHostkeys is disabled because the host key is not trusted.\r\nUse of this system is private. If you are not authorized, disconnect immediately.\nFailure to comply will result in your destruction.hal@192.168.86.65: Permission denied (publickey).\r\n",
+    "unreachable": true
+}
+2025-07-18 16:29:59,228 p=135564 u=bill n=ansible INFO| prowlarr | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Data could not be sent to remote host \"192.168.86.123\". Make sure this host can be reached over ssh: ssh: connect to host 192.168.86.123 port 22: No route to host\r\n",
+    "unreachable": true
+}
+2025-07-18 16:29:59,575 p=135564 u=bill n=ansible INFO| tautulli | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 16:29:59,611 p=135564 u=bill n=ansible INFO| sab | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 16:29:59,620 p=135564 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/lily_laptop.yml, line 3, column 1,
+found a duplicate dict key (gnome). Using last defined value only.
+
+2025-07-18 16:29:59,723 p=135564 u=bill n=ansible INFO| cloudflared | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 16:29:59,753 p=135564 u=bill n=ansible INFO| samsung | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Data could not be sent to remote host \"192.168.86.94\". Make sure this host can be reached over ssh: ssh: connect to host 192.168.86.94 port 22: No route to host\r\n",
+    "unreachable": true
+}
+2025-07-18 16:29:59,820 p=135564 u=bill n=ansible INFO| dell | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Data could not be sent to remote host \"192.168.86.55\". Make sure this host can be reached over ssh: ssh: connect to host 192.168.86.55 port 22: No route to host\r\n",
+    "unreachable": true
+}
+2025-07-18 16:30:00,174 p=135564 u=bill n=ansible INFO| homepage | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 16:30:00,266 p=135564 u=bill n=ansible INFO| pbs | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 16:30:00,324 p=135564 u=bill n=ansible INFO| calibre-web | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 16:30:00,452 p=135564 u=bill n=ansible INFO| localhost | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 16:30:00,457 p=135564 u=bill n=ansible INFO| windows11 | FAILED! => {
+    "msg": "The field 'password' has an invalid value, which includes an undefined variable.. 'windows_password' is undefined"
+}
+2025-07-18 16:30:00,589 p=135564 u=bill n=ansible INFO| homeassistant | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: root@192.168.86.51: Permission denied (publickey).",
+    "unreachable": true
+}
+2025-07-18 16:30:00,595 p=135564 u=bill n=ansible INFO| pve | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 16:30:00,889 p=135564 u=bill n=ansible INFO| plex | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 16:30:02,869 p=135564 u=bill n=ansible INFO| lily_laptop | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Data could not be sent to remote host \"192.168.86.53\". Make sure this host can be reached over ssh: ssh: connect to host 192.168.86.53 port 22: No route to host\r\n",
+    "unreachable": true
+}
+2025-07-18 16:38:44,996 p=136039 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-18 16:38:46,065 p=136039 u=bill n=ansible WARNING| [WARNING]: Platform linux on host homeassistant is using the discovered Python interpreter at /usr/bin/python3.12,
+but future installation of another Python interpreter could change the meaning of that path. See
+https://docs.ansible.com/ansible-core/2.18/reference_appendices/interpreter_discovery.html for more information.
+
+2025-07-18 16:38:46,065 p=136039 u=bill n=ansible INFO| homeassistant | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.12"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 16:39:55,665 p=136142 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-18 16:39:55,718 p=136142 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/desktop.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-18 16:39:56,407 p=136142 u=bill n=ansible INFO| desktop | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 16:40:13,026 p=136196 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-18 16:40:13,245 p=136196 u=bill n=ansible INFO| PLAY [all] ***********************************************************************************************************
+2025-07-18 16:40:13,250 p=136196 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/desktop.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-18 16:40:13,251 p=136196 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 16:40:14,276 p=136196 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:40:14,283 p=136196 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] ******************************************************************
+2025-07-18 16:40:15,011 p=136196 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:40:15,019 p=136196 u=bill n=ansible INFO| TASK [Include host variables dynamically] ****************************************************************************
+2025-07-18 16:40:15,034 p=136196 u=bill n=ansible INFO| ok: [desktop] => (item=host_vars/desktop.yml)
+2025-07-18 16:40:15,037 p=136196 u=bill n=ansible INFO| PLAY [updates] *******************************************************************************************************
+2025-07-18 16:40:15,056 p=136196 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 16:40:16,923 p=136196 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:40:16,938 p=136196 u=bill n=ansible INFO| TASK [common : Load vault variables] *********************************************************************************
+2025-07-18 16:40:16,968 p=136196 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:40:16,976 p=136196 u=bill n=ansible INFO| TASK [common : include_vars] *****************************************************************************************
+2025-07-18 16:40:16,988 p=136196 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:40:16,996 p=136196 u=bill n=ansible INFO| TASK [common : Load group variables] *********************************************************************************
+2025-07-18 16:40:17,006 p=136196 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:40:17,027 p=136196 u=bill n=ansible INFO| PLAY [workstation] ***************************************************************************************************
+2025-07-18 16:40:17,039 p=136196 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 16:40:17,892 p=136196 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:40:17,910 p=136196 u=bill n=ansible INFO| TASK [workstation : Load workstation variables] **********************************************************************
+2025-07-18 16:40:17,925 p=136196 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:40:17,934 p=136196 u=bill n=ansible INFO| TASK [workstation : Load group variables] ****************************************************************************
+2025-07-18 16:40:17,947 p=136196 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:40:17,956 p=136196 u=bill n=ansible INFO| TASK [workstation : Load user variables] *****************************************************************************
+2025-07-18 16:40:17,967 p=136196 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:40:17,986 p=136196 u=bill n=ansible INFO| PLAY [local] *********************************************************************************************************
+2025-07-18 16:40:17,986 p=136196 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:40:17,987 p=136196 u=bill n=ansible INFO| PLAY [lxc] ***********************************************************************************************************
+2025-07-18 16:40:17,987 p=136196 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:40:17,988 p=136196 u=bill n=ansible INFO| PLAY [vm] ************************************************************************************************************
+2025-07-18 16:40:17,988 p=136196 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:40:17,988 p=136196 u=bill n=ansible INFO| PLAY [proxmox_hosts] *************************************************************************************************
+2025-07-18 16:40:17,988 p=136196 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:40:17,989 p=136196 u=bill n=ansible INFO| PLAY [truenas] *******************************************************************************************************
+2025-07-18 16:40:17,989 p=136196 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:40:17,989 p=136196 u=bill n=ansible INFO| PLAY [windows] *******************************************************************************************************
+2025-07-18 16:40:17,989 p=136196 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:40:17,989 p=136196 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-18 16:40:17,989 p=136196 u=bill n=ansible INFO| desktop                    : ok=11   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-18 16:48:16,093 p=136447 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-18 16:48:16,291 p=136447 u=bill n=ansible INFO| PLAY [all] ***********************************************************************************************************
+2025-07-18 16:48:16,295 p=136447 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/desktop.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-18 16:48:16,296 p=136447 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 16:48:17,739 p=136447 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:48:17,748 p=136447 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] ******************************************************************
+2025-07-18 16:48:20,853 p=136447 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:48:20,861 p=136447 u=bill n=ansible INFO| TASK [Include host variables dynamically] ****************************************************************************
+2025-07-18 16:48:20,875 p=136447 u=bill n=ansible INFO| ok: [desktop] => (item=host_vars/desktop.yml)
+2025-07-18 16:48:20,877 p=136447 u=bill n=ansible INFO| PLAY [updates] *******************************************************************************************************
+2025-07-18 16:48:20,896 p=136447 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 16:48:21,743 p=136447 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:48:21,758 p=136447 u=bill n=ansible INFO| TASK [common : Load vault variables] *********************************************************************************
+2025-07-18 16:48:21,786 p=136447 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:48:21,794 p=136447 u=bill n=ansible INFO| TASK [common : include_vars] *****************************************************************************************
+2025-07-18 16:48:21,808 p=136447 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:48:21,820 p=136447 u=bill n=ansible INFO| TASK [common : Load group variables] *********************************************************************************
+2025-07-18 16:48:21,831 p=136447 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:48:21,840 p=136447 u=bill n=ansible INFO| TASK [common : include_tasks] ****************************************************************************************
+2025-07-18 16:48:21,857 p=136447 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/common/tasks/ssh_config.yml for desktop
+2025-07-18 16:48:21,867 p=136447 u=bill n=ansible INFO| TASK [common : Ensure .ssh dir exists for bill] **********************************************************************
+2025-07-18 16:48:22,073 p=136447 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:48:22,082 p=136447 u=bill n=ansible INFO| TASK [common : Deploy aggregated SSH config for bill] ****************************************************************
+2025-07-18 16:48:22,166 p=136447 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/samsung.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-18 16:48:22,167 p=136447 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/dell.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-18 16:48:22,169 p=136447 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/lily_laptop.yml, line 3, column 1,
+found a duplicate dict key (gnome). Using last defined value only.
+
+2025-07-18 16:48:22,383 p=136447 u=bill n=ansible WARNING| [WARNING]: sftp transfer mechanism failed on [192.168.86.40]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-18 16:48:22,388 p=136447 u=bill n=ansible WARNING| [WARNING]: scp transfer mechanism failed on [192.168.86.40]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-18 16:48:22,631 p=136447 u=bill n=ansible INFO| changed: [desktop]
+2025-07-18 16:48:22,649 p=136447 u=bill n=ansible INFO| PLAY [workstation] ***************************************************************************************************
+2025-07-18 16:48:22,660 p=136447 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 16:48:24,504 p=136447 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:48:24,521 p=136447 u=bill n=ansible INFO| TASK [workstation : Load workstation variables] **********************************************************************
+2025-07-18 16:48:24,537 p=136447 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:48:24,546 p=136447 u=bill n=ansible INFO| TASK [workstation : Load group variables] ****************************************************************************
+2025-07-18 16:48:24,556 p=136447 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:48:24,566 p=136447 u=bill n=ansible INFO| TASK [workstation : Load user variables] *****************************************************************************
+2025-07-18 16:48:24,578 p=136447 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:48:24,626 p=136447 u=bill n=ansible INFO| PLAY [local] *********************************************************************************************************
+2025-07-18 16:48:24,626 p=136447 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:48:24,627 p=136447 u=bill n=ansible INFO| PLAY [lxc] ***********************************************************************************************************
+2025-07-18 16:48:24,627 p=136447 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:48:24,628 p=136447 u=bill n=ansible INFO| PLAY [vm] ************************************************************************************************************
+2025-07-18 16:48:24,628 p=136447 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:48:24,628 p=136447 u=bill n=ansible INFO| PLAY [proxmox_hosts] *************************************************************************************************
+2025-07-18 16:48:24,628 p=136447 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:48:24,629 p=136447 u=bill n=ansible INFO| PLAY [truenas] *******************************************************************************************************
+2025-07-18 16:48:24,629 p=136447 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:48:24,629 p=136447 u=bill n=ansible INFO| PLAY [windows] *******************************************************************************************************
+2025-07-18 16:48:24,629 p=136447 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:48:24,629 p=136447 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-18 16:48:24,629 p=136447 u=bill n=ansible INFO| desktop                    : ok=14   changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-18 16:53:55,727 p=136737 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-18 16:53:56,317 p=136737 u=bill n=ansible WARNING| [WARNING]: Platform linux on host ha is using the discovered Python interpreter at /usr/bin/python3.12, but future
+installation of another Python interpreter could change the meaning of that path. See
+https://docs.ansible.com/ansible-core/2.18/reference_appendices/interpreter_discovery.html for more information.
+
+2025-07-18 16:53:56,317 p=136737 u=bill n=ansible INFO| ha | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.12"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 16:54:05,946 p=136778 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-18 16:54:06,146 p=136778 u=bill n=ansible INFO| PLAY [all] ***********************************************************************************************************
+2025-07-18 16:54:06,151 p=136778 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/desktop.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-18 16:54:06,152 p=136778 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 16:54:07,624 p=136778 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:54:07,632 p=136778 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] ******************************************************************
+2025-07-18 16:54:10,796 p=136778 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:54:10,804 p=136778 u=bill n=ansible INFO| TASK [Include host variables dynamically] ****************************************************************************
+2025-07-18 16:54:10,818 p=136778 u=bill n=ansible INFO| ok: [desktop] => (item=host_vars/desktop.yml)
+2025-07-18 16:54:10,820 p=136778 u=bill n=ansible INFO| PLAY [updates] *******************************************************************************************************
+2025-07-18 16:54:10,839 p=136778 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 16:54:11,689 p=136778 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:54:11,703 p=136778 u=bill n=ansible INFO| TASK [common : Load vault variables] *********************************************************************************
+2025-07-18 16:54:11,733 p=136778 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:54:11,742 p=136778 u=bill n=ansible INFO| TASK [common : include_vars] *****************************************************************************************
+2025-07-18 16:54:11,755 p=136778 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:54:11,762 p=136778 u=bill n=ansible INFO| TASK [common : Load group variables] *********************************************************************************
+2025-07-18 16:54:11,772 p=136778 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:54:11,780 p=136778 u=bill n=ansible INFO| TASK [common : include_tasks] ****************************************************************************************
+2025-07-18 16:54:11,798 p=136778 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/common/tasks/ssh_config.yml for desktop
+2025-07-18 16:54:11,806 p=136778 u=bill n=ansible INFO| TASK [common : Ensure .ssh dir exists for bill] **********************************************************************
+2025-07-18 16:54:12,016 p=136778 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:54:12,027 p=136778 u=bill n=ansible INFO| TASK [common : Deploy aggregated SSH config for bill] ****************************************************************
+2025-07-18 16:54:12,114 p=136778 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/samsung.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-18 16:54:12,115 p=136778 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/dell.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-18 16:54:12,117 p=136778 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/lily_laptop.yml, line 3, column 1,
+found a duplicate dict key (gnome). Using last defined value only.
+
+2025-07-18 16:54:12,328 p=136778 u=bill n=ansible WARNING| [WARNING]: sftp transfer mechanism failed on [192.168.86.40]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-18 16:54:12,334 p=136778 u=bill n=ansible WARNING| [WARNING]: scp transfer mechanism failed on [192.168.86.40]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-18 16:54:12,592 p=136778 u=bill n=ansible INFO| changed: [desktop]
+2025-07-18 16:54:12,611 p=136778 u=bill n=ansible INFO| PLAY [workstation] ***************************************************************************************************
+2025-07-18 16:54:12,622 p=136778 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 16:54:13,469 p=136778 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:54:13,486 p=136778 u=bill n=ansible INFO| TASK [workstation : Load workstation variables] **********************************************************************
+2025-07-18 16:54:13,500 p=136778 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:54:13,509 p=136778 u=bill n=ansible INFO| TASK [workstation : Load group variables] ****************************************************************************
+2025-07-18 16:54:13,519 p=136778 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:54:13,528 p=136778 u=bill n=ansible INFO| TASK [workstation : Load user variables] *****************************************************************************
+2025-07-18 16:54:13,538 p=136778 u=bill n=ansible INFO| ok: [desktop]
+2025-07-18 16:54:13,583 p=136778 u=bill n=ansible INFO| PLAY [local] *********************************************************************************************************
+2025-07-18 16:54:13,583 p=136778 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:54:13,584 p=136778 u=bill n=ansible INFO| PLAY [lxc] ***********************************************************************************************************
+2025-07-18 16:54:13,584 p=136778 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:54:13,584 p=136778 u=bill n=ansible INFO| PLAY [vm] ************************************************************************************************************
+2025-07-18 16:54:13,584 p=136778 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:54:13,585 p=136778 u=bill n=ansible INFO| PLAY [proxmox_hosts] *************************************************************************************************
+2025-07-18 16:54:13,585 p=136778 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:54:13,585 p=136778 u=bill n=ansible INFO| PLAY [truenas] *******************************************************************************************************
+2025-07-18 16:54:13,585 p=136778 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:54:13,586 p=136778 u=bill n=ansible INFO| PLAY [windows] *******************************************************************************************************
+2025-07-18 16:54:13,586 p=136778 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:54:13,586 p=136778 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-18 16:54:13,586 p=136778 u=bill n=ansible INFO| desktop                    : ok=14   changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-18 17:01:28,042 p=137780 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-18 17:01:28,243 p=137780 u=bill n=ansible INFO| PLAY [all] ***********************************************************************************************************
+2025-07-18 17:01:28,248 p=137780 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 17:01:29,474 p=137780 u=bill n=ansible WARNING| [WARNING]: Platform linux on host ha is using the discovered Python interpreter at /usr/bin/python3.12, but future
+installation of another Python interpreter could change the meaning of that path. See
+https://docs.ansible.com/ansible-core/2.18/reference_appendices/interpreter_discovery.html for more information.
+
+2025-07-18 17:01:29,474 p=137780 u=bill n=ansible INFO| ok: [ha]
+2025-07-18 17:01:29,479 p=137780 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] ******************************************************************
+2025-07-18 17:01:29,499 p=137780 u=bill n=ansible INFO| skipping: [ha]
+2025-07-18 17:01:29,504 p=137780 u=bill n=ansible INFO| TASK [Include host variables dynamically] ****************************************************************************
+2025-07-18 17:01:29,518 p=137780 u=bill n=ansible INFO| ok: [ha] => (item=host_vars/ha.yml)
+2025-07-18 17:01:29,520 p=137780 u=bill n=ansible INFO| PLAY [updates] *******************************************************************************************************
+2025-07-18 17:01:29,520 p=137780 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:01:29,523 p=137780 u=bill n=ansible INFO| PLAY [workstation] ***************************************************************************************************
+2025-07-18 17:01:29,523 p=137780 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:01:29,524 p=137780 u=bill n=ansible INFO| PLAY [local] *********************************************************************************************************
+2025-07-18 17:01:29,524 p=137780 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:01:29,525 p=137780 u=bill n=ansible INFO| PLAY [lxc] ***********************************************************************************************************
+2025-07-18 17:01:29,525 p=137780 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:01:29,526 p=137780 u=bill n=ansible INFO| PLAY [vm] ************************************************************************************************************
+2025-07-18 17:01:29,532 p=137780 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 17:01:30,220 p=137780 u=bill n=ansible INFO| ok: [ha]
+2025-07-18 17:01:30,234 p=137780 u=bill n=ansible INFO| PLAY [proxmox_hosts] *************************************************************************************************
+2025-07-18 17:01:30,234 p=137780 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:01:30,235 p=137780 u=bill n=ansible INFO| PLAY [truenas] *******************************************************************************************************
+2025-07-18 17:01:30,235 p=137780 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:01:30,235 p=137780 u=bill n=ansible INFO| PLAY [windows] *******************************************************************************************************
+2025-07-18 17:01:30,235 p=137780 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:01:30,235 p=137780 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-18 17:01:30,236 p=137780 u=bill n=ansible INFO| ha                         : ok=3    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-07-18 17:02:11,050 p=137843 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-18 17:02:11,267 p=137843 u=bill n=ansible INFO| PLAY [all] ***********************************************************************************************************
+2025-07-18 17:02:11,273 p=137843 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 17:02:12,178 p=137843 u=bill n=ansible WARNING| [WARNING]: Platform linux on host ha is using the discovered Python interpreter at /usr/bin/python3.12, but future
+installation of another Python interpreter could change the meaning of that path. See
+https://docs.ansible.com/ansible-core/2.18/reference_appendices/interpreter_discovery.html for more information.
+
+2025-07-18 17:02:12,178 p=137843 u=bill n=ansible INFO| ok: [ha]
+2025-07-18 17:02:12,183 p=137843 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] ******************************************************************
+2025-07-18 17:02:12,196 p=137843 u=bill n=ansible INFO| skipping: [ha]
+2025-07-18 17:02:12,201 p=137843 u=bill n=ansible INFO| TASK [Include host variables dynamically] ****************************************************************************
+2025-07-18 17:02:12,213 p=137843 u=bill n=ansible INFO| ok: [ha] => (item=host_vars/ha.yml)
+2025-07-18 17:02:12,215 p=137843 u=bill n=ansible INFO| PLAY [updates] *******************************************************************************************************
+2025-07-18 17:02:12,215 p=137843 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:02:12,218 p=137843 u=bill n=ansible INFO| PLAY [workstation] ***************************************************************************************************
+2025-07-18 17:02:12,218 p=137843 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:02:12,218 p=137843 u=bill n=ansible INFO| PLAY [local] *********************************************************************************************************
+2025-07-18 17:02:12,219 p=137843 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:02:12,220 p=137843 u=bill n=ansible INFO| PLAY [lxc] ***********************************************************************************************************
+2025-07-18 17:02:12,220 p=137843 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:02:12,220 p=137843 u=bill n=ansible INFO| PLAY [vm] ************************************************************************************************************
+2025-07-18 17:02:12,227 p=137843 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 17:02:12,922 p=137843 u=bill n=ansible INFO| ok: [ha]
+2025-07-18 17:02:12,931 p=137843 u=bill n=ansible INFO| TASK [vm : Ensure .ssh directory exists for root on Home Assistant] **************************************************
+2025-07-18 17:02:13,293 p=137843 u=bill n=ansible INFO| ok: [ha]
+2025-07-18 17:02:13,299 p=137843 u=bill n=ansible INFO| TASK [vm : Deploy SSH keys for root user on Home Assistant] **********************************************************
+2025-07-18 17:02:13,307 p=137843 u=bill n=ansible INFO| fatal: [ha]: FAILED! => {"censored": "the output has been hidden due to the fact that 'no_log: true' was specified for this result"}
+2025-07-18 17:02:13,307 p=137843 u=bill n=ansible INFO| ...ignoring
+2025-07-18 17:02:13,318 p=137843 u=bill n=ansible INFO| PLAY [proxmox_hosts] *************************************************************************************************
+2025-07-18 17:02:13,318 p=137843 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:02:13,319 p=137843 u=bill n=ansible INFO| PLAY [truenas] *******************************************************************************************************
+2025-07-18 17:02:13,319 p=137843 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:02:13,319 p=137843 u=bill n=ansible INFO| PLAY [windows] *******************************************************************************************************
+2025-07-18 17:02:13,319 p=137843 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:02:13,319 p=137843 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-18 17:02:13,319 p=137843 u=bill n=ansible INFO| ha                         : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=1   
+2025-07-18 17:02:34,545 p=137901 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-18 17:02:34,743 p=137901 u=bill n=ansible INFO| PLAY [all] ***********************************************************************************************************
+2025-07-18 17:02:34,749 p=137901 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 17:02:35,647 p=137901 u=bill n=ansible WARNING| [WARNING]: Platform linux on host ha is using the discovered Python interpreter at /usr/bin/python3.12, but future
+installation of another Python interpreter could change the meaning of that path. See
+https://docs.ansible.com/ansible-core/2.18/reference_appendices/interpreter_discovery.html for more information.
+
+2025-07-18 17:02:35,647 p=137901 u=bill n=ansible INFO| ok: [ha]
+2025-07-18 17:02:35,653 p=137901 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] ******************************************************************
+2025-07-18 17:02:35,668 p=137901 u=bill n=ansible INFO| skipping: [ha]
+2025-07-18 17:02:35,674 p=137901 u=bill n=ansible INFO| TASK [Include host variables dynamically] ****************************************************************************
+2025-07-18 17:02:35,689 p=137901 u=bill n=ansible INFO| ok: [ha] => (item=host_vars/ha.yml)
+2025-07-18 17:02:35,691 p=137901 u=bill n=ansible INFO| PLAY [updates] *******************************************************************************************************
+2025-07-18 17:02:35,691 p=137901 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:02:35,695 p=137901 u=bill n=ansible INFO| PLAY [workstation] ***************************************************************************************************
+2025-07-18 17:02:35,695 p=137901 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:02:35,695 p=137901 u=bill n=ansible INFO| PLAY [local] *********************************************************************************************************
+2025-07-18 17:02:35,695 p=137901 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:02:35,696 p=137901 u=bill n=ansible INFO| PLAY [lxc] ***********************************************************************************************************
+2025-07-18 17:02:35,696 p=137901 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:02:35,697 p=137901 u=bill n=ansible INFO| PLAY [vm] ************************************************************************************************************
+2025-07-18 17:02:35,705 p=137901 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 17:02:36,375 p=137901 u=bill n=ansible INFO| ok: [ha]
+2025-07-18 17:02:36,384 p=137901 u=bill n=ansible INFO| TASK [vm : Ensure .ssh directory exists for root on Home Assistant] **************************************************
+2025-07-18 17:02:36,665 p=137901 u=bill n=ansible INFO| ok: [ha]
+2025-07-18 17:02:36,671 p=137901 u=bill n=ansible INFO| TASK [vm : Deploy SSH keys for root user on Home Assistant] **********************************************************
+2025-07-18 17:02:36,680 p=137901 u=bill n=ansible INFO| fatal: [ha]: FAILED! => {"msg": "'vault_bill_ssh_keys' is undefined"}
+2025-07-18 17:02:36,681 p=137901 u=bill n=ansible INFO| ...ignoring
+2025-07-18 17:02:36,691 p=137901 u=bill n=ansible INFO| PLAY [proxmox_hosts] *************************************************************************************************
+2025-07-18 17:02:36,691 p=137901 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:02:36,691 p=137901 u=bill n=ansible INFO| PLAY [truenas] *******************************************************************************************************
+2025-07-18 17:02:36,691 p=137901 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:02:36,692 p=137901 u=bill n=ansible INFO| PLAY [windows] *******************************************************************************************************
+2025-07-18 17:02:36,692 p=137901 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:02:36,692 p=137901 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-18 17:02:36,692 p=137901 u=bill n=ansible INFO| ha                         : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=1   
+2025-07-18 17:03:11,861 p=137970 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-18 17:03:12,058 p=137970 u=bill n=ansible INFO| PLAY [all] ***********************************************************************************************************
+2025-07-18 17:03:12,063 p=137970 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 17:03:12,944 p=137970 u=bill n=ansible WARNING| [WARNING]: Platform linux on host ha is using the discovered Python interpreter at /usr/bin/python3.12, but future
+installation of another Python interpreter could change the meaning of that path. See
+https://docs.ansible.com/ansible-core/2.18/reference_appendices/interpreter_discovery.html for more information.
+
+2025-07-18 17:03:12,944 p=137970 u=bill n=ansible INFO| ok: [ha]
+2025-07-18 17:03:12,949 p=137970 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] ******************************************************************
+2025-07-18 17:03:12,964 p=137970 u=bill n=ansible INFO| skipping: [ha]
+2025-07-18 17:03:12,969 p=137970 u=bill n=ansible INFO| TASK [Include host variables dynamically] ****************************************************************************
+2025-07-18 17:03:12,984 p=137970 u=bill n=ansible INFO| ok: [ha] => (item=host_vars/ha.yml)
+2025-07-18 17:03:12,986 p=137970 u=bill n=ansible INFO| PLAY [updates] *******************************************************************************************************
+2025-07-18 17:03:12,986 p=137970 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:03:12,989 p=137970 u=bill n=ansible INFO| PLAY [workstation] ***************************************************************************************************
+2025-07-18 17:03:12,989 p=137970 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:03:12,990 p=137970 u=bill n=ansible INFO| PLAY [local] *********************************************************************************************************
+2025-07-18 17:03:12,990 p=137970 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:03:12,991 p=137970 u=bill n=ansible INFO| PLAY [lxc] ***********************************************************************************************************
+2025-07-18 17:03:12,991 p=137970 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:03:12,992 p=137970 u=bill n=ansible INFO| PLAY [vm] ************************************************************************************************************
+2025-07-18 17:03:12,999 p=137970 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 17:03:13,728 p=137970 u=bill n=ansible INFO| ok: [ha]
+2025-07-18 17:03:13,737 p=137970 u=bill n=ansible INFO| TASK [vm : Load vault variables] *************************************************************************************
+2025-07-18 17:03:13,769 p=137970 u=bill n=ansible INFO| ok: [ha]
+2025-07-18 17:03:13,774 p=137970 u=bill n=ansible INFO| TASK [vm : Ensure .ssh directory exists for root on Home Assistant] **************************************************
+2025-07-18 17:03:14,059 p=137970 u=bill n=ansible INFO| ok: [ha]
+2025-07-18 17:03:14,064 p=137970 u=bill n=ansible INFO| TASK [vm : Deploy SSH keys for root user on Home Assistant] **********************************************************
+2025-07-18 17:03:14,543 p=137970 u=bill n=ansible INFO| changed: [ha] => (item=ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIPk3wGv0026XIzEcUBkA4cHhs2fShkhTXB/OzTJXzX08)
+2025-07-18 17:03:14,784 p=137970 u=bill n=ansible INFO| changed: [ha] => (item=ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKOMCby/SFAiqmzQwgntowbMApauQgvygFNhGlrOvBbo bill-ansible)
+2025-07-18 17:03:15,030 p=137970 u=bill n=ansible INFO| changed: [ha] => (item=ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINZ0FCMLOtSPPMXbUfrsO/cOhpLZTmoXFiv3n7X4Lefk bill desktop)
+2025-07-18 17:03:15,293 p=137970 u=bill n=ansible INFO| changed: [ha] => (item=ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKq1IYYXpETYKODxDyToz6IhCo5oQHZ0Tx2yZtA5Rg6Z samsung)
+2025-07-18 17:03:15,551 p=137970 u=bill n=ansible INFO| changed: [ha] => (item=ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIF5gDC417CFSRScxpTuMmAE7YIpao81dDN9rlnLFEAiN ansible-server)
+2025-07-18 17:03:15,562 p=137970 u=bill n=ansible INFO| PLAY [proxmox_hosts] *************************************************************************************************
+2025-07-18 17:03:15,562 p=137970 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:03:15,563 p=137970 u=bill n=ansible INFO| PLAY [truenas] *******************************************************************************************************
+2025-07-18 17:03:15,563 p=137970 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:03:15,563 p=137970 u=bill n=ansible INFO| PLAY [windows] *******************************************************************************************************
+2025-07-18 17:03:15,563 p=137970 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:03:15,563 p=137970 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-18 17:03:15,563 p=137970 u=bill n=ansible INFO| ha                         : ok=6    changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-07-18 17:03:59,483 p=138087 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-18 17:03:59,687 p=138087 u=bill n=ansible INFO| PLAY [all] ***********************************************************************************************************
+2025-07-18 17:03:59,694 p=138087 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 17:04:00,439 p=138087 u=bill n=ansible INFO| ok: [localhost]
+2025-07-18 17:04:00,444 p=138087 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] ******************************************************************
+2025-07-18 17:04:04,357 p=138087 u=bill n=ansible INFO| ok: [localhost]
+2025-07-18 17:04:04,362 p=138087 u=bill n=ansible INFO| TASK [Include host variables dynamically] ****************************************************************************
+2025-07-18 17:04:04,375 p=138087 u=bill n=ansible INFO| ok: [localhost] => (item=host_vars/localhost.yml)
+2025-07-18 17:04:04,378 p=138087 u=bill n=ansible INFO| PLAY [updates] *******************************************************************************************************
+2025-07-18 17:04:04,378 p=138087 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:04:04,381 p=138087 u=bill n=ansible INFO| PLAY [workstation] ***************************************************************************************************
+2025-07-18 17:04:04,381 p=138087 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:04:04,381 p=138087 u=bill n=ansible INFO| PLAY [local] *********************************************************************************************************
+2025-07-18 17:04:04,389 p=138087 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 17:04:04,972 p=138087 u=bill n=ansible INFO| ok: [localhost]
+2025-07-18 17:04:04,977 p=138087 u=bill n=ansible INFO| TASK [local : pre-run | update package cache (debian, etc)] **********************************************************
+2025-07-18 17:04:06,382 p=138087 u=bill n=ansible INFO| ok: [localhost]
+2025-07-18 17:04:06,388 p=138087 u=bill n=ansible INFO| TASK [local : Load group variables] **********************************************************************************
+2025-07-18 17:04:06,398 p=138087 u=bill n=ansible INFO| ok: [localhost]
+2025-07-18 17:04:06,403 p=138087 u=bill n=ansible INFO| TASK [local : Load workstations_new variables for resilient NFS] *****************************************************
+2025-07-18 17:04:06,414 p=138087 u=bill n=ansible INFO| ok: [localhost]
+2025-07-18 17:04:06,422 p=138087 u=bill n=ansible INFO| TASK [local : Filter NFS mounts for local ansible server (only bill and shared mounts)] ******************************
+2025-07-18 17:04:06,442 p=138087 u=bill n=ansible INFO| ok: [localhost]
+2025-07-18 17:04:06,450 p=138087 u=bill n=ansible INFO| PLAY [lxc] ***********************************************************************************************************
+2025-07-18 17:04:06,450 p=138087 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:04:06,450 p=138087 u=bill n=ansible INFO| PLAY [vm] ************************************************************************************************************
+2025-07-18 17:04:06,450 p=138087 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:04:06,451 p=138087 u=bill n=ansible INFO| PLAY [proxmox_hosts] *************************************************************************************************
+2025-07-18 17:04:06,451 p=138087 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:04:06,451 p=138087 u=bill n=ansible INFO| PLAY [truenas] *******************************************************************************************************
+2025-07-18 17:04:06,451 p=138087 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:04:06,452 p=138087 u=bill n=ansible INFO| PLAY [windows] *******************************************************************************************************
+2025-07-18 17:04:06,452 p=138087 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:04:06,452 p=138087 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-18 17:04:06,452 p=138087 u=bill n=ansible INFO| localhost                  : ok=8    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-18 17:04:45,057 p=139093 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-18 17:04:45,275 p=139093 u=bill n=ansible INFO| PLAY [all] ***********************************************************************************************************
+2025-07-18 17:04:45,280 p=139093 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 17:04:46,004 p=139093 u=bill n=ansible INFO| ok: [localhost]
+2025-07-18 17:04:46,010 p=139093 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] ******************************************************************
+2025-07-18 17:04:47,497 p=139093 u=bill n=ansible INFO| ok: [localhost]
+2025-07-18 17:04:47,504 p=139093 u=bill n=ansible INFO| TASK [Include host variables dynamically] ****************************************************************************
+2025-07-18 17:04:47,518 p=139093 u=bill n=ansible INFO| ok: [localhost] => (item=host_vars/localhost.yml)
+2025-07-18 17:04:47,520 p=139093 u=bill n=ansible INFO| PLAY [updates] *******************************************************************************************************
+2025-07-18 17:04:47,520 p=139093 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:04:47,523 p=139093 u=bill n=ansible INFO| PLAY [workstation] ***************************************************************************************************
+2025-07-18 17:04:47,523 p=139093 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:04:47,524 p=139093 u=bill n=ansible INFO| PLAY [local] *********************************************************************************************************
+2025-07-18 17:04:47,541 p=139093 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 17:04:48,112 p=139093 u=bill n=ansible INFO| ok: [localhost]
+2025-07-18 17:04:48,117 p=139093 u=bill n=ansible INFO| TASK [common : Load vault variables] *********************************************************************************
+2025-07-18 17:04:48,145 p=139093 u=bill n=ansible INFO| ok: [localhost]
+2025-07-18 17:04:48,151 p=139093 u=bill n=ansible INFO| TASK [common : include_vars] *****************************************************************************************
+2025-07-18 17:04:48,162 p=139093 u=bill n=ansible INFO| ok: [localhost]
+2025-07-18 17:04:48,168 p=139093 u=bill n=ansible INFO| TASK [common : Load group variables] *********************************************************************************
+2025-07-18 17:04:48,177 p=139093 u=bill n=ansible INFO| ok: [localhost]
+2025-07-18 17:04:48,183 p=139093 u=bill n=ansible INFO| TASK [common : include_tasks] ****************************************************************************************
+2025-07-18 17:04:48,195 p=139093 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/common/tasks/ssh_config.yml for localhost
+2025-07-18 17:04:48,200 p=139093 u=bill n=ansible INFO| TASK [common : Ensure .ssh dir exists for bill] **********************************************************************
+2025-07-18 17:04:48,424 p=139093 u=bill n=ansible INFO| ok: [localhost]
+2025-07-18 17:04:48,430 p=139093 u=bill n=ansible INFO| TASK [common : Deploy aggregated SSH config for bill] ****************************************************************
+2025-07-18 17:04:48,477 p=139093 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/desktop.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-18 17:04:48,478 p=139093 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/samsung.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-18 17:04:48,479 p=139093 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/dell.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-18 17:04:48,481 p=139093 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/lily_laptop.yml, line 3, column 1,
+found a duplicate dict key (gnome). Using last defined value only.
+
+2025-07-18 17:04:48,919 p=139093 u=bill n=ansible INFO| changed: [localhost]
+2025-07-18 17:04:48,931 p=139093 u=bill n=ansible INFO| TASK [local : pre-run | update package cache (debian, etc)] **********************************************************
+2025-07-18 17:04:50,365 p=139093 u=bill n=ansible INFO| ok: [localhost]
+2025-07-18 17:04:50,370 p=139093 u=bill n=ansible INFO| TASK [local : Load group variables] **********************************************************************************
+2025-07-18 17:04:50,381 p=139093 u=bill n=ansible INFO| ok: [localhost]
+2025-07-18 17:04:50,386 p=139093 u=bill n=ansible INFO| TASK [local : Load workstations_new variables for resilient NFS] *****************************************************
+2025-07-18 17:04:50,399 p=139093 u=bill n=ansible INFO| ok: [localhost]
+2025-07-18 17:04:50,407 p=139093 u=bill n=ansible INFO| TASK [local : Filter NFS mounts for local ansible server (only bill and shared mounts)] ******************************
+2025-07-18 17:04:50,425 p=139093 u=bill n=ansible INFO| ok: [localhost]
+2025-07-18 17:04:50,432 p=139093 u=bill n=ansible INFO| PLAY [lxc] ***********************************************************************************************************
+2025-07-18 17:04:50,432 p=139093 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:04:50,433 p=139093 u=bill n=ansible INFO| PLAY [vm] ************************************************************************************************************
+2025-07-18 17:04:50,433 p=139093 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:04:50,433 p=139093 u=bill n=ansible INFO| PLAY [proxmox_hosts] *************************************************************************************************
+2025-07-18 17:04:50,433 p=139093 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:04:50,434 p=139093 u=bill n=ansible INFO| PLAY [truenas] *******************************************************************************************************
+2025-07-18 17:04:50,434 p=139093 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:04:50,434 p=139093 u=bill n=ansible INFO| PLAY [windows] *******************************************************************************************************
+2025-07-18 17:04:50,434 p=139093 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 17:04:50,434 p=139093 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-18 17:04:50,435 p=139093 u=bill n=ansible INFO| localhost                  : ok=14   changed=1    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-18 17:05:19,596 p=140168 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-18 17:05:19,672 p=140168 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/desktop.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-18 17:05:19,685 p=140168 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/samsung.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-18 17:05:19,707 p=140168 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/dell.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-18 17:05:20,247 p=140168 u=bill n=ansible INFO| wg | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 17:05:20,279 p=140168 u=bill n=ansible INFO| photoprism | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 17:05:20,441 p=140168 u=bill n=ansible INFO| desktop | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 17:05:20,706 p=140168 u=bill n=ansible INFO| bazarr | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 17:05:20,874 p=140168 u=bill n=ansible INFO| trilium | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 17:05:21,153 p=140168 u=bill n=ansible INFO| sonarr | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 17:05:21,321 p=140168 u=bill n=ansible INFO| paperless | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 17:05:21,653 p=140168 u=bill n=ansible INFO| books | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 17:05:21,811 p=140168 u=bill n=ansible INFO| overseer | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 17:05:22,130 p=140168 u=bill n=ansible INFO| radarr | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 17:05:22,282 p=140168 u=bill n=ansible INFO| ntfy | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 17:05:22,647 p=140168 u=bill n=ansible INFO| maintainerr | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 17:05:22,745 p=140168 u=bill n=ansible INFO| sab | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 17:05:22,937 p=140168 u=bill n=ansible INFO| samsung | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Data could not be sent to remote host \"192.168.86.94\". Make sure this host can be reached over ssh: ssh: connect to host 192.168.86.94 port 22: No route to host\r\n",
+    "unreachable": true
+}
+2025-07-18 17:05:22,946 p=140168 u=bill n=ansible INFO| prowlarr | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Data could not be sent to remote host \"192.168.86.123\". Make sure this host can be reached over ssh: ssh: connect to host 192.168.86.123 port 22: No route to host\r\n",
+    "unreachable": true
+}
+2025-07-18 17:05:22,950 p=140168 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/lily_laptop.yml, line 3, column 1,
+found a duplicate dict key (gnome). Using last defined value only.
+
+2025-07-18 17:05:23,112 p=140168 u=bill n=ansible INFO| tautulli | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 17:05:23,187 p=140168 u=bill n=ansible INFO| cloudflared | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 17:05:23,387 p=140168 u=bill n=ansible INFO| dell | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Data could not be sent to remote host \"192.168.86.55\". Make sure this host can be reached over ssh: ssh: connect to host 192.168.86.55 port 22: No route to host\r\n",
+    "unreachable": true
+}
+2025-07-18 17:05:23,416 p=140168 u=bill n=ansible INFO| homepage | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 17:05:23,436 p=140168 u=bill n=ansible INFO| calibre-web | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 17:05:23,664 p=140168 u=bill n=ansible INFO| localhost | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 17:05:23,873 p=140168 u=bill n=ansible INFO| pve | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 17:05:23,884 p=140168 u=bill n=ansible INFO| pbs | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 17:05:23,889 p=140168 u=bill n=ansible INFO| windows11 | FAILED! => {
+    "msg": "The field 'password' has an invalid value, which includes an undefined variable.. 'windows_password' is undefined"
+}
+2025-07-18 17:05:24,050 p=140168 u=bill n=ansible INFO| plex | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 17:05:24,225 p=140168 u=bill n=ansible WARNING| [WARNING]: Platform linux on host ha is using the discovered Python interpreter at /usr/bin/python3.12, but future
+installation of another Python interpreter could change the meaning of that path. See
+https://docs.ansible.com/ansible-core/2.18/reference_appendices/interpreter_discovery.html for more information.
+
+2025-07-18 17:05:24,225 p=140168 u=bill n=ansible INFO| ha | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.12"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 17:05:24,441 p=140168 u=bill n=ansible INFO| truenas | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 17:05:26,261 p=140168 u=bill n=ansible INFO| lily_laptop | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Data could not be sent to remote host \"192.168.86.53\". Make sure this host can be reached over ssh: ssh: connect to host 192.168.86.53 port 22: No route to host\r\n",
+    "unreachable": true
+}

@@ -32,7 +32,7 @@ pbs ansible_host=192.168.86.33
 
 [vm]
 plex ansible_host=192.168.86.110
-homeassistant ansible_host=192.168.86.51 ansible_user=root ssh_key=bill_ansible
+ha ansible_host=192.168.86.51 ansible_user=root ssh_key=bill_ansible
 
 [truenas]
 truenas ansible_host=192.168.86.109 ansible_user=bill ansible_ssh_private_key_file=~/.ssh/bill_ansible
@@ -68,5 +68,6 @@ workstation
 proxmox_hosts
 local
 vm
+truenas
 windows
 

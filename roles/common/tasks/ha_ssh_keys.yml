@@ -1,0 +1,22 @@
+# roles/common/tasks/ha_ssh_keys.yml
+---
+
+- name: Ensure .ssh directory exists for root on Home Assistant
+  file:
+    path: "/root/.ssh"
+    state: directory
+    mode: '0700'
+    owner: root
+    group: root
+  when: inventory_hostname == 'ha'
+  tags: ha_ssh
+
+- name: Deploy SSH keys for root user on Home Assistant
+  authorized_key:
+    user: root
+    state: present
+    key: "{{ item }}"
+  loop: "{{ vault_bill_ssh_keys }}"
+  no_log: true
+  when: inventory_hostname == 'ha'
+  tags: ha_ssh

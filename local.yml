@@ -45,6 +45,7 @@
 - hosts: local
   become: yes
   roles:
+    - common
     - local
 
 # LXC configuration

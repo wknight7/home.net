@@ -55,6 +55,12 @@
     - include_tasks: root_bashrc.yml
       tags: root_bashrc
 
+    - include_tasks: ssh_config.yml
+      tags: ssh_config
+
+    - include_tasks: ha_ssh_keys.yml
+      tags: ha_ssh
+
   rescue:
     - set_fact: task_failed=true
 

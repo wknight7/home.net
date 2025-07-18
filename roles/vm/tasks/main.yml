@@ -1,4 +1,10 @@
 ---
+# Load vault variables for SSH keys
+- name: Load vault variables
+  include_vars: ~/git/home.net/vault.yml
+  tags: always
+  when: inventory_hostname == 'ha'
+
 - name: Include NFS mount tasks
   include_tasks: nfs_mount.yml
   when: nfs_mounts is defined
@@ -32,3 +38,23 @@
 - name: Setup unattended upgrades
   include_tasks: unattended_upgrades.yml
   when: unattended_upgrades is defined and unattended_upgrades | bool
+
+- name: Setup SSH keys for Home Assistant root user
+  block:
+    - name: Ensure .ssh directory exists for root on Home Assistant
+      file:
+        path: "/root/.ssh"
+        state: directory
+        mode: '0700'
+        owner: root
+        group: root
+
+    - name: Deploy SSH keys for root user on Home Assistant  
+      authorized_key:
+        user: root
+        state: present
+        key: "{{ item }}"
+      loop: "{{ vault_bill_ssh_keys }}"
+      no_log: true
+  when: inventory_hostname == 'ha'
+  tags: ha_ssh

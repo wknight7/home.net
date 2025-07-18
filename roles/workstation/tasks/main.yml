@@ -49,7 +49,6 @@
 - include_tasks: groups.yml
 - include_tasks: fstab_new.yml
 - include_tasks: user_directories.yml
-- include_tasks: ssh_config.yml
 - include_tasks: users.yml
 - include_tasks: chrome.yml
 - include_tasks: vscode.yml
