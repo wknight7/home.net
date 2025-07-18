@@ -1,0 +1,18 @@
+# LXC Mount Points - Managed by Ansible
+{% if needed_mounts is defined %}
+{% for mount in needed_mounts %}
+{% if mount_points[mount] is defined %}
+mp{{ loop.index0 }}: {{ mount_points[mount].source }},mp={{ mount_points[mount].dest }}
+{% endif %}
+{% endfor %}
+{% endif %}
+
+# User ID Mappings - Managed by Ansible
+{% if user_maps is defined and user_maps == true %}
+lxc.idmap: u 0 100000 1000
+lxc.idmap: u 1000 1000 1000
+lxc.idmap: u 2000 101000 64536
+lxc.idmap: g 0 100000 1000
+lxc.idmap: g 1000 1000 1000
+lxc.idmap: g 2000 101000 64536
+{% endif %}

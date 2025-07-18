@@ -1,6 +1,5 @@
 ---
-# Container ID (for Proxmox or inventory reference)
-container_id: 
+# LXC Container Configuration
 
 bill_password: "{{ vault_bill_password }}"
 
@@ -27,7 +26,6 @@ ansible_python_interpreter: /usr/bin/python3
 #  - librarian
 
 # Platform-specific options
-
 proxmox_instance: false
 #user_maps: true
 

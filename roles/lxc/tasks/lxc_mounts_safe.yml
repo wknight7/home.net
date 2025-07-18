@@ -1,0 +1,107 @@
+---
+- name: Load mount point definitions
+  include_vars: "{{ playbook_dir }}/group_vars/lxc_mounts.yml"
+  tags: lxc_mounts
+
+- name: Get container ID from inventory
+  set_fact:
+    target_container_id: "{{ hostvars[inventory_hostname]['container_id'] }}"
+  when: hostvars[inventory_hostname]['container_id'] is defined
+  tags: lxc_mounts
+
+- name: Fail if container_id not found
+  fail:
+    msg: "container_id not defined for {{ inventory_hostname }} in inventory"
+  when: target_container_id is not defined
+  tags: lxc_mounts
+
+- name: Check if LXC config file exists
+  stat:
+    path: "/etc/pve/lxc/{{ target_container_id }}.conf"
+  register: lxc_config_exists
+  delegate_to: "{{ groups['proxmox_hosts'][0] }}"
+  become: yes
+  tags: lxc_mounts
+
+- name: Backup original LXC config
+  copy:
+    src: "/etc/pve/lxc/{{ target_container_id }}.conf"
+    dest: "/etc/pve/lxc/{{ target_container_id }}.conf.backup.{{ ansible_date_time.epoch }}"
+    remote_src: yes
+  delegate_to: "{{ groups['proxmox_hosts'][0] }}"
+  become: yes
+  when: lxc_config_exists.stat.exists
+  tags: lxc_mounts
+
+- name: Remove existing managed mount points from LXC config
+  lineinfile:
+    path: "/etc/pve/lxc/{{ target_container_id }}.conf"
+    regexp: '^mp[0-9]+:.*'
+    state: absent
+  delegate_to: "{{ groups['proxmox_hosts'][0] }}"
+  become: yes
+  when: lxc_config_exists.stat.exists
+  tags: lxc_mounts
+
+- name: Remove existing managed user mappings from LXC config
+  lineinfile:
+    path: "/etc/pve/lxc/{{ target_container_id }}.conf"
+    regexp: '^lxc\.idmap:.*'
+    state: absent
+  delegate_to: "{{ groups['proxmox_hosts'][0] }}"
+  become: yes
+  when: 
+    - lxc_config_exists.stat.exists
+    - user_maps is defined
+    - user_maps == true
+  tags: lxc_mounts
+
+- name: Generate mount points and user mappings
+  template:
+    src: lxc_mounts_only.j2
+    dest: "/tmp/{{ target_container_id }}_mounts.conf"
+  delegate_to: "{{ groups['proxmox_hosts'][0] }}"
+  register: mount_config
+  tags: lxc_mounts
+
+- name: Append new mount points and user mappings to LXC config
+  shell: "cat /tmp/{{ target_container_id }}_mounts.conf >> /etc/pve/lxc/{{ target_container_id }}.conf"
+  delegate_to: "{{ groups['proxmox_hosts'][0] }}"
+  become: yes
+  when: 
+    - lxc_config_exists.stat.exists
+    - mount_config is succeeded
+  register: config_updated
+  tags: lxc_mounts
+
+- name: Clean up temporary file
+  file:
+    path: "/tmp/{{ target_container_id }}_mounts.conf"
+    state: absent
+  delegate_to: "{{ groups['proxmox_hosts'][0] }}"
+  tags: lxc_mounts
+
+- name: Check container status before restart
+  shell: "pct status {{ target_container_id }}"
+  register: container_status
+  delegate_to: "{{ groups['proxmox_hosts'][0] }}"
+  become: yes
+  tags: lxc_mounts
+
+- name: Restart container if it was running (to apply mount/idmap changes)
+  shell: "pct stop {{ target_container_id }} && sleep 3 && pct start {{ target_container_id }}"
+  delegate_to: "{{ groups['proxmox_hosts'][0] }}"
+  become: yes
+  when:
+    - config_updated is succeeded
+    - container_status.stdout is defined
+    - "'running' in container_status.stdout"
+  register: container_restarted
+  tags: lxc_mounts
+
+- name: Display configuration changes
+  debug:
+    msg: 
+      - "Updated LXC {{ target_container_id }} configuration with {{ needed_mounts | default([]) | length }} mount points and {{ 'user mappings' if (user_maps is defined and user_maps == true) else 'no user mappings' }}"
+      - "Container restart: {{ 'RESTARTED' if (container_restarted is succeeded) else 'NOT RUNNING or NOT NEEDED' }}"
+  tags: lxc_mounts

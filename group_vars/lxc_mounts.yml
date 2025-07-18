@@ -17,12 +17,12 @@ mount_points:
     owner: "bill"
     group: "media"
   paperless_consume:
-    source: "/home/bill/downloads/consume"
+    source: "/mnt/docs/paper/consume"
     dest: "/mnt/paperless/consume"
     owner: "bill"
     group: "docs"
   paperless_files:
-    source: "/home/bill/documents/paperless"
+    source: "/mnt/docs/paper/files"
     dest: "/mnt/paperless/files"
     owner: "bill"
     group: "docs"
