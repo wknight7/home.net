@@ -10,7 +10,7 @@
       tags: always
       apt: update_cache=yes
       changed_when: False
-      when: ansible_distribution in ["Debian", "Ubuntu"]
+      when: ansible_distribution in ["Debian", "Ubuntu"] and not is_truenas | default(false)
 
     - name: Include host variables dynamically
       include_vars: "{{ item }}"
@@ -78,6 +78,37 @@
     ansible_user: hal
   roles:
     - proxmox_hosts
+
+# TrueNAS configuration - minimal management
+- hosts: truenas
+  become: yes
+  ignore_errors: yes
+  force_handlers: yes
+  vars_files:
+    - ~/git/home.net/vault.yml
+  tasks:
+    - name: Load group variables
+      include_vars: group_vars/groups.yml
+      tags: always
+
+    # Only manage bashrc files for bill and root
+    - name: Copy bill's bashrc
+      copy:
+        src: roles/common/files/users/bill/bashrc
+        dest: /home/bill/.bashrc
+        owner: bill
+        group: bill
+        mode: '0644'
+      tags: bill_bashrc
+
+    - name: Copy root's bashrc
+      copy:
+        src: roles/common/files/users/root/bashrc
+        dest: /root/.bashrc
+        owner: root
+        group: root
+        mode: '0644'
+      tags: root_bashrc
 
 # Windows configuration
 - hosts: windows

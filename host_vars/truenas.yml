@@ -1,0 +1,45 @@
+---
+# TrueNAS host configuration - minimal management
+# Only managing bashrc files for bill and root users
+
+bill_password: "{{ vault_bill_password }}"
+
+# Branch to use for ansible-pull
+branch: master
+
+# SSH configuration
+ssh_port: 22
+ssh_users: "bill"
+ansible_python_interpreter: /usr/bin/python3
+ansible_user: bill
+
+# Platform-specific options - disable most features
+proxmox_instance: false
+user_maps: false
+is_truenas: true
+
+# Server options - minimal configuration
+unattended_upgrades: false
+web_server: false
+docker: false
+lxc: false
+
+# Users to manage - only bill and root
+users_to_manage:
+  - bill
+  - root
+
+# Disable all mount management
+needed_mounts: []
+
+# Disable group creation
+groups_to_create: []
+
+# Only enable user management for bashrc
+manage_users: true
+manage_bashrc: true
+
+# Disable other features
+manage_ssh: false
+manage_packages: false
+manage_services: false

@@ -8371,3 +8371,354 @@ core/2.18/reference_appendices/interpreter_discovery.html for more information.
 2025-07-18 15:28:45,180 p=131879 u=bill n=ansible INFO| skipping: no hosts matched
 2025-07-18 15:28:45,180 p=131879 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
 2025-07-18 15:28:45,180 p=131879 u=bill n=ansible INFO| photoprism                 : ok=18   changed=4    unreachable=0    failed=0    skipped=4    rescued=0    ignored=0   
+2025-07-18 15:34:37,271 p=132212 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/desktop.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-18 15:34:37,284 p=132212 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/samsung.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-18 15:34:37,303 p=132212 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/dell.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-18 15:34:37,661 p=132212 u=bill n=ansible INFO| wg | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Data could not be sent to remote host \"192.168.86.104\". Make sure this host can be reached over ssh: Use of this system is private. If you are not authorized, disconnect immediately.\nFailure to comply will result in your destruction.hal@192.168.86.104: Permission denied (publickey).\r\n",
+    "unreachable": true
+}
+2025-07-18 15:34:37,927 p=132212 u=bill n=ansible INFO| photoprism | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 15:34:38,056 p=132212 u=bill n=ansible INFO| desktop | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 15:34:38,383 p=132212 u=bill n=ansible INFO| bazarr | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 15:34:38,556 p=132212 u=bill n=ansible INFO| trilium | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 15:34:38,601 p=132212 u=bill n=ansible INFO| sonarr | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Data could not be sent to remote host \"192.168.86.66\". Make sure this host can be reached over ssh: Use of this system is private. If you are not authorized, disconnect immediately.\nFailure to comply will result in your destruction.hal@192.168.86.66: Permission denied (publickey).\r\n",
+    "unreachable": true
+}
+2025-07-18 15:34:39,042 p=132212 u=bill n=ansible INFO| paperless | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 15:34:39,057 p=132212 u=bill n=ansible INFO| books | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 15:34:39,485 p=132212 u=bill n=ansible INFO| radarr | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 15:34:39,493 p=132212 u=bill n=ansible INFO| overseer | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 15:34:39,691 p=132212 u=bill n=ansible INFO| maintainerr | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Data could not be sent to remote host \"192.168.86.65\". Make sure this host can be reached over ssh: @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\r\n@    WARNING: REMOTE HOST IDENTIFICATION HAS CHANGED!     @\r\n@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@\r\nIT IS POSSIBLE THAT SOMEONE IS DOING SOMETHING NASTY!\r\nSomeone could be eavesdropping on you right now (man-in-the-middle attack)!\r\nIt is also possible that a host key has just been changed.\r\nThe fingerprint for the ED25519 key sent by the remote host is\nSHA256:U1zJq/odIZDuR6itrbQYSul32AUl2r4DmB+7nesWJEY.\r\nPlease contact your system administrator.\r\nAdd correct host key in /home/bill/.ssh/known_hosts to get rid of this message.\r\nOffending ED25519 key in /home/bill/.ssh/known_hosts:21\r\n  remove with:\r\n  ssh-keygen -f '/home/bill/.ssh/known_hosts' -R '192.168.86.65'\r\nAgent forwarding is disabled to avoid man-in-the-middle attacks.\r\nUpdateHostkeys is disabled because the host key is not trusted.\r\nUse of this system is private. If you are not authorized, disconnect immediately.\nFailure to comply will result in your destruction.hal@192.168.86.65: Permission denied (publickey).\r\n",
+    "unreachable": true
+}
+2025-07-18 15:34:39,955 p=132212 u=bill n=ansible INFO| ntfy | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 15:34:40,149 p=132212 u=bill n=ansible INFO| sab | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 15:34:40,427 p=132212 u=bill n=ansible INFO| tautulli | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 15:34:40,514 p=132212 u=bill n=ansible INFO| samsung | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Data could not be sent to remote host \"192.168.86.94\". Make sure this host can be reached over ssh: ssh: connect to host 192.168.86.94 port 22: No route to host\r\n",
+    "unreachable": true
+}
+2025-07-18 15:34:40,518 p=132212 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/lily_laptop.yml, line 3, column 1,
+found a duplicate dict key (gnome). Using last defined value only.
+
+2025-07-18 15:34:40,528 p=132212 u=bill n=ansible INFO| prowlarr | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Data could not be sent to remote host \"192.168.86.123\". Make sure this host can be reached over ssh: ssh: connect to host 192.168.86.123 port 22: No route to host\r\n",
+    "unreachable": true
+}
+2025-07-18 15:34:40,611 p=132212 u=bill n=ansible INFO| cloudflared | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 15:34:40,826 p=132212 u=bill n=ansible INFO| dell | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Data could not be sent to remote host \"192.168.86.55\". Make sure this host can be reached over ssh: ssh: connect to host 192.168.86.55 port 22: No route to host\r\n",
+    "unreachable": true
+}
+2025-07-18 15:34:40,934 p=132212 u=bill n=ansible INFO| homepage | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 15:34:41,045 p=132212 u=bill n=ansible INFO| calibre-web | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 15:34:41,129 p=132212 u=bill n=ansible INFO| localhost | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 15:34:41,281 p=132212 u=bill n=ansible INFO| pve | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 15:34:41,319 p=132212 u=bill n=ansible INFO| pbs | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 15:34:41,325 p=132212 u=bill n=ansible INFO| windows11 | FAILED! => {
+    "msg": "The field 'password' has an invalid value, which includes an undefined variable.. 'windows_password' is undefined"
+}
+2025-07-18 15:34:41,337 p=132212 u=bill n=ansible INFO| homeassistant | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Failed to connect to the host via ssh: root@192.168.86.51: Permission denied (publickey).",
+    "unreachable": true
+}
+2025-07-18 15:34:41,589 p=132212 u=bill n=ansible INFO| plex | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 15:34:41,937 p=132212 u=bill n=ansible WARNING| [WARNING]: Platform linux on host truenas is using the discovered Python interpreter at /usr/bin/python3.11, but
+future installation of another Python interpreter could change the meaning of that path. See
+https://docs.ansible.com/ansible-core/2.18/reference_appendices/interpreter_discovery.html for more information.
+
+2025-07-18 15:34:41,938 p=132212 u=bill n=ansible INFO| truenas | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3.11"
+    },
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 15:34:43,700 p=132212 u=bill n=ansible INFO| lily_laptop | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Data could not be sent to remote host \"192.168.86.53\". Make sure this host can be reached over ssh: ssh: connect to host 192.168.86.53 port 22: No route to host\r\n",
+    "unreachable": true
+}
+2025-07-18 15:38:09,611 p=132684 u=bill n=ansible INFO| sonarr | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Data could not be sent to remote host \"192.168.86.66\". Make sure this host can be reached over ssh: Use of this system is private. If you are not authorized, disconnect immediately.\nFailure to comply will result in your destruction.hal@192.168.86.66: Permission denied (publickey).\r\n",
+    "unreachable": true
+}
+2025-07-18 15:38:09,613 p=132684 u=bill n=ansible INFO| wg | UNREACHABLE! => {
+    "changed": false,
+    "msg": "Data could not be sent to remote host \"192.168.86.104\". Make sure this host can be reached over ssh: Use of this system is private. If you are not authorized, disconnect immediately.\nFailure to comply will result in your destruction.hal@192.168.86.104: Permission denied (publickey).\r\n",
+    "unreachable": true
+}
+2025-07-18 15:44:14,711 p=133049 u=bill n=ansible INFO| wg | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 15:44:29,692 p=133100 u=bill n=ansible INFO| PLAY [all] ***********************************************************************************************************
+2025-07-18 15:44:29,697 p=133100 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 15:44:30,013 p=133100 u=bill n=ansible INFO| fatal: [sonarr]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.66\". Make sure this host can be reached over ssh: Use of this system is private. If you are not authorized, disconnect immediately.\nFailure to comply will result in your destruction.hal@192.168.86.66: Permission denied (publickey).\r\n", "unreachable": true}
+2025-07-18 15:44:30,014 p=133100 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-18 15:44:30,014 p=133100 u=bill n=ansible INFO| sonarr                     : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-18 15:46:53,269 p=133246 u=bill n=ansible INFO| PLAY [all] ***********************************************************************************************************
+2025-07-18 15:46:53,274 p=133246 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 15:46:53,606 p=133246 u=bill n=ansible INFO| fatal: [sonarr]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.66\". Make sure this host can be reached over ssh: Use of this system is private. If you are not authorized, disconnect immediately.\nFailure to comply will result in your destruction.hal@192.168.86.66: Permission denied (publickey).\r\n", "unreachable": true}
+2025-07-18 15:46:53,607 p=133246 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-18 15:46:53,607 p=133246 u=bill n=ansible INFO| sonarr                     : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-18 16:19:12,932 p=134795 u=bill n=ansible INFO| truenas | SUCCESS => {
+    "changed": false,
+    "ping": "pong"
+}
+2025-07-18 16:19:34,358 p=134846 u=bill n=ansible INFO| PLAY [all] ***********************************************************************************************************
+2025-07-18 16:19:34,363 p=134846 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 16:19:35,138 p=134846 u=bill n=ansible INFO| ok: [truenas]
+2025-07-18 16:19:35,143 p=134846 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] ******************************************************************
+2025-07-18 16:19:35,568 p=134846 u=bill n=ansible WARNING| [WARNING]: Updating cache and auto-installing missing dependency: python3-apt
+
+2025-07-18 16:19:35,568 p=134846 u=bill n=ansible INFO| fatal: [truenas]: FAILED! => {"changed": false, "cmd": "/usr/local/bin/apt-get update", "msg": "", "rc": 1, "stderr": "", "stderr_lines": [], "stdout": "Package management tools are disabled on TrueNAS appliances.\n\nAttempting to update TrueNAS with apt or methods other than the TrueNAS web\ninterface can result in a nonfunctional system.\n", "stdout_lines": ["Package management tools are disabled on TrueNAS appliances.", "", "Attempting to update TrueNAS with apt or methods other than the TrueNAS web", "interface can result in a nonfunctional system."]}
+2025-07-18 16:19:35,569 p=134846 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-18 16:19:35,569 p=134846 u=bill n=ansible INFO| truenas                    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-07-18 16:20:50,691 p=134899 u=bill n=ansible INFO| PLAY [all] ***********************************************************************************************************
+2025-07-18 16:20:50,696 p=134899 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 16:20:51,798 p=134899 u=bill n=ansible INFO| ok: [truenas]
+2025-07-18 16:20:51,802 p=134899 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] ******************************************************************
+2025-07-18 16:20:51,818 p=134899 u=bill n=ansible INFO| skipping: [truenas]
+2025-07-18 16:20:51,823 p=134899 u=bill n=ansible INFO| TASK [Include host variables dynamically] ****************************************************************************
+2025-07-18 16:20:51,845 p=134899 u=bill n=ansible INFO| ok: [truenas] => (item=host_vars/truenas.yml)
+2025-07-18 16:20:51,848 p=134899 u=bill n=ansible INFO| PLAY [updates] *******************************************************************************************************
+2025-07-18 16:20:51,848 p=134899 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:20:51,853 p=134899 u=bill n=ansible INFO| PLAY [workstation] ***************************************************************************************************
+2025-07-18 16:20:51,854 p=134899 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:20:51,855 p=134899 u=bill n=ansible INFO| PLAY [local] *********************************************************************************************************
+2025-07-18 16:20:51,855 p=134899 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:20:51,856 p=134899 u=bill n=ansible INFO| PLAY [lxc] ***********************************************************************************************************
+2025-07-18 16:20:51,857 p=134899 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:20:51,861 p=134899 u=bill n=ansible INFO| PLAY [vm] ************************************************************************************************************
+2025-07-18 16:20:51,868 p=134899 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 16:20:52,040 p=134899 u=bill n=ansible INFO| fatal: [truenas]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.109\". Make sure this host can be reached over ssh: hal@192.168.86.109: Permission denied (publickey).\r\n", "unreachable": true}
+2025-07-18 16:20:52,041 p=134899 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-18 16:20:52,041 p=134899 u=bill n=ansible INFO| truenas                    : ok=2    changed=0    unreachable=1    failed=0    skipped=1    rescued=0    ignored=0   
+2025-07-18 16:21:27,098 p=134964 u=bill n=ansible INFO| PLAY [all] ***********************************************************************************************************
+2025-07-18 16:21:27,103 p=134964 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 16:21:29,194 p=134964 u=bill n=ansible INFO| ok: [truenas]
+2025-07-18 16:21:29,198 p=134964 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] ******************************************************************
+2025-07-18 16:21:29,213 p=134964 u=bill n=ansible INFO| skipping: [truenas]
+2025-07-18 16:21:29,218 p=134964 u=bill n=ansible INFO| TASK [Include host variables dynamically] ****************************************************************************
+2025-07-18 16:21:29,231 p=134964 u=bill n=ansible INFO| ok: [truenas] => (item=host_vars/truenas.yml)
+2025-07-18 16:21:29,234 p=134964 u=bill n=ansible INFO| PLAY [updates] *******************************************************************************************************
+2025-07-18 16:21:29,234 p=134964 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:21:29,237 p=134964 u=bill n=ansible INFO| PLAY [workstation] ***************************************************************************************************
+2025-07-18 16:21:29,237 p=134964 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:21:29,238 p=134964 u=bill n=ansible INFO| PLAY [local] *********************************************************************************************************
+2025-07-18 16:21:29,238 p=134964 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:21:29,239 p=134964 u=bill n=ansible INFO| PLAY [lxc] ***********************************************************************************************************
+2025-07-18 16:21:29,239 p=134964 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:21:29,240 p=134964 u=bill n=ansible INFO| PLAY [vm] ************************************************************************************************************
+2025-07-18 16:21:29,245 p=134964 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 16:21:31,785 p=134964 u=bill n=ansible INFO| ok: [truenas]
+2025-07-18 16:21:31,797 p=134964 u=bill n=ansible INFO| PLAY [proxmox_hosts] *************************************************************************************************
+2025-07-18 16:21:31,798 p=134964 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:21:31,798 p=134964 u=bill n=ansible INFO| PLAY [windows] *******************************************************************************************************
+2025-07-18 16:21:31,798 p=134964 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:21:31,798 p=134964 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-18 16:21:31,798 p=134964 u=bill n=ansible INFO| truenas                    : ok=3    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-07-18 16:22:30,760 p=135044 u=bill n=ansible INFO| PLAY [all] ***********************************************************************************************************
+2025-07-18 16:22:30,766 p=135044 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 16:22:33,524 p=135044 u=bill n=ansible INFO| ok: [truenas]
+2025-07-18 16:22:33,529 p=135044 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] ******************************************************************
+2025-07-18 16:22:33,543 p=135044 u=bill n=ansible INFO| skipping: [truenas]
+2025-07-18 16:22:33,549 p=135044 u=bill n=ansible INFO| TASK [Include host variables dynamically] ****************************************************************************
+2025-07-18 16:22:33,566 p=135044 u=bill n=ansible INFO| ok: [truenas] => (item=host_vars/truenas.yml)
+2025-07-18 16:22:33,569 p=135044 u=bill n=ansible INFO| PLAY [updates] *******************************************************************************************************
+2025-07-18 16:22:33,569 p=135044 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:22:33,572 p=135044 u=bill n=ansible INFO| PLAY [workstation] ***************************************************************************************************
+2025-07-18 16:22:33,572 p=135044 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:22:33,573 p=135044 u=bill n=ansible INFO| PLAY [local] *********************************************************************************************************
+2025-07-18 16:22:33,573 p=135044 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:22:33,574 p=135044 u=bill n=ansible INFO| PLAY [lxc] ***********************************************************************************************************
+2025-07-18 16:22:33,574 p=135044 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:22:33,575 p=135044 u=bill n=ansible INFO| PLAY [vm] ************************************************************************************************************
+2025-07-18 16:22:33,581 p=135044 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 16:22:36,205 p=135044 u=bill n=ansible INFO| ok: [truenas]
+2025-07-18 16:22:36,216 p=135044 u=bill n=ansible INFO| TASK [vm : Include NFS mount tasks] **********************************************************************************
+2025-07-18 16:22:36,236 p=135044 u=bill n=ansible INFO| skipping: [truenas]
+2025-07-18 16:22:36,241 p=135044 u=bill n=ansible INFO| TASK [vm : Create application user] **********************************************************************************
+2025-07-18 16:22:36,257 p=135044 u=bill n=ansible INFO| skipping: [truenas]
+2025-07-18 16:22:36,262 p=135044 u=bill n=ansible INFO| TASK [vm : Create additional groups] *********************************************************************************
+2025-07-18 16:22:36,276 p=135044 u=bill n=ansible INFO| skipping: [truenas]
+2025-07-18 16:22:36,281 p=135044 u=bill n=ansible INFO| TASK [vm : Install NVIDIA drivers (for GPU passthrough VMs)] *********************************************************
+2025-07-18 16:22:36,295 p=135044 u=bill n=ansible INFO| skipping: [truenas]
+2025-07-18 16:22:36,299 p=135044 u=bill n=ansible INFO| TASK [vm : Setup unattended upgrades] ********************************************************************************
+2025-07-18 16:22:36,314 p=135044 u=bill n=ansible INFO| skipping: [truenas]
+2025-07-18 16:22:36,324 p=135044 u=bill n=ansible INFO| PLAY [proxmox_hosts] *************************************************************************************************
+2025-07-18 16:22:36,324 p=135044 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:22:36,325 p=135044 u=bill n=ansible INFO| PLAY [windows] *******************************************************************************************************
+2025-07-18 16:22:36,325 p=135044 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:22:36,325 p=135044 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-18 16:22:36,325 p=135044 u=bill n=ansible INFO| truenas                    : ok=3    changed=0    unreachable=0    failed=0    skipped=6    rescued=0    ignored=0   
+2025-07-18 16:23:32,162 p=135132 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-18 16:23:32,373 p=135132 u=bill n=ansible INFO| PLAY [all] ***********************************************************************************************************
+2025-07-18 16:23:32,379 p=135132 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 16:23:32,995 p=135132 u=bill n=ansible INFO| ok: [truenas]
+2025-07-18 16:23:33,001 p=135132 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] ******************************************************************
+2025-07-18 16:23:33,015 p=135132 u=bill n=ansible INFO| skipping: [truenas]
+2025-07-18 16:23:33,019 p=135132 u=bill n=ansible INFO| TASK [Include host variables dynamically] ****************************************************************************
+2025-07-18 16:23:33,032 p=135132 u=bill n=ansible INFO| ok: [truenas] => (item=host_vars/truenas.yml)
+2025-07-18 16:23:33,034 p=135132 u=bill n=ansible INFO| PLAY [updates] *******************************************************************************************************
+2025-07-18 16:23:33,034 p=135132 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:23:33,037 p=135132 u=bill n=ansible INFO| PLAY [workstation] ***************************************************************************************************
+2025-07-18 16:23:33,037 p=135132 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:23:33,038 p=135132 u=bill n=ansible INFO| PLAY [local] *********************************************************************************************************
+2025-07-18 16:23:33,038 p=135132 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:23:33,039 p=135132 u=bill n=ansible INFO| PLAY [lxc] ***********************************************************************************************************
+2025-07-18 16:23:33,039 p=135132 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:23:33,039 p=135132 u=bill n=ansible INFO| PLAY [vm] ************************************************************************************************************
+2025-07-18 16:23:33,039 p=135132 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:23:33,040 p=135132 u=bill n=ansible INFO| PLAY [proxmox_hosts] *************************************************************************************************
+2025-07-18 16:23:33,040 p=135132 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:23:33,041 p=135132 u=bill n=ansible INFO| PLAY [truenas] *******************************************************************************************************
+2025-07-18 16:23:33,046 p=135132 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 16:23:34,506 p=135132 u=bill n=ansible INFO| ok: [truenas]
+2025-07-18 16:23:34,518 p=135132 u=bill n=ansible INFO| TASK [Load group variables] ******************************************************************************************
+2025-07-18 16:23:34,529 p=135132 u=bill n=ansible INFO| ok: [truenas]
+2025-07-18 16:23:34,536 p=135132 u=bill n=ansible INFO| TASK [Copy root's bashrc] ********************************************************************************************
+2025-07-18 16:23:35,074 p=135132 u=bill n=ansible INFO| changed: [truenas]
+2025-07-18 16:23:35,080 p=135132 u=bill n=ansible INFO| PLAY [windows] *******************************************************************************************************
+2025-07-18 16:23:35,080 p=135132 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:23:35,080 p=135132 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-18 16:23:35,080 p=135132 u=bill n=ansible INFO| truenas                    : ok=5    changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-07-18 16:24:38,276 p=135203 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-18 16:24:38,479 p=135203 u=bill n=ansible INFO| PLAY [all] ***********************************************************************************************************
+2025-07-18 16:24:38,485 p=135203 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 16:24:40,322 p=135203 u=bill n=ansible INFO| ok: [truenas]
+2025-07-18 16:24:40,327 p=135203 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] ******************************************************************
+2025-07-18 16:24:40,341 p=135203 u=bill n=ansible INFO| skipping: [truenas]
+2025-07-18 16:24:40,347 p=135203 u=bill n=ansible INFO| TASK [Include host variables dynamically] ****************************************************************************
+2025-07-18 16:24:40,360 p=135203 u=bill n=ansible INFO| ok: [truenas] => (item=host_vars/truenas.yml)
+2025-07-18 16:24:40,362 p=135203 u=bill n=ansible INFO| PLAY [updates] *******************************************************************************************************
+2025-07-18 16:24:40,362 p=135203 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:24:40,365 p=135203 u=bill n=ansible INFO| PLAY [workstation] ***************************************************************************************************
+2025-07-18 16:24:40,365 p=135203 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:24:40,366 p=135203 u=bill n=ansible INFO| PLAY [local] *********************************************************************************************************
+2025-07-18 16:24:40,366 p=135203 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:24:40,368 p=135203 u=bill n=ansible INFO| PLAY [lxc] ***********************************************************************************************************
+2025-07-18 16:24:40,368 p=135203 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:24:40,368 p=135203 u=bill n=ansible INFO| PLAY [vm] ************************************************************************************************************
+2025-07-18 16:24:40,368 p=135203 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:24:40,369 p=135203 u=bill n=ansible INFO| PLAY [proxmox_hosts] *************************************************************************************************
+2025-07-18 16:24:40,369 p=135203 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:24:40,370 p=135203 u=bill n=ansible INFO| PLAY [truenas] *******************************************************************************************************
+2025-07-18 16:24:40,376 p=135203 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 16:24:40,834 p=135203 u=bill n=ansible INFO| ok: [truenas]
+2025-07-18 16:24:40,842 p=135203 u=bill n=ansible INFO| TASK [Load group variables] ******************************************************************************************
+2025-07-18 16:24:40,853 p=135203 u=bill n=ansible INFO| ok: [truenas]
+2025-07-18 16:24:40,859 p=135203 u=bill n=ansible INFO| TASK [Copy bill's bashrc] ********************************************************************************************
+2025-07-18 16:24:41,354 p=135203 u=bill n=ansible INFO| changed: [truenas]
+2025-07-18 16:24:41,360 p=135203 u=bill n=ansible INFO| PLAY [windows] *******************************************************************************************************
+2025-07-18 16:24:41,360 p=135203 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:24:41,360 p=135203 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-18 16:24:41,360 p=135203 u=bill n=ansible INFO| truenas                    : ok=5    changed=1    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-07-18 16:24:52,366 p=135271 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-18 16:24:52,569 p=135271 u=bill n=ansible INFO| PLAY [all] ***********************************************************************************************************
+2025-07-18 16:24:52,575 p=135271 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 16:24:54,149 p=135271 u=bill n=ansible INFO| ok: [truenas]
+2025-07-18 16:24:54,152 p=135271 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] ******************************************************************
+2025-07-18 16:24:54,165 p=135271 u=bill n=ansible INFO| skipping: [truenas]
+2025-07-18 16:24:54,170 p=135271 u=bill n=ansible INFO| TASK [Include host variables dynamically] ****************************************************************************
+2025-07-18 16:24:54,183 p=135271 u=bill n=ansible INFO| ok: [truenas] => (item=host_vars/truenas.yml)
+2025-07-18 16:24:54,185 p=135271 u=bill n=ansible INFO| PLAY [updates] *******************************************************************************************************
+2025-07-18 16:24:54,185 p=135271 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:24:54,188 p=135271 u=bill n=ansible INFO| PLAY [workstation] ***************************************************************************************************
+2025-07-18 16:24:54,188 p=135271 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:24:54,189 p=135271 u=bill n=ansible INFO| PLAY [local] *********************************************************************************************************
+2025-07-18 16:24:54,189 p=135271 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:24:54,190 p=135271 u=bill n=ansible INFO| PLAY [lxc] ***********************************************************************************************************
+2025-07-18 16:24:54,190 p=135271 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:24:54,190 p=135271 u=bill n=ansible INFO| PLAY [vm] ************************************************************************************************************
+2025-07-18 16:24:54,190 p=135271 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:24:54,191 p=135271 u=bill n=ansible INFO| PLAY [proxmox_hosts] *************************************************************************************************
+2025-07-18 16:24:54,191 p=135271 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:24:54,192 p=135271 u=bill n=ansible INFO| PLAY [truenas] *******************************************************************************************************
+2025-07-18 16:24:54,197 p=135271 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-18 16:24:55,643 p=135271 u=bill n=ansible INFO| ok: [truenas]
+2025-07-18 16:24:55,651 p=135271 u=bill n=ansible INFO| TASK [Load group variables] ******************************************************************************************
+2025-07-18 16:24:55,662 p=135271 u=bill n=ansible INFO| ok: [truenas]
+2025-07-18 16:24:55,666 p=135271 u=bill n=ansible INFO| TASK [Copy bill's bashrc] ********************************************************************************************
+2025-07-18 16:24:56,155 p=135271 u=bill n=ansible INFO| ok: [truenas]
+2025-07-18 16:24:56,159 p=135271 u=bill n=ansible INFO| TASK [Copy root's bashrc] ********************************************************************************************
+2025-07-18 16:24:56,502 p=135271 u=bill n=ansible INFO| ok: [truenas]
+2025-07-18 16:24:56,507 p=135271 u=bill n=ansible INFO| PLAY [windows] *******************************************************************************************************
+2025-07-18 16:24:56,508 p=135271 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-18 16:24:56,508 p=135271 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-18 16:24:56,508 p=135271 u=bill n=ansible INFO| truenas                    : ok=6    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
