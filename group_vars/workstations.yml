@@ -5,70 +5,88 @@ nfs_users:
   - lily
   - loretta
 
-# NFS mounts for all workstations (remove media and paperless from here)
-nfs_user_mounts:
-  - src: "192.168.86.109:/mnt/ssd-files/home/DEFAULT_USER/Documents"
-    dest: "/home/DEFAULT_USER/documents"
-    opts: "rw,comment=x-gvfs-hide"
-  - src: "192.168.86.109:/mnt/ssd-files/home/DEFAULT_USER/Downloads"
-    dest: "/home/DEFAULT_USER/downloads"
-    opts: "rw,comment=x-gvfs-hide"
-
-# NFS mounts for specific users
-nfs_specific_mounts:
-  - src: "192.168.86.109:/mnt/Data/media"
-    dest: "/home/bill/media"
-    opts: "rw,comment=x-gvfs-hide"
+# Centralized NFS mount points - all under /mnt/truenas/
+nfs_mounts:
+  # User-specific shares
+  - src: "192.168.86.109:/mnt/ssd-files/home/bill/Documents"
+    dest: "/mnt/truenas/bill-documents"
+    opts: "rw,soft,intr,timeo=30,retrans=3"
+  - src: "192.168.86.109:/mnt/ssd-files/home/bill/Downloads"
+    dest: "/mnt/truenas/bill-downloads"
+    opts: "rw,soft,intr,timeo=30,retrans=3"
+  - src: "192.168.86.109:/mnt/ssd-files/home/lily/Documents"
+    dest: "/mnt/truenas/lily-documents"
+    opts: "rw,soft,intr,timeo=30,retrans=3"
+  - src: "192.168.86.109:/mnt/ssd-files/home/lily/Downloads"
+    dest: "/mnt/truenas/lily-downloads"
+    opts: "rw,soft,intr,timeo=30,retrans=3"
+  - src: "192.168.86.109:/mnt/ssd-files/home/loretta/Documents"
+    dest: "/mnt/truenas/loretta-documents"
+    opts: "rw,soft,intr,timeo=30,retrans=3"
+  - src: "192.168.86.109:/mnt/ssd-files/home/loretta/Downloads"
+    dest: "/mnt/truenas/loretta-downloads"
+    opts: "rw,soft,intr,timeo=30,retrans=3"
   
-# System-wide NFS mounts (for all users to access via bookmarks)
-nfs_system_mounts:
+  # Shared resources
   - src: "192.168.86.109:/mnt/Data/media"
-    dest: "/media"
-    opts: "rw"
+    dest: "/mnt/truenas/media"
+    opts: "rw,soft,intr,timeo=30,retrans=3"
   - src: "192.168.86.109:/mnt/ssd-files/docs/paper"
-    dest: "/mnt/paperless"
-    opts: "rw"
+    dest: "/mnt/truenas/paperless"
+    opts: "rw,soft,intr,timeo=30,retrans=3"
   - src: "192.168.86.109:/mnt/ssd-files/home/shared_files"
-    dest: "/mnt/shared_files"
-    opts: "rw"
+    dest: "/mnt/truenas/shared_files"
+    opts: "rw,soft,intr,timeo=30,retrans=3"
   - src: "192.168.86.109:/mnt/ssd-files/workouts"
-    dest: "/mnt/workouts"
-    opts: "rw,comment=x-gvfs-hide"
+    dest: "/mnt/truenas/workouts"
+    opts: "rw,soft,intr,timeo=30,retrans=3"
 
-# List of desired_directories
+# List of users to create directory structures for
+workstation_users:
+  - name: bill
+    uid: 1000
+    gid: 1000
+  - name: lily
+    uid: 1002
+    gid: 1002
+  - name: loretta
+    uid: 1003
+    gid: 1003
 
-shared_directories:
-  - path: "/mnt/paperless"
+# Local directories to create in each user's home
+# These will either be symlinks to NFS or local fallbacks
+user_directories:
+  bill:
+    - { name: "desktop", type: "local" }
+    - { name: "documents", type: "symlink", target: "/mnt/truenas/bill-documents" }
+    - { name: "downloads", type: "symlink", target: "/mnt/truenas/bill-downloads" }
+    - { name: "media", type: "symlink", target: "/mnt/truenas/media" }
+    - { name: "code", type: "local" }
+    - { name: "git", type: "local" }
+    - { name: "screenshots", type: "local", path: "/home/bill/desktop/screenshots" }
+  lily:
+    - { name: "desktop", type: "local" }
+    - { name: "documents", type: "symlink", target: "/mnt/truenas/lily-documents" }
+    - { name: "downloads", type: "symlink", target: "/mnt/truenas/lily-downloads" }
+  loretta:
+    - { name: "desktop", type: "local" }
+    - { name: "documents", type: "symlink", target: "/mnt/truenas/loretta-documents" }
+    - { name: "downloads", type: "symlink", target: "/mnt/truenas/loretta-downloads" }
+
+# Shared mount points with proper ownership
+shared_mount_points:
+  - path: "/mnt/truenas/paperless"
     owner: "bill"
     group: "docs"
     mode: "0775"
-  - path: "/mnt/shared_files"
+  - path: "/mnt/truenas/shared_files"
     owner: "bill"
     group: "docs"
     mode: "0775"
-  - path: "/mnt/workouts"
+  - path: "/mnt/truenas/workouts"
     owner: "bill"
     group: "data"
     mode: "0775"
-
-bill_directories:
-  - "/home/bill/desktop"
-  - "/home/bill/desktop/screenshots"
-  - "/home/bill/documents"
-  - "/home/bill/downloads"
-  - "/home/bill/media"
-  - "/home/bill/code"
-  - "/home/bill/git"
-
-loretta_directories:
-  - { path: "/home/loretta/desktop", owner: "loretta", group: "loretta", mode: "0755" }
-  - { path: "/home/loretta/documents", owner: "loretta", group: "loretta", mode: "0755" }
-  - { path: "/home/loretta/downloads", owner: "loretta", group: "loretta", mode: "0755" }
-
-lily_directories:
-  - { path: "/home/lily/desktop", owner: "lily", group: "lily", mode: "0755" }
-  - { path: "/home/lily/documents", owner: "lily", group: "lily", mode: "0755" }
-  - { path: "/home/lily/downloads", owner: "lily", group: "lily", mode: "0755" }
   
 # List of unwanted directories
 bill_unwanted_directories:

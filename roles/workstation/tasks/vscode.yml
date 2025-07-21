@@ -46,7 +46,10 @@
 - name: Update apt cache to clear errors
   apt:
     update_cache: yes
+    force_apt_get: yes
   ignore_errors: yes
+  retries: 3
+  delay: 5
 
 - name: Add VS Code repository
   apt_repository:

@@ -1,34 +1,61 @@
-- name: Add managed fstab entries
+---
+- name: Create /mnt/truenas base directory
+  file:
+    path: /mnt/truenas
+    state: directory
+    mode: '0755'
+    owner: root
+    group: root
+
+- name: Unmount any existing NFS mounts in /mnt/truenas
+  mount:
+    path: "{{ item.dest }}"
+    state: unmounted
+  loop: "{{ nfs_mounts }}"
+  failed_when: false
+
+- name: Create NFS mount point directories
+  file:
+    path: "{{ item.dest }}"
+    state: directory
+    mode: '0755'
+    owner: root
+    group: root
+  loop: "{{ nfs_mounts }}"
+
+- name: Add NFS mounts to fstab
   blockinfile:
     path: /etc/fstab
-    marker: "# {mark} ANSIBLE MANAGED BLOCK FOR NFS MOUNTS"
+    marker: "# {mark} ANSIBLE MANAGED BLOCK FOR TRUENAS NFS MOUNTS"
     block: |
-      {% for user in nfs_users %}
-      {% for mount in nfs_user_mounts %}
-      {{ mount.src.replace('DEFAULT_USER', user) }} {{ mount.dest.replace('DEFAULT_USER', user) }} nfs {{ mount.opts }} 0 0
-      {% endfor %}
-      {% endfor %}
-      {% for mount in nfs_specific_mounts %}
-      {{ mount.src }} {{ mount.dest }} nfs {{ mount.opts }} 0 0
-      {% endfor %}
-      {% for mount in nfs_system_mounts %}
+      {% for mount in nfs_mounts %}
       {{ mount.src }} {{ mount.dest }} nfs {{ mount.opts }} 0 0
       {% endfor %}
     insertafter: EOF
     backup: yes
 
-- name: Ensure NFS mount points exist
+- name: Create shared mount point directories with proper ownership
   file:
-    path: "{{ item.dest }}"
+    path: "{{ item.path }}"
     state: directory
-    mode: '0755'
-  loop: "{{ nfs_system_mounts }}"
+    mode: "{{ item.mode }}"
+    owner: "{{ item.owner }}"
+    group: "{{ item.group }}"
+  loop: "{{ shared_mount_points }}"
 
-- name: Reload systemd daemon
-  systemd:
-    daemon_reload: yes
-  become: true
-
-- name: Remount all filesystems
+- name: Mount NFS shares (gracefully handle failures)
   command: mount -a
-  become: true
+  register: mount_result
+  failed_when: false
+  changed_when: mount_result.rc == 0
+
+- name: Check which NFS mounts are actually available
+  stat:
+    path: "{{ item.dest }}"
+  register: nfs_mount_status
+  loop: "{{ nfs_mounts }}"
+
+- name: Display NFS mount status
+  debug:
+    msg: "NFS mount {{ item.item.dest }} is {{ 'available' if item.stat.exists and item.stat.isdir else 'unavailable' }}"
+  loop: "{{ nfs_mount_status.results }}"

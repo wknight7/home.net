@@ -1,0 +1,22 @@
+---
+- name: TrueNAS | Deploy bashrc for bill user
+  tags: truenas,bashrc
+  copy:
+    src: "{{ role_path }}/../common/files/users/bill/bashrc"
+    dest: /mnt/ssd-files/home/bill/.bashrc
+    owner: bill
+    group: bill
+    mode: '0644'
+    backup: true
+  become: true
+
+- name: TrueNAS | Deploy bashrc for root user  
+  tags: truenas,bashrc
+  copy:
+    src: "{{ role_path }}/../common/files/users/root/bashrc"
+    dest: /root/.bashrc
+    owner: root
+    group: root
+    mode: '0644'
+    backup: true
+  become: true

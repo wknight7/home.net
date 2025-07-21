@@ -1,7 +1,7 @@
 ---
-# Load workstation variables - use the new resilient NFS configuration
+# Load workstation variables - use the updated resilient NFS configuration
 - name: Load workstation variables
-  include_vars: group_vars/workstations_new.yml
+  include_vars: group_vars/workstations.yml
   tags: always
 
 # Load group variables
@@ -47,7 +47,7 @@
   tags: libreoffice
 
 - include_tasks: groups.yml
-- include_tasks: fstab_new.yml
+- include_tasks: fstab.yml
 - include_tasks: user_directories.yml
 - include_tasks: users.yml
 - include_tasks: chrome.yml

@@ -23,16 +23,6 @@
   become: yes
   tags: lxc_mounts
 
-- name: Backup original LXC config
-  copy:
-    src: "/etc/pve/lxc/{{ target_container_id }}.conf"
-    dest: "/etc/pve/lxc/{{ target_container_id }}.conf.backup.{{ ansible_date_time.epoch }}"
-    remote_src: yes
-  delegate_to: "{{ groups['proxmox_hosts'][0] }}"
-  become: yes
-  when: lxc_config_exists.stat.exists
-  tags: lxc_mounts
-
 - name: Remove existing managed mount points from LXC config
   lineinfile:
     path: "/etc/pve/lxc/{{ target_container_id }}.conf"
