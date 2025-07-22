@@ -1,0 +1,72 @@
+---
+- name: Setup TrueNAS rsync backup to PBS
+  hosts: truenas
+  gather_facts: true
+  become: yes
+
+  vars:
+    pbs_server: "192.168.86.33"
+    pbs_backup_user: "backup"
+    backup_base_path: "/srv/backups/truenas"
+    
+    # TrueNAS directories to backup
+    backup_sources:
+      - src: "/mnt/Data/media/"
+        dest: "media"
+        exclude:
+          - "*.tmp"
+          - ".Trash*/"
+          - "Recycle.Bin/"
+          - "@eaDir/"
+          - ".DS_Store"
+      - src: "/mnt/Data/documents/"
+        dest: "documents"
+        exclude:
+          - "*.tmp"
+          - ".Trash*/"
+      - src: "/mnt/Data/photos/"
+        dest: "photos"
+        exclude:
+          - "*.tmp"
+          - ".Trash*/"
+          - "@eaDir/"
+
+  tasks:
+    - name: Install rsync
+      package:
+        name: rsync
+        state: present
+
+    - name: Create SSH key for backup user
+      user:
+        name: "{{ ansible_user }}"
+        generate_ssh_key: yes
+        ssh_key_bits: 4096
+        ssh_key_file: .ssh/pbs_backup_rsa
+      register: ssh_key_result
+
+    - name: Display public key for PBS setup
+      debug:
+        msg: |
+          Add this public key to PBS user '{{ pbs_backup_user }}' on {{ pbs_server }}:
+          {{ ssh_key_result.ssh_public_key }}
+
+    - name: Create backup script
+      template:
+        src: rsync-backup.sh.j2
+        dest: /usr/local/bin/rsync-backup-to-pbs.sh
+        mode: '0755'
+
+    - name: Create cron job for daily backup
+      cron:
+        name: "TrueNAS to PBS backup"
+        minute: "0"
+        hour: "2"
+        job: "/usr/local/bin/rsync-backup-to-pbs.sh"
+        user: root
+
+  handlers:
+    - name: restart cron
+      service:
+        name: cron
+        state: restarted

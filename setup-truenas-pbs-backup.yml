@@ -1,0 +1,180 @@
+---
+- name: Setup TrueNAS backup to Proxmox Backup Server
+  hosts: truenas
+  gather_facts: true
+  become: yes
+
+  vars:
+    # PBS connection details
+    pbs_server: "192.168.86.33"
+    pbs_port: 8007
+    pbs_datastore: "backups"  # adjust to your datastore name
+    pbs_user: "bill@pam"  # or create a dedicated backup user
+    
+    # Backup directories on TrueNAS
+    backup_paths:
+      - path: "/mnt/ssd-files/docs"
+        backup_id: "ssd-docs"
+        exclude_patterns:
+          - "*.tmp"
+          - "**/.Trash*/**"
+          - "**/Recycle.Bin/**"
+          - "**/@eaDir/**"  # Synology metadata
+          - "**/.DS_Store"
+          - "**/*.lock"
+          - "**/~$*"  # Office temp files
+      - path: "/mnt/ssd-files/fileshare"
+        backup_id: "ssd-fileshare"
+        exclude_patterns:
+          - "*.tmp"
+          - "**/.Trash*/**"
+          - "**/Recycle.Bin/**"
+          - "**/@eaDir/**"
+          - "**/.DS_Store"
+      - path: "/mnt/ssd-files/home"
+        backup_id: "ssd-home"
+        exclude_patterns:
+          - "*.tmp"
+          - "**/.Trash*/**"
+          - "**/Recycle.Bin/**"
+          - "**/@eaDir/**"
+          - "**/.DS_Store"
+          - "**/.cache/**"
+          - "**/node_modules/**"
+          - "**/.git/**"
+      - path: "/mnt/ssd-files/photo_storage"
+        backup_id: "ssd-photo-storage"
+        exclude_patterns:
+          - "*.tmp"
+          - "**/.Trash*/**"
+          - "**/Recycle.Bin/**"
+          - "**/@eaDir/**"
+          - "**/.DS_Store"
+          - "**/Thumbs.db"
+      - path: "/mnt/ssd-files/workouts"
+        backup_id: "ssd-workouts"
+        exclude_patterns:
+          - "*.tmp"
+          - "**/.Trash*/**"
+          - "**/Recycle.Bin/**"
+          - "**/@eaDir/**"
+          - "**/.DS_Store"
+      - path: "/mnt/Data/books"
+        backup_id: "data-books"
+        exclude_patterns:
+          - "*.tmp"
+          - "**/.Trash*/**"
+          - "**/Recycle.Bin/**"
+          - "**/@eaDir/**"
+          - "**/.DS_Store"
+          - "**/calibre-web.log*"  # Calibre logs
+      - path: "/mnt/Data/media/storage/home_videos"
+        backup_id: "data-home-videos"
+        exclude_patterns:
+          - "*.tmp"
+          - "**/.Trash*/**"
+          - "**/Recycle.Bin/**"
+          - "**/@eaDir/**"
+          - "**/.DS_Store"
+          - "**/*.part"  # Partial downloads
+      - path: "/mnt/Data/media/storage/photos"
+        backup_id: "data-photos"
+        exclude_patterns:
+          - "*.tmp"
+          - "**/.Trash*/**"
+          - "**/Recycle.Bin/**"
+          - "**/@eaDir/**"
+          - "**/.DS_Store"
+          - "**/Thumbs.db"
+          - "**/*.xmp.bak"  # Photo editing backups
+
+  tasks:
+    - name: Install Proxmox Backup Client
+      package:
+        name: proxmox-backup-client
+        state: present
+
+    - name: Create PBS backup user if it doesn't exist
+      user:
+        name: pbs-backup
+        system: yes
+        shell: /bin/bash
+        home: /var/lib/pbs-backup
+        create_home: yes
+      
+    - name: Create backup scripts directory
+      file:
+        path: /usr/local/bin/pbs-backup
+        state: directory
+        mode: '0755'
+
+    - name: Create backup script for each path
+      template:
+        src: pbs-backup-script.sh.j2
+        dest: "/usr/local/bin/pbs-backup/backup-{{ item.backup_id }}.sh"
+        mode: '0755'
+        owner: root
+        group: root
+      loop: "{{ backup_paths }}"
+
+    - name: Create master backup script
+      template:
+        src: pbs-backup-all.sh.j2
+        dest: /usr/local/bin/pbs-backup/backup-all.sh
+        mode: '0755'
+        owner: root
+        group: root
+
+    - name: Create systemd service for backups
+      template:
+        src: pbs-backup.service.j2
+        dest: /etc/systemd/system/pbs-backup.service
+        owner: root
+        group: root
+        mode: '0644'
+      notify: reload systemd
+
+    - name: Create systemd timer for daily backups
+      template:
+        src: pbs-backup.timer.j2
+        dest: /etc/systemd/system/pbs-backup.timer
+        owner: root
+        group: root
+        mode: '0644'
+      notify: reload systemd
+
+    - name: Enable and start backup timer
+      systemd:
+        name: pbs-backup.timer
+        enabled: yes
+        state: started
+        daemon_reload: yes
+
+    - name: Display backup information
+      debug:
+        msg: |
+          TrueNAS PBS Backup Setup Complete!
+          
+          Backup Configuration:
+          - PBS Server: {{ pbs_server }}:{{ pbs_port }}
+          - Datastore: {{ pbs_datastore }}
+          - Backup User: {{ pbs_user }}
+          
+          Backup Paths:
+          {% for item in backup_paths %}
+          - {{ item.path }} → {{ item.backup_id }}
+          {% endfor %}
+          
+          Manual backup: /usr/local/bin/pbs-backup/backup-all.sh
+          Service: systemctl status pbs-backup.timer
+          Logs: journalctl -u pbs-backup.service
+          
+          Next steps:
+          1. Configure PBS user credentials
+          2. Test manual backup
+          3. Verify automated schedule
+
+  handlers:
+    - name: reload systemd
+      systemd:
+        daemon_reload: yes

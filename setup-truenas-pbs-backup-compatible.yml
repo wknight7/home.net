@@ -1,0 +1,205 @@
+---
+- name: Setup TrueNAS backup to Proxmox Backup Server (TrueNAS Compatible)
+  hosts: truenas
+  gather_facts: true
+  become: yes
+
+  vars:
+    # PBS connection details
+    pbs_server: "192.168.86.33"
+    pbs_port: 8007
+    pbs_datastore: "backups"  # adjust to your datastore name
+    pbs_user: "bill@pam"  # or create a dedicated backup user
+    
+    # Backup directories on TrueNAS
+    backup_paths:
+      - path: "/mnt/ssd-files/docs"
+        backup_id: "ssd-docs"
+        exclude_patterns:
+          - "*.tmp"
+          - "**/.Trash*/**"
+          - "**/Recycle.Bin/**"
+          - "**/@eaDir/**"  # Synology metadata
+          - "**/.DS_Store"
+          - "**/*.lock"
+          - "**/~$*"  # Office temp files
+      - path: "/mnt/ssd-files/fileshare"
+        backup_id: "ssd-fileshare"
+        exclude_patterns:
+          - "*.tmp"
+          - "**/.Trash*/**"
+          - "**/Recycle.Bin/**"
+          - "**/@eaDir/**"
+          - "**/.DS_Store"
+      - path: "/mnt/ssd-files/home"
+        backup_id: "ssd-home"
+        exclude_patterns:
+          - "*.tmp"
+          - "**/.Trash*/**"
+          - "**/Recycle.Bin/**"
+          - "**/@eaDir/**"
+          - "**/.DS_Store"
+          - "**/.cache/**"
+          - "**/node_modules/**"
+          - "**/.git/**"
+      - path: "/mnt/ssd-files/photo_storage"
+        backup_id: "ssd-photo-storage"
+        exclude_patterns:
+          - "*.tmp"
+          - "**/.Trash*/**"
+          - "**/Recycle.Bin/**"
+          - "**/@eaDir/**"
+          - "**/.DS_Store"
+          - "**/Thumbs.db"
+      - path: "/mnt/ssd-files/workouts"
+        backup_id: "ssd-workouts"
+        exclude_patterns:
+          - "*.tmp"
+          - "**/.Trash*/**"
+          - "**/Recycle.Bin/**"
+          - "**/@eaDir/**"
+          - "**/.DS_Store"
+      - path: "/mnt/Data/books"
+        backup_id: "data-books"
+        exclude_patterns:
+          - "*.tmp"
+          - "**/.Trash*/**"
+          - "**/Recycle.Bin/**"
+          - "**/@eaDir/**"
+          - "**/.DS_Store"
+          - "**/calibre-web.log*"  # Calibre logs
+      - path: "/mnt/Data/media/storage/home_videos"
+        backup_id: "data-home-videos"
+        exclude_patterns:
+          - "*.tmp"
+          - "**/.Trash*/**"
+          - "**/Recycle.Bin/**"
+          - "**/@eaDir/**"
+          - "**/.DS_Store"
+          - "**/*.part"  # Partial downloads
+      - path: "/mnt/Data/media/storage/photos"
+        backup_id: "data-photos"
+        exclude_patterns:
+          - "*.tmp"
+          - "**/.Trash*/**"
+          - "**/Recycle.Bin/**"
+          - "**/@eaDir/**"
+          - "**/.DS_Store"
+          - "**/Thumbs.db"
+          - "**/*.xmp.bak"  # Photo editing backups
+
+  tasks:
+    - name: Check if rsync is available
+      command: which rsync
+      register: rsync_check
+      failed_when: false
+
+    - name: Display rsync status
+      debug:
+        msg: "Rsync available: {{ rsync_check.rc == 0 }}"
+
+    - name: Check if tar is available
+      command: which tar
+      register: tar_check
+      failed_when: false
+
+    - name: Display tar status
+      debug:
+        msg: "Tar available: {{ tar_check.rc == 0 }}"
+
+    - name: Create backup scripts directory in writable location
+      file:
+        path: /mnt/ssd-files/scripts/pbs-backup
+        state: directory
+        mode: '0755'
+
+    - name: Create backup script for each path (rsync-based)
+      template:
+        src: truenas-rsync-backup-script.sh.j2
+        dest: "/mnt/ssd-files/scripts/pbs-backup/backup-{{ item.backup_id }}.sh"
+        mode: '0755'
+        owner: root
+        group: root
+      loop: "{{ backup_paths }}"
+
+    - name: Create master backup script
+      template:
+        src: truenas-rsync-backup-all.sh.j2
+        dest: /mnt/ssd-files/scripts/pbs-backup/backup-all.sh
+        mode: '0755'
+        owner: root
+        group: root
+
+    - name: Create SSH key for PBS authentication
+      user:
+        name: root
+        generate_ssh_key: yes
+        ssh_key_bits: 4096
+        ssh_key_file: /root/.ssh/pbs_backup_rsa
+        ssh_key_type: rsa
+      register: ssh_key_result
+
+    - name: Set up SSH config for PBS
+      blockinfile:
+        path: /root/.ssh/config
+        create: yes
+        mode: '0600'
+        marker: "# {mark} ANSIBLE MANAGED BLOCK - PBS"
+        block: |
+          Host pbs-backup
+            HostName {{ pbs_server }}
+            User root
+            IdentityFile /root/.ssh/pbs_backup_rsa
+            StrictHostKeyChecking no
+
+    - name: Create backup directory structure on PBS (via SSH)
+      shell: |
+        ssh pbs-backup "mkdir -p /srv/backups/truenas/{{ item.backup_id }}"
+      loop: "{{ backup_paths }}"
+      ignore_errors: yes
+
+    - name: Create cron job for automated backups
+      cron:
+        name: "TrueNAS to PBS backup - {{ item.backup_id }}"
+        minute: "{{ 30 + (ansible_loop.index0 * 15) % 60 }}"
+        hour: "2"
+        job: "/mnt/ssd-files/scripts/pbs-backup/backup-{{ item.backup_id }}.sh >/var/log/backup-{{ item.backup_id }}.log 2>&1"
+        user: root
+      loop: "{{ backup_paths }}"
+      loop_control:
+        extended: yes
+
+    - name: Create master cron job
+      cron:
+        name: "TrueNAS to PBS backup - ALL"
+        minute: "0"
+        hour: "3"
+        job: "/mnt/ssd-files/scripts/pbs-backup/backup-all.sh >/var/log/backup-all.log 2>&1"
+        user: root
+
+    - name: Display setup information
+      debug:
+        msg: |
+          TrueNAS PBS Backup Setup Complete!
+          
+          Backup Configuration:
+          - PBS Server: {{ pbs_server }}:{{ pbs_port }}
+          - Backup method: rsync over SSH
+          - Backup User: root (with SSH key auth)
+          
+          Backup Paths:
+          {% for item in backup_paths %}
+          - {{ item.path }} → {{ item.backup_id }}
+          {% endfor %}
+          
+          SSH Key for PBS (add to /root/.ssh/authorized_keys on PBS):
+          {{ ssh_key_result.ssh_public_key | default('Key already exists') }}
+          
+          Manual backup: /mnt/ssd-files/scripts/pbs-backup/backup-all.sh
+          Individual logs: /var/log/backup-*.log
+          
+          Next steps:
+          1. Add the SSH public key to PBS server
+          2. Test SSH connection: ssh pbs-backup
+          3. Test manual backup: /mnt/ssd-files/scripts/pbs-backup/backup-all.sh
+          4. Check cron jobs: crontab -l
