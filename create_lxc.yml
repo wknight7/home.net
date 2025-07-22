@@ -28,7 +28,7 @@
 
   vars:
     # Common LXC settings
-    lxc_template: "ubuntu-24.10-standard_24.10-1_amd64.tar.zst"
+    lxc_template: "ubuntu-24.04-standard_24.04-2_amd64.tar.zst"
     lxc_unprivileged: true
     lxc_ipv4: "dhcp"
     lxc_start_after_create: true
@@ -60,18 +60,17 @@
         vmid: "{{ container_id }}"
         node: "{{ inventory_hostname }}"
         api_user: "{{ proxmox_api_user | default('root@pam') }}"
-        api_password: "{{ proxmox_api_password | default(root_passwd) }}"
-        api_token_id: "{{ proxmox_api_token_id | default(omit) }}"
-        api_token_secret: "{{ proxmox_api_token_secret | default(omit) }}"
+        api_token_id: "{{ proxmox_api_token_id }}"
+        api_token_secret: "{{ proxmox_api_token_secret }}"
         api_host: "{{ ansible_host }}"
         hostname: "{{ container_name }}"
         ostemplate: "local:vztmpl/{{ lxc_template }}"
-        password: "{{ root_passwd }}"
+        password: "{{ root_passwd if root_passwd is defined else 'changeme123' }}"
         unprivileged: "{{ lxc_unprivileged }}"
         cores: "{{ cores }}"
         memory: "{{ memory }}"
         swap: "{{ swap }}"
-        disk: "local-lvm:{{ disk_size }}"
+        disk: "standard-lvm:{{ disk_size }}"
         netif: '{"net0":"name=eth0,bridge=vmbr0,ip=dhcp"}'
         state: present
         timeout: 300
@@ -82,10 +81,10 @@
       community.general.proxmox:
         vmid: "{{ container_id }}"
         node: "{{ inventory_hostname }}"
+        hostname: "{{ container_name }}"
         api_user: "{{ proxmox_api_user | default('root@pam') }}"
-        api_password: "{{ proxmox_api_password | default(root_passwd) }}"
-        api_token_id: "{{ proxmox_api_token_id | default(omit) }}"
-        api_token_secret: "{{ proxmox_api_token_secret | default(omit) }}"
+        api_token_id: "{{ proxmox_api_token_id }}"
+        api_token_secret: "{{ proxmox_api_token_secret }}"
         api_host: "{{ ansible_host }}"
         state: started
         timeout: 60
