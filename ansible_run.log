@@ -5961,3 +5961,390 @@ https://docs.ansible.com/ansible-core/2.18/reference_appendices/interpreter_disc
 2025-07-21 12:07:23,274 p=21183 u=bill n=ansible INFO| truenas                    : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
 2025-07-21 12:07:23,274 p=21183 u=bill n=ansible INFO| wg                         : ok=71   changed=11   unreachable=0    failed=0    skipped=10   rescued=0    ignored=1   
 2025-07-21 12:07:23,274 p=21183 u=bill n=ansible INFO| windows11                  : ok=2    changed=0    unreachable=0    failed=1    skipped=2    rescued=0    ignored=0   
+2025-07-21 12:20:43,976 p=31298 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-21 12:21:43,964 p=31298 u=bill n=ansible ERROR|  [ERROR]: User interrupted execution
+
+2025-07-21 12:21:54,413 p=31449 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-21 12:22:24,846 p=31449 u=bill n=ansible INFO| PLAY [Create new Proxmox LXC container] ******************************************************************************
+2025-07-21 12:22:24,852 p=31449 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-21 12:22:27,630 p=31449 u=bill n=ansible INFO| ok: [pve]
+2025-07-21 12:22:27,652 p=31449 u=bill n=ansible INFO| TASK [Load vault secrets] ********************************************************************************************
+2025-07-21 12:22:27,682 p=31449 u=bill n=ansible INFO| ok: [pve]
+2025-07-21 12:22:27,702 p=31449 u=bill n=ansible INFO| TASK [Install required Python modules via apt] ***********************************************************************
+2025-07-21 12:22:30,774 p=31449 u=bill n=ansible INFO| changed: [pve]
+2025-07-21 12:22:30,805 p=31449 u=bill n=ansible INFO| TASK [Debug Proxmox connection info] *********************************************************************************
+2025-07-21 12:22:30,822 p=31449 u=bill n=ansible INFO| ok: [pve] => {
+    "msg": "Connecting to Proxmox:\n- Host: 192.168.86.143\n- User: root@pam\n- Node: pve\n"
+}
+2025-07-21 12:22:30,854 p=31449 u=bill n=ansible INFO| TASK [Create LXC container] ******************************************************************************************
+2025-07-21 12:22:34,198 p=31449 u=bill n=ansible INFO| An exception occurred during task execution. To see the full traceback, use -vvv. The error was: proxmoxer.backends.https.AuthenticationError: Couldn't authenticate user: root@pam to https://192.168.86.143:8006/api2/json/access/ticket
+2025-07-21 12:22:34,198 p=31449 u=bill n=ansible INFO| fatal: [pve]: FAILED! => {"changed": false, "msg": "Couldn't authenticate user: root@pam to https://192.168.86.143:8006/api2/json/access/ticket"}
+2025-07-21 12:22:34,199 p=31449 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-21 12:22:34,200 p=31449 u=bill n=ansible INFO| pve                        : ok=4    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-07-21 12:28:02,904 p=31836 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-21 12:28:03,006 p=31836 u=bill n=ansible INFO| PLAY [Test Proxmox API Authentication] *******************************************************************************
+2025-07-21 12:28:03,012 p=31836 u=bill n=ansible INFO| TASK [Load vault secrets] ********************************************************************************************
+2025-07-21 12:28:03,040 p=31836 u=bill n=ansible INFO| ok: [pve]
+2025-07-21 12:28:03,044 p=31836 u=bill n=ansible INFO| TASK [Test Proxmox API connection] ***********************************************************************************
+2025-07-21 12:28:06,839 p=31836 u=bill n=ansible INFO| ok: [pve]
+2025-07-21 12:28:06,841 p=31836 u=bill n=ansible INFO| TASK [Display authentication result] *********************************************************************************
+2025-07-21 12:28:06,851 p=31836 u=bill n=ansible INFO| ok: [pve] => {
+    "msg": "Authentication test result:\nStatus: 401\n❌ FAILED: Invalid username or password\n"
+}
+2025-07-21 12:28:06,853 p=31836 u=bill n=ansible INFO| TASK [Check if user has API token configured] ************************************************************************
+2025-07-21 12:28:06,869 p=31836 u=bill n=ansible INFO| ok: [pve] => {
+    "msg": "API Token Info:\nToken ID: Not configured\nToken Secret: Not configured\n\nRecommendation: Consider using API tokens instead of password authentication\nfor better security.\n"
+}
+2025-07-21 12:28:06,870 p=31836 u=bill n=ansible INFO| TASK [Test Proxmox node status] **************************************************************************************
+2025-07-21 12:28:06,877 p=31836 u=bill n=ansible INFO| skipping: [pve]
+2025-07-21 12:28:06,878 p=31836 u=bill n=ansible INFO| TASK [Display node status] *******************************************************************************************
+2025-07-21 12:28:06,889 p=31836 u=bill n=ansible INFO| ok: [pve] => {
+    "msg": "Node Status Test:\n❌ FAILED: Cannot access node status\n"
+}
+2025-07-21 12:28:06,889 p=31836 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-21 12:28:06,889 p=31836 u=bill n=ansible INFO| pve                        : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-07-21 12:33:54,525 p=32241 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-21 12:33:54,625 p=32241 u=bill n=ansible INFO| PLAY [Test Proxmox API Authentication] *******************************************************************************
+2025-07-21 12:33:54,630 p=32241 u=bill n=ansible INFO| TASK [Load vault secrets] ********************************************************************************************
+2025-07-21 12:33:54,659 p=32241 u=bill n=ansible INFO| ok: [pve]
+2025-07-21 12:33:54,661 p=32241 u=bill n=ansible INFO| TASK [Test Proxmox API connection] ***********************************************************************************
+2025-07-21 12:33:58,467 p=32241 u=bill n=ansible INFO| ok: [pve]
+2025-07-21 12:33:58,469 p=32241 u=bill n=ansible INFO| TASK [Display authentication result] *********************************************************************************
+2025-07-21 12:33:58,485 p=32241 u=bill n=ansible INFO| ok: [pve] => {
+    "msg": "Authentication test result:\nStatus: 401\n❌ FAILED: Invalid username or password\n"
+}
+2025-07-21 12:33:58,486 p=32241 u=bill n=ansible INFO| TASK [Check if user has API token configured] ************************************************************************
+2025-07-21 12:33:58,503 p=32241 u=bill n=ansible INFO| ok: [pve] => {
+    "msg": "API Token Info:\nToken ID: ansible\nToken Secret: Configured\n\nRecommendation: Consider using API tokens instead of password authentication\nfor better security.\n"
+}
+2025-07-21 12:33:58,504 p=32241 u=bill n=ansible INFO| TASK [Test Proxmox node status] **************************************************************************************
+2025-07-21 12:33:58,511 p=32241 u=bill n=ansible INFO| skipping: [pve]
+2025-07-21 12:33:58,513 p=32241 u=bill n=ansible INFO| TASK [Display node status] *******************************************************************************************
+2025-07-21 12:33:58,523 p=32241 u=bill n=ansible INFO| ok: [pve] => {
+    "msg": "Node Status Test:\n❌ FAILED: Cannot access node status\n"
+}
+2025-07-21 12:33:58,524 p=32241 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-21 12:33:58,524 p=32241 u=bill n=ansible INFO| pve                        : ok=5    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-07-21 12:34:37,837 p=32303 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-21 12:34:37,946 p=32303 u=bill n=ansible INFO| PLAY [Debug Proxmox API Authentication] ******************************************************************************
+2025-07-21 12:34:37,951 p=32303 u=bill n=ansible INFO| TASK [Load vault secrets] ********************************************************************************************
+2025-07-21 12:34:37,980 p=32303 u=bill n=ansible INFO| ok: [pve]
+2025-07-21 12:34:37,982 p=32303 u=bill n=ansible INFO| TASK [Display authentication method being used] **********************************************************************
+2025-07-21 12:34:38,000 p=32303 u=bill n=ansible INFO| ok: [pve] => {
+    "msg": "Authentication Configuration:\n- API User: root@pam\n- Using Password: Yes\n- Using Token: Yes\n- Token ID: ansible\n- API Host: 192.168.86.143\n"
+}
+2025-07-21 12:34:38,002 p=32303 u=bill n=ansible INFO| TASK [Test token-based authentication manually] **********************************************************************
+2025-07-21 12:34:38,327 p=32303 u=bill n=ansible INFO| ok: [pve]
+2025-07-21 12:34:38,329 p=32303 u=bill n=ansible INFO| TASK [Display token authentication result] ***************************************************************************
+2025-07-21 12:34:38,352 p=32303 u=bill n=ansible INFO| ok: [pve] => {
+    "msg": "Token Authentication Result:\nStatus: 400\n❌ FAILED: Bad request - check token format\n\n"
+}
+2025-07-21 12:34:38,354 p=32303 u=bill n=ansible INFO| TASK [Test direct proxmox module with debug] *************************************************************************
+2025-07-21 12:34:38,614 p=32303 u=bill n=ansible INFO| fatal: [pve]: FAILED! => {"changed": false, "msg": "state is present but all of the following are missing: node, hostname"}
+2025-07-21 12:34:38,614 p=32303 u=bill n=ansible INFO| ...ignoring
+2025-07-21 12:34:38,615 p=32303 u=bill n=ansible INFO| TASK [Display proxmox module result] *********************************************************************************
+2025-07-21 12:34:38,633 p=32303 u=bill n=ansible INFO| ok: [pve] => {
+    "msg": "Proxmox Module Test:\nResult: state is present but all of the following are missing: node, hostname\n"
+}
+2025-07-21 12:34:38,634 p=32303 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-21 12:34:38,634 p=32303 u=bill n=ansible INFO| pve                        : ok=6    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=1   
+2025-07-21 12:35:29,385 p=32394 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-21 12:35:29,497 p=32394 u=bill n=ansible INFO| PLAY [Test Token-Only Authentication] ********************************************************************************
+2025-07-21 12:35:29,503 p=32394 u=bill n=ansible INFO| TASK [Load vault secrets] ********************************************************************************************
+2025-07-21 12:35:29,532 p=32394 u=bill n=ansible INFO| ok: [pve]
+2025-07-21 12:35:29,533 p=32394 u=bill n=ansible INFO| TASK [Test Proxmox with token only] **********************************************************************************
+2025-07-21 12:35:29,755 p=32394 u=bill n=ansible INFO| fatal: [pve]: FAILED! => {"changed": false, "msg": "value of state must be one of: present, absent, stopped, started, restarted, template, got: current"}
+2025-07-21 12:35:29,755 p=32394 u=bill n=ansible INFO| ...ignoring
+2025-07-21 12:35:29,757 p=32394 u=bill n=ansible INFO| TASK [Display token-only test result] ********************************************************************************
+2025-07-21 12:35:29,775 p=32394 u=bill n=ansible INFO| ok: [pve] => {
+    "msg": "Token-Only Authentication Test:\nResult: value of state must be one of: present, absent, stopped, started, restarted, template, got: current\n"
+}
+2025-07-21 12:35:29,775 p=32394 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-21 12:35:29,776 p=32394 u=bill n=ansible INFO| pve                        : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=1   
+2025-07-21 12:36:08,041 p=32437 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-21 12:36:08,152 p=32437 u=bill n=ansible INFO| PLAY [Test Token-Only Authentication] ********************************************************************************
+2025-07-21 12:36:08,157 p=32437 u=bill n=ansible INFO| TASK [Load vault secrets] ********************************************************************************************
+2025-07-21 12:36:08,187 p=32437 u=bill n=ansible INFO| ok: [pve]
+2025-07-21 12:36:08,188 p=32437 u=bill n=ansible INFO| TASK [Test Proxmox with token only] **********************************************************************************
+2025-07-21 12:36:08,407 p=32437 u=bill n=ansible INFO| fatal: [pve]: FAILED! => {"changed": false, "msg": "state is present but all of the following are missing: hostname"}
+2025-07-21 12:36:08,407 p=32437 u=bill n=ansible INFO| ...ignoring
+2025-07-21 12:36:08,409 p=32437 u=bill n=ansible INFO| TASK [Display token-only test result] ********************************************************************************
+2025-07-21 12:36:08,426 p=32437 u=bill n=ansible INFO| ok: [pve] => {
+    "msg": "Token-Only Authentication Test:\nResult: state is present but all of the following are missing: hostname\n"
+}
+2025-07-21 12:36:08,427 p=32437 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-21 12:36:08,427 p=32437 u=bill n=ansible INFO| pve                        : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=1   
+2025-07-21 12:36:24,037 p=32492 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-21 12:36:29,810 p=32492 u=bill n=ansible ERROR|  [ERROR]: User interrupted execution
+
+2025-07-21 12:36:38,378 p=32577 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-21 12:36:57,053 p=32577 u=bill n=ansible INFO| PLAY [Create new Proxmox LXC container] ******************************************************************************
+2025-07-21 12:36:57,059 p=32577 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-21 12:36:59,082 p=32577 u=bill n=ansible INFO| ok: [pve]
+2025-07-21 12:36:59,103 p=32577 u=bill n=ansible INFO| TASK [Load vault secrets] ********************************************************************************************
+2025-07-21 12:36:59,132 p=32577 u=bill n=ansible INFO| ok: [pve]
+2025-07-21 12:36:59,152 p=32577 u=bill n=ansible INFO| TASK [Install required Python modules via apt] ***********************************************************************
+2025-07-21 12:36:59,720 p=32577 u=bill n=ansible INFO| ok: [pve]
+2025-07-21 12:36:59,741 p=32577 u=bill n=ansible INFO| TASK [Debug Proxmox connection info] *********************************************************************************
+2025-07-21 12:36:59,759 p=32577 u=bill n=ansible INFO| ok: [pve] => {
+    "msg": "Connecting to Proxmox:\n- Host: 192.168.86.143\n- User: root@pam\n- Node: pve\n"
+}
+2025-07-21 12:36:59,780 p=32577 u=bill n=ansible INFO| TASK [Create LXC container] ******************************************************************************************
+2025-07-21 12:37:03,090 p=32577 u=bill n=ansible INFO| An exception occurred during task execution. To see the full traceback, use -vvv. The error was: proxmoxer.backends.https.AuthenticationError: Couldn't authenticate user: root@pam to https://192.168.86.143:8006/api2/json/access/ticket
+2025-07-21 12:37:03,090 p=32577 u=bill n=ansible INFO| fatal: [pve]: FAILED! => {"changed": false, "msg": "Couldn't authenticate user: root@pam to https://192.168.86.143:8006/api2/json/access/ticket"}
+2025-07-21 12:37:03,091 p=32577 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-21 12:37:03,091 p=32577 u=bill n=ansible INFO| pve                        : ok=4    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-07-21 12:37:53,445 p=32772 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-21 12:37:53,555 p=32772 u=bill n=ansible INFO| PLAY [Test Token-Only Authentication] ********************************************************************************
+2025-07-21 12:37:53,561 p=32772 u=bill n=ansible INFO| TASK [Load vault secrets] ********************************************************************************************
+2025-07-21 12:37:53,602 p=32772 u=bill n=ansible INFO| ok: [pve]
+2025-07-21 12:37:53,604 p=32772 u=bill n=ansible INFO| TASK [Test Proxmox with token only] **********************************************************************************
+2025-07-21 12:37:53,836 p=32772 u=bill n=ansible INFO| fatal: [pve]: FAILED! => {"changed": false, "msg": "state is present but all of the following are missing: hostname"}
+2025-07-21 12:37:53,837 p=32772 u=bill n=ansible INFO| ...ignoring
+2025-07-21 12:37:53,838 p=32772 u=bill n=ansible INFO| TASK [Display token-only test result] ********************************************************************************
+2025-07-21 12:37:53,855 p=32772 u=bill n=ansible INFO| ok: [pve] => {
+    "msg": "Token-Only Authentication Test:\nResult: state is present but all of the following are missing: hostname\n"
+}
+2025-07-21 12:37:53,856 p=32772 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-21 12:37:53,856 p=32772 u=bill n=ansible INFO| pve                        : ok=3    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=1   
+2025-07-21 12:38:10,795 p=32812 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-21 12:38:10,912 p=32812 u=bill n=ansible WARNING| [WARNING]: Not prompting as we are not in interactive mode
+
+2025-07-21 12:38:10,912 p=32812 u=bill n=ansible INFO| PLAY [Create new Proxmox LXC container] ******************************************************************************
+2025-07-21 12:38:10,918 p=32812 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-21 12:38:12,926 p=32812 u=bill n=ansible INFO| ok: [pve]
+2025-07-21 12:38:12,945 p=32812 u=bill n=ansible INFO| TASK [Load vault secrets] ********************************************************************************************
+2025-07-21 12:38:12,974 p=32812 u=bill n=ansible INFO| ok: [pve]
+2025-07-21 12:38:12,995 p=32812 u=bill n=ansible INFO| TASK [Install required Python modules via apt] ***********************************************************************
+2025-07-21 12:38:13,570 p=32812 u=bill n=ansible INFO| ok: [pve]
+2025-07-21 12:38:13,590 p=32812 u=bill n=ansible INFO| TASK [Debug Proxmox connection info] *********************************************************************************
+2025-07-21 12:38:13,605 p=32812 u=bill n=ansible INFO| ok: [pve] => {
+    "msg": "Connecting to Proxmox:\n- Host: 192.168.86.143\n- User: root@pam\n- Node: pve\n"
+}
+2025-07-21 12:38:13,626 p=32812 u=bill n=ansible INFO| TASK [Create LXC container] ******************************************************************************************
+2025-07-21 12:38:13,859 p=32812 u=bill n=ansible INFO| fatal: [pve]: FAILED! => {"changed": false, "msg": "argument 'vmid' is of type <class 'str'> and we were unable to convert to int: \"'None'\" cannot be converted to an int"}
+2025-07-21 12:38:13,860 p=32812 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-21 12:38:13,860 p=32812 u=bill n=ansible INFO| pve                        : ok=4    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-07-21 12:38:21,578 p=32867 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-21 12:39:23,176 p=32867 u=bill n=ansible INFO| PLAY [Create new Proxmox LXC container] ******************************************************************************
+2025-07-21 12:39:23,181 p=32867 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-21 12:39:25,731 p=32867 u=bill n=ansible INFO| ok: [pve]
+2025-07-21 12:39:25,750 p=32867 u=bill n=ansible INFO| TASK [Load vault secrets] ********************************************************************************************
+2025-07-21 12:39:25,779 p=32867 u=bill n=ansible INFO| ok: [pve]
+2025-07-21 12:39:25,799 p=32867 u=bill n=ansible INFO| TASK [Install required Python modules via apt] ***********************************************************************
+2025-07-21 12:39:26,399 p=32867 u=bill n=ansible INFO| ok: [pve]
+2025-07-21 12:39:26,419 p=32867 u=bill n=ansible INFO| TASK [Debug Proxmox connection info] *********************************************************************************
+2025-07-21 12:39:26,441 p=32867 u=bill n=ansible INFO| ok: [pve] => {
+    "msg": "Connecting to Proxmox:\n- Host: 192.168.86.143\n- User: root@pam\n- Node: pve\n"
+}
+2025-07-21 12:39:26,462 p=32867 u=bill n=ansible INFO| TASK [Create LXC container] ******************************************************************************************
+2025-07-21 12:39:26,791 p=32867 u=bill n=ansible INFO| fatal: [pve]: FAILED! => {"changed": false, "msg": "An error occurred: 403 Forbidden: Permission check failed (/storage/local, Datastore.Audit|Datastore.AllocateSpace)"}
+2025-07-21 12:39:26,792 p=32867 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-21 12:39:26,792 p=32867 u=bill n=ansible INFO| pve                        : ok=4    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-07-21 12:45:33,969 p=33057 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-21 12:45:48,802 p=33057 u=bill n=ansible INFO| PLAY [Create new Proxmox LXC container] ******************************************************************************
+2025-07-21 12:45:48,807 p=33057 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-21 12:45:51,276 p=33057 u=bill n=ansible INFO| ok: [pve]
+2025-07-21 12:45:51,300 p=33057 u=bill n=ansible INFO| TASK [Load vault secrets] ********************************************************************************************
+2025-07-21 12:45:51,332 p=33057 u=bill n=ansible INFO| ok: [pve]
+2025-07-21 12:45:51,353 p=33057 u=bill n=ansible INFO| TASK [Install required Python modules via apt] ***********************************************************************
+2025-07-21 12:45:51,920 p=33057 u=bill n=ansible INFO| ok: [pve]
+2025-07-21 12:45:51,940 p=33057 u=bill n=ansible INFO| TASK [Debug Proxmox connection info] *********************************************************************************
+2025-07-21 12:45:51,954 p=33057 u=bill n=ansible INFO| ok: [pve] => {
+    "msg": "Connecting to Proxmox:\n- Host: 192.168.86.143\n- User: root@pam\n- Node: pve\n"
+}
+2025-07-21 12:45:51,974 p=33057 u=bill n=ansible INFO| TASK [Create LXC container] ******************************************************************************************
+2025-07-21 12:45:52,304 p=33057 u=bill n=ansible INFO| fatal: [pve]: FAILED! => {"changed": false, "msg": "ostemplate local:vztmpl/ubuntu-24.10-standard_24.10-1_amd64.tar.zst does not exist on node pve and storage local.", "vmid": 117}
+2025-07-21 12:45:52,305 p=33057 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-21 12:45:52,305 p=33057 u=bill n=ansible INFO| pve                        : ok=4    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-07-21 12:47:49,884 p=33267 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-21 12:48:05,982 p=33267 u=bill n=ansible INFO| PLAY [Create new Proxmox LXC container] ******************************************************************************
+2025-07-21 12:48:05,987 p=33267 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-21 12:48:08,458 p=33267 u=bill n=ansible INFO| ok: [pve]
+2025-07-21 12:48:08,477 p=33267 u=bill n=ansible INFO| TASK [Load vault secrets] ********************************************************************************************
+2025-07-21 12:48:08,507 p=33267 u=bill n=ansible INFO| ok: [pve]
+2025-07-21 12:48:08,527 p=33267 u=bill n=ansible INFO| TASK [Install required Python modules via apt] ***********************************************************************
+2025-07-21 12:48:09,156 p=33267 u=bill n=ansible INFO| ok: [pve]
+2025-07-21 12:48:09,176 p=33267 u=bill n=ansible INFO| TASK [Debug Proxmox connection info] *********************************************************************************
+2025-07-21 12:48:09,192 p=33267 u=bill n=ansible INFO| ok: [pve] => {
+    "msg": "Connecting to Proxmox:\n- Host: 192.168.86.143\n- User: root@pam\n- Node: pve\n"
+}
+2025-07-21 12:48:09,212 p=33267 u=bill n=ansible INFO| TASK [Create LXC container] ******************************************************************************************
+2025-07-21 12:48:15,771 p=33267 u=bill n=ansible INFO| changed: [pve]
+2025-07-21 12:48:15,790 p=33267 u=bill n=ansible INFO| TASK [Start LXC container] *******************************************************************************************
+2025-07-21 12:48:16,026 p=33267 u=bill n=ansible INFO| fatal: [pve]: FAILED! => {"changed": false, "msg": "An error occurred: 'name'"}
+2025-07-21 12:48:16,027 p=33267 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-21 12:48:16,027 p=33267 u=bill n=ansible INFO| pve                        : ok=5    changed=1    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-07-21 12:48:50,058 p=33477 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-21 12:48:55,948 p=33477 u=bill n=ansible ERROR|  [ERROR]: User interrupted execution
+
+2025-07-21 13:53:07,023 p=33808 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-21 13:53:07,135 p=33808 u=bill n=ansible INFO| PLAY [Setup TrueNAS backup to Proxmox Backup Server] *****************************************************************
+2025-07-21 13:53:07,140 p=33808 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-21 13:53:09,012 p=33808 u=bill n=ansible INFO| ok: [truenas]
+2025-07-21 13:53:09,016 p=33808 u=bill n=ansible INFO| TASK [Install Proxmox Backup Client] *********************************************************************************
+2025-07-21 13:53:09,413 p=33808 u=bill n=ansible WARNING| [WARNING]: Updating cache and auto-installing missing dependency: python3-apt
+
+2025-07-21 13:53:09,413 p=33808 u=bill n=ansible INFO| fatal: [truenas]: FAILED! => {"changed": false, "cmd": "/usr/local/bin/apt-get update", "msg": "", "rc": 1, "stderr": "", "stderr_lines": [], "stdout": "Package management tools are disabled on TrueNAS appliances.\n\nAttempting to update TrueNAS with apt or methods other than the TrueNAS web\ninterface can result in a nonfunctional system.\n", "stdout_lines": ["Package management tools are disabled on TrueNAS appliances.", "", "Attempting to update TrueNAS with apt or methods other than the TrueNAS web", "interface can result in a nonfunctional system."]}
+2025-07-21 13:53:09,414 p=33808 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-21 13:53:09,414 p=33808 u=bill n=ansible INFO| truenas                    : ok=1    changed=0    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-07-21 13:54:14,417 p=33880 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-21 13:54:14,523 p=33880 u=bill n=ansible INFO| PLAY [Setup TrueNAS backup to Proxmox Backup Server (TrueNAS Compatible)] ********************************************
+2025-07-21 13:54:14,528 p=33880 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-21 13:54:16,375 p=33880 u=bill n=ansible INFO| ok: [truenas]
+2025-07-21 13:54:16,379 p=33880 u=bill n=ansible INFO| TASK [Check if rsync is available] ***********************************************************************************
+2025-07-21 13:54:16,602 p=33880 u=bill n=ansible INFO| changed: [truenas]
+2025-07-21 13:54:16,607 p=33880 u=bill n=ansible INFO| TASK [Display rsync status] ******************************************************************************************
+2025-07-21 13:54:16,617 p=33880 u=bill n=ansible INFO| ok: [truenas] => {
+    "msg": "Rsync available: True"
+}
+2025-07-21 13:54:16,621 p=33880 u=bill n=ansible INFO| TASK [Check if tar is available] *************************************************************************************
+2025-07-21 13:54:16,771 p=33880 u=bill n=ansible INFO| changed: [truenas]
+2025-07-21 13:54:16,776 p=33880 u=bill n=ansible INFO| TASK [Display tar status] ********************************************************************************************
+2025-07-21 13:54:16,785 p=33880 u=bill n=ansible INFO| ok: [truenas] => {
+    "msg": "Tar available: True"
+}
+2025-07-21 13:54:16,790 p=33880 u=bill n=ansible INFO| TASK [Create backup scripts directory] *******************************************************************************
+2025-07-21 13:54:17,023 p=33880 u=bill n=ansible INFO| fatal: [truenas]: FAILED! => {"changed": false, "msg": "There was an issue creating /usr/local/bin/pbs-backup as requested: [Errno 30] Read-only file system: b'/usr/local/bin/pbs-backup'", "path": "/usr/local/bin/pbs-backup"}
+2025-07-21 13:54:17,024 p=33880 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-21 13:54:17,024 p=33880 u=bill n=ansible INFO| truenas                    : ok=5    changed=2    unreachable=0    failed=1    skipped=0    rescued=0    ignored=0   
+2025-07-21 13:54:59,216 p=33964 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-21 13:54:59,321 p=33964 u=bill n=ansible INFO| PLAY [Setup TrueNAS backup to Proxmox Backup Server (TrueNAS Compatible)] ********************************************
+2025-07-21 13:54:59,326 p=33964 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-21 13:55:00,041 p=33964 u=bill n=ansible INFO| ok: [truenas]
+2025-07-21 13:55:00,046 p=33964 u=bill n=ansible INFO| TASK [Check if rsync is available] ***********************************************************************************
+2025-07-21 13:55:00,262 p=33964 u=bill n=ansible INFO| changed: [truenas]
+2025-07-21 13:55:00,267 p=33964 u=bill n=ansible INFO| TASK [Display rsync status] ******************************************************************************************
+2025-07-21 13:55:00,277 p=33964 u=bill n=ansible INFO| ok: [truenas] => {
+    "msg": "Rsync available: True"
+}
+2025-07-21 13:55:00,282 p=33964 u=bill n=ansible INFO| TASK [Check if tar is available] *************************************************************************************
+2025-07-21 13:55:00,435 p=33964 u=bill n=ansible INFO| changed: [truenas]
+2025-07-21 13:55:00,439 p=33964 u=bill n=ansible INFO| TASK [Display tar status] ********************************************************************************************
+2025-07-21 13:55:00,450 p=33964 u=bill n=ansible INFO| ok: [truenas] => {
+    "msg": "Tar available: True"
+}
+2025-07-21 13:55:00,455 p=33964 u=bill n=ansible INFO| TASK [Create backup scripts directory in writable location] **********************************************************
+2025-07-21 13:55:00,677 p=33964 u=bill n=ansible INFO| changed: [truenas]
+2025-07-21 13:55:00,682 p=33964 u=bill n=ansible INFO| TASK [Create backup script for each path (rsync-based)] **************************************************************
+2025-07-21 13:55:01,177 p=33964 u=bill n=ansible INFO| changed: [truenas] => (item={'path': '/mnt/ssd-files/docs', 'backup_id': 'ssd-docs', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/*.lock', '**/~$*']})
+2025-07-21 13:55:01,533 p=33964 u=bill n=ansible INFO| changed: [truenas] => (item={'path': '/mnt/ssd-files/fileshare', 'backup_id': 'ssd-fileshare', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store']})
+2025-07-21 13:55:01,872 p=33964 u=bill n=ansible INFO| changed: [truenas] => (item={'path': '/mnt/ssd-files/home', 'backup_id': 'ssd-home', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/.cache/**', '**/node_modules/**', '**/.git/**']})
+2025-07-21 13:55:02,209 p=33964 u=bill n=ansible INFO| changed: [truenas] => (item={'path': '/mnt/ssd-files/photo_storage', 'backup_id': 'ssd-photo-storage', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/Thumbs.db']})
+2025-07-21 13:55:02,552 p=33964 u=bill n=ansible INFO| changed: [truenas] => (item={'path': '/mnt/ssd-files/workouts', 'backup_id': 'ssd-workouts', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store']})
+2025-07-21 13:55:02,882 p=33964 u=bill n=ansible INFO| changed: [truenas] => (item={'path': '/mnt/Data/books', 'backup_id': 'data-books', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/calibre-web.log*']})
+2025-07-21 13:55:03,208 p=33964 u=bill n=ansible INFO| changed: [truenas] => (item={'path': '/mnt/Data/media/storage/home_videos', 'backup_id': 'data-home-videos', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/*.part']})
+2025-07-21 13:55:03,534 p=33964 u=bill n=ansible INFO| changed: [truenas] => (item={'path': '/mnt/Data/media/storage/photos', 'backup_id': 'data-photos', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/Thumbs.db', '**/*.xmp.bak']})
+2025-07-21 13:55:03,540 p=33964 u=bill n=ansible INFO| TASK [Create master backup script] ***********************************************************************************
+2025-07-21 13:55:03,911 p=33964 u=bill n=ansible INFO| changed: [truenas]
+2025-07-21 13:55:03,917 p=33964 u=bill n=ansible INFO| TASK [Create SSH key for PBS authentication] *************************************************************************
+2025-07-21 13:55:05,416 p=33964 u=bill n=ansible INFO| changed: [truenas]
+2025-07-21 13:55:05,421 p=33964 u=bill n=ansible INFO| TASK [Set up SSH config for PBS] *************************************************************************************
+2025-07-21 13:55:05,634 p=33964 u=bill n=ansible WARNING| [WARNING]: Module remote_tmp /root/.ansible/tmp did not exist and was created with a mode of 0700, this may cause
+issues when running as another user. To avoid this, create the remote_tmp dir with the correct permissions manually
+
+2025-07-21 13:55:05,635 p=33964 u=bill n=ansible INFO| changed: [truenas]
+2025-07-21 13:55:05,639 p=33964 u=bill n=ansible INFO| TASK [Create backup directory structure on PBS (via SSH)] ************************************************************
+2025-07-21 13:55:05,974 p=33964 u=bill n=ansible INFO| failed: [truenas] (item={'path': '/mnt/ssd-files/docs', 'backup_id': 'ssd-docs', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/*.lock', '**/~$*']}) => {"ansible_loop_var": "item", "changed": true, "cmd": "ssh pbs-backup \"mkdir -p /srv/backups/truenas/ssd-docs\"\n", "delta": "0:00:00.178676", "end": "2025-07-21 10:55:05.967043", "item": {"backup_id": "ssd-docs", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/*.lock", "**/~$*"], "path": "/mnt/ssd-files/docs"}, "msg": "non-zero return code", "rc": 255, "start": "2025-07-21 10:55:05.788367", "stderr": "Warning: Permanently added '192.168.86.33' (ED25519) to the list of known hosts.\r\nDebian GNU/Linux 12\nPermission denied, please try again.\r\nReceived disconnect from 192.168.86.33 port 22:2: Too many authentication failures\r\nDisconnected from 192.168.86.33 port 22", "stderr_lines": ["Warning: Permanently added '192.168.86.33' (ED25519) to the list of known hosts.", "Debian GNU/Linux 12", "Permission denied, please try again.", "Received disconnect from 192.168.86.33 port 22:2: Too many authentication failures", "Disconnected from 192.168.86.33 port 22"], "stdout": "", "stdout_lines": []}
+2025-07-21 13:55:06,292 p=33964 u=bill n=ansible INFO| failed: [truenas] (item={'path': '/mnt/ssd-files/fileshare', 'backup_id': 'ssd-fileshare', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store']}) => {"ansible_loop_var": "item", "changed": true, "cmd": "ssh pbs-backup \"mkdir -p /srv/backups/truenas/ssd-fileshare\"\n", "delta": "0:00:00.172908", "end": "2025-07-21 10:55:06.286297", "item": {"backup_id": "ssd-fileshare", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store"], "path": "/mnt/ssd-files/fileshare"}, "msg": "non-zero return code", "rc": 255, "start": "2025-07-21 10:55:06.113389", "stderr": "Debian GNU/Linux 12\nPermission denied, please try again.\r\nReceived disconnect from 192.168.86.33 port 22:2: Too many authentication failures\r\nDisconnected from 192.168.86.33 port 22", "stderr_lines": ["Debian GNU/Linux 12", "Permission denied, please try again.", "Received disconnect from 192.168.86.33 port 22:2: Too many authentication failures", "Disconnected from 192.168.86.33 port 22"], "stdout": "", "stdout_lines": []}
+2025-07-21 13:55:06,620 p=33964 u=bill n=ansible INFO| failed: [truenas] (item={'path': '/mnt/ssd-files/home', 'backup_id': 'ssd-home', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/.cache/**', '**/node_modules/**', '**/.git/**']}) => {"ansible_loop_var": "item", "changed": true, "cmd": "ssh pbs-backup \"mkdir -p /srv/backups/truenas/ssd-home\"\n", "delta": "0:00:00.174044", "end": "2025-07-21 10:55:06.614901", "item": {"backup_id": "ssd-home", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/.cache/**", "**/node_modules/**", "**/.git/**"], "path": "/mnt/ssd-files/home"}, "msg": "non-zero return code", "rc": 255, "start": "2025-07-21 10:55:06.440857", "stderr": "Debian GNU/Linux 12\nPermission denied, please try again.\r\nReceived disconnect from 192.168.86.33 port 22:2: Too many authentication failures\r\nDisconnected from 192.168.86.33 port 22", "stderr_lines": ["Debian GNU/Linux 12", "Permission denied, please try again.", "Received disconnect from 192.168.86.33 port 22:2: Too many authentication failures", "Disconnected from 192.168.86.33 port 22"], "stdout": "", "stdout_lines": []}
+2025-07-21 13:55:06,944 p=33964 u=bill n=ansible INFO| failed: [truenas] (item={'path': '/mnt/ssd-files/photo_storage', 'backup_id': 'ssd-photo-storage', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/Thumbs.db']}) => {"ansible_loop_var": "item", "changed": true, "cmd": "ssh pbs-backup \"mkdir -p /srv/backups/truenas/ssd-photo-storage\"\n", "delta": "0:00:00.173204", "end": "2025-07-21 10:55:06.938371", "item": {"backup_id": "ssd-photo-storage", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/Thumbs.db"], "path": "/mnt/ssd-files/photo_storage"}, "msg": "non-zero return code", "rc": 255, "start": "2025-07-21 10:55:06.765167", "stderr": "Debian GNU/Linux 12\nPermission denied, please try again.\r\nReceived disconnect from 192.168.86.33 port 22:2: Too many authentication failures\r\nDisconnected from 192.168.86.33 port 22", "stderr_lines": ["Debian GNU/Linux 12", "Permission denied, please try again.", "Received disconnect from 192.168.86.33 port 22:2: Too many authentication failures", "Disconnected from 192.168.86.33 port 22"], "stdout": "", "stdout_lines": []}
+2025-07-21 13:55:07,275 p=33964 u=bill n=ansible INFO| failed: [truenas] (item={'path': '/mnt/ssd-files/workouts', 'backup_id': 'ssd-workouts', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store']}) => {"ansible_loop_var": "item", "changed": true, "cmd": "ssh pbs-backup \"mkdir -p /srv/backups/truenas/ssd-workouts\"\n", "delta": "0:00:00.176450", "end": "2025-07-21 10:55:07.269970", "item": {"backup_id": "ssd-workouts", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store"], "path": "/mnt/ssd-files/workouts"}, "msg": "non-zero return code", "rc": 255, "start": "2025-07-21 10:55:07.093520", "stderr": "Debian GNU/Linux 12\nPermission denied, please try again.\r\nReceived disconnect from 192.168.86.33 port 22:2: Too many authentication failures\r\nDisconnected from 192.168.86.33 port 22", "stderr_lines": ["Debian GNU/Linux 12", "Permission denied, please try again.", "Received disconnect from 192.168.86.33 port 22:2: Too many authentication failures", "Disconnected from 192.168.86.33 port 22"], "stdout": "", "stdout_lines": []}
+2025-07-21 13:55:07,598 p=33964 u=bill n=ansible INFO| failed: [truenas] (item={'path': '/mnt/Data/books', 'backup_id': 'data-books', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/calibre-web.log*']}) => {"ansible_loop_var": "item", "changed": true, "cmd": "ssh pbs-backup \"mkdir -p /srv/backups/truenas/data-books\"\n", "delta": "0:00:00.172655", "end": "2025-07-21 10:55:07.590811", "item": {"backup_id": "data-books", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/calibre-web.log*"], "path": "/mnt/Data/books"}, "msg": "non-zero return code", "rc": 255, "start": "2025-07-21 10:55:07.418156", "stderr": "Debian GNU/Linux 12\nPermission denied, please try again.\r\nReceived disconnect from 192.168.86.33 port 22:2: Too many authentication failures\r\nDisconnected from 192.168.86.33 port 22", "stderr_lines": ["Debian GNU/Linux 12", "Permission denied, please try again.", "Received disconnect from 192.168.86.33 port 22:2: Too many authentication failures", "Disconnected from 192.168.86.33 port 22"], "stdout": "", "stdout_lines": []}
+2025-07-21 13:55:07,916 p=33964 u=bill n=ansible INFO| failed: [truenas] (item={'path': '/mnt/Data/media/storage/home_videos', 'backup_id': 'data-home-videos', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/*.part']}) => {"ansible_loop_var": "item", "changed": true, "cmd": "ssh pbs-backup \"mkdir -p /srv/backups/truenas/data-home-videos\"\n", "delta": "0:00:00.172232", "end": "2025-07-21 10:55:07.909727", "item": {"backup_id": "data-home-videos", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/*.part"], "path": "/mnt/Data/media/storage/home_videos"}, "msg": "non-zero return code", "rc": 255, "start": "2025-07-21 10:55:07.737495", "stderr": "Debian GNU/Linux 12\nPermission denied, please try again.\r\nReceived disconnect from 192.168.86.33 port 22:2: Too many authentication failures\r\nDisconnected from 192.168.86.33 port 22", "stderr_lines": ["Debian GNU/Linux 12", "Permission denied, please try again.", "Received disconnect from 192.168.86.33 port 22:2: Too many authentication failures", "Disconnected from 192.168.86.33 port 22"], "stdout": "", "stdout_lines": []}
+2025-07-21 13:55:08,233 p=33964 u=bill n=ansible INFO| failed: [truenas] (item={'path': '/mnt/Data/media/storage/photos', 'backup_id': 'data-photos', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/Thumbs.db', '**/*.xmp.bak']}) => {"ansible_loop_var": "item", "changed": true, "cmd": "ssh pbs-backup \"mkdir -p /srv/backups/truenas/data-photos\"\n", "delta": "0:00:00.172343", "end": "2025-07-21 10:55:08.228909", "item": {"backup_id": "data-photos", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/Thumbs.db", "**/*.xmp.bak"], "path": "/mnt/Data/media/storage/photos"}, "msg": "non-zero return code", "rc": 255, "start": "2025-07-21 10:55:08.056566", "stderr": "Debian GNU/Linux 12\nPermission denied, please try again.\r\nReceived disconnect from 192.168.86.33 port 22:2: Too many authentication failures\r\nDisconnected from 192.168.86.33 port 22", "stderr_lines": ["Debian GNU/Linux 12", "Permission denied, please try again.", "Received disconnect from 192.168.86.33 port 22:2: Too many authentication failures", "Disconnected from 192.168.86.33 port 22"], "stdout": "", "stdout_lines": []}
+2025-07-21 13:55:08,234 p=33964 u=bill n=ansible INFO| ...ignoring
+2025-07-21 13:55:08,240 p=33964 u=bill n=ansible INFO| TASK [Create cron job for automated backups] *************************************************************************
+2025-07-21 13:55:08,252 p=33964 u=bill n=ansible INFO| fatal: [truenas]: FAILED! => {"msg": "The task includes an option with an undefined variable.. 'loop' is undefined\n\nThe error appears to be in '/home/bill/git/home.net/setup-truenas-pbs-backup-compatible.yml': line 161, column 7, but may\nbe elsewhere in the file depending on the exact syntax problem.\n\nThe offending line appears to be:\n\n\n    - name: Create cron job for automated backups\n      ^ here\n"}
+2025-07-21 13:55:08,253 p=33964 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-21 13:55:08,253 p=33964 u=bill n=ansible INFO| truenas                    : ok=11   changed=8    unreachable=0    failed=1    skipped=0    rescued=0    ignored=1   
+2025-07-21 13:56:23,664 p=34273 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-21 13:56:23,772 p=34273 u=bill n=ansible INFO| PLAY [Setup TrueNAS backup to Proxmox Backup Server (TrueNAS Compatible)] ********************************************
+2025-07-21 13:56:23,776 p=34273 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-21 13:56:24,576 p=34273 u=bill n=ansible INFO| ok: [truenas]
+2025-07-21 13:56:24,580 p=34273 u=bill n=ansible INFO| TASK [Check if rsync is available] ***********************************************************************************
+2025-07-21 13:56:24,801 p=34273 u=bill n=ansible INFO| changed: [truenas]
+2025-07-21 13:56:24,806 p=34273 u=bill n=ansible INFO| TASK [Display rsync status] ******************************************************************************************
+2025-07-21 13:56:24,817 p=34273 u=bill n=ansible INFO| ok: [truenas] => {
+    "msg": "Rsync available: True"
+}
+2025-07-21 13:56:24,821 p=34273 u=bill n=ansible INFO| TASK [Check if tar is available] *************************************************************************************
+2025-07-21 13:56:24,978 p=34273 u=bill n=ansible INFO| changed: [truenas]
+2025-07-21 13:56:24,982 p=34273 u=bill n=ansible INFO| TASK [Display tar status] ********************************************************************************************
+2025-07-21 13:56:24,991 p=34273 u=bill n=ansible INFO| ok: [truenas] => {
+    "msg": "Tar available: True"
+}
+2025-07-21 13:56:24,995 p=34273 u=bill n=ansible INFO| TASK [Create backup scripts directory in writable location] **********************************************************
+2025-07-21 13:56:25,216 p=34273 u=bill n=ansible INFO| ok: [truenas]
+2025-07-21 13:56:25,221 p=34273 u=bill n=ansible INFO| TASK [Create backup script for each path (rsync-based)] **************************************************************
+2025-07-21 13:56:26,652 p=34273 u=bill n=ansible INFO| ok: [truenas] => (item={'path': '/mnt/ssd-files/docs', 'backup_id': 'ssd-docs', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/*.lock', '**/~$*']})
+2025-07-21 13:56:27,000 p=34273 u=bill n=ansible INFO| ok: [truenas] => (item={'path': '/mnt/ssd-files/fileshare', 'backup_id': 'ssd-fileshare', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store']})
+2025-07-21 13:56:27,341 p=34273 u=bill n=ansible INFO| ok: [truenas] => (item={'path': '/mnt/ssd-files/home', 'backup_id': 'ssd-home', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/.cache/**', '**/node_modules/**', '**/.git/**']})
+2025-07-21 13:56:27,675 p=34273 u=bill n=ansible INFO| ok: [truenas] => (item={'path': '/mnt/ssd-files/photo_storage', 'backup_id': 'ssd-photo-storage', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/Thumbs.db']})
+2025-07-21 13:56:28,020 p=34273 u=bill n=ansible INFO| ok: [truenas] => (item={'path': '/mnt/ssd-files/workouts', 'backup_id': 'ssd-workouts', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store']})
+2025-07-21 13:56:28,381 p=34273 u=bill n=ansible INFO| ok: [truenas] => (item={'path': '/mnt/Data/books', 'backup_id': 'data-books', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/calibre-web.log*']})
+2025-07-21 13:56:28,713 p=34273 u=bill n=ansible INFO| ok: [truenas] => (item={'path': '/mnt/Data/media/storage/home_videos', 'backup_id': 'data-home-videos', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/*.part']})
+2025-07-21 13:56:29,055 p=34273 u=bill n=ansible INFO| ok: [truenas] => (item={'path': '/mnt/Data/media/storage/photos', 'backup_id': 'data-photos', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/Thumbs.db', '**/*.xmp.bak']})
+2025-07-21 13:56:29,061 p=34273 u=bill n=ansible INFO| TASK [Create master backup script] ***********************************************************************************
+2025-07-21 13:56:29,410 p=34273 u=bill n=ansible INFO| ok: [truenas]
+2025-07-21 13:56:29,414 p=34273 u=bill n=ansible INFO| TASK [Create SSH key for PBS authentication] *************************************************************************
+2025-07-21 13:56:29,702 p=34273 u=bill n=ansible WARNING| [WARNING]: Found existing ssh key private file "/root/.ssh/pbs_backup_rsa", no force, so skipping ssh-keygen
+generation
+
+2025-07-21 13:56:29,702 p=34273 u=bill n=ansible INFO| ok: [truenas]
+2025-07-21 13:56:29,707 p=34273 u=bill n=ansible INFO| TASK [Set up SSH config for PBS] *************************************************************************************
+2025-07-21 13:56:29,916 p=34273 u=bill n=ansible INFO| ok: [truenas]
+2025-07-21 13:56:29,921 p=34273 u=bill n=ansible INFO| TASK [Create backup directory structure on PBS (via SSH)] ************************************************************
+2025-07-21 13:56:30,246 p=34273 u=bill n=ansible INFO| failed: [truenas] (item={'path': '/mnt/ssd-files/docs', 'backup_id': 'ssd-docs', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/*.lock', '**/~$*']}) => {"ansible_loop_var": "item", "changed": true, "cmd": "ssh pbs-backup \"mkdir -p /srv/backups/truenas/ssd-docs\"\n", "delta": "0:00:00.171994", "end": "2025-07-21 10:56:30.240901", "item": {"backup_id": "ssd-docs", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/*.lock", "**/~$*"], "path": "/mnt/ssd-files/docs"}, "msg": "non-zero return code", "rc": 255, "start": "2025-07-21 10:56:30.068907", "stderr": "Debian GNU/Linux 12\nPermission denied, please try again.\r\nReceived disconnect from 192.168.86.33 port 22:2: Too many authentication failures\r\nDisconnected from 192.168.86.33 port 22", "stderr_lines": ["Debian GNU/Linux 12", "Permission denied, please try again.", "Received disconnect from 192.168.86.33 port 22:2: Too many authentication failures", "Disconnected from 192.168.86.33 port 22"], "stdout": "", "stdout_lines": []}
+2025-07-21 13:56:30,564 p=34273 u=bill n=ansible INFO| failed: [truenas] (item={'path': '/mnt/ssd-files/fileshare', 'backup_id': 'ssd-fileshare', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store']}) => {"ansible_loop_var": "item", "changed": true, "cmd": "ssh pbs-backup \"mkdir -p /srv/backups/truenas/ssd-fileshare\"\n", "delta": "0:00:00.172024", "end": "2025-07-21 10:56:30.556032", "item": {"backup_id": "ssd-fileshare", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store"], "path": "/mnt/ssd-files/fileshare"}, "msg": "non-zero return code", "rc": 255, "start": "2025-07-21 10:56:30.384008", "stderr": "Debian GNU/Linux 12\nPermission denied, please try again.\r\nReceived disconnect from 192.168.86.33 port 22:2: Too many authentication failures\r\nDisconnected from 192.168.86.33 port 22", "stderr_lines": ["Debian GNU/Linux 12", "Permission denied, please try again.", "Received disconnect from 192.168.86.33 port 22:2: Too many authentication failures", "Disconnected from 192.168.86.33 port 22"], "stdout": "", "stdout_lines": []}
+2025-07-21 13:56:30,880 p=34273 u=bill n=ansible INFO| failed: [truenas] (item={'path': '/mnt/ssd-files/home', 'backup_id': 'ssd-home', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/.cache/**', '**/node_modules/**', '**/.git/**']}) => {"ansible_loop_var": "item", "changed": true, "cmd": "ssh pbs-backup \"mkdir -p /srv/backups/truenas/ssd-home\"\n", "delta": "0:00:00.172582", "end": "2025-07-21 10:56:30.875798", "item": {"backup_id": "ssd-home", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/.cache/**", "**/node_modules/**", "**/.git/**"], "path": "/mnt/ssd-files/home"}, "msg": "non-zero return code", "rc": 255, "start": "2025-07-21 10:56:30.703216", "stderr": "Debian GNU/Linux 12\nPermission denied, please try again.\r\nReceived disconnect from 192.168.86.33 port 22:2: Too many authentication failures\r\nDisconnected from 192.168.86.33 port 22", "stderr_lines": ["Debian GNU/Linux 12", "Permission denied, please try again.", "Received disconnect from 192.168.86.33 port 22:2: Too many authentication failures", "Disconnected from 192.168.86.33 port 22"], "stdout": "", "stdout_lines": []}
+2025-07-21 13:56:31,194 p=34273 u=bill n=ansible INFO| failed: [truenas] (item={'path': '/mnt/ssd-files/photo_storage', 'backup_id': 'ssd-photo-storage', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/Thumbs.db']}) => {"ansible_loop_var": "item", "changed": true, "cmd": "ssh pbs-backup \"mkdir -p /srv/backups/truenas/ssd-photo-storage\"\n", "delta": "0:00:00.171307", "end": "2025-07-21 10:56:31.189737", "item": {"backup_id": "ssd-photo-storage", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/Thumbs.db"], "path": "/mnt/ssd-files/photo_storage"}, "msg": "non-zero return code", "rc": 255, "start": "2025-07-21 10:56:31.018430", "stderr": "Debian GNU/Linux 12\nPermission denied, please try again.\r\nReceived disconnect from 192.168.86.33 port 22:2: Too many authentication failures\r\nDisconnected from 192.168.86.33 port 22", "stderr_lines": ["Debian GNU/Linux 12", "Permission denied, please try again.", "Received disconnect from 192.168.86.33 port 22:2: Too many authentication failures", "Disconnected from 192.168.86.33 port 22"], "stdout": "", "stdout_lines": []}
+2025-07-21 13:56:31,512 p=34273 u=bill n=ansible INFO| failed: [truenas] (item={'path': '/mnt/ssd-files/workouts', 'backup_id': 'ssd-workouts', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store']}) => {"ansible_loop_var": "item", "changed": true, "cmd": "ssh pbs-backup \"mkdir -p /srv/backups/truenas/ssd-workouts\"\n", "delta": "0:00:00.173924", "end": "2025-07-21 10:56:31.507882", "item": {"backup_id": "ssd-workouts", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store"], "path": "/mnt/ssd-files/workouts"}, "msg": "non-zero return code", "rc": 255, "start": "2025-07-21 10:56:31.333958", "stderr": "Debian GNU/Linux 12\nPermission denied, please try again.\r\nReceived disconnect from 192.168.86.33 port 22:2: Too many authentication failures\r\nDisconnected from 192.168.86.33 port 22", "stderr_lines": ["Debian GNU/Linux 12", "Permission denied, please try again.", "Received disconnect from 192.168.86.33 port 22:2: Too many authentication failures", "Disconnected from 192.168.86.33 port 22"], "stdout": "", "stdout_lines": []}
+2025-07-21 13:56:31,828 p=34273 u=bill n=ansible INFO| failed: [truenas] (item={'path': '/mnt/Data/books', 'backup_id': 'data-books', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/calibre-web.log*']}) => {"ansible_loop_var": "item", "changed": true, "cmd": "ssh pbs-backup \"mkdir -p /srv/backups/truenas/data-books\"\n", "delta": "0:00:00.172697", "end": "2025-07-21 10:56:31.823788", "item": {"backup_id": "data-books", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/calibre-web.log*"], "path": "/mnt/Data/books"}, "msg": "non-zero return code", "rc": 255, "start": "2025-07-21 10:56:31.651091", "stderr": "Debian GNU/Linux 12\nPermission denied, please try again.\r\nReceived disconnect from 192.168.86.33 port 22:2: Too many authentication failures\r\nDisconnected from 192.168.86.33 port 22", "stderr_lines": ["Debian GNU/Linux 12", "Permission denied, please try again.", "Received disconnect from 192.168.86.33 port 22:2: Too many authentication failures", "Disconnected from 192.168.86.33 port 22"], "stdout": "", "stdout_lines": []}
+2025-07-21 13:56:32,145 p=34273 u=bill n=ansible INFO| failed: [truenas] (item={'path': '/mnt/Data/media/storage/home_videos', 'backup_id': 'data-home-videos', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/*.part']}) => {"ansible_loop_var": "item", "changed": true, "cmd": "ssh pbs-backup \"mkdir -p /srv/backups/truenas/data-home-videos\"\n", "delta": "0:00:00.172062", "end": "2025-07-21 10:56:32.140882", "item": {"backup_id": "data-home-videos", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/*.part"], "path": "/mnt/Data/media/storage/home_videos"}, "msg": "non-zero return code", "rc": 255, "start": "2025-07-21 10:56:31.968820", "stderr": "Debian GNU/Linux 12\nPermission denied, please try again.\r\nReceived disconnect from 192.168.86.33 port 22:2: Too many authentication failures\r\nDisconnected from 192.168.86.33 port 22", "stderr_lines": ["Debian GNU/Linux 12", "Permission denied, please try again.", "Received disconnect from 192.168.86.33 port 22:2: Too many authentication failures", "Disconnected from 192.168.86.33 port 22"], "stdout": "", "stdout_lines": []}
+2025-07-21 13:56:32,459 p=34273 u=bill n=ansible INFO| failed: [truenas] (item={'path': '/mnt/Data/media/storage/photos', 'backup_id': 'data-photos', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/Thumbs.db', '**/*.xmp.bak']}) => {"ansible_loop_var": "item", "changed": true, "cmd": "ssh pbs-backup \"mkdir -p /srv/backups/truenas/data-photos\"\n", "delta": "0:00:00.172521", "end": "2025-07-21 10:56:32.455899", "item": {"backup_id": "data-photos", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/Thumbs.db", "**/*.xmp.bak"], "path": "/mnt/Data/media/storage/photos"}, "msg": "non-zero return code", "rc": 255, "start": "2025-07-21 10:56:32.283378", "stderr": "Debian GNU/Linux 12\nPermission denied, please try again.\r\nReceived disconnect from 192.168.86.33 port 22:2: Too many authentication failures\r\nDisconnected from 192.168.86.33 port 22", "stderr_lines": ["Debian GNU/Linux 12", "Permission denied, please try again.", "Received disconnect from 192.168.86.33 port 22:2: Too many authentication failures", "Disconnected from 192.168.86.33 port 22"], "stdout": "", "stdout_lines": []}
+2025-07-21 13:56:32,460 p=34273 u=bill n=ansible INFO| ...ignoring
+2025-07-21 13:56:32,466 p=34273 u=bill n=ansible INFO| TASK [Create cron job for automated backups] *************************************************************************
+2025-07-21 13:56:32,701 p=34273 u=bill n=ansible INFO| changed: [truenas] => (item={'path': '/mnt/ssd-files/docs', 'backup_id': 'ssd-docs', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/*.lock', '**/~$*']})
+2025-07-21 13:56:32,859 p=34273 u=bill n=ansible INFO| changed: [truenas] => (item={'path': '/mnt/ssd-files/fileshare', 'backup_id': 'ssd-fileshare', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store']})
+2025-07-21 13:56:33,016 p=34273 u=bill n=ansible INFO| failed: [truenas] (item={'path': '/mnt/ssd-files/home', 'backup_id': 'ssd-home', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/.cache/**', '**/node_modules/**', '**/.git/**']}) => {"ansible_loop": {"allitems": [{"backup_id": "ssd-docs", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/*.lock", "**/~$*"], "path": "/mnt/ssd-files/docs"}, {"backup_id": "ssd-fileshare", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store"], "path": "/mnt/ssd-files/fileshare"}, {"backup_id": "ssd-home", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/.cache/**", "**/node_modules/**", "**/.git/**"], "path": "/mnt/ssd-files/home"}, {"backup_id": "ssd-photo-storage", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/Thumbs.db"], "path": "/mnt/ssd-files/photo_storage"}, {"backup_id": "ssd-workouts", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store"], "path": "/mnt/ssd-files/workouts"}, {"backup_id": "data-books", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/calibre-web.log*"], "path": "/mnt/Data/books"}, {"backup_id": "data-home-videos", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/*.part"], "path": "/mnt/Data/media/storage/home_videos"}, {"backup_id": "data-photos", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/Thumbs.db", "**/*.xmp.bak"], "path": "/mnt/Data/media/storage/photos"}], "first": false, "index": 3, "index0": 2, "last": false, "length": 8, "nextitem": {"backup_id": "ssd-photo-storage", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/Thumbs.db"], "path": "/mnt/ssd-files/photo_storage"}, "previtem": {"backup_id": "ssd-fileshare", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store"], "path": "/mnt/ssd-files/fileshare"}, "revindex": 6, "revindex0": 5}, "ansible_loop_var": "item", "changed": false, "item": {"backup_id": "ssd-home", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/.cache/**", "**/node_modules/**", "**/.git/**"], "path": "/mnt/ssd-files/home"}, "msg": "\"/tmp/crontab121m3gwh\":5: bad minute\nerrors in crontab file, can't install.\n"}
+2025-07-21 13:56:33,177 p=34273 u=bill n=ansible INFO| failed: [truenas] (item={'path': '/mnt/ssd-files/photo_storage', 'backup_id': 'ssd-photo-storage', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/Thumbs.db']}) => {"ansible_loop": {"allitems": [{"backup_id": "ssd-docs", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/*.lock", "**/~$*"], "path": "/mnt/ssd-files/docs"}, {"backup_id": "ssd-fileshare", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store"], "path": "/mnt/ssd-files/fileshare"}, {"backup_id": "ssd-home", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/.cache/**", "**/node_modules/**", "**/.git/**"], "path": "/mnt/ssd-files/home"}, {"backup_id": "ssd-photo-storage", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/Thumbs.db"], "path": "/mnt/ssd-files/photo_storage"}, {"backup_id": "ssd-workouts", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store"], "path": "/mnt/ssd-files/workouts"}, {"backup_id": "data-books", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/calibre-web.log*"], "path": "/mnt/Data/books"}, {"backup_id": "data-home-videos", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/*.part"], "path": "/mnt/Data/media/storage/home_videos"}, {"backup_id": "data-photos", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/Thumbs.db", "**/*.xmp.bak"], "path": "/mnt/Data/media/storage/photos"}], "first": false, "index": 4, "index0": 3, "last": false, "length": 8, "nextitem": {"backup_id": "ssd-workouts", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store"], "path": "/mnt/ssd-files/workouts"}, "previtem": {"backup_id": "ssd-home", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/.cache/**", "**/node_modules/**", "**/.git/**"], "path": "/mnt/ssd-files/home"}, "revindex": 5, "revindex0": 4}, "ansible_loop_var": "item", "changed": false, "item": {"backup_id": "ssd-photo-storage", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/Thumbs.db"], "path": "/mnt/ssd-files/photo_storage"}, "msg": "\"/tmp/crontab1d65qcfp\":5: bad minute\nerrors in crontab file, can't install.\n"}
+2025-07-21 13:56:33,337 p=34273 u=bill n=ansible INFO| changed: [truenas] => (item={'path': '/mnt/ssd-files/workouts', 'backup_id': 'ssd-workouts', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store']})
+2025-07-21 13:56:33,502 p=34273 u=bill n=ansible INFO| changed: [truenas] => (item={'path': '/mnt/Data/books', 'backup_id': 'data-books', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/calibre-web.log*']})
+2025-07-21 13:56:33,660 p=34273 u=bill n=ansible INFO| failed: [truenas] (item={'path': '/mnt/Data/media/storage/home_videos', 'backup_id': 'data-home-videos', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/*.part']}) => {"ansible_loop": {"allitems": [{"backup_id": "ssd-docs", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/*.lock", "**/~$*"], "path": "/mnt/ssd-files/docs"}, {"backup_id": "ssd-fileshare", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store"], "path": "/mnt/ssd-files/fileshare"}, {"backup_id": "ssd-home", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/.cache/**", "**/node_modules/**", "**/.git/**"], "path": "/mnt/ssd-files/home"}, {"backup_id": "ssd-photo-storage", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/Thumbs.db"], "path": "/mnt/ssd-files/photo_storage"}, {"backup_id": "ssd-workouts", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store"], "path": "/mnt/ssd-files/workouts"}, {"backup_id": "data-books", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/calibre-web.log*"], "path": "/mnt/Data/books"}, {"backup_id": "data-home-videos", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/*.part"], "path": "/mnt/Data/media/storage/home_videos"}, {"backup_id": "data-photos", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/Thumbs.db", "**/*.xmp.bak"], "path": "/mnt/Data/media/storage/photos"}], "first": false, "index": 7, "index0": 6, "last": false, "length": 8, "nextitem": {"backup_id": "data-photos", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/Thumbs.db", "**/*.xmp.bak"], "path": "/mnt/Data/media/storage/photos"}, "previtem": {"backup_id": "data-books", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/calibre-web.log*"], "path": "/mnt/Data/books"}, "revindex": 2, "revindex0": 1}, "ansible_loop_var": "item", "changed": false, "item": {"backup_id": "data-home-videos", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/*.part"], "path": "/mnt/Data/media/storage/home_videos"}, "msg": "\"/tmp/crontabuzmeas49\":9: bad minute\nerrors in crontab file, can't install.\n"}
+2025-07-21 13:56:33,822 p=34273 u=bill n=ansible INFO| failed: [truenas] (item={'path': '/mnt/Data/media/storage/photos', 'backup_id': 'data-photos', 'exclude_patterns': ['*.tmp', '**/.Trash*/**', '**/Recycle.Bin/**', '**/@eaDir/**', '**/.DS_Store', '**/Thumbs.db', '**/*.xmp.bak']}) => {"ansible_loop": {"allitems": [{"backup_id": "ssd-docs", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/*.lock", "**/~$*"], "path": "/mnt/ssd-files/docs"}, {"backup_id": "ssd-fileshare", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store"], "path": "/mnt/ssd-files/fileshare"}, {"backup_id": "ssd-home", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/.cache/**", "**/node_modules/**", "**/.git/**"], "path": "/mnt/ssd-files/home"}, {"backup_id": "ssd-photo-storage", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/Thumbs.db"], "path": "/mnt/ssd-files/photo_storage"}, {"backup_id": "ssd-workouts", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store"], "path": "/mnt/ssd-files/workouts"}, {"backup_id": "data-books", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/calibre-web.log*"], "path": "/mnt/Data/books"}, {"backup_id": "data-home-videos", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/*.part"], "path": "/mnt/Data/media/storage/home_videos"}, {"backup_id": "data-photos", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/Thumbs.db", "**/*.xmp.bak"], "path": "/mnt/Data/media/storage/photos"}], "first": false, "index": 8, "index0": 7, "last": true, "length": 8, "previtem": {"backup_id": "data-home-videos", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/*.part"], "path": "/mnt/Data/media/storage/home_videos"}, "revindex": 1, "revindex0": 0}, "ansible_loop_var": "item", "changed": false, "item": {"backup_id": "data-photos", "exclude_patterns": ["*.tmp", "**/.Trash*/**", "**/Recycle.Bin/**", "**/@eaDir/**", "**/.DS_Store", "**/Thumbs.db", "**/*.xmp.bak"], "path": "/mnt/Data/media/storage/photos"}, "msg": "\"/tmp/crontabgkr71i8s\":9: bad minute\nerrors in crontab file, can't install.\n"}
+2025-07-21 13:56:33,825 p=34273 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-21 13:56:33,825 p=34273 u=bill n=ansible INFO| truenas                    : ok=11   changed=3    unreachable=0    failed=1    skipped=0    rescued=0    ignored=1   
+2025-07-21 14:00:21,355 p=34743 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-21 14:00:21,462 p=34743 u=bill n=ansible INFO| PLAY [Setup TrueNAS backup to Proxmox Backup Server (TrueNAS Compatible)] ********************************************
+2025-07-21 14:00:21,467 p=34743 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-21 14:00:22,264 p=34743 u=bill n=ansible INFO| ok: [truenas]
+2025-07-21 14:00:22,266 p=34743 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-21 14:00:22,266 p=34743 u=bill n=ansible INFO| truenas                    : ok=1    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-21 14:00:29,847 p=34788 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-21 14:00:29,953 p=34788 u=bill n=ansible INFO| PLAY [Setup TrueNAS backup to Proxmox Backup Server (TrueNAS Compatible)] ********************************************
+2025-07-21 14:00:29,957 p=34788 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-21 14:00:29,957 p=34788 u=bill n=ansible ERROR|  [ERROR]: No matching task "Create backup script for each path" found. Note: --start-at-task can only follow static
+includes.
+
