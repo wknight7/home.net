@@ -1,0 +1,9 @@
+[Unit]
+Description=Proxmox Backup Server - TrueNAS Backup
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/pbs-backup/backup-all.sh
+User=root
+Group=root
