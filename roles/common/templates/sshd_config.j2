@@ -24,8 +24,8 @@ AllowUsers bill hal
 # Disable X11 forwarding unless necessary
 X11Forwarding no
 
-# Disable TCP forwarding unless necessary
-AllowTcpForwarding no
+# Allow TCP forwarding for VS Code and other remote development tools
+AllowTcpForwarding yes
 
 # Set a maximum number of authentication attempts
 MaxAuthTries 3
