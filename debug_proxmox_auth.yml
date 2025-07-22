@@ -1,0 +1,79 @@
+---
+- name: Debug Proxmox API Authentication
+  hosts: pve
+  gather_facts: false
+  
+  tasks:
+    - name: Load vault secrets
+      include_vars: vault.yml
+      no_log: true
+
+    - name: Display authentication method being used
+      debug:
+        msg: |
+          Authentication Configuration:
+          - API User: {{ proxmox_api_user | default('root@pam') }}
+          - Using Password: {{ 'Yes' if proxmox_api_password is defined else 'No' }}
+          - Using Token: {{ 'Yes' if (proxmox_api_token_id is defined and proxmox_api_token_secret is defined) else 'No' }}
+          - Token ID: {{ proxmox_api_token_id | default('Not configured') }}
+          - API Host: {{ ansible_host }}
+
+    - name: Test token-based authentication manually
+      uri:
+        url: "https://{{ ansible_host }}:8006/api2/json/access/ticket"
+        method: POST
+        body_format: form-urlencoded
+        body:
+          username: "{{ proxmox_api_user | default('root@pam') }}"
+          tokenid: "{{ proxmox_api_token_id }}"
+          token: "{{ proxmox_api_token_secret }}"
+        validate_certs: false
+        status_code: [200, 401, 403, 400]
+      register: token_auth_test
+      when: proxmox_api_token_id is defined and proxmox_api_token_secret is defined
+
+    - name: Display token authentication result
+      debug:
+        msg: |
+          Token Authentication Result:
+          Status: {{ token_auth_test.status | default('N/A') }}
+          {% if token_auth_test.status | default(0) == 200 %}
+          ✅ SUCCESS: Token authentication successful!
+          {% elif token_auth_test.status | default(0) == 401 %}
+          ❌ FAILED: Invalid token credentials
+          {% elif token_auth_test.status | default(0) == 403 %}
+          ❌ FAILED: Token access denied
+          {% elif token_auth_test.status | default(0) == 400 %}
+          ❌ FAILED: Bad request - check token format
+          {% else %}
+          ❌ FAILED: Unexpected error
+          {% endif %}
+          
+          {% if token_auth_test.content is defined %}
+          Response: {{ token_auth_test.content }}
+          {% endif %}
+      when: token_auth_test is defined
+
+    - name: Test direct proxmox module with debug
+      community.general.proxmox:
+        api_user: "{{ proxmox_api_user | default('root@pam') }}"
+        api_token_id: "{{ proxmox_api_token_id | default(omit) }}"
+        api_token_secret: "{{ proxmox_api_token_secret | default(omit) }}"
+        api_host: "{{ ansible_host }}"
+        validate_certs: false
+        state: present
+        vmid: 9999  # Non-existent VM for testing
+      register: proxmox_module_test
+      ignore_errors: true
+      when: proxmox_api_token_id is defined and proxmox_api_token_secret is defined
+
+    - name: Display proxmox module result
+      debug:
+        msg: |
+          Proxmox Module Test:
+          {% if proxmox_module_test.failed | default(false) %}
+          Result: {{ proxmox_module_test.msg | default('Unknown error') }}
+          {% else %}
+          ✅ SUCCESS: Module can authenticate
+          {% endif %}
+      when: proxmox_module_test is defined

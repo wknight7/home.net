@@ -1,0 +1,38 @@
+---
+- name: Test Token-Only Authentication
+  hosts: pve
+  gather_facts: false
+  
+  tasks:
+    - name: Load vault secrets
+      include_vars: vault.yml
+      no_log: true
+
+    - name: Test Proxmox with token only
+      community.general.proxmox:
+        api_user: "root@pam"
+        api_token_id: "{{ proxmox_api_token_id }}"
+        api_token_secret: "{{ proxmox_api_token_secret }}"
+        api_host: "{{ ansible_host }}"
+        validate_certs: false
+        node: "{{ inventory_hostname }}"
+        vmid: 999  # Test with a non-existent ID
+        state: present  # Just test if we can connect
+      register: token_only_test
+      ignore_errors: true
+
+    - name: Display token-only test result
+      debug:
+        msg: |
+          Token-Only Authentication Test:
+          {% if token_only_test.failed | default(false) %}
+          {% if 'authentication' in (token_only_test.msg | default('')) | lower %}
+          ❌ FAILED: Authentication error
+          {% elif 'does not exist' in (token_only_test.msg | default('')) | lower %}
+          ✅ SUCCESS: Token authentication worked! (VM 999 doesn't exist, which is expected)
+          {% else %}
+          Result: {{ token_only_test.msg | default('Unknown error') }}
+          {% endif %}
+          {% else %}
+          ✅ SUCCESS: Token authentication successful
+          {% endif %}

@@ -1,0 +1,67 @@
+---
+- name: Test Proxmox API Authentication
+  hosts: pve
+  gather_facts: false
+  
+  tasks:
+    - name: Load vault secrets
+      include_vars: vault.yml
+      no_log: true
+
+    - name: Test Proxmox API connection
+      uri:
+        url: "https://{{ ansible_host }}:8006/api2/json/access/ticket"
+        method: POST
+        body_format: form-urlencoded
+        body:
+          username: "{{ proxmox_api_user | default('root@pam') }}"
+          password: "{{ proxmox_api_password | default(root_passwd) }}"
+        validate_certs: false
+        status_code: [200, 401, 403]
+      register: auth_test
+
+    - name: Display authentication result
+      debug:
+        msg: |
+          Authentication test result:
+          Status: {{ auth_test.status }}
+          {% if auth_test.status == 200 %}
+          ✅ SUCCESS: Authentication successful!
+          {% elif auth_test.status == 401 %}
+          ❌ FAILED: Invalid username or password
+          {% elif auth_test.status == 403 %}
+          ❌ FAILED: Access denied (user may not have API permissions)
+          {% else %}
+          ❌ FAILED: Unexpected status code
+          {% endif %}
+
+    - name: Check if user has API token configured
+      debug:
+        msg: |
+          API Token Info:
+          Token ID: {{ proxmox_api_token_id | default('Not configured') }}
+          Token Secret: {{ 'Configured' if proxmox_api_token_secret is defined else 'Not configured' }}
+          
+          Recommendation: Consider using API tokens instead of password authentication
+          for better security.
+
+    - name: Test Proxmox node status
+      uri:
+        url: "https://{{ ansible_host }}:8006/api2/json/nodes/{{ inventory_hostname }}/status"
+        method: GET
+        headers:
+          Authorization: "PVEAuthCookie={{ auth_test.json.data.ticket if auth_test.status == 200 else 'invalid' }}"
+        validate_certs: false
+        status_code: [200, 401, 403]
+      register: node_test
+      when: auth_test.status == 200
+
+    - name: Display node status
+      debug:
+        msg: |
+          Node Status Test:
+          {% if auth_test.status == 200 and node_test.status == 200 %}
+          ✅ SUCCESS: Full API access confirmed
+          {% else %}
+          ❌ FAILED: Cannot access node status
+          {% endif %}

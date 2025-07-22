@@ -1,0 +1,32 @@
+---
+- name: Test Token Permissions
+  hosts: pve
+  gather_facts: false
+  
+  tasks:
+    - name: Load vault secrets
+      include_vars: vault.yml
+      no_log: true
+
+    - name: Test storage access
+      uri:
+        url: "https://{{ ansible_host }}:8006/api2/json/nodes/{{ inventory_hostname }}/storage"
+        method: GET
+        headers:
+          Authorization: "PVEAPIToken=root@pam!{{ proxmox_api_token_id }}:{{ proxmox_api_token_secret }}"
+        validate_certs: false
+        status_code: [200, 403]
+      register: storage_test
+
+    - name: Display permission test result  
+      debug:
+        msg: |
+          Token Permission Test:
+          {% if storage_test.status == 200 %}
+          ✅ SUCCESS: Token has proper permissions!
+          Available storage: {{ storage_test.json.data | map(attribute='storage') | list | join(', ') }}
+          {% elif storage_test.status == 403 %}
+          ❌ FAILED: Token lacks permissions. Please fix in Proxmox web interface.
+          {% else %}
+          ❌ FAILED: Unexpected error (status {{ storage_test.status }})
+          {% endif %}
