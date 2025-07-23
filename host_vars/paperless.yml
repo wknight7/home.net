@@ -44,8 +44,7 @@ needed_mounts:
 #  - photoprism_storage
 #  - books_downloads
 #  - book_library
-  - paperless_consume
-  - paperless_files
+  - paperless
 #  - plex
 
 # Groups to create
@@ -61,4 +60,4 @@ groups_to_create:
 # Add any other host-specific variables below
 
 # Paperless-NGX database configuration
-paperless_db_pass: "Ts/J+plt296eZ"
+paperless_db_pass: "{{ paperless_db_pass }}"

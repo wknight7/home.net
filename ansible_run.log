@@ -6348,3 +6348,670 @@ generation
 2025-07-21 14:00:29,957 p=34788 u=bill n=ansible ERROR|  [ERROR]: No matching task "Create backup script for each path" found. Note: --start-at-task can only follow static
 includes.
 
+2025-07-22 15:02:17,460 p=52211 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-22 15:02:17,681 p=52211 u=bill n=ansible INFO| PLAY [all] ****************************************************************************************************************
+2025-07-22 15:02:17,687 p=52211 u=bill n=ansible INFO| TASK [Gathering Facts] ****************************************************************************************************
+2025-07-22 15:02:17,708 p=52211 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/desktop.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-22 15:02:17,723 p=52211 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/samsung.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-22 15:02:17,735 p=52211 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/dell.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-22 15:02:19,055 p=52211 u=bill n=ansible INFO| ok: [photoprism]
+2025-07-22 15:02:19,078 p=52211 u=bill n=ansible INFO| ok: [wg]
+2025-07-22 15:02:19,705 p=52211 u=bill n=ansible INFO| ok: [desktop]
+2025-07-22 15:02:20,181 p=52211 u=bill n=ansible INFO| ok: [bazarr]
+2025-07-22 15:02:20,952 p=52211 u=bill n=ansible INFO| fatal: [prowlarr]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.123\". Make sure this host can be reached over ssh: ssh: connect to host 192.168.86.123 port 22: No route to host\r\n", "unreachable": true}
+2025-07-22 15:02:21,297 p=52211 u=bill n=ansible INFO| ok: [sonarr]
+2025-07-22 15:02:21,640 p=52211 u=bill n=ansible INFO| ok: [dell]
+2025-07-22 15:02:21,868 p=52211 u=bill n=ansible INFO| ok: [trilium]
+2025-07-22 15:02:21,992 p=52211 u=bill n=ansible INFO| ok: [paperless]
+2025-07-22 15:02:22,449 p=52211 u=bill n=ansible INFO| ok: [books]
+2025-07-22 15:02:22,787 p=52211 u=bill n=ansible INFO| ok: [overseer]
+2025-07-22 15:02:23,007 p=52211 u=bill n=ansible INFO| ok: [radarr]
+2025-07-22 15:02:23,098 p=52211 u=bill n=ansible INFO| ok: [ntfy]
+2025-07-22 15:02:24,072 p=52211 u=bill n=ansible INFO| ok: [maintainerr]
+2025-07-22 15:02:24,148 p=52211 u=bill n=ansible INFO| ok: [tautulli]
+2025-07-22 15:02:24,152 p=52211 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/lily_laptop.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-22 15:02:24,193 p=52211 u=bill n=ansible INFO| ok: [cloudflared]
+2025-07-22 15:02:24,267 p=52211 u=bill n=ansible INFO| ok: [sab]
+2025-07-22 15:02:25,434 p=52211 u=bill n=ansible INFO| ok: [homepage]
+2025-07-22 15:02:25,819 p=52211 u=bill n=ansible INFO| ok: [calibre-web]
+2025-07-22 15:02:26,403 p=52211 u=bill n=ansible INFO| ok: [localhost]
+2025-07-22 15:02:26,766 p=52211 u=bill n=ansible INFO| ok: [pve]
+2025-07-22 15:02:27,886 p=52211 u=bill n=ansible INFO| fatal: [samsung]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.94\". Make sure this host can be reached over ssh: ssh: connect to host 192.168.86.94 port 22: Connection timed out\r\n", "unreachable": true}
+2025-07-22 15:02:28,055 p=52211 u=bill n=ansible INFO| ok: [plex]
+2025-07-22 15:02:29,197 p=52211 u=bill n=ansible WARNING| [WARNING]: Platform linux on host ha is using the discovered Python interpreter at /usr/bin/python3.12, but future
+installation of another Python interpreter could change the meaning of that path. See https://docs.ansible.com/ansible-
+core/2.18/reference_appendices/interpreter_discovery.html for more information.
+
+2025-07-22 15:02:29,197 p=52211 u=bill n=ansible INFO| ok: [ha]
+2025-07-22 15:02:31,968 p=52211 u=bill n=ansible INFO| ok: [windows11]
+2025-07-22 15:02:32,099 p=52211 u=bill n=ansible INFO| ok: [truenas]
+2025-07-22 15:02:34,217 p=52211 u=bill n=ansible INFO| fatal: [lily_laptop]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.53\". Make sure this host can be reached over ssh: ssh: connect to host 192.168.86.53 port 22: Connection timed out\r\n", "unreachable": true}
+2025-07-22 15:02:36,423 p=52211 u=bill n=ansible WARNING| [WARNING]: Timeout exceeded when getting mount info for /mnt/trilium
+
+2025-07-22 15:02:36,423 p=52211 u=bill n=ansible WARNING| [WARNING]: Timeout exceeded when getting mount info for /mnt/docs
+
+2025-07-22 15:02:36,423 p=52211 u=bill n=ansible WARNING| [WARNING]: Timeout exceeded when getting mount info for /media
+
+2025-07-22 15:02:36,423 p=52211 u=bill n=ansible INFO| ok: [pbs]
+2025-07-22 15:02:36,431 p=52211 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] ***********************************************************************
+2025-07-22 15:02:37,937 p=52211 u=bill n=ansible INFO| ok: [desktop]
+2025-07-22 15:02:38,987 p=52211 u=bill n=ansible INFO| ok: [dell]
+2025-07-22 15:02:39,945 p=52211 u=bill n=ansible INFO| ok: [wg]
+2025-07-22 15:02:40,935 p=52211 u=bill n=ansible INFO| ok: [bazarr]
+2025-07-22 15:02:42,274 p=52211 u=bill n=ansible INFO| ok: [trilium]
+2025-07-22 15:02:43,084 p=52211 u=bill n=ansible INFO| ok: [photoprism]
+2025-07-22 15:02:44,325 p=52211 u=bill n=ansible INFO| ok: [sonarr]
+2025-07-22 15:02:46,661 p=52211 u=bill n=ansible INFO| ok: [paperless]
+2025-07-22 15:02:46,741 p=52211 u=bill n=ansible INFO| ok: [books]
+2025-07-22 15:02:47,207 p=52211 u=bill n=ansible INFO| ok: [overseer]
+2025-07-22 15:02:49,082 p=52211 u=bill n=ansible INFO| ok: [ntfy]
+2025-07-22 15:02:50,813 p=52211 u=bill n=ansible INFO| ok: [radarr]
+2025-07-22 15:02:52,037 p=52211 u=bill n=ansible INFO| ok: [maintainerr]
+2025-07-22 15:02:52,512 p=52211 u=bill n=ansible INFO| ok: [homepage]
+2025-07-22 15:02:54,089 p=52211 u=bill n=ansible INFO| ok: [tautulli]
+2025-07-22 15:02:54,502 p=52211 u=bill n=ansible INFO| ok: [pve]
+2025-07-22 15:02:54,712 p=52211 u=bill n=ansible INFO| ok: [cloudflared]
+2025-07-22 15:02:55,233 p=52211 u=bill n=ansible INFO| ok: [sab]
+2025-07-22 15:02:55,262 p=52211 u=bill n=ansible INFO| skipping: [ha]
+2025-07-22 15:02:55,283 p=52211 u=bill n=ansible INFO| skipping: [truenas]
+2025-07-22 15:02:55,295 p=52211 u=bill n=ansible INFO| skipping: [windows11]
+2025-07-22 15:02:55,726 p=52211 u=bill n=ansible INFO| ok: [calibre-web]
+2025-07-22 15:02:56,534 p=52211 u=bill n=ansible INFO| ok: [pbs]
+2025-07-22 15:02:59,457 p=52211 u=bill n=ansible INFO| ok: [plex]
+2025-07-22 15:03:01,699 p=52211 u=bill n=ansible INFO| ok: [localhost]
+2025-07-22 15:03:01,708 p=52211 u=bill n=ansible INFO| TASK [Include host variables dynamically] *********************************************************************************
+2025-07-22 15:03:01,735 p=52211 u=bill n=ansible INFO| ok: [wg] => (item=host_vars/wg.yml)
+2025-07-22 15:03:01,741 p=52211 u=bill n=ansible INFO| ok: [photoprism] => (item=host_vars/photoprism.yml)
+2025-07-22 15:03:01,751 p=52211 u=bill n=ansible INFO| ok: [desktop] => (item=host_vars/desktop.yml)
+2025-07-22 15:03:01,775 p=52211 u=bill n=ansible INFO| ok: [dell] => (item=host_vars/dell.yml)
+2025-07-22 15:03:01,789 p=52211 u=bill n=ansible INFO| ok: [bazarr] => (item=host_vars/bazarr.yml)
+2025-07-22 15:03:01,800 p=52211 u=bill n=ansible INFO| ok: [trilium] => (item=host_vars/trilium.yml)
+2025-07-22 15:03:01,815 p=52211 u=bill n=ansible INFO| ok: [sonarr] => (item=host_vars/sonarr.yml)
+2025-07-22 15:03:01,834 p=52211 u=bill n=ansible INFO| ok: [paperless] => (item=host_vars/paperless.yml)
+2025-07-22 15:03:01,849 p=52211 u=bill n=ansible INFO| ok: [books] => (item=host_vars/books.yml)
+2025-07-22 15:03:01,867 p=52211 u=bill n=ansible INFO| ok: [overseer] => (item=host_vars/overseer.yml)
+2025-07-22 15:03:01,879 p=52211 u=bill n=ansible INFO| ok: [radarr] => (item=host_vars/radarr.yml)
+2025-07-22 15:03:01,896 p=52211 u=bill n=ansible INFO| ok: [ntfy] => (item=host_vars/ntfy.yml)
+2025-07-22 15:03:01,911 p=52211 u=bill n=ansible INFO| ok: [maintainerr] => (item=host_vars/maintainerr.yml)
+2025-07-22 15:03:01,924 p=52211 u=bill n=ansible INFO| ok: [sab] => (item=host_vars/sab.yml)
+2025-07-22 15:03:01,937 p=52211 u=bill n=ansible INFO| ok: [tautulli] => (item=host_vars/tautulli.yml)
+2025-07-22 15:03:01,956 p=52211 u=bill n=ansible INFO| ok: [cloudflared] => (item=host_vars/cloudflared.yml)
+2025-07-22 15:03:01,978 p=52211 u=bill n=ansible INFO| ok: [homepage] => (item=host_vars/homepage.yml)
+2025-07-22 15:03:01,992 p=52211 u=bill n=ansible INFO| ok: [calibre-web] => (item=host_vars/calibre-web.yml)
+2025-07-22 15:03:02,021 p=52211 u=bill n=ansible INFO| ok: [pve] => (item=host_vars/pve.yml)
+2025-07-22 15:03:02,058 p=52211 u=bill n=ansible INFO| ok: [pbs] => (item=host_vars/pbs.yml)
+2025-07-22 15:03:02,059 p=52211 u=bill n=ansible INFO| ok: [localhost] => (item=host_vars/localhost.yml)
+2025-07-22 15:03:02,060 p=52211 u=bill n=ansible INFO| ok: [plex] => (item=host_vars/plex.yml)
+2025-07-22 15:03:02,070 p=52211 u=bill n=ansible INFO| ok: [ha] => (item=host_vars/ha.yml)
+2025-07-22 15:03:02,086 p=52211 u=bill n=ansible INFO| ok: [truenas] => (item=host_vars/truenas.yml)
+2025-07-22 15:03:02,091 p=52211 u=bill n=ansible INFO| ok: [windows11] => (item=host_vars/windows11.yml)
+2025-07-22 15:03:02,097 p=52211 u=bill n=ansible INFO| PLAY [updates] ************************************************************************************************************
+2025-07-22 15:03:02,118 p=52211 u=bill n=ansible INFO| TASK [Gathering Facts] ****************************************************************************************************
+2025-07-22 15:03:02,882 p=52211 u=bill n=ansible INFO| ok: [wg]
+2025-07-22 15:03:02,910 p=52211 u=bill n=ansible INFO| ok: [bazarr]
+2025-07-22 15:03:02,928 p=52211 u=bill n=ansible INFO| ok: [photoprism]
+2025-07-22 15:03:03,512 p=52211 u=bill n=ansible INFO| ok: [trilium]
+2025-07-22 15:03:03,588 p=52211 u=bill n=ansible INFO| ok: [sonarr]
+2025-07-22 15:03:03,637 p=52211 u=bill n=ansible INFO| ok: [paperless]
+2025-07-22 15:03:04,276 p=52211 u=bill n=ansible INFO| ok: [books]
+2025-07-22 15:03:04,361 p=52211 u=bill n=ansible INFO| ok: [overseer]
+2025-07-22 15:03:04,413 p=52211 u=bill n=ansible INFO| ok: [radarr]
+2025-07-22 15:03:05,012 p=52211 u=bill n=ansible INFO| ok: [ntfy]
+2025-07-22 15:03:05,082 p=52211 u=bill n=ansible INFO| ok: [sab]
+2025-07-22 15:03:05,125 p=52211 u=bill n=ansible INFO| ok: [maintainerr]
+2025-07-22 15:03:05,661 p=52211 u=bill n=ansible INFO| ok: [tautulli]
+2025-07-22 15:03:05,715 p=52211 u=bill n=ansible INFO| ok: [cloudflared]
+2025-07-22 15:03:05,758 p=52211 u=bill n=ansible INFO| ok: [homepage]
+2025-07-22 15:03:06,257 p=52211 u=bill n=ansible INFO| ok: [calibre-web]
+2025-07-22 15:03:06,575 p=52211 u=bill n=ansible INFO| ok: [dell]
+2025-07-22 15:03:09,312 p=52211 u=bill n=ansible INFO| ok: [desktop]
+2025-07-22 15:03:09,420 p=52211 u=bill n=ansible INFO| TASK [common : Load vault variables] **************************************************************************************
+2025-07-22 15:03:09,553 p=52211 u=bill n=ansible INFO| ok: [wg]
+2025-07-22 15:03:09,565 p=52211 u=bill n=ansible INFO| ok: [photoprism]
+2025-07-22 15:03:09,577 p=52211 u=bill n=ansible INFO| ok: [desktop]
+2025-07-22 15:03:09,590 p=52211 u=bill n=ansible INFO| ok: [dell]
+2025-07-22 15:03:09,646 p=52211 u=bill n=ansible INFO| ok: [bazarr]
+2025-07-22 15:03:09,675 p=52211 u=bill n=ansible INFO| ok: [trilium]
+2025-07-22 15:03:09,703 p=52211 u=bill n=ansible INFO| ok: [sonarr]
+2025-07-22 15:03:09,721 p=52211 u=bill n=ansible INFO| ok: [paperless]
+2025-07-22 15:03:09,735 p=52211 u=bill n=ansible INFO| ok: [books]
+2025-07-22 15:03:09,757 p=52211 u=bill n=ansible INFO| ok: [radarr]
+2025-07-22 15:03:09,786 p=52211 u=bill n=ansible INFO| ok: [overseer]
+2025-07-22 15:03:09,822 p=52211 u=bill n=ansible INFO| ok: [ntfy]
+2025-07-22 15:03:09,849 p=52211 u=bill n=ansible INFO| ok: [maintainerr]
+2025-07-22 15:03:09,852 p=52211 u=bill n=ansible INFO| ok: [sab]
+2025-07-22 15:03:09,852 p=52211 u=bill n=ansible INFO| ok: [tautulli]
+2025-07-22 15:03:09,853 p=52211 u=bill n=ansible INFO| ok: [cloudflared]
+2025-07-22 15:03:09,873 p=52211 u=bill n=ansible INFO| ok: [homepage]
+2025-07-22 15:03:09,879 p=52211 u=bill n=ansible INFO| ok: [calibre-web]
+2025-07-22 15:03:09,891 p=52211 u=bill n=ansible INFO| TASK [common : include_vars] **********************************************************************************************
+2025-07-22 15:03:09,920 p=52211 u=bill n=ansible INFO| ok: [wg]
+2025-07-22 15:03:09,941 p=52211 u=bill n=ansible INFO| ok: [photoprism]
+2025-07-22 15:03:09,959 p=52211 u=bill n=ansible INFO| ok: [desktop]
+2025-07-22 15:03:09,978 p=52211 u=bill n=ansible INFO| ok: [dell]
+2025-07-22 15:03:09,993 p=52211 u=bill n=ansible INFO| ok: [bazarr]
+2025-07-22 15:03:10,021 p=52211 u=bill n=ansible INFO| ok: [trilium]
+2025-07-22 15:03:10,034 p=52211 u=bill n=ansible INFO| ok: [sonarr]
+2025-07-22 15:03:10,049 p=52211 u=bill n=ansible INFO| ok: [paperless]
+2025-07-22 15:03:10,063 p=52211 u=bill n=ansible INFO| ok: [books]
+2025-07-22 15:03:10,077 p=52211 u=bill n=ansible INFO| ok: [overseer]
+2025-07-22 15:03:10,093 p=52211 u=bill n=ansible INFO| ok: [radarr]
+2025-07-22 15:03:10,112 p=52211 u=bill n=ansible INFO| ok: [ntfy]
+2025-07-22 15:03:10,127 p=52211 u=bill n=ansible INFO| ok: [maintainerr]
+2025-07-22 15:03:10,141 p=52211 u=bill n=ansible INFO| ok: [sab]
+2025-07-22 15:03:10,156 p=52211 u=bill n=ansible INFO| ok: [tautulli]
+2025-07-22 15:03:10,172 p=52211 u=bill n=ansible INFO| ok: [cloudflared]
+2025-07-22 15:03:10,182 p=52211 u=bill n=ansible INFO| ok: [homepage]
+2025-07-22 15:03:10,189 p=52211 u=bill n=ansible INFO| ok: [calibre-web]
+2025-07-22 15:03:10,198 p=52211 u=bill n=ansible INFO| TASK [common : Load group variables] **************************************************************************************
+2025-07-22 15:03:10,216 p=52211 u=bill n=ansible INFO| ok: [wg]
+2025-07-22 15:03:10,234 p=52211 u=bill n=ansible INFO| ok: [photoprism]
+2025-07-22 15:03:10,247 p=52211 u=bill n=ansible INFO| ok: [desktop]
+2025-07-22 15:03:10,262 p=52211 u=bill n=ansible INFO| ok: [dell]
+2025-07-22 15:03:10,275 p=52211 u=bill n=ansible INFO| ok: [bazarr]
+2025-07-22 15:03:10,290 p=52211 u=bill n=ansible INFO| ok: [trilium]
+2025-07-22 15:03:10,303 p=52211 u=bill n=ansible INFO| ok: [sonarr]
+2025-07-22 15:03:10,317 p=52211 u=bill n=ansible INFO| ok: [paperless]
+2025-07-22 15:03:10,331 p=52211 u=bill n=ansible INFO| ok: [books]
+2025-07-22 15:03:10,345 p=52211 u=bill n=ansible INFO| ok: [overseer]
+2025-07-22 15:03:10,358 p=52211 u=bill n=ansible INFO| ok: [radarr]
+2025-07-22 15:03:10,371 p=52211 u=bill n=ansible INFO| ok: [ntfy]
+2025-07-22 15:03:10,385 p=52211 u=bill n=ansible INFO| ok: [maintainerr]
+2025-07-22 15:03:10,449 p=52211 u=bill n=ansible INFO| ok: [sab]
+2025-07-22 15:03:10,462 p=52211 u=bill n=ansible INFO| ok: [tautulli]
+2025-07-22 15:03:10,480 p=52211 u=bill n=ansible INFO| ok: [cloudflared]
+2025-07-22 15:03:10,494 p=52211 u=bill n=ansible INFO| ok: [homepage]
+2025-07-22 15:03:10,502 p=52211 u=bill n=ansible INFO| ok: [calibre-web]
+2025-07-22 15:03:10,514 p=52211 u=bill n=ansible INFO| TASK [common : system setup | openssh | install or update daemon package] *************************************************
+2025-07-22 15:03:11,217 p=52211 u=bill n=ansible INFO| ok: [desktop]
+2025-07-22 15:03:11,396 p=52211 u=bill n=ansible INFO| ok: [photoprism]
+2025-07-22 15:03:11,507 p=52211 u=bill n=ansible INFO| ok: [bazarr]
+2025-07-22 15:03:11,599 p=52211 u=bill n=ansible INFO| ok: [wg]
+2025-07-22 15:03:11,836 p=52211 u=bill n=ansible INFO| ok: [dell]
+2025-07-22 15:03:12,167 p=52211 u=bill n=ansible INFO| ok: [trilium]
+2025-07-22 15:03:12,322 p=52211 u=bill n=ansible INFO| ok: [sonarr]
+2025-07-22 15:03:12,469 p=52211 u=bill n=ansible INFO| ok: [books]
+2025-07-22 15:03:12,491 p=52211 u=bill n=ansible INFO| ok: [paperless]
+2025-07-22 15:03:12,714 p=52211 u=bill n=ansible INFO| ok: [overseer]
+2025-07-22 15:03:13,122 p=52211 u=bill n=ansible INFO| ok: [radarr]
+2025-07-22 15:03:13,422 p=52211 u=bill n=ansible INFO| ok: [ntfy]
+2025-07-22 15:03:13,450 p=52211 u=bill n=ansible INFO| ok: [sab]
+2025-07-22 15:03:13,476 p=52211 u=bill n=ansible INFO| ok: [maintainerr]
+2025-07-22 15:03:13,641 p=52211 u=bill n=ansible INFO| ok: [tautulli]
+2025-07-22 15:03:13,993 p=52211 u=bill n=ansible INFO| ok: [cloudflared]
+2025-07-22 15:03:14,261 p=52211 u=bill n=ansible INFO| ok: [calibre-web]
+2025-07-22 15:03:14,268 p=52211 u=bill n=ansible INFO| ok: [homepage]
+2025-07-22 15:03:14,275 p=52211 u=bill n=ansible INFO| TASK [common : system setup | openssh | enable daemon] ********************************************************************
+2025-07-22 15:03:14,732 p=52211 u=bill n=ansible INFO| ok: [desktop]
+2025-07-22 15:03:14,777 p=52211 u=bill n=ansible INFO| changed: [bazarr]
+2025-07-22 15:03:14,801 p=52211 u=bill n=ansible INFO| changed: [photoprism]
+2025-07-22 15:03:14,841 p=52211 u=bill n=ansible INFO| changed: [wg]
+2025-07-22 15:03:15,097 p=52211 u=bill n=ansible INFO| changed: [sonarr]
+2025-07-22 15:03:15,118 p=52211 u=bill n=ansible INFO| ok: [dell]
+2025-07-22 15:03:15,140 p=52211 u=bill n=ansible INFO| changed: [trilium]
+2025-07-22 15:03:15,176 p=52211 u=bill n=ansible INFO| changed: [paperless]
+2025-07-22 15:03:15,202 p=52211 u=bill n=ansible INFO| changed: [books]
+2025-07-22 15:03:15,432 p=52211 u=bill n=ansible INFO| changed: [overseer]
+2025-07-22 15:03:15,461 p=52211 u=bill n=ansible INFO| changed: [radarr]
+2025-07-22 15:03:15,546 p=52211 u=bill n=ansible INFO| changed: [ntfy]
+2025-07-22 15:03:15,563 p=52211 u=bill n=ansible INFO| changed: [sab]
+2025-07-22 15:03:15,596 p=52211 u=bill n=ansible INFO| changed: [maintainerr]
+2025-07-22 15:03:15,740 p=52211 u=bill n=ansible INFO| changed: [tautulli]
+2025-07-22 15:03:15,758 p=52211 u=bill n=ansible INFO| changed: [cloudflared]
+2025-07-22 15:03:15,838 p=52211 u=bill n=ansible INFO| changed: [homepage]
+2025-07-22 15:03:15,843 p=52211 u=bill n=ansible INFO| changed: [calibre-web]
+2025-07-22 15:03:15,852 p=52211 u=bill n=ansible INFO| TASK [common : system setup | openssh | generate sshd_config file from template] ******************************************
+2025-07-22 15:03:16,225 p=52211 u=bill n=ansible WARNING| [WARNING]: sftp transfer mechanism failed on [192.168.86.40]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:16,237 p=52211 u=bill n=ansible WARNING| [WARNING]: scp transfer mechanism failed on [192.168.86.40]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:16,241 p=52211 u=bill n=ansible WARNING| [WARNING]: sftp transfer mechanism failed on [192.168.86.104]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:16,249 p=52211 u=bill n=ansible WARNING| [WARNING]: scp transfer mechanism failed on [192.168.86.104]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:16,255 p=52211 u=bill n=ansible WARNING| [WARNING]: sftp transfer mechanism failed on [192.168.86.95]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:16,266 p=52211 u=bill n=ansible WARNING| [WARNING]: scp transfer mechanism failed on [192.168.86.95]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:16,268 p=52211 u=bill n=ansible WARNING| [WARNING]: sftp transfer mechanism failed on [192.168.86.76]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:16,277 p=52211 u=bill n=ansible WARNING| [WARNING]: scp transfer mechanism failed on [192.168.86.76]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:16,512 p=52211 u=bill n=ansible WARNING| [WARNING]: sftp transfer mechanism failed on [192.168.86.55]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:16,526 p=52211 u=bill n=ansible WARNING| [WARNING]: scp transfer mechanism failed on [192.168.86.55]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:16,559 p=52211 u=bill n=ansible INFO| changed: [desktop]
+2025-07-22 15:03:16,600 p=52211 u=bill n=ansible INFO| changed: [wg]
+2025-07-22 15:03:16,625 p=52211 u=bill n=ansible INFO| changed: [photoprism]
+2025-07-22 15:03:16,650 p=52211 u=bill n=ansible INFO| changed: [bazarr]
+2025-07-22 15:03:16,789 p=52211 u=bill n=ansible WARNING| [WARNING]: sftp transfer mechanism failed on [192.168.86.78]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:16,797 p=52211 u=bill n=ansible WARNING| [WARNING]: scp transfer mechanism failed on [192.168.86.78]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:16,884 p=52211 u=bill n=ansible WARNING| [WARNING]: sftp transfer mechanism failed on [192.168.86.66]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:16,888 p=52211 u=bill n=ansible WARNING| [WARNING]: sftp transfer mechanism failed on [192.168.86.96]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:16,898 p=52211 u=bill n=ansible WARNING| [WARNING]: scp transfer mechanism failed on [192.168.86.66]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:16,899 p=52211 u=bill n=ansible WARNING| [WARNING]: sftp transfer mechanism failed on [192.168.86.70]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:16,903 p=52211 u=bill n=ansible WARNING| [WARNING]: scp transfer mechanism failed on [192.168.86.96]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:16,910 p=52211 u=bill n=ansible WARNING| [WARNING]: scp transfer mechanism failed on [192.168.86.70]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:16,928 p=52211 u=bill n=ansible INFO| changed: [dell]
+2025-07-22 15:03:16,978 p=52211 u=bill n=ansible INFO| changed: [trilium]
+2025-07-22 15:03:17,093 p=52211 u=bill n=ansible INFO| changed: [sonarr]
+2025-07-22 15:03:17,131 p=52211 u=bill n=ansible INFO| changed: [books]
+2025-07-22 15:03:17,146 p=52211 u=bill n=ansible INFO| changed: [paperless]
+2025-07-22 15:03:17,176 p=52211 u=bill n=ansible WARNING| [WARNING]: sftp transfer mechanism failed on [192.168.86.49]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:17,186 p=52211 u=bill n=ansible WARNING| [WARNING]: scp transfer mechanism failed on [192.168.86.49]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:17,229 p=52211 u=bill n=ansible WARNING| [WARNING]: sftp transfer mechanism failed on [192.168.86.79]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:17,239 p=52211 u=bill n=ansible WARNING| [WARNING]: scp transfer mechanism failed on [192.168.86.79]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:17,379 p=52211 u=bill n=ansible WARNING| [WARNING]: sftp transfer mechanism failed on [192.168.86.97]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:17,389 p=52211 u=bill n=ansible WARNING| [WARNING]: scp transfer mechanism failed on [192.168.86.97]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:17,394 p=52211 u=bill n=ansible WARNING| [WARNING]: sftp transfer mechanism failed on [192.168.86.65]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:17,408 p=52211 u=bill n=ansible INFO| changed: [overseer]
+2025-07-22 15:03:17,408 p=52211 u=bill n=ansible WARNING| [WARNING]: scp transfer mechanism failed on [192.168.86.65]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:17,439 p=52211 u=bill n=ansible WARNING| [WARNING]: sftp transfer mechanism failed on [192.168.86.86]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:17,444 p=52211 u=bill n=ansible WARNING| [WARNING]: scp transfer mechanism failed on [192.168.86.86]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:17,459 p=52211 u=bill n=ansible INFO| changed: [radarr]
+2025-07-22 15:03:17,606 p=52211 u=bill n=ansible INFO| changed: [ntfy]
+2025-07-22 15:03:17,639 p=52211 u=bill n=ansible INFO| changed: [maintainerr]
+2025-07-22 15:03:17,665 p=52211 u=bill n=ansible INFO| changed: [sab]
+2025-07-22 15:03:17,675 p=52211 u=bill n=ansible WARNING| [WARNING]: sftp transfer mechanism failed on [192.168.86.72]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:17,678 p=52211 u=bill n=ansible WARNING| [WARNING]: sftp transfer mechanism failed on [192.168.86.43]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:17,684 p=52211 u=bill n=ansible WARNING| [WARNING]: scp transfer mechanism failed on [192.168.86.72]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:17,688 p=52211 u=bill n=ansible WARNING| [WARNING]: scp transfer mechanism failed on [192.168.86.43]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:17,825 p=52211 u=bill n=ansible WARNING| [WARNING]: sftp transfer mechanism failed on [192.168.86.101]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:17,833 p=52211 u=bill n=ansible WARNING| [WARNING]: scp transfer mechanism failed on [192.168.86.101]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:17,855 p=52211 u=bill n=ansible INFO| changed: [tautulli]
+2025-07-22 15:03:17,855 p=52211 u=bill n=ansible INFO| changed: [cloudflared]
+2025-07-22 15:03:17,861 p=52211 u=bill n=ansible WARNING| [WARNING]: sftp transfer mechanism failed on [192.168.86.103]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:17,867 p=52211 u=bill n=ansible WARNING| [WARNING]: scp transfer mechanism failed on [192.168.86.103]. Use ANSIBLE_DEBUG=1 to see detailed information
+
+2025-07-22 15:03:17,982 p=52211 u=bill n=ansible INFO| changed: [homepage]
+2025-07-22 15:03:18,017 p=52211 u=bill n=ansible INFO| changed: [calibre-web]
+2025-07-22 15:03:18,025 p=52211 u=bill n=ansible INFO| TASK [common : system setup | openssh | copy issue.net] *******************************************************************
+2025-07-22 15:03:18,444 p=52211 u=bill n=ansible INFO| ok: [wg]
+2025-07-22 15:03:18,463 p=52211 u=bill n=ansible INFO| ok: [desktop]
+2025-07-22 15:03:18,484 p=52211 u=bill n=ansible INFO| ok: [bazarr]
+2025-07-22 15:03:18,501 p=52211 u=bill n=ansible INFO| ok: [photoprism]
+2025-07-22 15:03:18,791 p=52211 u=bill n=ansible INFO| ok: [trilium]
+2025-07-22 15:03:18,815 p=52211 u=bill n=ansible INFO| ok: [sonarr]
+2025-07-22 15:03:18,843 p=52211 u=bill n=ansible INFO| ok: [paperless]
+2025-07-22 15:03:18,877 p=52211 u=bill n=ansible INFO| ok: [books]
+2025-07-22 15:03:18,907 p=52211 u=bill n=ansible INFO| ok: [dell]
+2025-07-22 15:03:19,159 p=52211 u=bill n=ansible INFO| ok: [overseer]
+2025-07-22 15:03:19,211 p=52211 u=bill n=ansible INFO| ok: [radarr]
+2025-07-22 15:03:19,295 p=52211 u=bill n=ansible INFO| ok: [ntfy]
+2025-07-22 15:03:19,316 p=52211 u=bill n=ansible INFO| ok: [maintainerr]
+2025-07-22 15:03:19,360 p=52211 u=bill n=ansible INFO| ok: [sab]
+2025-07-22 15:03:19,549 p=52211 u=bill n=ansible INFO| ok: [tautulli]
+2025-07-22 15:03:19,573 p=52211 u=bill n=ansible INFO| ok: [cloudflared]
+2025-07-22 15:03:19,632 p=52211 u=bill n=ansible INFO| ok: [calibre-web]
+2025-07-22 15:03:19,647 p=52211 u=bill n=ansible INFO| ok: [homepage]
+2025-07-22 15:03:19,910 p=52211 u=bill n=ansible INFO| RUNNING HANDLER [common : restart_sshd] ***********************************************************************************
+2025-07-22 15:03:20,237 p=52211 u=bill n=ansible INFO| changed: [desktop]
+2025-07-22 15:03:20,271 p=52211 u=bill n=ansible INFO| changed: [wg]
+2025-07-22 15:03:20,306 p=52211 u=bill n=ansible INFO| changed: [photoprism]
+2025-07-22 15:03:20,373 p=52211 u=bill n=ansible INFO| changed: [bazarr]
+2025-07-22 15:03:20,560 p=52211 u=bill n=ansible INFO| changed: [trilium]
+2025-07-22 15:03:20,578 p=52211 u=bill n=ansible INFO| changed: [sonarr]
+2025-07-22 15:03:20,609 p=52211 u=bill n=ansible INFO| changed: [dell]
+2025-07-22 15:03:20,629 p=52211 u=bill n=ansible INFO| changed: [paperless]
+2025-07-22 15:03:20,703 p=52211 u=bill n=ansible INFO| changed: [books]
+2025-07-22 15:03:20,877 p=52211 u=bill n=ansible INFO| changed: [overseer]
+2025-07-22 15:03:20,902 p=52211 u=bill n=ansible INFO| changed: [radarr]
+2025-07-22 15:03:20,997 p=52211 u=bill n=ansible INFO| changed: [maintainerr]
+2025-07-22 15:03:21,024 p=52211 u=bill n=ansible INFO| changed: [ntfy]
+2025-07-22 15:03:21,025 p=52211 u=bill n=ansible INFO| changed: [sab]
+2025-07-22 15:03:21,201 p=52211 u=bill n=ansible INFO| changed: [cloudflared]
+2025-07-22 15:03:21,202 p=52211 u=bill n=ansible INFO| changed: [tautulli]
+2025-07-22 15:03:21,292 p=52211 u=bill n=ansible INFO| changed: [homepage]
+2025-07-22 15:03:21,297 p=52211 u=bill n=ansible INFO| changed: [calibre-web]
+2025-07-22 15:03:21,452 p=52211 u=bill n=ansible INFO| PLAY [workstation] ********************************************************************************************************
+2025-07-22 15:03:21,464 p=52211 u=bill n=ansible INFO| TASK [Gathering Facts] ****************************************************************************************************
+2025-07-22 15:03:22,343 p=52211 u=bill n=ansible INFO| ok: [desktop]
+2025-07-22 15:03:22,682 p=52211 u=bill n=ansible INFO| ok: [dell]
+2025-07-22 15:03:22,707 p=52211 u=bill n=ansible INFO| TASK [workstation : Load workstation variables] ***************************************************************************
+2025-07-22 15:03:22,729 p=52211 u=bill n=ansible INFO| ok: [desktop]
+2025-07-22 15:03:22,743 p=52211 u=bill n=ansible INFO| ok: [dell]
+2025-07-22 15:03:22,751 p=52211 u=bill n=ansible INFO| TASK [workstation : Load group variables] *********************************************************************************
+2025-07-22 15:03:22,767 p=52211 u=bill n=ansible INFO| ok: [desktop]
+2025-07-22 15:03:22,774 p=52211 u=bill n=ansible INFO| ok: [dell]
+2025-07-22 15:03:22,784 p=52211 u=bill n=ansible INFO| TASK [workstation : Load user variables] **********************************************************************************
+2025-07-22 15:03:22,801 p=52211 u=bill n=ansible INFO| ok: [desktop]
+2025-07-22 15:03:22,809 p=52211 u=bill n=ansible INFO| ok: [dell]
+2025-07-22 15:03:22,842 p=52211 u=bill n=ansible INFO| PLAY [local] **************************************************************************************************************
+2025-07-22 15:03:22,860 p=52211 u=bill n=ansible INFO| TASK [Gathering Facts] ****************************************************************************************************
+2025-07-22 15:03:23,435 p=52211 u=bill n=ansible INFO| ok: [localhost]
+2025-07-22 15:03:23,440 p=52211 u=bill n=ansible INFO| TASK [common : Load vault variables] **************************************************************************************
+2025-07-22 15:03:23,470 p=52211 u=bill n=ansible INFO| ok: [localhost]
+2025-07-22 15:03:23,476 p=52211 u=bill n=ansible INFO| TASK [common : include_vars] **********************************************************************************************
+2025-07-22 15:03:23,488 p=52211 u=bill n=ansible INFO| ok: [localhost]
+2025-07-22 15:03:23,493 p=52211 u=bill n=ansible INFO| TASK [common : Load group variables] **************************************************************************************
+2025-07-22 15:03:23,505 p=52211 u=bill n=ansible INFO| ok: [localhost]
+2025-07-22 15:03:23,513 p=52211 u=bill n=ansible INFO| TASK [common : system setup | openssh | install or update daemon package] *************************************************
+2025-07-22 15:03:24,241 p=52211 u=bill n=ansible INFO| ok: [localhost]
+2025-07-22 15:03:24,247 p=52211 u=bill n=ansible INFO| TASK [common : system setup | openssh | enable daemon] ********************************************************************
+2025-07-22 15:03:25,431 p=52211 u=bill n=ansible INFO| changed: [localhost]
+2025-07-22 15:03:25,437 p=52211 u=bill n=ansible INFO| TASK [common : system setup | openssh | generate sshd_config file from template] ******************************************
+2025-07-22 15:03:25,755 p=52211 u=bill n=ansible INFO| changed: [localhost]
+2025-07-22 15:03:25,761 p=52211 u=bill n=ansible INFO| TASK [common : system setup | openssh | copy issue.net] *******************************************************************
+2025-07-22 15:03:26,074 p=52211 u=bill n=ansible INFO| changed: [localhost]
+2025-07-22 15:03:26,084 p=52211 u=bill n=ansible INFO| TASK [local : pre-run | update package cache (debian, etc)] ***************************************************************
+2025-07-22 15:03:27,654 p=52211 u=bill n=ansible INFO| ok: [localhost]
+2025-07-22 15:03:27,660 p=52211 u=bill n=ansible INFO| TASK [local : Load group variables] ***************************************************************************************
+2025-07-22 15:03:27,674 p=52211 u=bill n=ansible INFO| ok: [localhost]
+2025-07-22 15:03:27,680 p=52211 u=bill n=ansible INFO| TASK [local : Load workstations_new variables for resilient NFS] **********************************************************
+2025-07-22 15:03:27,696 p=52211 u=bill n=ansible INFO| ok: [localhost]
+2025-07-22 15:03:27,702 p=52211 u=bill n=ansible INFO| TASK [local : Filter NFS mounts for local ansible server (only bill and shared mounts)] ***********************************
+2025-07-22 15:03:27,735 p=52211 u=bill n=ansible INFO| ok: [localhost]
+2025-07-22 15:03:27,751 p=52211 u=bill n=ansible INFO| RUNNING HANDLER [common : restart_sshd] ***********************************************************************************
+2025-07-22 15:03:28,096 p=52211 u=bill n=ansible INFO| changed: [localhost]
+2025-07-22 15:03:28,099 p=52211 u=bill n=ansible INFO| PLAY [lxc] ****************************************************************************************************************
+2025-07-22 15:03:28,107 p=52211 u=bill n=ansible INFO| TASK [Gathering Facts] ****************************************************************************************************
+2025-07-22 15:03:28,863 p=52211 u=bill n=ansible INFO| ok: [wg]
+2025-07-22 15:03:28,925 p=52211 u=bill n=ansible INFO| ok: [trilium]
+2025-07-22 15:03:28,990 p=52211 u=bill n=ansible INFO| ok: [photoprism]
+2025-07-22 15:03:29,020 p=52211 u=bill n=ansible INFO| ok: [sonarr]
+2025-07-22 15:03:29,041 p=52211 u=bill n=ansible INFO| ok: [bazarr]
+2025-07-22 15:03:29,602 p=52211 u=bill n=ansible INFO| ok: [paperless]
+2025-07-22 15:03:29,685 p=52211 u=bill n=ansible INFO| ok: [books]
+2025-07-22 15:03:29,702 p=52211 u=bill n=ansible INFO| ok: [overseer]
+2025-07-22 15:03:29,772 p=52211 u=bill n=ansible INFO| ok: [radarr]
+2025-07-22 15:03:29,801 p=52211 u=bill n=ansible INFO| ok: [ntfy]
+2025-07-22 15:03:30,311 p=52211 u=bill n=ansible INFO| ok: [maintainerr]
+2025-07-22 15:03:30,370 p=52211 u=bill n=ansible INFO| ok: [sab]
+2025-07-22 15:03:30,453 p=52211 u=bill n=ansible INFO| ok: [cloudflared]
+2025-07-22 15:03:30,468 p=52211 u=bill n=ansible INFO| ok: [tautulli]
+2025-07-22 15:03:30,472 p=52211 u=bill n=ansible INFO| ok: [homepage]
+2025-07-22 15:03:30,921 p=52211 u=bill n=ansible INFO| ok: [calibre-web]
+2025-07-22 15:03:31,276 p=52211 u=bill n=ansible INFO| PLAY [vm] *****************************************************************************************************************
+2025-07-22 15:03:31,283 p=52211 u=bill n=ansible INFO| TASK [Gathering Facts] ****************************************************************************************************
+2025-07-22 15:03:31,934 p=52211 u=bill n=ansible INFO| ok: [plex]
+2025-07-22 15:03:32,321 p=52211 u=bill n=ansible INFO| ok: [ha]
+2025-07-22 15:03:32,331 p=52211 u=bill n=ansible INFO| TASK [vm : Load vault variables] ******************************************************************************************
+2025-07-22 15:03:32,345 p=52211 u=bill n=ansible INFO| skipping: [plex]
+2025-07-22 15:03:32,376 p=52211 u=bill n=ansible INFO| ok: [ha]
+2025-07-22 15:03:32,395 p=52211 u=bill n=ansible INFO| PLAY [proxmox_hosts] ******************************************************************************************************
+2025-07-22 15:03:32,423 p=52211 u=bill n=ansible INFO| TASK [Gathering Facts] ****************************************************************************************************
+2025-07-22 15:03:34,511 p=52211 u=bill n=ansible INFO| ok: [pve]
+2025-07-22 15:03:43,193 p=52211 u=bill n=ansible INFO| ok: [pbs]
+2025-07-22 15:03:43,238 p=52211 u=bill n=ansible INFO| TASK [proxmox_hosts : Load pve variables] *********************************************************************************
+2025-07-22 15:03:43,256 p=52211 u=bill n=ansible INFO| ok: [pve]
+2025-07-22 15:03:43,263 p=52211 u=bill n=ansible INFO| ok: [pbs]
+2025-07-22 15:03:43,286 p=52211 u=bill n=ansible INFO| TASK [proxmox_hosts : Load group variables] *******************************************************************************
+2025-07-22 15:03:43,300 p=52211 u=bill n=ansible INFO| ok: [pve]
+2025-07-22 15:03:43,309 p=52211 u=bill n=ansible INFO| ok: [pbs]
+2025-07-22 15:03:43,332 p=52211 u=bill n=ansible INFO| TASK [proxmox_hosts : Load vault secrets] *********************************************************************************
+2025-07-22 15:03:43,366 p=52211 u=bill n=ansible INFO| ok: [pve]
+2025-07-22 15:03:43,375 p=52211 u=bill n=ansible INFO| ok: [pbs]
+2025-07-22 15:03:43,431 p=52211 u=bill n=ansible INFO| PLAY [truenas] ************************************************************************************************************
+2025-07-22 15:03:43,436 p=52211 u=bill n=ansible INFO| TASK [Gathering Facts] ****************************************************************************************************
+2025-07-22 15:03:44,324 p=52211 u=bill n=ansible INFO| ok: [truenas]
+2025-07-22 15:03:44,337 p=52211 u=bill n=ansible INFO| PLAY [windows] ************************************************************************************************************
+2025-07-22 15:03:44,340 p=52211 u=bill n=ansible INFO| PLAY RECAP ****************************************************************************************************************
+2025-07-22 15:03:44,340 p=52211 u=bill n=ansible INFO| bazarr                     : ok=13   changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-22 15:03:44,340 p=52211 u=bill n=ansible INFO| books                      : ok=13   changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-22 15:03:44,340 p=52211 u=bill n=ansible INFO| calibre-web                : ok=13   changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-22 15:03:44,340 p=52211 u=bill n=ansible INFO| cloudflared                : ok=13   changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-22 15:03:44,340 p=52211 u=bill n=ansible INFO| dell                       : ok=16   changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-22 15:03:44,340 p=52211 u=bill n=ansible INFO| desktop                    : ok=16   changed=2    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-22 15:03:44,340 p=52211 u=bill n=ansible INFO| ha                         : ok=4    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-07-22 15:03:44,340 p=52211 u=bill n=ansible INFO| homepage                   : ok=13   changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-22 15:03:44,340 p=52211 u=bill n=ansible INFO| lily_laptop                : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-22 15:03:44,340 p=52211 u=bill n=ansible INFO| localhost                  : ok=16   changed=4    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-22 15:03:44,340 p=52211 u=bill n=ansible INFO| maintainerr                : ok=13   changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-22 15:03:44,341 p=52211 u=bill n=ansible INFO| ntfy                       : ok=13   changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-22 15:03:44,341 p=52211 u=bill n=ansible INFO| overseer                   : ok=13   changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-22 15:03:44,341 p=52211 u=bill n=ansible INFO| paperless                  : ok=13   changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-22 15:03:44,341 p=52211 u=bill n=ansible INFO| pbs                        : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-22 15:03:44,341 p=52211 u=bill n=ansible INFO| photoprism                 : ok=13   changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-22 15:03:44,341 p=52211 u=bill n=ansible INFO| plex                       : ok=4    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-07-22 15:03:44,341 p=52211 u=bill n=ansible INFO| prowlarr                   : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-22 15:03:44,341 p=52211 u=bill n=ansible INFO| pve                        : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-22 15:03:44,341 p=52211 u=bill n=ansible INFO| radarr                     : ok=13   changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-22 15:03:44,341 p=52211 u=bill n=ansible INFO| sab                        : ok=13   changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-22 15:03:44,342 p=52211 u=bill n=ansible INFO| samsung                    : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-22 15:03:44,342 p=52211 u=bill n=ansible INFO| sonarr                     : ok=13   changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-22 15:03:44,342 p=52211 u=bill n=ansible INFO| tautulli                   : ok=13   changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-22 15:03:44,342 p=52211 u=bill n=ansible INFO| trilium                    : ok=13   changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-22 15:03:44,342 p=52211 u=bill n=ansible INFO| truenas                    : ok=3    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-07-22 15:03:44,342 p=52211 u=bill n=ansible INFO| wg                         : ok=13   changed=3    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-22 15:03:44,342 p=52211 u=bill n=ansible INFO| windows11                  : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-07-23 13:51:24,591 p=59691 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-23 13:51:24,823 p=59691 u=bill n=ansible INFO| PLAY [all] ****************************************************************************************************************
+2025-07-23 13:51:24,828 p=59691 u=bill n=ansible INFO| TASK [Gathering Facts] ****************************************************************************************************
+2025-07-23 13:51:25,868 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:25,874 p=59691 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] ***********************************************************************
+2025-07-23 13:51:29,779 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:29,787 p=59691 u=bill n=ansible INFO| TASK [Include host variables dynamically] *********************************************************************************
+2025-07-23 13:51:29,804 p=59691 u=bill n=ansible INFO| ok: [paperless] => (item=host_vars/paperless.yml)
+2025-07-23 13:51:29,807 p=59691 u=bill n=ansible INFO| PLAY [updates] ************************************************************************************************************
+2025-07-23 13:51:29,826 p=59691 u=bill n=ansible INFO| TASK [Gathering Facts] ****************************************************************************************************
+2025-07-23 13:51:30,446 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:30,459 p=59691 u=bill n=ansible INFO| TASK [common : Load vault variables] **************************************************************************************
+2025-07-23 13:51:30,487 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:30,494 p=59691 u=bill n=ansible INFO| TASK [common : include_vars] **********************************************************************************************
+2025-07-23 13:51:30,507 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:30,514 p=59691 u=bill n=ansible INFO| TASK [common : Load group variables] **************************************************************************************
+2025-07-23 13:51:30,525 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:30,531 p=59691 u=bill n=ansible INFO| TASK [common : Ensure groups are created] *********************************************************************************
+2025-07-23 13:51:30,738 p=59691 u=bill n=ansible INFO| ok: [paperless] => (item={'name': 'docs', 'gid': 1787})
+2025-07-23 13:51:30,746 p=59691 u=bill n=ansible INFO| TASK [common : Create Bill user] ******************************************************************************************
+2025-07-23 13:51:31,021 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:31,030 p=59691 u=bill n=ansible INFO| TASK [common : Ensure .ssh directory exists] ******************************************************************************
+2025-07-23 13:51:31,269 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:31,276 p=59691 u=bill n=ansible INFO| TASK [common : Set authorized keys for Bill from vault] *******************************************************************
+2025-07-23 13:51:31,545 p=59691 u=bill n=ansible INFO| ok: [paperless] => (item=None)
+2025-07-23 13:51:31,715 p=59691 u=bill n=ansible INFO| ok: [paperless] => (item=None)
+2025-07-23 13:51:31,882 p=59691 u=bill n=ansible INFO| ok: [paperless] => (item=None)
+2025-07-23 13:51:32,054 p=59691 u=bill n=ansible INFO| ok: [paperless] => (item=None)
+2025-07-23 13:51:32,225 p=59691 u=bill n=ansible INFO| ok: [paperless] => (item=None)
+2025-07-23 13:51:32,227 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:32,234 p=59691 u=bill n=ansible INFO| TASK [common : Copy bashrc for Bill] **************************************************************************************
+2025-07-23 13:51:32,596 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:32,604 p=59691 u=bill n=ansible INFO| TASK [common : Ensure sudo rights for Bill] *******************************************************************************
+2025-07-23 13:51:32,891 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:32,898 p=59691 u=bill n=ansible INFO| TASK [common : Configure SSH daemon] **************************************************************************************
+2025-07-23 13:51:33,187 p=59691 u=bill n=ansible INFO| changed: [paperless]
+2025-07-23 13:51:33,194 p=59691 u=bill n=ansible INFO| TASK [common : Ensure SSH service is running and enabled] *****************************************************************
+2025-07-23 13:51:33,601 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:33,609 p=59691 u=bill n=ansible INFO| TASK [common : Copy vault password file for Bill] *************************************************************************
+2025-07-23 13:51:33,901 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:33,913 p=59691 u=bill n=ansible INFO| TASK [common : users | hal | create user] *********************************************************************************
+2025-07-23 13:51:34,080 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:34,110 p=59691 u=bill n=ansible INFO| TASK [common : users | hal | add sudoers file] ****************************************************************************
+2025-07-23 13:51:34,396 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:34,403 p=59691 u=bill n=ansible INFO| TASK [common : users | hal | copy vault password file] ********************************************************************
+2025-07-23 13:51:34,692 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:34,699 p=59691 u=bill n=ansible INFO| TASK [common : Ensure app user exists as a system user] *******************************************************************
+2025-07-23 13:51:34,879 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:34,886 p=59691 u=bill n=ansible INFO| TASK [common : Add app user to specified groups] **************************************************************************
+2025-07-23 13:51:35,064 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:35,072 p=59691 u=bill n=ansible INFO| TASK [common : ansible setup | ensure group ansible exists] ***************************************************************
+2025-07-23 13:51:35,199 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:35,206 p=59691 u=bill n=ansible INFO| TASK [common : ansible setup | ensure ansible is the latest version] ******************************************************
+2025-07-23 13:51:35,932 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:35,939 p=59691 u=bill n=ansible INFO| TASK [common : ansible setup | install required packages] *****************************************************************
+2025-07-23 13:51:36,671 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:36,678 p=59691 u=bill n=ansible INFO| TASK [common : ansible setup | install acl package] ***********************************************************************
+2025-07-23 13:51:37,413 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:37,422 p=59691 u=bill n=ansible INFO| TASK [common : ansible setup | create ansible log file] *******************************************************************
+2025-07-23 13:51:37,554 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:37,561 p=59691 u=bill n=ansible INFO| TASK [common : ansible setup | add logrotate config for ansible log file] *************************************************
+2025-07-23 13:51:37,842 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:37,849 p=59691 u=bill n=ansible INFO| TASK [common : ansible setup | remove default ansible directory (/etc/ansible) from host] *********************************
+2025-07-23 13:51:37,980 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:37,987 p=59691 u=bill n=ansible INFO| TASK [common : ansible setup | generate provision script from template] ***************************************************
+2025-07-23 13:51:38,272 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:38,280 p=59691 u=bill n=ansible INFO| TASK [common : Ensure pip3 and pipx are installed] ************************************************************************
+2025-07-23 13:51:39,000 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:39,007 p=59691 u=bill n=ansible INFO| TASK [common : Ensure psutil is installed] ********************************************************************************
+2025-07-23 13:51:39,724 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:39,732 p=59691 u=bill n=ansible INFO| TASK [common : system setup | utilities | install utility packages] *******************************************************
+2025-07-23 13:51:40,502 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:40,510 p=59691 u=bill n=ansible INFO| TASK [common : system setup | clock | install systemd-timesyncd] **********************************************************
+2025-07-23 13:51:41,288 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:41,297 p=59691 u=bill n=ansible INFO| TASK [common : system setup | clock | start and enable systemd-timesyncd] *************************************************
+2025-07-23 13:51:41,563 p=59691 u=bill n=ansible INFO| changed: [paperless]
+2025-07-23 13:51:41,570 p=59691 u=bill n=ansible INFO| TASK [common : system setup | clock | set time zone] **********************************************************************
+2025-07-23 13:51:41,905 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:41,913 p=59691 u=bill n=ansible INFO| TASK [common : system setup | locale | add en_US] *************************************************************************
+2025-07-23 13:51:42,149 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:42,157 p=59691 u=bill n=ansible INFO| TASK [common : system setup | locale | set locale to en_US] ***************************************************************
+2025-07-23 13:51:42,316 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:42,323 p=59691 u=bill n=ansible INFO| TASK [common : system setup | locale | set en_US as default locale] *******************************************************
+2025-07-23 13:51:42,337 p=59691 u=bill n=ansible INFO| skipping: [paperless]
+2025-07-23 13:51:42,344 p=59691 u=bill n=ansible INFO| TASK [common : system setup | locale | remove en_GB] **********************************************************************
+2025-07-23 13:51:42,357 p=59691 u=bill n=ansible INFO| skipping: [paperless]
+2025-07-23 13:51:42,364 p=59691 u=bill n=ansible INFO| TASK [common : system setup | logging | adjust retention period] **********************************************************
+2025-07-23 13:51:42,553 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:42,561 p=59691 u=bill n=ansible INFO| TASK [common : system setup | logging | restart journald (config changed)] ************************************************
+2025-07-23 13:51:42,570 p=59691 u=bill n=ansible INFO| skipping: [paperless]
+2025-07-23 13:51:42,577 p=59691 u=bill n=ansible INFO| TASK [common : system setup | openssh | install or update daemon package] *************************************************
+2025-07-23 13:51:43,302 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:43,309 p=59691 u=bill n=ansible INFO| TASK [common : system setup | openssh | enable daemon] ********************************************************************
+2025-07-23 13:51:43,556 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:43,564 p=59691 u=bill n=ansible INFO| TASK [common : system setup | openssh | generate sshd_config file from template] ******************************************
+2025-07-23 13:51:43,859 p=59691 u=bill n=ansible INFO| changed: [paperless]
+2025-07-23 13:51:43,868 p=59691 u=bill n=ansible INFO| TASK [common : system setup | openssh | copy issue.net] *******************************************************************
+2025-07-23 13:51:44,157 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:44,164 p=59691 u=bill n=ansible INFO| TASK [common : system setup | cron | install cron package] ****************************************************************
+2025-07-23 13:51:44,898 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:44,905 p=59691 u=bill n=ansible INFO| TASK [common : system setup | cron | start and enable cronie daemon] ******************************************************
+2025-07-23 13:51:44,919 p=59691 u=bill n=ansible INFO| skipping: [paperless]
+2025-07-23 13:51:44,926 p=59691 u=bill n=ansible INFO| TASK [common : system setup | cron | schedule automatic ansible provisioning] *********************************************
+2025-07-23 13:51:45,134 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:45,142 p=59691 u=bill n=ansible INFO| TASK [common : system setup | cron | schedule ansible cleanup at boot] ****************************************************
+2025-07-23 13:51:45,278 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:45,285 p=59691 u=bill n=ansible INFO| TASK [common : Copy provision script] *************************************************************************************
+2025-07-23 13:51:45,572 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:45,578 p=59691 u=bill n=ansible INFO| TASK [common : include_tasks] *********************************************************************************************
+2025-07-23 13:51:45,593 p=59691 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/common/tasks/root_bashrc.yml for paperless
+2025-07-23 13:51:45,608 p=59691 u=bill n=ansible INFO| TASK [common : Deploy root .bashrc file] **********************************************************************************
+2025-07-23 13:51:45,886 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:45,893 p=59691 u=bill n=ansible INFO| TASK [common : Ensure root's .profile sources .bashrc] ********************************************************************
+2025-07-23 13:51:46,018 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:46,025 p=59691 u=bill n=ansible INFO| TASK [common : include_tasks] *********************************************************************************************
+2025-07-23 13:51:46,039 p=59691 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/common/tasks/ssh_config.yml for paperless
+2025-07-23 13:51:46,054 p=59691 u=bill n=ansible INFO| TASK [common : Ensure .ssh dir exists for bill] ***************************************************************************
+2025-07-23 13:51:46,186 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:46,193 p=59691 u=bill n=ansible INFO| TASK [common : Deploy aggregated SSH config for bill] *********************************************************************
+2025-07-23 13:51:46,303 p=59691 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/desktop.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-23 13:51:46,304 p=59691 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/samsung.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-23 13:51:46,306 p=59691 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/dell.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-23 13:51:46,307 p=59691 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/lily_laptop.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-23 13:51:46,575 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:46,582 p=59691 u=bill n=ansible INFO| TASK [common : include_tasks] *********************************************************************************************
+2025-07-23 13:51:46,597 p=59691 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/common/tasks/ha_ssh_keys.yml for paperless
+2025-07-23 13:51:46,637 p=59691 u=bill n=ansible INFO| TASK [common : Ensure .ssh directory exists for root on Home Assistant] ***************************************************
+2025-07-23 13:51:46,646 p=59691 u=bill n=ansible INFO| skipping: [paperless]
+2025-07-23 13:51:46,653 p=59691 u=bill n=ansible INFO| TASK [common : Deploy SSH keys for root user on Home Assistant] ***********************************************************
+2025-07-23 13:51:46,663 p=59691 u=bill n=ansible INFO| skipping: [paperless] => (item=None) 
+2025-07-23 13:51:46,664 p=59691 u=bill n=ansible INFO| skipping: [paperless] => (item=None) 
+2025-07-23 13:51:46,666 p=59691 u=bill n=ansible INFO| skipping: [paperless] => (item=None) 
+2025-07-23 13:51:46,667 p=59691 u=bill n=ansible INFO| skipping: [paperless] => (item=None) 
+2025-07-23 13:51:46,669 p=59691 u=bill n=ansible INFO| skipping: [paperless] => (item=None) 
+2025-07-23 13:51:46,670 p=59691 u=bill n=ansible INFO| skipping: [paperless]
+2025-07-23 13:51:46,689 p=59691 u=bill n=ansible INFO| RUNNING HANDLER [common : restart_sshd] ***********************************************************************************
+2025-07-23 13:51:46,954 p=59691 u=bill n=ansible INFO| changed: [paperless]
+2025-07-23 13:51:46,965 p=59691 u=bill n=ansible INFO| PLAY [workstation] ********************************************************************************************************
+2025-07-23 13:51:46,965 p=59691 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-23 13:51:46,965 p=59691 u=bill n=ansible INFO| PLAY [local] **************************************************************************************************************
+2025-07-23 13:51:46,966 p=59691 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-23 13:51:46,968 p=59691 u=bill n=ansible INFO| PLAY [lxc] ****************************************************************************************************************
+2025-07-23 13:51:46,976 p=59691 u=bill n=ansible INFO| TASK [Gathering Facts] ****************************************************************************************************
+2025-07-23 13:51:47,591 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:47,604 p=59691 u=bill n=ansible INFO| TASK [lxc : Set root password on LXC containers] **************************************************************************
+2025-07-23 13:51:47,767 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:47,774 p=59691 u=bill n=ansible INFO| TASK [lxc : include_tasks] ************************************************************************************************
+2025-07-23 13:51:47,794 p=59691 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/lxc/tasks/lxc_mounts_safe.yml for paperless
+2025-07-23 13:51:47,801 p=59691 u=bill n=ansible INFO| TASK [lxc : Load mount point definitions] *********************************************************************************
+2025-07-23 13:51:47,814 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:47,823 p=59691 u=bill n=ansible INFO| TASK [lxc : Get container ID from inventory] ******************************************************************************
+2025-07-23 13:51:47,849 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:51:47,857 p=59691 u=bill n=ansible INFO| TASK [lxc : Fail if container_id not found] *******************************************************************************
+2025-07-23 13:51:47,869 p=59691 u=bill n=ansible INFO| skipping: [paperless]
+2025-07-23 13:51:47,877 p=59691 u=bill n=ansible INFO| TASK [lxc : Check if LXC config file exists] ******************************************************************************
+2025-07-23 13:51:48,528 p=59691 u=bill n=ansible INFO| ok: [paperless -> pve(192.168.86.143)]
+2025-07-23 13:51:48,536 p=59691 u=bill n=ansible INFO| TASK [lxc : Remove existing managed mount points from LXC config] *********************************************************
+2025-07-23 13:51:48,682 p=59691 u=bill n=ansible INFO| changed: [paperless -> pve(192.168.86.143)]
+2025-07-23 13:51:48,690 p=59691 u=bill n=ansible INFO| TASK [lxc : Remove existing managed user mappings from LXC config] ********************************************************
+2025-07-23 13:51:48,839 p=59691 u=bill n=ansible INFO| changed: [paperless -> pve(192.168.86.143)]
+2025-07-23 13:51:48,846 p=59691 u=bill n=ansible INFO| TASK [lxc : Generate mount points and user mappings] **********************************************************************
+2025-07-23 13:51:49,289 p=59691 u=bill n=ansible INFO| changed: [paperless -> pve(192.168.86.143)]
+2025-07-23 13:51:49,297 p=59691 u=bill n=ansible INFO| TASK [lxc : Append new mount points and user mappings to LXC config] ******************************************************
+2025-07-23 13:51:49,546 p=59691 u=bill n=ansible INFO| changed: [paperless -> pve(192.168.86.143)]
+2025-07-23 13:51:49,555 p=59691 u=bill n=ansible INFO| TASK [lxc : Clean up temporary file] **************************************************************************************
+2025-07-23 13:51:49,707 p=59691 u=bill n=ansible INFO| changed: [paperless -> pve(192.168.86.143)]
+2025-07-23 13:51:49,715 p=59691 u=bill n=ansible INFO| TASK [lxc : Check container status before restart] ************************************************************************
+2025-07-23 13:51:50,466 p=59691 u=bill n=ansible INFO| changed: [paperless -> pve(192.168.86.143)]
+2025-07-23 13:51:50,474 p=59691 u=bill n=ansible INFO| TASK [lxc : Restart container if it was running (to apply mount/idmap changes)] *******************************************
+2025-07-23 13:51:58,479 p=59691 u=bill n=ansible INFO| changed: [paperless -> pve(192.168.86.143)]
+2025-07-23 13:51:58,487 p=59691 u=bill n=ansible INFO| TASK [lxc : Display configuration changes] ********************************************************************************
+2025-07-23 13:51:58,508 p=59691 u=bill n=ansible INFO| ok: [paperless] => {
+    "msg": [
+        "Updated LXC 112 configuration with 1 mount points and user mappings",
+        "Container restart: RESTARTED"
+    ]
+}
+2025-07-23 13:51:58,516 p=59691 u=bill n=ansible INFO| TASK [lxc : include_tasks] ************************************************************************************************
+2025-07-23 13:51:58,541 p=59691 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/lxc/tasks/unattended_upgrades.yml for paperless
+2025-07-23 13:51:58,551 p=59691 u=bill n=ansible INFO| TASK [lxc : unattended upgrades | install unattended-upgrades for debian-based hosts] *************************************
+2025-07-23 13:52:01,611 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:52:01,620 p=59691 u=bill n=ansible INFO| TASK [lxc : unattended upgrades | copy 20auto-upgrades file for debian-based hosts] ***************************************
+2025-07-23 13:52:02,005 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:52:02,013 p=59691 u=bill n=ansible INFO| TASK [lxc : unattended upgrades | copy 50unattended-upgrades file (debian)] ***********************************************
+2025-07-23 13:52:02,023 p=59691 u=bill n=ansible INFO| skipping: [paperless]
+2025-07-23 13:52:02,031 p=59691 u=bill n=ansible INFO| TASK [lxc : unattended upgrades | copy 50unattended-upgrades file (ubuntu)] ***********************************************
+2025-07-23 13:52:02,717 p=59691 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 13:52:02,732 p=59691 u=bill n=ansible INFO| PLAY [vm] *****************************************************************************************************************
+2025-07-23 13:52:02,732 p=59691 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-23 13:52:02,732 p=59691 u=bill n=ansible INFO| PLAY [proxmox_hosts] ******************************************************************************************************
+2025-07-23 13:52:02,733 p=59691 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-23 13:52:02,733 p=59691 u=bill n=ansible INFO| PLAY [truenas] ************************************************************************************************************
+2025-07-23 13:52:02,733 p=59691 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-23 13:52:02,733 p=59691 u=bill n=ansible INFO| PLAY [windows] ************************************************************************************************************
+2025-07-23 13:52:02,733 p=59691 u=bill n=ansible INFO| skipping: no hosts matched
+2025-07-23 13:52:02,733 p=59691 u=bill n=ansible INFO| PLAY RECAP ****************************************************************************************************************
+2025-07-23 13:52:02,734 p=59691 u=bill n=ansible INFO| paperless                  : ok=72   changed=11   unreachable=0    failed=0    skipped=8    rescued=0    ignored=0   
