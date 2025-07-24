@@ -7015,3 +7015,321 @@ duplicate dict key (gnome). Using last defined value only.
 2025-07-23 13:52:02,733 p=59691 u=bill n=ansible INFO| skipping: no hosts matched
 2025-07-23 13:52:02,733 p=59691 u=bill n=ansible INFO| PLAY RECAP ****************************************************************************************************************
 2025-07-23 13:52:02,734 p=59691 u=bill n=ansible INFO| paperless                  : ok=72   changed=11   unreachable=0    failed=0    skipped=8    rescued=0    ignored=0   
+2025-07-23 14:34:45,149 p=60650 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-07-23 14:34:45,381 p=60650 u=bill n=ansible INFO| PLAY [all] ***********************************************************************************************************
+2025-07-23 14:34:45,387 p=60650 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-23 14:34:45,416 p=60650 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/desktop.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-23 14:34:45,430 p=60650 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/samsung.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-23 14:34:45,445 p=60650 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/dell.yml, line 3, column 1, found a
+duplicate dict key (gnome). Using last defined value only.
+
+2025-07-23 14:34:46,541 p=60650 u=bill n=ansible INFO| ok: [wg]
+2025-07-23 14:34:46,562 p=60650 u=bill n=ansible INFO| ok: [photoprism]
+2025-07-23 14:34:47,524 p=60650 u=bill n=ansible INFO| ok: [bazarr]
+2025-07-23 14:34:47,550 p=60650 u=bill n=ansible INFO| ok: [desktop]
+2025-07-23 14:34:48,535 p=60650 u=bill n=ansible INFO| ok: [trilium]
+2025-07-23 14:34:48,669 p=60650 u=bill n=ansible INFO| ok: [sonarr]
+2025-07-23 14:34:48,674 p=60650 u=bill n=ansible INFO| fatal: [prowlarr]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.123\". Make sure this host can be reached over ssh: ssh: connect to host 192.168.86.123 port 22: No route to host\r\n", "unreachable": true}
+2025-07-23 14:34:49,622 p=60650 u=bill n=ansible INFO| fatal: [samsung]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.94\". Make sure this host can be reached over ssh: ssh: connect to host 192.168.86.94 port 22: No route to host\r\n", "unreachable": true}
+2025-07-23 14:34:49,707 p=60650 u=bill n=ansible INFO| fatal: [dell]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.55\". Make sure this host can be reached over ssh: ssh: connect to host 192.168.86.55 port 22: No route to host\r\n", "unreachable": true}
+2025-07-23 14:34:49,788 p=60650 u=bill n=ansible INFO| ok: [radarr]
+2025-07-23 14:34:49,836 p=60650 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 14:34:49,897 p=60650 u=bill n=ansible INFO| ok: [overseer]
+2025-07-23 14:34:50,628 p=60650 u=bill n=ansible INFO| ok: [books]
+2025-07-23 14:34:50,868 p=60650 u=bill n=ansible INFO| ok: [ntfy]
+2025-07-23 14:34:50,870 p=60650 u=bill n=ansible WARNING| [WARNING]: While constructing a mapping from /home/bill/git/home.net/host_vars/lily_laptop.yml, line 3, column 1,
+found a duplicate dict key (gnome). Using last defined value only.
+
+2025-07-23 14:34:51,028 p=60650 u=bill n=ansible INFO| ok: [cloudflared]
+2025-07-23 14:34:51,039 p=60650 u=bill n=ansible INFO| ok: [tautulli]
+2025-07-23 14:34:51,681 p=60650 u=bill n=ansible INFO| ok: [maintainerr]
+2025-07-23 14:34:51,936 p=60650 u=bill n=ansible INFO| ok: [homepage]
+2025-07-23 14:34:52,645 p=60650 u=bill n=ansible INFO| ok: [calibre-web]
+2025-07-23 14:34:53,827 p=60650 u=bill n=ansible INFO| ok: [localhost]
+2025-07-23 14:34:53,836 p=60650 u=bill n=ansible INFO| ok: [plex]
+2025-07-23 14:34:53,938 p=60650 u=bill n=ansible INFO| ok: [pve]
+2025-07-23 14:34:53,941 p=60650 u=bill n=ansible INFO| ok: [sab]
+2025-07-23 14:34:54,099 p=60650 u=bill n=ansible INFO| fatal: [lily_laptop]: UNREACHABLE! => {"changed": false, "msg": "Data could not be sent to remote host \"192.168.86.53\". Make sure this host can be reached over ssh: ssh: connect to host 192.168.86.53 port 22: No route to host\r\n", "unreachable": true}
+2025-07-23 14:34:55,382 p=60650 u=bill n=ansible WARNING| [WARNING]: Platform linux on host ha is using the discovered Python interpreter at /usr/bin/python3.12, but future
+installation of another Python interpreter could change the meaning of that path. See
+https://docs.ansible.com/ansible-core/2.18/reference_appendices/interpreter_discovery.html for more information.
+
+2025-07-23 14:34:55,383 p=60650 u=bill n=ansible INFO| ok: [ha]
+2025-07-23 14:34:55,643 p=60650 u=bill n=ansible INFO| ok: [truenas]
+2025-07-23 14:34:59,554 p=60650 u=bill n=ansible INFO| ok: [windows11]
+2025-07-23 14:35:02,656 p=60650 u=bill n=ansible WARNING| [WARNING]: Timeout exceeded when getting mount info for /mnt/trilium
+
+2025-07-23 14:35:02,657 p=60650 u=bill n=ansible WARNING| [WARNING]: Timeout exceeded when getting mount info for /mnt/docs
+
+2025-07-23 14:35:02,657 p=60650 u=bill n=ansible WARNING| [WARNING]: Timeout exceeded when getting mount info for /media
+
+2025-07-23 14:35:02,657 p=60650 u=bill n=ansible INFO| ok: [pbs]
+2025-07-23 14:35:02,665 p=60650 u=bill n=ansible INFO| TASK [pre-run | update package cache (debian, etc)] ******************************************************************
+2025-07-23 14:35:06,080 p=60650 u=bill n=ansible INFO| ok: [wg]
+2025-07-23 14:35:06,887 p=60650 u=bill n=ansible INFO| ok: [trilium]
+2025-07-23 14:35:07,086 p=60650 u=bill n=ansible INFO| ok: [bazarr]
+2025-07-23 14:35:07,510 p=60650 u=bill n=ansible INFO| ok: [photoprism]
+2025-07-23 14:35:08,833 p=60650 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 14:35:09,146 p=60650 u=bill n=ansible INFO| ok: [desktop]
+2025-07-23 14:35:10,266 p=60650 u=bill n=ansible INFO| ok: [sonarr]
+2025-07-23 14:35:10,987 p=60650 u=bill n=ansible INFO| ok: [overseer]
+2025-07-23 14:35:11,868 p=60650 u=bill n=ansible INFO| ok: [books]
+2025-07-23 14:35:12,815 p=60650 u=bill n=ansible INFO| ok: [ntfy]
+2025-07-23 14:35:14,459 p=60650 u=bill n=ansible INFO| ok: [radarr]
+2025-07-23 14:35:15,776 p=60650 u=bill n=ansible INFO| ok: [maintainerr]
+2025-07-23 14:35:17,158 p=60650 u=bill n=ansible INFO| ok: [cloudflared]
+2025-07-23 14:35:17,481 p=60650 u=bill n=ansible INFO| ok: [tautulli]
+2025-07-23 14:35:19,101 p=60650 u=bill n=ansible INFO| ok: [pve]
+2025-07-23 14:35:19,761 p=60650 u=bill n=ansible INFO| ok: [homepage]
+2025-07-23 14:35:19,793 p=60650 u=bill n=ansible INFO| ok: [pbs]
+2025-07-23 14:35:19,829 p=60650 u=bill n=ansible INFO| skipping: [ha]
+2025-07-23 14:35:19,857 p=60650 u=bill n=ansible INFO| skipping: [truenas]
+2025-07-23 14:35:19,874 p=60650 u=bill n=ansible INFO| skipping: [windows11]
+2025-07-23 14:35:20,097 p=60650 u=bill n=ansible INFO| ok: [calibre-web]
+2025-07-23 14:35:24,607 p=60650 u=bill n=ansible INFO| ok: [plex]
+2025-07-23 14:35:25,939 p=60650 u=bill n=ansible INFO| ok: [localhost]
+2025-07-23 14:35:36,901 p=60650 u=bill n=ansible INFO| ok: [sab]
+2025-07-23 14:35:36,909 p=60650 u=bill n=ansible INFO| TASK [Include host variables dynamically] ****************************************************************************
+2025-07-23 14:35:36,934 p=60650 u=bill n=ansible INFO| ok: [wg] => (item=host_vars/wg.yml)
+2025-07-23 14:35:36,946 p=60650 u=bill n=ansible INFO| ok: [photoprism] => (item=host_vars/photoprism.yml)
+2025-07-23 14:35:36,969 p=60650 u=bill n=ansible INFO| ok: [desktop] => (item=host_vars/desktop.yml)
+2025-07-23 14:35:37,004 p=60650 u=bill n=ansible INFO| ok: [bazarr] => (item=host_vars/bazarr.yml)
+2025-07-23 14:35:37,018 p=60650 u=bill n=ansible INFO| ok: [trilium] => (item=host_vars/trilium.yml)
+2025-07-23 14:35:37,045 p=60650 u=bill n=ansible INFO| ok: [sonarr] => (item=host_vars/sonarr.yml)
+2025-07-23 14:35:37,074 p=60650 u=bill n=ansible INFO| ok: [paperless] => (item=host_vars/paperless.yml)
+2025-07-23 14:35:37,082 p=60650 u=bill n=ansible INFO| ok: [books] => (item=host_vars/books.yml)
+2025-07-23 14:35:37,105 p=60650 u=bill n=ansible INFO| ok: [overseer] => (item=host_vars/overseer.yml)
+2025-07-23 14:35:37,135 p=60650 u=bill n=ansible INFO| ok: [radarr] => (item=host_vars/radarr.yml)
+2025-07-23 14:35:37,143 p=60650 u=bill n=ansible INFO| ok: [ntfy] => (item=host_vars/ntfy.yml)
+2025-07-23 14:35:37,173 p=60650 u=bill n=ansible INFO| ok: [maintainerr] => (item=host_vars/maintainerr.yml)
+2025-07-23 14:35:37,179 p=60650 u=bill n=ansible INFO| ok: [sab] => (item=host_vars/sab.yml)
+2025-07-23 14:35:37,198 p=60650 u=bill n=ansible INFO| ok: [tautulli] => (item=host_vars/tautulli.yml)
+2025-07-23 14:35:37,217 p=60650 u=bill n=ansible INFO| ok: [cloudflared] => (item=host_vars/cloudflared.yml)
+2025-07-23 14:35:37,249 p=60650 u=bill n=ansible INFO| ok: [homepage] => (item=host_vars/homepage.yml)
+2025-07-23 14:35:37,258 p=60650 u=bill n=ansible INFO| ok: [calibre-web] => (item=host_vars/calibre-web.yml)
+2025-07-23 14:35:37,298 p=60650 u=bill n=ansible INFO| ok: [pve] => (item=host_vars/pve.yml)
+2025-07-23 14:35:37,337 p=60650 u=bill n=ansible INFO| ok: [pbs] => (item=host_vars/pbs.yml)
+2025-07-23 14:35:37,345 p=60650 u=bill n=ansible INFO| ok: [localhost] => (item=host_vars/localhost.yml)
+2025-07-23 14:35:37,349 p=60650 u=bill n=ansible INFO| ok: [plex] => (item=host_vars/plex.yml)
+2025-07-23 14:35:37,352 p=60650 u=bill n=ansible INFO| ok: [ha] => (item=host_vars/ha.yml)
+2025-07-23 14:35:37,362 p=60650 u=bill n=ansible INFO| ok: [truenas] => (item=host_vars/truenas.yml)
+2025-07-23 14:35:37,374 p=60650 u=bill n=ansible INFO| ok: [windows11] => (item=host_vars/windows11.yml)
+2025-07-23 14:35:37,379 p=60650 u=bill n=ansible INFO| PLAY [updates] *******************************************************************************************************
+2025-07-23 14:35:37,403 p=60650 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-23 14:35:38,193 p=60650 u=bill n=ansible INFO| ok: [wg]
+2025-07-23 14:35:38,219 p=60650 u=bill n=ansible INFO| ok: [trilium]
+2025-07-23 14:35:38,257 p=60650 u=bill n=ansible INFO| ok: [bazarr]
+2025-07-23 14:35:38,290 p=60650 u=bill n=ansible INFO| ok: [photoprism]
+2025-07-23 14:35:38,366 p=60650 u=bill n=ansible INFO| ok: [desktop]
+2025-07-23 14:35:38,889 p=60650 u=bill n=ansible INFO| ok: [sonarr]
+2025-07-23 14:35:38,995 p=60650 u=bill n=ansible INFO| ok: [books]
+2025-07-23 14:35:39,017 p=60650 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 14:35:39,059 p=60650 u=bill n=ansible INFO| ok: [overseer]
+2025-07-23 14:35:39,251 p=60650 u=bill n=ansible INFO| ok: [radarr]
+2025-07-23 14:35:39,672 p=60650 u=bill n=ansible INFO| ok: [ntfy]
+2025-07-23 14:35:39,723 p=60650 u=bill n=ansible INFO| ok: [maintainerr]
+2025-07-23 14:35:39,759 p=60650 u=bill n=ansible INFO| ok: [tautulli]
+2025-07-23 14:35:39,891 p=60650 u=bill n=ansible INFO| ok: [cloudflared]
+2025-07-23 14:35:40,332 p=60650 u=bill n=ansible INFO| ok: [sab]
+2025-07-23 14:35:40,341 p=60650 u=bill n=ansible INFO| ok: [homepage]
+2025-07-23 14:35:40,418 p=60650 u=bill n=ansible INFO| ok: [calibre-web]
+2025-07-23 14:35:40,528 p=60650 u=bill n=ansible INFO| TASK [common : Load vault variables] *********************************************************************************
+2025-07-23 14:35:40,603 p=60650 u=bill n=ansible INFO| ok: [wg]
+2025-07-23 14:35:40,640 p=60650 u=bill n=ansible INFO| ok: [photoprism]
+2025-07-23 14:35:40,655 p=60650 u=bill n=ansible INFO| ok: [desktop]
+2025-07-23 14:35:40,742 p=60650 u=bill n=ansible INFO| ok: [bazarr]
+2025-07-23 14:35:40,760 p=60650 u=bill n=ansible INFO| ok: [trilium]
+2025-07-23 14:35:40,774 p=60650 u=bill n=ansible INFO| ok: [sonarr]
+2025-07-23 14:35:40,819 p=60650 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 14:35:40,858 p=60650 u=bill n=ansible INFO| ok: [books]
+2025-07-23 14:35:40,884 p=60650 u=bill n=ansible INFO| ok: [overseer]
+2025-07-23 14:35:40,899 p=60650 u=bill n=ansible INFO| ok: [radarr]
+2025-07-23 14:35:40,922 p=60650 u=bill n=ansible INFO| ok: [ntfy]
+2025-07-23 14:35:40,938 p=60650 u=bill n=ansible INFO| ok: [maintainerr]
+2025-07-23 14:35:40,962 p=60650 u=bill n=ansible INFO| ok: [sab]
+2025-07-23 14:35:40,965 p=60650 u=bill n=ansible INFO| ok: [tautulli]
+2025-07-23 14:35:40,972 p=60650 u=bill n=ansible INFO| ok: [cloudflared]
+2025-07-23 14:35:40,978 p=60650 u=bill n=ansible INFO| ok: [homepage]
+2025-07-23 14:35:40,998 p=60650 u=bill n=ansible INFO| ok: [calibre-web]
+2025-07-23 14:35:41,006 p=60650 u=bill n=ansible INFO| TASK [common : include_vars] *****************************************************************************************
+2025-07-23 14:35:41,037 p=60650 u=bill n=ansible INFO| ok: [wg]
+2025-07-23 14:35:41,049 p=60650 u=bill n=ansible INFO| ok: [photoprism]
+2025-07-23 14:35:41,063 p=60650 u=bill n=ansible INFO| ok: [desktop]
+2025-07-23 14:35:41,080 p=60650 u=bill n=ansible INFO| ok: [bazarr]
+2025-07-23 14:35:41,095 p=60650 u=bill n=ansible INFO| ok: [trilium]
+2025-07-23 14:35:41,112 p=60650 u=bill n=ansible INFO| ok: [sonarr]
+2025-07-23 14:35:41,126 p=60650 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 14:35:41,140 p=60650 u=bill n=ansible INFO| ok: [books]
+2025-07-23 14:35:41,155 p=60650 u=bill n=ansible INFO| ok: [overseer]
+2025-07-23 14:35:41,167 p=60650 u=bill n=ansible INFO| ok: [radarr]
+2025-07-23 14:35:41,182 p=60650 u=bill n=ansible INFO| ok: [ntfy]
+2025-07-23 14:35:41,196 p=60650 u=bill n=ansible INFO| ok: [maintainerr]
+2025-07-23 14:35:41,209 p=60650 u=bill n=ansible INFO| ok: [sab]
+2025-07-23 14:35:41,223 p=60650 u=bill n=ansible INFO| ok: [tautulli]
+2025-07-23 14:35:41,238 p=60650 u=bill n=ansible INFO| ok: [cloudflared]
+2025-07-23 14:35:41,238 p=60650 u=bill n=ansible INFO| ok: [homepage]
+2025-07-23 14:35:41,250 p=60650 u=bill n=ansible INFO| ok: [calibre-web]
+2025-07-23 14:35:41,258 p=60650 u=bill n=ansible INFO| TASK [common : Load group variables] *********************************************************************************
+2025-07-23 14:35:41,276 p=60650 u=bill n=ansible INFO| ok: [wg]
+2025-07-23 14:35:41,291 p=60650 u=bill n=ansible INFO| ok: [photoprism]
+2025-07-23 14:35:41,304 p=60650 u=bill n=ansible INFO| ok: [desktop]
+2025-07-23 14:35:41,317 p=60650 u=bill n=ansible INFO| ok: [bazarr]
+2025-07-23 14:35:41,332 p=60650 u=bill n=ansible INFO| ok: [trilium]
+2025-07-23 14:35:41,353 p=60650 u=bill n=ansible INFO| ok: [sonarr]
+2025-07-23 14:35:41,369 p=60650 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 14:35:41,384 p=60650 u=bill n=ansible INFO| ok: [books]
+2025-07-23 14:35:41,401 p=60650 u=bill n=ansible INFO| ok: [overseer]
+2025-07-23 14:35:41,417 p=60650 u=bill n=ansible INFO| ok: [radarr]
+2025-07-23 14:35:41,436 p=60650 u=bill n=ansible INFO| ok: [ntfy]
+2025-07-23 14:35:41,455 p=60650 u=bill n=ansible INFO| ok: [maintainerr]
+2025-07-23 14:35:41,471 p=60650 u=bill n=ansible INFO| ok: [sab]
+2025-07-23 14:35:41,484 p=60650 u=bill n=ansible INFO| ok: [tautulli]
+2025-07-23 14:35:41,497 p=60650 u=bill n=ansible INFO| ok: [cloudflared]
+2025-07-23 14:35:41,510 p=60650 u=bill n=ansible INFO| ok: [homepage]
+2025-07-23 14:35:41,518 p=60650 u=bill n=ansible INFO| ok: [calibre-web]
+2025-07-23 14:35:41,571 p=60650 u=bill n=ansible INFO| TASK [common : include_tasks] ****************************************************************************************
+2025-07-23 14:35:41,868 p=60650 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/common/tasks/ssh_config.yml for wg, photoprism, desktop, bazarr, trilium, sonarr, paperless, books, overseer, radarr, ntfy, maintainerr, sab, tautulli, cloudflared, homepage, calibre-web
+2025-07-23 14:35:41,876 p=60650 u=bill n=ansible INFO| TASK [common : Ensure .ssh dir exists for bill] **********************************************************************
+2025-07-23 14:35:42,118 p=60650 u=bill n=ansible INFO| ok: [desktop]
+2025-07-23 14:35:42,150 p=60650 u=bill n=ansible INFO| ok: [wg]
+2025-07-23 14:35:42,165 p=60650 u=bill n=ansible INFO| ok: [trilium]
+2025-07-23 14:35:42,190 p=60650 u=bill n=ansible INFO| ok: [photoprism]
+2025-07-23 14:35:42,206 p=60650 u=bill n=ansible INFO| ok: [bazarr]
+2025-07-23 14:35:42,272 p=60650 u=bill n=ansible INFO| ok: [sonarr]
+2025-07-23 14:35:42,373 p=60650 u=bill n=ansible INFO| ok: [books]
+2025-07-23 14:35:42,396 p=60650 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 14:35:42,413 p=60650 u=bill n=ansible INFO| ok: [overseer]
+2025-07-23 14:35:42,427 p=60650 u=bill n=ansible INFO| ok: [radarr]
+2025-07-23 14:35:42,450 p=60650 u=bill n=ansible INFO| ok: [ntfy]
+2025-07-23 14:35:42,555 p=60650 u=bill n=ansible INFO| ok: [maintainerr]
+2025-07-23 14:35:42,603 p=60650 u=bill n=ansible INFO| ok: [tautulli]
+2025-07-23 14:35:42,617 p=60650 u=bill n=ansible INFO| ok: [cloudflared]
+2025-07-23 14:35:42,637 p=60650 u=bill n=ansible INFO| ok: [homepage]
+2025-07-23 14:35:42,697 p=60650 u=bill n=ansible INFO| ok: [calibre-web]
+2025-07-23 14:35:42,763 p=60650 u=bill n=ansible INFO| ok: [sab]
+2025-07-23 14:35:42,775 p=60650 u=bill n=ansible INFO| TASK [common : Deploy aggregated SSH config for bill] ****************************************************************
+2025-07-23 14:35:44,500 p=60650 u=bill n=ansible INFO| ok: [desktop]
+2025-07-23 14:35:44,544 p=60650 u=bill n=ansible INFO| ok: [wg]
+2025-07-23 14:35:44,567 p=60650 u=bill n=ansible INFO| ok: [photoprism]
+2025-07-23 14:35:44,611 p=60650 u=bill n=ansible INFO| ok: [bazarr]
+2025-07-23 14:35:44,635 p=60650 u=bill n=ansible INFO| ok: [trilium]
+2025-07-23 14:35:46,058 p=60650 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 14:35:46,085 p=60650 u=bill n=ansible INFO| ok: [sonarr]
+2025-07-23 14:35:46,191 p=60650 u=bill n=ansible INFO| ok: [overseer]
+2025-07-23 14:35:46,284 p=60650 u=bill n=ansible INFO| ok: [radarr]
+2025-07-23 14:35:46,313 p=60650 u=bill n=ansible INFO| ok: [books]
+2025-07-23 14:35:47,514 p=60650 u=bill n=ansible INFO| ok: [maintainerr]
+2025-07-23 14:35:47,680 p=60650 u=bill n=ansible INFO| ok: [tautulli]
+2025-07-23 14:35:47,742 p=60650 u=bill n=ansible INFO| ok: [ntfy]
+2025-07-23 14:35:47,791 p=60650 u=bill n=ansible INFO| ok: [cloudflared]
+2025-07-23 14:35:48,531 p=60650 u=bill n=ansible INFO| ok: [homepage]
+2025-07-23 14:35:48,801 p=60650 u=bill n=ansible INFO| ok: [calibre-web]
+2025-07-23 14:35:51,782 p=60650 u=bill n=ansible INFO| ok: [sab]
+2025-07-23 14:35:52,054 p=60650 u=bill n=ansible INFO| PLAY [workstation] ***************************************************************************************************
+2025-07-23 14:35:52,066 p=60650 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-23 14:35:52,928 p=60650 u=bill n=ansible INFO| ok: [desktop]
+2025-07-23 14:35:52,945 p=60650 u=bill n=ansible INFO| TASK [workstation : Load workstation variables] **********************************************************************
+2025-07-23 14:35:52,962 p=60650 u=bill n=ansible INFO| ok: [desktop]
+2025-07-23 14:35:52,972 p=60650 u=bill n=ansible INFO| TASK [workstation : Load group variables] ****************************************************************************
+2025-07-23 14:35:52,986 p=60650 u=bill n=ansible INFO| ok: [desktop]
+2025-07-23 14:35:53,003 p=60650 u=bill n=ansible INFO| TASK [workstation : Load user variables] *****************************************************************************
+2025-07-23 14:35:53,023 p=60650 u=bill n=ansible INFO| ok: [desktop]
+2025-07-23 14:35:53,045 p=60650 u=bill n=ansible INFO| PLAY [local] *********************************************************************************************************
+2025-07-23 14:35:53,068 p=60650 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-23 14:35:53,689 p=60650 u=bill n=ansible INFO| ok: [localhost]
+2025-07-23 14:35:53,694 p=60650 u=bill n=ansible INFO| TASK [common : Load vault variables] *********************************************************************************
+2025-07-23 14:35:53,725 p=60650 u=bill n=ansible INFO| ok: [localhost]
+2025-07-23 14:35:53,731 p=60650 u=bill n=ansible INFO| TASK [common : include_vars] *****************************************************************************************
+2025-07-23 14:35:53,746 p=60650 u=bill n=ansible INFO| ok: [localhost]
+2025-07-23 14:35:53,752 p=60650 u=bill n=ansible INFO| TASK [common : Load group variables] *********************************************************************************
+2025-07-23 14:35:53,763 p=60650 u=bill n=ansible INFO| ok: [localhost]
+2025-07-23 14:35:53,769 p=60650 u=bill n=ansible INFO| TASK [common : include_tasks] ****************************************************************************************
+2025-07-23 14:35:53,785 p=60650 u=bill n=ansible INFO| included: /home/bill/git/home.net/roles/common/tasks/ssh_config.yml for localhost
+2025-07-23 14:35:53,790 p=60650 u=bill n=ansible INFO| TASK [common : Ensure .ssh dir exists for bill] **********************************************************************
+2025-07-23 14:35:53,954 p=60650 u=bill n=ansible INFO| ok: [localhost]
+2025-07-23 14:35:53,960 p=60650 u=bill n=ansible INFO| TASK [common : Deploy aggregated SSH config for bill] ****************************************************************
+2025-07-23 14:35:54,733 p=60650 u=bill n=ansible INFO| ok: [localhost]
+2025-07-23 14:35:54,745 p=60650 u=bill n=ansible INFO| TASK [local : pre-run | update package cache (debian, etc)] **********************************************************
+2025-07-23 14:35:56,422 p=60650 u=bill n=ansible INFO| ok: [localhost]
+2025-07-23 14:35:56,428 p=60650 u=bill n=ansible INFO| TASK [local : Load group variables] **********************************************************************************
+2025-07-23 14:35:56,441 p=60650 u=bill n=ansible INFO| ok: [localhost]
+2025-07-23 14:35:56,450 p=60650 u=bill n=ansible INFO| TASK [local : Load workstations_new variables for resilient NFS] *****************************************************
+2025-07-23 14:35:56,464 p=60650 u=bill n=ansible INFO| ok: [localhost]
+2025-07-23 14:35:56,470 p=60650 u=bill n=ansible INFO| TASK [local : Filter NFS mounts for local ansible server (only bill and shared mounts)] ******************************
+2025-07-23 14:35:56,492 p=60650 u=bill n=ansible INFO| ok: [localhost]
+2025-07-23 14:35:56,502 p=60650 u=bill n=ansible INFO| PLAY [lxc] ***********************************************************************************************************
+2025-07-23 14:35:56,511 p=60650 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-23 14:35:57,198 p=60650 u=bill n=ansible INFO| ok: [wg]
+2025-07-23 14:35:57,275 p=60650 u=bill n=ansible INFO| ok: [trilium]
+2025-07-23 14:35:57,335 p=60650 u=bill n=ansible INFO| ok: [sonarr]
+2025-07-23 14:35:57,427 p=60650 u=bill n=ansible INFO| ok: [bazarr]
+2025-07-23 14:35:57,451 p=60650 u=bill n=ansible INFO| ok: [photoprism]
+2025-07-23 14:35:57,989 p=60650 u=bill n=ansible INFO| ok: [books]
+2025-07-23 14:35:58,056 p=60650 u=bill n=ansible INFO| ok: [paperless]
+2025-07-23 14:35:58,157 p=60650 u=bill n=ansible INFO| ok: [radarr]
+2025-07-23 14:35:58,189 p=60650 u=bill n=ansible INFO| ok: [overseer]
+2025-07-23 14:35:58,233 p=60650 u=bill n=ansible INFO| ok: [ntfy]
+2025-07-23 14:35:58,873 p=60650 u=bill n=ansible INFO| ok: [maintainerr]
+2025-07-23 14:35:58,925 p=60650 u=bill n=ansible INFO| ok: [cloudflared]
+2025-07-23 14:35:58,979 p=60650 u=bill n=ansible INFO| ok: [homepage]
+2025-07-23 14:35:58,981 p=60650 u=bill n=ansible INFO| ok: [tautulli]
+2025-07-23 14:35:59,538 p=60650 u=bill n=ansible INFO| ok: [calibre-web]
+2025-07-23 14:36:00,366 p=60650 u=bill n=ansible INFO| ok: [sab]
+2025-07-23 14:36:00,728 p=60650 u=bill n=ansible INFO| PLAY [vm] ************************************************************************************************************
+2025-07-23 14:36:00,735 p=60650 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-23 14:36:01,454 p=60650 u=bill n=ansible INFO| ok: [plex]
+2025-07-23 14:36:01,733 p=60650 u=bill n=ansible INFO| ok: [ha]
+2025-07-23 14:36:01,745 p=60650 u=bill n=ansible INFO| TASK [vm : Load vault variables] *************************************************************************************
+2025-07-23 14:36:01,764 p=60650 u=bill n=ansible INFO| skipping: [plex]
+2025-07-23 14:36:01,797 p=60650 u=bill n=ansible INFO| ok: [ha]
+2025-07-23 14:36:01,819 p=60650 u=bill n=ansible INFO| PLAY [proxmox_hosts] *************************************************************************************************
+2025-07-23 14:36:01,847 p=60650 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-23 14:36:03,975 p=60650 u=bill n=ansible INFO| ok: [pve]
+2025-07-23 14:36:12,611 p=60650 u=bill n=ansible INFO| ok: [pbs]
+2025-07-23 14:36:12,652 p=60650 u=bill n=ansible INFO| TASK [proxmox_hosts : Load pve variables] ****************************************************************************
+2025-07-23 14:36:12,672 p=60650 u=bill n=ansible INFO| ok: [pve]
+2025-07-23 14:36:12,681 p=60650 u=bill n=ansible INFO| ok: [pbs]
+2025-07-23 14:36:12,706 p=60650 u=bill n=ansible INFO| TASK [proxmox_hosts : Load group variables] **************************************************************************
+2025-07-23 14:36:12,725 p=60650 u=bill n=ansible INFO| ok: [pve]
+2025-07-23 14:36:12,733 p=60650 u=bill n=ansible INFO| ok: [pbs]
+2025-07-23 14:36:12,754 p=60650 u=bill n=ansible INFO| TASK [proxmox_hosts : Load vault secrets] ****************************************************************************
+2025-07-23 14:36:12,797 p=60650 u=bill n=ansible INFO| ok: [pve]
+2025-07-23 14:36:12,809 p=60650 u=bill n=ansible INFO| ok: [pbs]
+2025-07-23 14:36:12,858 p=60650 u=bill n=ansible INFO| PLAY [truenas] *******************************************************************************************************
+2025-07-23 14:36:12,864 p=60650 u=bill n=ansible INFO| TASK [Gathering Facts] ***********************************************************************************************
+2025-07-23 14:36:15,769 p=60650 u=bill n=ansible INFO| ok: [truenas]
+2025-07-23 14:36:15,784 p=60650 u=bill n=ansible INFO| PLAY [windows] *******************************************************************************************************
+2025-07-23 14:36:15,787 p=60650 u=bill n=ansible INFO| PLAY RECAP ***********************************************************************************************************
+2025-07-23 14:36:15,788 p=60650 u=bill n=ansible INFO| bazarr                     : ok=11   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-23 14:36:15,788 p=60650 u=bill n=ansible INFO| books                      : ok=11   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-23 14:36:15,788 p=60650 u=bill n=ansible INFO| calibre-web                : ok=11   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-23 14:36:15,788 p=60650 u=bill n=ansible INFO| cloudflared                : ok=11   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-23 14:36:15,788 p=60650 u=bill n=ansible INFO| dell                       : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-23 14:36:15,788 p=60650 u=bill n=ansible INFO| desktop                    : ok=14   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-23 14:36:15,788 p=60650 u=bill n=ansible INFO| ha                         : ok=4    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-07-23 14:36:15,788 p=60650 u=bill n=ansible INFO| homepage                   : ok=11   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-23 14:36:15,788 p=60650 u=bill n=ansible INFO| lily_laptop                : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-23 14:36:15,788 p=60650 u=bill n=ansible INFO| localhost                  : ok=14   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-23 14:36:15,788 p=60650 u=bill n=ansible INFO| maintainerr                : ok=11   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-23 14:36:15,788 p=60650 u=bill n=ansible INFO| ntfy                       : ok=11   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-23 14:36:15,788 p=60650 u=bill n=ansible INFO| overseer                   : ok=11   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-23 14:36:15,788 p=60650 u=bill n=ansible INFO| paperless                  : ok=11   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-23 14:36:15,788 p=60650 u=bill n=ansible INFO| pbs                        : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-23 14:36:15,788 p=60650 u=bill n=ansible INFO| photoprism                 : ok=11   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-23 14:36:15,788 p=60650 u=bill n=ansible INFO| plex                       : ok=4    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-07-23 14:36:15,788 p=60650 u=bill n=ansible INFO| prowlarr                   : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-23 14:36:15,788 p=60650 u=bill n=ansible INFO| pve                        : ok=7    changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-23 14:36:15,788 p=60650 u=bill n=ansible INFO| radarr                     : ok=11   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-23 14:36:15,788 p=60650 u=bill n=ansible INFO| sab                        : ok=11   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-23 14:36:15,788 p=60650 u=bill n=ansible INFO| samsung                    : ok=0    changed=0    unreachable=1    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-23 14:36:15,789 p=60650 u=bill n=ansible INFO| sonarr                     : ok=11   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-23 14:36:15,789 p=60650 u=bill n=ansible INFO| tautulli                   : ok=11   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-23 14:36:15,789 p=60650 u=bill n=ansible INFO| trilium                    : ok=11   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-23 14:36:15,789 p=60650 u=bill n=ansible INFO| truenas                    : ok=3    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
+2025-07-23 14:36:15,789 p=60650 u=bill n=ansible INFO| wg                         : ok=11   changed=0    unreachable=0    failed=0    skipped=0    rescued=0    ignored=0   
+2025-07-23 14:36:15,789 p=60650 u=bill n=ansible INFO| windows11                  : ok=2    changed=0    unreachable=0    failed=0    skipped=1    rescued=0    ignored=0   
