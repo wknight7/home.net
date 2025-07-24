@@ -61,6 +61,7 @@
   vars_files:    
     - group_vars/groups.yml
   roles:
+    - common
     - lxc
 
 # VM configuration
