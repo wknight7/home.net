@@ -1,5 +1,5 @@
 [lxc]
-prowlarr ansible_host=192.168.86.123 container_id=117
+prowlarr ansible_host=192.168.86.61 container_id=117
 wg ansible_host=192.168.86.104 container_id=101
 photoprism ansible_host=192.168.86.95 container_id=103
 bazarr ansible_host=192.168.86.76 container_id=111
@@ -41,7 +41,7 @@ truenas ansible_host=192.168.86.109 ansible_user=bill ansible_ssh_private_key_fi
 windows11 ansible_host=192.168.86.121 ansible_user=wknig ansible_connection=winrm ansible_winrm_transport=basic ansible_winrm_server_cert_validation=ignore ansible_password="{{ windows_password }}"
 
 [updates]
-prowlarr ansible_host=192.168.86.123 container_id=117
+prowlarr ansible_host=192.168.86.61 container_id=117
 wg ansible_host=192.168.86.104 container_id=101
 photoprism ansible_host=192.168.86.95 container_id=103
 desktop ansible_host=192.168.86.40

@@ -97,5 +97,7 @@
 # Windows configuration
 - hosts: windows
   gather_facts: no
+  vars_files:
+    - ~/git/home.net/vault.yml
   roles:
     - windows

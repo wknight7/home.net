@@ -4,10 +4,10 @@
 
 - name: Create user home directories
   ansible.builtin.file:
-    path: "{{ item.home }}"
+    path: "/home/{{ item }}"
     state: directory
-    owner: "{{ item.name }}"
-    group: "{{ item.name }}"
+    owner: "{{ item }}"
+    group: "{{ item }}"
     mode: '0755'
   loop: "{{ workstation_users }}"
 
@@ -46,7 +46,7 @@
   loop:
     - { name: "documents", target: "/mnt/truenas/lily-documents" }
     - { name: "downloads", target: "/mnt/truenas/lily-downloads" }
-  when: workstation_users | selectattr('name', 'equalto', 'lily') | list | length > 0
+  when: "'lily' in workstation_users"
 
 - name: Create local directories for lily
   ansible.builtin.file:
@@ -57,7 +57,7 @@
     mode: '0755'
   loop:
     - desktop
-  when: workstation_users | selectattr('name', 'equalto', 'lily') | list | length > 0
+  when: "'lily' in workstation_users"
 
 - name: Create NFS symlinks for loretta
   ansible.builtin.file:
@@ -69,7 +69,7 @@
   loop:
     - { name: "documents", target: "/mnt/truenas/loretta-documents" }
     - { name: "downloads", target: "/mnt/truenas/loretta-downloads" }
-  when: workstation_users | selectattr('name', 'equalto', 'loretta') | list | length > 0
+  when: "'loretta' in workstation_users"
 
 - name: Create local directories for loretta
   ansible.builtin.file:
@@ -80,4 +80,4 @@
     mode: '0755'
   loop:
     - desktop
-  when: workstation_users | selectattr('name', 'equalto', 'loretta') | list | length > 0
+  when: "'loretta' in workstation_users"
