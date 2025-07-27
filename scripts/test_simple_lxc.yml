@@ -1,0 +1,40 @@
+---
+- name: Simple LXC Container Test
+  hosts: pve
+  gather_facts: false
+  vars:
+    proxmox_api_token_id: "create_lxc"
+    proxmox_api_token_secret: "2b82f93f-f9a3-4835-bc2d-87de1d3d09f3"
+
+  tasks:
+    - name: Create minimal LXC container
+      community.general.proxmox:
+        vmid: "120"
+        node: "pve"
+        api_user: "root@pam"
+        api_token_id: "{{ proxmox_api_token_id }}"
+        api_token_secret: "{{ proxmox_api_token_secret }}"
+        api_host: "{{ ansible_host }}"
+        hostname: "test-container"
+        ostemplate: "local:vztmpl/ubuntu-24.04-standard_24.04-2_amd64.tar.zst"
+        password: "changeme123"
+        unprivileged: true
+        cores: 1
+        memory: 1024
+        swap: 512
+        disk: "local-lvm:8"
+        netif: '{"net0":"name=eth0,bridge=vmbr0,ip=dhcp"}'
+        state: present
+        timeout: 300
+        validate_certs: false
+      register: create_result
+
+    - name: Display creation result
+      debug:
+        msg: |
+          Container creation result:
+          {% if create_result.failed %}
+          ❌ FAILED: {{ create_result.msg }}
+          {% else %}
+          ✅ SUCCESS: Container created!
+          {% endif %}

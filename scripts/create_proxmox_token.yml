@@ -1,0 +1,91 @@
+---
+- name: Create Proxmox API Token via Ansible
+  hosts: pve
+  gather_facts: false
+
+  tasks:
+    - name: Load vault secrets
+      include_vars: vault.yml
+      no_log: true
+
+    - name: Test if we can authenticate with root password
+      uri:
+        url: "https://{{ ansible_host }}:8006/api2/json/access/ticket"
+        method: POST
+        body_format: form-urlencoded
+        body:
+          username: "root@pam"
+          password: "{{ root_passwd }}"
+        validate_certs: false
+        status_code: [200, 401, 403]
+      register: auth_test
+
+    - name: Display authentication test result
+      debug:
+        msg: |
+          Authentication test result: {{ auth_test.status }}
+          {% if auth_test.status == 200 %}
+          ✅ SUCCESS: Root password authentication works
+          {% else %}
+          ❌ FAILED: Root password authentication failed
+          {% endif %}
+
+    - name: Get authentication ticket if password works
+      set_fact:
+        auth_ticket: "{{ auth_test.json.data.ticket }}"
+        csrf_token: "{{ auth_test.json.data.CSRFPreventionToken }}"
+      when: auth_test.status == 200
+
+    - name: Create API token using authenticated session
+      uri:
+        url: "https://{{ ansible_host }}:8006/api2/json/access/users/root@pam/token/ansible"
+        method: POST
+        headers:
+          Cookie: "PVEAuthCookie={{ auth_ticket }}"
+          CSRFPreventionToken: "{{ csrf_token }}"
+        body_format: form-urlencoded
+        body:
+          comment: "Ansible automation token"
+          privsep: 0
+        validate_certs: false
+        status_code: [200, 409]  # 409 means token already exists
+      register: token_creation
+      when: auth_test.status == 200
+
+    - name: Display token creation result
+      debug:
+        msg: |
+          Token creation result:
+          {% if token_creation.status == 200 %}
+          ✅ SUCCESS: API token created successfully!
+          Token ID: ansible
+          Token Secret: {{ token_creation.json.data.value }}
+          
+          IMPORTANT: Save this token secret - you won't see it again!
+          {% elif token_creation.status == 409 %}
+          ⚠️  Token 'ansible' already exists. You may need to delete it first or use existing secret.
+          {% else %}
+          ❌ FAILED: Token creation failed
+          {% endif %}
+      when: auth_test.status == 200
+
+    - name: Save token info to temporary file
+      copy:
+        content: |
+          # Add these lines to your vault.yml:
+          proxmox_api_token_id: "ansible"
+          proxmox_api_token_secret: "{{ token_creation.json.data.value }}"
+        dest: /tmp/proxmox_token.txt
+        mode: '0600'
+      when: auth_test.status == 200 and token_creation.status == 200
+
+    - name: Display next steps
+      debug:
+        msg: |
+          Next steps:
+          1. The token secret has been saved to /tmp/proxmox_token.txt
+          2. Add the token variables to your vault:
+             ansible-vault edit vault.yml
+          3. Test the new token with:
+             ansible-playbook debug_proxmox_auth.yml
+      when: auth_test.status == 200 and token_creation.status == 200

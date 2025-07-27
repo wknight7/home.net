@@ -1,0 +1,55 @@
+---
+- name: Minimal test from create_lxc.yml
+  hosts: pve
+  gather_facts: true
+  vars:
+    lxc_template: "ubuntu-24.04-standard_24.04-2_amd64.tar.zst"
+    lxc_unprivileged: true
+    lxc_ipv4: "dhcp"
+    lxc_start_after_create: true
+    bootstrap_url: "http://192.168.86.83/bootstrap.sh"
+
+  tasks:
+    - name: Load vault secrets
+      include_vars: vault.yml
+      no_log: true
+
+    - name: Install required Python modules via apt
+      apt:
+        name:
+          - python3-proxmoxer
+          - python3-requests
+        state: present
+      become: yes
+
+    - name: Create LXC container
+      community.general.proxmox:
+        vmid: 122
+        node: "pve"
+        api_user: "root@pam"
+        api_token_id: "create_lxc"
+        api_token_secret: "2b82f93f-f9a3-4835-bc2d-87de1d3d09f3"
+        api_host: "{{ ansible_host }}"
+        hostname: "luggage_tags"
+        ostemplate: "local:vztmpl/ubuntu-24.04-standard_24.04-2_amd64.tar.zst"
+        password: "changeme123"
+        unprivileged: true
+        cores: 1
+        memory: 1024
+        swap: 512
+        disk: "local-lvm:8"
+        netif: '{"net0":"name=eth0,bridge=vmbr0,ip=dhcp"}'
+        state: present
+        timeout: 300
+        validate_certs: false
+      register: create_result
+
+    - name: Display creation result
+      debug:
+        msg: |
+          Container creation result:
+          {% if create_result.failed %}
+          ❌ FAILED: {{ create_result.msg }}
+          {% else %}
+          ✅ SUCCESS: Container created!
+          {% endif %}

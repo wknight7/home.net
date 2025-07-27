@@ -1,0 +1,29 @@
+---
+- name: Test Proxmox Module Authentication
+  hosts: pve
+  gather_facts: false
+  vars:
+    proxmox_api_token_id: "create_lxc"
+    proxmox_api_token_secret: "2b82f93f-f9a3-4835-bc2d-87de1d3d09f3"
+
+  tasks:
+    - name: Test proxmox module authentication by listing containers
+      community.general.proxmox:
+        api_user: "root@pam"
+        api_token_id: "{{ proxmox_api_token_id }}"
+        api_token_secret: "{{ proxmox_api_token_secret }}"
+        api_host: "{{ ansible_host }}"
+        state: "current"
+        validate_certs: false
+      register: proxmox_test
+      failed_when: false
+
+    - name: Display proxmox module test result
+      debug:
+        msg: |
+          Proxmox module test:
+          {% if proxmox_test.failed %}
+          ❌ FAILED: {{ proxmox_test.msg | default('Unknown error') }}
+          {% else %}
+          ✅ SUCCESS: Proxmox module authentication works!
+          {% endif %}

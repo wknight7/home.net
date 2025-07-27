@@ -53,24 +53,37 @@
           Connecting to Proxmox:
           - Host: {{ ansible_host }}
           - User: {{ proxmox_api_user | default('root@pam') }}
-          - Node: {{ inventory_hostname }}
+          - Node: pve
+
+    - name: Debug container parameters
+      debug:
+        msg: |
+          Container Parameters:
+          - vmid: {{ container_id }}
+          - hostname: {{ container_name }}
+          - ostemplate: local:vztmpl/{{ lxc_template }}
+          - unprivileged: {{ lxc_unprivileged }}
+          - cores: {{ cores }}
+          - memory: {{ memory }}
+          - swap: {{ swap }}
+          - disk: local-lvm:{{ disk_size }}
 
     - name: Create LXC container
       community.general.proxmox:
         vmid: "{{ container_id }}"
-        node: "{{ inventory_hostname }}"
-        api_user: "{{ proxmox_api_user | default('root@pam') }}"
-        api_token_id: "{{ proxmox_api_token_id }}"
-        api_token_secret: "{{ proxmox_api_token_secret }}"
+        node: "pve"
+        api_user: "root@pam"
+        api_token_id: "create_lxc"
+        api_token_secret: "2b82f93f-f9a3-4835-bc2d-87de1d3d09f3"
         api_host: "{{ ansible_host }}"
         hostname: "{{ container_name }}"
         ostemplate: "local:vztmpl/{{ lxc_template }}"
-        password: "{{ root_passwd if root_passwd is defined else 'changeme123' }}"
-        unprivileged: "{{ lxc_unprivileged }}"
-        cores: "{{ cores }}"
-        memory: "{{ memory }}"
-        swap: "{{ swap }}"
-        disk: "standard-lvm:{{ disk_size }}"
+        password: "changeme123"
+        unprivileged: true
+        cores: "{{ cores | int }}"
+        memory: "{{ memory | int }}"
+        swap: "{{ swap | int }}"
+        disk: "local-lvm:{{ disk_size }}"
         netif: '{"net0":"name=eth0,bridge=vmbr0,ip=dhcp"}'
         state: present
         timeout: 300
@@ -80,11 +93,11 @@
     - name: Start LXC container
       community.general.proxmox:
         vmid: "{{ container_id }}"
-        node: "{{ inventory_hostname }}"
+        node: "pve"
         hostname: "{{ container_name }}"
-        api_user: "{{ proxmox_api_user | default('root@pam') }}"
-        api_token_id: "{{ proxmox_api_token_id }}"
-        api_token_secret: "{{ proxmox_api_token_secret }}"
+        api_user: "root@pam"
+        api_token_id: "create_lxc"
+        api_token_secret: "2b82f93f-f9a3-4835-bc2d-87de1d3d09f3"
         api_host: "{{ ansible_host }}"
         state: started
         timeout: 60

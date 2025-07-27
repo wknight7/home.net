@@ -1,0 +1,56 @@
+---
+- name: Test Proxmox API Token Authentication
+  hosts: pve
+  gather_facts: false
+  vars:
+    proxmox_api_token_id: "create_lxc"
+    proxmox_api_token_secret: "2b82f93f-f9a3-4835-bc2d-87de1d3d09f3"
+
+  tasks:
+    - name: Test basic API access with token
+      uri:
+        url: "https://{{ ansible_host }}:8006/api2/json/version"
+        method: GET
+        headers:
+          Authorization: "PVEAPIToken=root@pam!{{ proxmox_api_token_id }}:{{ proxmox_api_token_secret }}"
+        validate_certs: false
+        status_code: [200, 401, 403]
+      register: token_test
+
+    - name: Display token test result
+      debug:
+        msg: |
+          API Version test with token:
+          Status: {{ token_test.status }}
+          {% if token_test.status == 200 %}
+          ✅ SUCCESS: API token authentication works!
+          Proxmox Version: {{ token_test.json.data.version | default('Unknown') }}
+          {% elif token_test.status == 401 %}
+          ❌ FAILED: Invalid token or authentication error
+          {% elif token_test.status == 403 %}
+          ❌ FAILED: Token lacks permissions
+          {% else %}
+          ❌ FAILED: Unexpected error
+          {% endif %}
+
+    - name: Test creating a simple API call
+      uri:
+        url: "https://{{ ansible_host }}:8006/api2/json/nodes"
+        method: GET
+        headers:
+          Authorization: "PVEAPIToken=root@pam!{{ proxmox_api_token_id }}:{{ proxmox_api_token_secret }}"
+        validate_certs: false
+        status_code: [200, 403]
+      register: nodes_test
+
+    - name: Display nodes test result
+      debug:
+        msg: |
+          Nodes API test:
+          Status: {{ nodes_test.status }}
+          {% if nodes_test.status == 200 %}
+          ✅ SUCCESS: Token can access Proxmox API!
+          Available nodes: {{ nodes_test.json.data | map(attribute='node') | list }}
+          {% else %}
+          ❌ FAILED: Token cannot access Proxmox API
+          {% endif %}

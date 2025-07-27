@@ -1,0 +1,50 @@
+---
+- name: Debug LXC Container Creation
+  hosts: pve
+  gather_facts: false
+  vars:
+    proxmox_api_token_id: "create_lxc"
+    proxmox_api_token_secret: "2b82f93f-f9a3-4835-bc2d-87de1d3d09f3"
+
+  tasks:
+    - name: Check if container ID 118 already exists
+      community.general.proxmox:
+        api_user: "root@pam"
+        api_token_id: "{{ proxmox_api_token_id }}"
+        api_token_secret: "{{ proxmox_api_token_secret }}"
+        api_host: "{{ ansible_host }}"
+        vmid: "118"
+        state: "current"
+        validate_certs: false
+      register: container_check
+      failed_when: false
+
+    - name: Display container check result
+      debug:
+        msg: |
+          Container 118 check:
+          {% if not container_check.failed %}
+          ⚠️  Container 118 already exists!
+          {% else %}
+          ✅ Container 118 is available
+          {% endif %}
+
+    - name: List available templates
+      shell: "pct list | grep -i ubuntu || echo 'No templates found'"
+      register: template_check
+
+    - name: Display available templates
+      debug:
+        msg: |
+          Available templates check:
+          {{ template_check.stdout | default('No output') }}
+
+    - name: Check available storage
+      shell: "pvesm status | grep standard-lvm || echo 'standard-lvm not found'"
+      register: storage_check
+
+    - name: Display storage check
+      debug:
+        msg: |
+          Storage check:
+          {{ storage_check.stdout | default('No output') }}
