@@ -1,0 +1,40 @@
+---
+# System Notifications Configuration
+# Applied to all hosts that support notifications
+
+# ntfy server configuration
+ntfy_server: "http://192.168.86.97"
+ntfy_base_topic: "system-alerts"
+ntfy_username: "system-notifications"
+# ntfy_password is stored in vault.yml for security
+
+# System notifications settings
+system_notifications:
+  enabled: true
+  priorities:
+    critical: "urgent"
+    error: "high"
+    warning: "default"
+    info: "low"
+  
+  # Which types of notifications to forward
+  forward_types:
+    - cron_failures
+    - systemd_failures
+    - security_updates
+    - disk_warnings
+    - service_restarts
+
+  # Custom topics for different notification types
+  topics:
+    critical: "system-critical-{{ ansible_hostname }}"
+    general: "system-alerts-{{ ansible_hostname }}"
+    cron: "system-cron-{{ ansible_hostname }}"
+    updates: "system-updates-{{ ansible_hostname }}"
+
+# Health check thresholds
+health_check:
+  disk_usage_warning: 85
+  memory_usage_warning: 90
+  load_multiplier: 2
+  check_schedule: "0 8 * * *"  # Daily at 8 AM

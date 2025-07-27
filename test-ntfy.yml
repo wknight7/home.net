@@ -1,0 +1,41 @@
+---
+- name: Test System Notifications Setup
+  hosts: luggage-tags
+  become: yes
+  vars_files:
+    - ~/git/home.net/vault.yml
+    - group_vars/notifications.yml
+  
+  tasks:
+    - name: Test ntfy server connectivity
+      uri:
+        url: "{{ ntfy_server }}"
+        method: GET
+        status_code: 200
+      delegate_to: localhost
+      
+    - name: Send test notification
+      uri:
+        url: "{{ ntfy_server }}/test-{{ ansible_hostname }}"
+        method: POST
+        body: "Test notification from {{ ansible_hostname }} - system notifications are working!"
+        headers:
+          Title: "[{{ ansible_hostname }}] Test Notification"
+          Priority: "low"
+          Tags: "test,{{ ansible_hostname }}"
+          Authorization: "Basic {{ (ntfy_username + ':' + ntfy_password) | b64encode }}"
+        status_code: 200
+      delegate_to: localhost
+      
+    - name: Display next steps
+      debug:
+        msg: |
+          ✅ ntfy connectivity test passed!
+          
+          📱 To see the test notification:
+          1. Open ntfy app or go to {{ ntfy_server }}
+          2. Subscribe to topic: test-{{ ansible_hostname }}
+          3. You should see the test message
+          
+          🚀 Ready to deploy system notifications!
+          Run: ansible-playbook -i inventory local.yml --limit luggage-tags --tags system_notifications

@@ -42,6 +42,7 @@ truenas ansible_host=192.168.86.109 ansible_user=bill ansible_ssh_private_key_fi
 windows11 ansible_host=192.168.86.121 ansible_user=wknig ansible_connection=winrm ansible_winrm_transport=basic ansible_winrm_server_cert_validation=ignore ansible_password="{{ windows_password }}"
 
 [updates]
+plex ansible_host=192.168.86.110
 luggage-tags ansible_host=192.168.86.27 container_id=118
 prowlarr ansible_host=192.168.86.61 container_id=117
 wg ansible_host=192.168.86.104 container_id=101

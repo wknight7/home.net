@@ -28,8 +28,12 @@
   force_handlers: yes
   vars:
     ansible_user: hal
+  vars_files:
+    - ~/git/home.net/vault.yml
+    - group_vars/notifications.yml
   roles:
     - common
+    - system_notifications
 
 # Workstation configuration
 - hosts: workstation
@@ -81,8 +85,12 @@
   force_handlers: yes
   vars:
     ansible_user: hal
+  vars_files:
+    - ~/git/home.net/vault.yml
+    - group_vars/notifications.yml
   roles:
     - proxmox_hosts
+    - system_notifications
 
 # TrueNAS configuration - minimal management
 - hosts: truenas

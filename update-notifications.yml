@@ -1,0 +1,10 @@
+---
+- name: Update system notifications for restart detection
+  hosts: updates,proxmox_hosts
+  become: yes
+  vars_files:
+    - vault.yml
+    - group_vars/notifications.yml
+  
+  roles:
+    - system_notifications

@@ -1,0 +1,78 @@
+#!/bin/bash
+
+# System health check script
+# Runs daily and sends notifications for issues
+
+NTFY_SERVER="{{ ntfy_server }}"
+NTFY_USER="{{ ntfy_username }}"
+NTFY_PASS="{{ ntfy_password }}"
+HOSTNAME="{{ ansible_hostname }}"
+TOPIC="system-alerts-${HOSTNAME}"
+
+# Check disk usage
+DISK_USAGE=$(df -h / | awk 'NR==2 {print $5}' | sed 's/%//')
+if [ "$DISK_USAGE" -gt 85 ]; then
+    curl -s \
+        -u "$NTFY_USER:$NTFY_PASS" \
+        -d "Root filesystem is ${DISK_USAGE}% full. Consider cleaning up disk space." \
+        -H "Title: [${HOSTNAME}] High Disk Usage Warning" \
+        -H "Priority: high" \
+        -H "Tags: disk,warning,${HOSTNAME}" \
+        "$NTFY_SERVER/$TOPIC"
+fi
+
+# Check memory usage
+MEM_USAGE=$(free | grep Mem | awk '{printf("%.1f", $3/$2 * 100.0)}')
+if (( $(echo "$MEM_USAGE > 90" | bc -l) )); then
+    curl -s \
+        -u "$NTFY_USER:$NTFY_PASS" \
+        -d "Memory usage is ${MEM_USAGE}%. System may be under high load." \
+        -H "Title: [${HOSTNAME}] High Memory Usage" \
+        -H "Priority: high" \
+        -H "Tags: memory,warning,${HOSTNAME}" \
+        "$NTFY_SERVER/$TOPIC"
+fi
+
+# Check for failed systemd services
+FAILED_SERVICES=$(systemctl --failed --no-legend | wc -l)
+if [ "$FAILED_SERVICES" -gt 0 ]; then
+    FAILED_LIST=$(systemctl --failed --no-legend | awk '{print $1}' | tr '\n' ', ' | sed 's/,$//')
+    curl -s \
+        -u "$NTFY_USER:$NTFY_PASS" \
+        -d "Failed services detected: $FAILED_LIST" \
+        -H "Title: [${HOSTNAME}] Service Failures Detected" \
+        -H "Priority: urgent" \
+        -H "Tags: service,critical,${HOSTNAME}" \
+        "$NTFY_SERVER/system-critical-${HOSTNAME}"
+fi
+
+# Check load average
+LOAD_AVG=$(uptime | awk -F'load average:' '{print $2}' | awk '{print $1}' | sed 's/,//')
+CPU_COUNT=$(nproc)
+if (( $(echo "$LOAD_AVG > $CPU_COUNT * 2" | bc -l) )); then
+    curl -s \
+        -u "$NTFY_USER:$NTFY_PASS" \
+        -d "High system load detected: ${LOAD_AVG} (CPU cores: ${CPU_COUNT})" \
+        -H "Title: [${HOSTNAME}] High System Load" \
+        -H "Priority: high" \
+        -H "Tags: load,warning,${HOSTNAME}" \
+        "$NTFY_SERVER/$TOPIC"
+fi
+
+# Check for security updates
+if command -v apt &> /dev/null; then
+    apt update -qq 2>/dev/null
+    SECURITY_UPDATES=$(apt list --upgradable 2>/dev/null | grep -c "ubuntu.*-security")
+    if [ "$SECURITY_UPDATES" -gt 0 ]; then
+        curl -s \
+            -u "$NTFY_USER:$NTFY_PASS" \
+            -d "${SECURITY_UPDATES} security updates available. Run 'apt upgrade' to install." \
+            -H "Title: [${HOSTNAME}] Security Updates Available" \
+            -H "Priority: high" \
+            -H "Tags: security,updates,${HOSTNAME}" \
+            "$NTFY_SERVER/system-updates-${HOSTNAME}"
+    fi
+fi
+
+# Log completion
+logger -t system-health-check "Health check completed on $HOSTNAME"

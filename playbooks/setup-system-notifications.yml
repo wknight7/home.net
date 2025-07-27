@@ -1,0 +1,56 @@
+---
+- name: Configure System Notifications via ntfy
+  hosts: all:!windows
+  become: yes
+  vars:
+    ntfy_server: "http://192.168.86.97"
+    ntfy_topic: "system-alerts"
+    
+  tasks:
+    - name: Apply system notifications role
+      include_role:
+        name: system_notifications
+      when: system_notifications.enabled | default(true)
+
+    - name: Configure sendmail alternative
+      alternatives:
+        name: sendmail
+        path: /usr/local/bin/ntfy-mail
+        link: /usr/sbin/sendmail
+      ignore_errors: yes
+
+    - name: Test ntfy connectivity
+      uri:
+        url: "{{ ntfy_server }}/{{ ntfy_topic }}-{{ ansible_hostname }}"
+        method: POST
+        body: "System notifications setup completed successfully on {{ ansible_hostname }}"
+        headers:
+          Title: "[{{ ansible_hostname }}] Notification System Activated"
+          Priority: "low"
+          Tags: "setup,{{ ansible_hostname }}"
+        status_code: 200
+      delegate_to: localhost
+      run_once: true
+
+    - name: Display setup information
+      debug:
+        msg: |
+          ✅ System notifications configured successfully!
+          
+          📱 To receive notifications on your phone:
+          1. Install ntfy app from app store
+          2. Subscribe to these topics:
+             • system-alerts-{{ ansible_hostname }}     (General alerts)
+             • system-critical-{{ ansible_hostname }}   (Critical issues)
+             • system-cron-{{ ansible_hostname }}       (Cron job failures)
+             • system-updates-{{ ansible_hostname }}    (Update notifications)
+          
+          🔧 Available notification commands:
+          • echo "test message" | mail -s "Test Subject" root
+          • /usr/local/bin/system-health-check
+          • /usr/local/bin/cron-notify "backup job" /path/to/backup-script.sh
+          
+          📊 Monitoring:
+          • Logs: /var/log/ntfy-mail.log
+          • Daily health checks at 8:00 AM
+          • Automatic notifications for system issues

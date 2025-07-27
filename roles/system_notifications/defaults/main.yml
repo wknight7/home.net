@@ -1,0 +1,27 @@
+---
+# System notifications via ntfy
+ntfy_server: "http://192.168.86.97"
+ntfy_topic: "system-alerts"
+
+system_notifications:
+  enabled: true
+  priorities:
+    critical: "urgent"
+    error: "high"
+    warning: "default"
+    info: "low"
+  
+  # Which types of notifications to forward
+  forward_types:
+    - cron_failures
+    - systemd_failures
+    - security_updates
+    - disk_warnings
+    - service_restarts
+
+  # Custom topics for different notification types
+  topics:
+    critical: "system-critical-{{ ansible_hostname }}"
+    general: "system-alerts-{{ ansible_hostname }}"
+    cron: "system-cron-{{ ansible_hostname }}"
+    updates: "system-updates-{{ ansible_hostname }}"

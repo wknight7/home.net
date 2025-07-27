@@ -1,0 +1,40 @@
+#!/bin/bash
+
+# Cron notification wrapper
+# Usage: cron-notify "job description" command [args...]
+
+NTFY_SERVER="{{ ntfy_server }}"
+NTFY_USER="{{ ntfy_username }}"
+NTFY_PASS="{{ ntfy_password }}"
+HOSTNAME="{{ ansible_hostname }}"
+TOPIC="system-cron-${HOSTNAME}"
+
+JOB_DESC="$1"
+shift
+
+# Run the command and capture output
+OUTPUT=$("$@" 2>&1)
+EXIT_CODE=$?
+
+# Only notify on failures or if there's output
+if [ $EXIT_CODE -ne 0 ] || [ -n "$OUTPUT" ]; then
+    if [ $EXIT_CODE -ne 0 ]; then
+        PRIORITY="high"
+        TITLE="[${HOSTNAME}] Cron Job Failed: $JOB_DESC"
+        MESSAGE="Command: $*\nExit code: $EXIT_CODE\nOutput:\n$OUTPUT"
+    else
+        PRIORITY="low"
+        TITLE="[${HOSTNAME}] Cron Job Output: $JOB_DESC"
+        MESSAGE="Command: $*\nOutput:\n$OUTPUT"
+    fi
+    
+    curl -s \
+        -u "$NTFY_USER:$NTFY_PASS" \
+        -d "$MESSAGE" \
+        -H "Title: $TITLE" \
+        -H "Priority: $PRIORITY" \
+        -H "Tags: cron,${HOSTNAME}" \
+        "$NTFY_SERVER/$TOPIC"
+fi
+
+exit $EXIT_CODE

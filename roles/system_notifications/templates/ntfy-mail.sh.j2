@@ -1,0 +1,73 @@
+#!/bin/bash
+
+# ntfy mail wrapper - forwards system mail to ntfy
+# Usage: echo "message" | ntfy-mail -s "subject" recipient
+
+NTFY_SERVER="{{ ntfy_server }}"
+NTFY_USER="{{ ntfy_username }}"
+NTFY_PASS="{{ ntfy_password }}"
+HOSTNAME="{{ ansible_hostname }}"
+LOG_FILE="/var/log/ntfy-mail.log"
+
+# Parse arguments
+SUBJECT=""
+RECIPIENT=""
+PRIORITY="default"
+
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -s|--subject)
+            SUBJECT="$2"
+            shift 2
+            ;;
+        -p|--priority)
+            PRIORITY="$2"
+            shift 2
+            ;;
+        *)
+            RECIPIENT="$1"
+            shift
+            ;;
+    esac
+done
+
+# Read message from stdin
+MESSAGE=$(cat)
+
+# Determine topic and priority based on subject and recipient
+TOPIC="system-alerts-${HOSTNAME}"
+if [[ "$SUBJECT" =~ (CRITICAL|URGENT|FAILED|ERROR) ]]; then
+    TOPIC="system-critical-${HOSTNAME}"
+    PRIORITY="{{ system_notifications.priorities.critical }}"
+elif [[ "$SUBJECT" =~ (WARNING|WARN) ]]; then
+    PRIORITY="{{ system_notifications.priorities.warning }}"
+elif [[ "$SUBJECT" =~ (INFO|UPDATE) ]]; then
+    PRIORITY="{{ system_notifications.priorities.info }}"
+    TOPIC="system-updates-${HOSTNAME}"
+elif [[ "$SUBJECT" =~ (CRON|JOB) ]]; then
+    TOPIC="system-cron-${HOSTNAME}"
+    PRIORITY="{{ system_notifications.priorities.error }}"
+fi
+
+# Build notification title
+TITLE="[$HOSTNAME] $SUBJECT"
+if [ -z "$SUBJECT" ]; then
+    TITLE="[$HOSTNAME] System Notification"
+fi
+
+# Log the notification
+echo "$(date): Sending to $TOPIC - $TITLE" >> "$LOG_FILE"
+
+# Send to ntfy
+curl -s \
+    -u "$NTFY_USER:$NTFY_PASS" \
+    -d "$MESSAGE" \
+    -H "Title: $TITLE" \
+    -H "Priority: $PRIORITY" \
+    -H "Tags: computer,system,${HOSTNAME}" \
+    "$NTFY_SERVER/$TOPIC" >> "$LOG_FILE" 2>&1
+
+# Also log to syslog for debugging
+logger -t ntfy-mail "Notification sent: $TITLE"
+
+exit 0

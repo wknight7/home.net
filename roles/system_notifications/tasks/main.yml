@@ -1,0 +1,85 @@
+---
+- name: Install mail utilities
+  package:
+    name:
+      - msmtp
+      - msmtp-mta  
+      - mailutils
+      - curl
+    state: present
+
+- name: Create msmtp configuration directory
+  file:
+    path: /etc/msmtp
+    state: directory
+    mode: '0755'
+
+- name: Configure msmtp for ntfy forwarding
+  template:
+    src: msmtprc.j2
+    dest: /etc/msmtprc
+    mode: '0644'
+  notify: restart msmtp
+
+- name: Create ntfy mail wrapper script
+  template:
+    src: ntfy-mail.sh.j2
+    dest: /usr/local/bin/ntfy-mail
+    mode: '0755'
+
+- name: Configure mail aliases for root
+  lineinfile:
+    path: /etc/aliases
+    regexp: '^root:'
+    line: 'root: bill'
+    create: yes
+  notify: update aliases
+
+- name: Set up system mail forwarding
+  lineinfile:
+    path: /etc/msmtprc
+    regexp: '^account default'
+    line: 'account default : ntfy'
+    create: yes
+
+- name: Configure logrotate for mail logs
+  template:
+    src: ntfy-mail.logrotate.j2
+    dest: /etc/logrotate.d/ntfy-mail
+    mode: '0644'
+
+- name: Create systemd service for critical alerts
+  template:
+    src: system-alerts.service.j2
+    dest: /etc/systemd/system/system-alerts.service
+    mode: '0644'
+  notify:
+    - reload systemd
+    - enable system-alerts
+
+- name: Configure cron job failure notifications
+  template:
+    src: cron-notify.sh.j2
+    dest: /usr/local/bin/cron-notify
+    mode: '0755'
+
+- name: Set up unattended-upgrades notifications
+  template:
+    src: 50unattended-upgrades-ntfy.j2
+    dest: /etc/apt/apt.conf.d/50unattended-upgrades-ntfy
+    mode: '0644'
+  when: unattended_upgrades | default(false)
+
+- name: Create system health check script
+  template:
+    src: health-check.sh.j2
+    dest: /usr/local/bin/system-health-check
+    mode: '0755'
+
+- name: Set up daily health check cron
+  cron:
+    name: "Daily system health check"
+    hour: "8"
+    minute: "0"
+    job: "/usr/local/bin/system-health-check"
+    user: root

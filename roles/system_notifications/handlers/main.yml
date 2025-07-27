@@ -1,0 +1,20 @@
+---
+- name: restart msmtp
+  service:
+    name: msmtp
+    state: restarted
+  ignore_errors: yes
+
+- name: update aliases
+  command: newaliases
+  ignore_errors: yes
+
+- name: reload systemd
+  systemd:
+    daemon_reload: yes
+
+- name: enable system-alerts
+  systemd:
+    name: system-alerts
+    enabled: yes
+    state: started

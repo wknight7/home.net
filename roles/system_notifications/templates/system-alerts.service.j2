@@ -1,0 +1,11 @@
+[Unit]
+Description=System Alerts Monitor
+After=network.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/system-health-check
+User=root
+
+[Install]
+WantedBy=multi-user.target

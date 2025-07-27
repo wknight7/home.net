@@ -1,0 +1,16 @@
+# msmtp configuration for ntfy notifications
+defaults
+auth off
+tls off
+logfile /var/log/msmtp.log
+
+# ntfy account for system notifications
+account ntfy
+host localhost
+port 1025
+from system@{{ ansible_hostname }}.local
+user system
+password dummy
+
+# Set default account
+account default : ntfy
