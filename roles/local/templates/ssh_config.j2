@@ -1,7 +1,7 @@
-{# roles/local/templates/ssh_config.j2 #}
+{# roles/local/templates/ssh_config.j2 - Updated to use local key #}
 
 {# the key on *this* workstation #}
-{% set my_key = hostvars[inventory_hostname]['ssh_key'] | default('bill_desktop') %}
+{% set my_key = hostvars[inventory_hostname]['ssh_key'] | default('bill_ansible') %}
 
 {# which hosts to include #}
 {% set ssh_hosts = groups['ssh'] | default([]) | unique %}
@@ -9,12 +9,11 @@
 {% for h in ssh_hosts %}
 {%   set alias = (h == 'localhost') and 'ansible' or h %}
 {%   set remote_user = hostvars[h]['ansible_user'] | default('bill') %}
-{%   set host_key = hostvars[h]['ssh_key'] | default(my_key) %}
 
 Host {{ alias }}
   HostName      {{ hostvars[h]['ansible_host'] | default(h) }}
   User          {{ remote_user }}
-  IdentityFile  ~/.ssh/{{ host_key }}
+  IdentityFile  ~/.ssh/{{ my_key }}
 {% if h in groups['windows'] | default([]) %}
   # Windows-specific SSH settings
   PubkeyAcceptedKeyTypes +ssh-rsa

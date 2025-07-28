@@ -21,7 +21,7 @@
         - "host_vars/{{ inventory_hostname }}.yml"
       tags: always
 
-# Common configuration for all hosts
+# Common configuration for hosts that support it (all except Windows and TrueNAS)
 - hosts: updates
   become: yes
   ignore_errors: yes
@@ -35,7 +35,7 @@
     - common
     - system_notifications
 
-# Workstation configuration
+# Workstation configuration (common already applied via updates group)
 - hosts: workstation
   ignore_unreachable: yes
   become: yes
@@ -45,17 +45,20 @@
     ansible_user: hal
   vars_files:
     - group_vars/workstations.yml
+    - group_vars/notifications.yml
+    - ~/git/home.net/vault.yml
   roles:
     - workstation
 
-# Local config (this will update SSH config with all hosts including Windows)
+# Local config (common already applied via updates group)
 - hosts: local
   become: yes
+  vars_files:
+    - group_vars/notifications.yml
   roles:
-    - common
     - local
 
-# LXC configuration
+# LXC configuration (common already applied via updates group)
 - hosts: lxc
   become: yes
   ignore_errors: yes
@@ -65,10 +68,9 @@
   vars_files:    
     - group_vars/groups.yml
   roles:
-    - common
     - lxc
 
-# VM configuration
+# VM configuration (common already applied via updates group)
 - hosts: vm
   become: yes
   ignore_errors: yes
@@ -78,7 +80,7 @@
   roles:
     - vm
 
-# Proxmox configuration
+# Proxmox configuration (common already applied via updates group, limited by is_proxmox flag)
 - hosts: proxmox_hosts
   become: yes
   ignore_errors: yes
@@ -90,7 +92,6 @@
     - group_vars/notifications.yml
   roles:
     - proxmox_hosts
-    - system_notifications
 
 # TrueNAS configuration - minimal management
 - hosts: truenas

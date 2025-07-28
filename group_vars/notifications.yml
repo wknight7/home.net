@@ -27,10 +27,10 @@ system_notifications:
 
   # Custom topics for different notification types
   topics:
-    critical: "system-critical-{{ ansible_hostname }}"
-    general: "system-alerts-{{ ansible_hostname }}"
-    cron: "system-cron-{{ ansible_hostname }}"
-    updates: "system-updates-{{ ansible_hostname }}"
+    # Single topic per host with message content indicating type
+    system: "system-{{ ansible_hostname }}"
+    personal: "personal-{username}"
+    broadcast: "broadcast"
 
 # Health check thresholds
 health_check:
