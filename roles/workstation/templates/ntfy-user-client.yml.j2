@@ -1,0 +1,36 @@
+# ntfy client configuration for user {{ item.name }}
+# This configures personal notifications for desktop use
+
+# Server settings
+default-host: "{{ ntfy_server | default('http://192.168.86.97') }}"
+default-user: "{{ ntfy_username | default('system-notifications') }}"
+default-password: "{{ ntfy_password }}"
+
+# User-specific settings
+default-command: "notify-send -u normal -t 10000 'ntfy: $title' '$message'"
+
+# Subscription settings for this user
+subscribe:
+  # Local workstation notifications
+  - topic: "system-{{ ansible_hostname }}"
+    command: "notify-send -u normal -t 8000 '{{ ansible_hostname|upper }}: $title' '$message'"
+  
+  - topic: "personal-{{ item.name }}"
+    command: "notify-send -u normal -t 5000 'Personal: $title' '$message'"
+  
+  # Infrastructure-wide monitoring (excluding Windows and TrueNAS)
+{% for host in groups['all'] %}
+{% if host != ansible_hostname and host != 'windows11' and host != 'truenas' %}
+  - topic: "system-{{ host }}"
+    command: "notify-send -u normal -t 8000 '{{ host|upper }}: $title' '$message'"
+{% endif %}
+{% endfor %}
+  
+  # Broadcast notifications
+  - topic: "broadcast"
+    command: "notify-send -u low -t 3000 'Broadcast: $title' '$message'"
+
+# User desktop settings
+cache-duration: "12h"
+keepalive-interval: "45s"
+log-level: "warn"

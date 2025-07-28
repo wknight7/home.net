@@ -1,0 +1,26 @@
+[Unit]
+Description=ntfy desktop notification service for {{ item }}
+After=graphical-session.target
+Wants=graphical-session.target
+
+[Service]
+Type=exec
+ExecStart=/usr/local/bin/ntfy subscribe --config /home/{{ item }}/.config/ntfy/client.yml
+Restart=always
+RestartSec=30
+Environment=DISPLAY=:0
+Environment=HOME=/home/{{ item }}
+
+# Run in user session
+User={{ item }}
+Group={{ item }}
+
+# Security settings
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=read-only
+ReadWritePaths=/home/{{ item }}/.config /home/{{ item }}/.cache
+
+[Install]
+WantedBy=default.target

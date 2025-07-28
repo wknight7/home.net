@@ -1,78 +1,95 @@
 #!/bin/bash
 
-# System health check script
-# Runs daily and sends notifications for issues
-
 NTFY_SERVER="{{ ntfy_server }}"
 NTFY_USER="{{ ntfy_username }}"
 NTFY_PASS="{{ ntfy_password }}"
 HOSTNAME="{{ ansible_hostname }}"
-TOPIC="system-alerts-${HOSTNAME}"
+TOPIC="system-$HOSTNAME"
 
-# Check disk usage
+ISSUES=()
+PRIORITY="1"
+
 DISK_USAGE=$(df -h / | awk 'NR==2 {print $5}' | sed 's/%//')
 if [ "$DISK_USAGE" -gt 85 ]; then
-    curl -s \
-        -u "$NTFY_USER:$NTFY_PASS" \
-        -d "Root filesystem is ${DISK_USAGE}% full. Consider cleaning up disk space." \
-        -H "Title: [${HOSTNAME}] High Disk Usage Warning" \
-        -H "Priority: high" \
-        -H "Tags: disk,warning,${HOSTNAME}" \
-        "$NTFY_SERVER/$TOPIC"
+    ISSUES+=("🔴 DISK: $DISK_USAGE% full - cleanup needed")
+    PRIORITY="4"
 fi
 
-# Check memory usage
-MEM_USAGE=$(free | grep Mem | awk '{printf("%.1f", $3/$2 * 100.0)}')
-if (( $(echo "$MEM_USAGE > 90" | bc -l) )); then
-    curl -s \
-        -u "$NTFY_USER:$NTFY_PASS" \
-        -d "Memory usage is ${MEM_USAGE}%. System may be under high load." \
-        -H "Title: [${HOSTNAME}] High Memory Usage" \
-        -H "Priority: high" \
-        -H "Tags: memory,warning,${HOSTNAME}" \
-        "$NTFY_SERVER/$TOPIC"
+MEM_USAGE=$(free | awk '/^Mem:/ {printf "%.1f", $3/$2 * 100.0}')
+if (( $(echo "$MEM_USAGE > 90.0" | awk '{print ($1 > 90.0)}') )); then
+    ISSUES+=("🟡 MEMORY: $MEM_USAGE% - high load detected")
+    [ "$PRIORITY" -lt "4" ] && PRIORITY="4"
 fi
 
-# Check for failed systemd services
 FAILED_SERVICES=$(systemctl --failed --no-legend | wc -l)
 if [ "$FAILED_SERVICES" -gt 0 ]; then
-    FAILED_LIST=$(systemctl --failed --no-legend | awk '{print $1}' | tr '\n' ', ' | sed 's/,$//')
-    curl -s \
-        -u "$NTFY_USER:$NTFY_PASS" \
-        -d "Failed services detected: $FAILED_LIST" \
-        -H "Title: [${HOSTNAME}] Service Failures Detected" \
-        -H "Priority: urgent" \
-        -H "Tags: service,critical,${HOSTNAME}" \
-        "$NTFY_SERVER/system-critical-${HOSTNAME}"
+    FAILED_LIST=$(systemctl --failed --no-legend | awk '{print $1}' | tr '\n' ' ' | sed 's/ $//')
+    ISSUES+=("🔴 SERVICES: $FAILED_SERVICES failed - $FAILED_LIST")
+    PRIORITY="5"
 fi
 
-# Check load average
-LOAD_AVG=$(uptime | awk -F'load average:' '{print $2}' | awk '{print $1}' | sed 's/,//')
+LOAD_AVG=$(uptime | awk -F'load average:' '{print $2}' | awk '{print $1}' | sed 's/,//' | xargs)
 CPU_COUNT=$(nproc)
-if (( $(echo "$LOAD_AVG > $CPU_COUNT * 2" | bc -l) )); then
-    curl -s \
-        -u "$NTFY_USER:$NTFY_PASS" \
-        -d "High system load detected: ${LOAD_AVG} (CPU cores: ${CPU_COUNT})" \
-        -H "Title: [${HOSTNAME}] High System Load" \
-        -H "Priority: high" \
-        -H "Tags: load,warning,${HOSTNAME}" \
-        "$NTFY_SERVER/$TOPIC"
-fi
-
-# Check for security updates
-if command -v apt &> /dev/null; then
-    apt update -qq 2>/dev/null
-    SECURITY_UPDATES=$(apt list --upgradable 2>/dev/null | grep -c "ubuntu.*-security")
-    if [ "$SECURITY_UPDATES" -gt 0 ]; then
-        curl -s \
-            -u "$NTFY_USER:$NTFY_PASS" \
-            -d "${SECURITY_UPDATES} security updates available. Run 'apt upgrade' to install." \
-            -H "Title: [${HOSTNAME}] Security Updates Available" \
-            -H "Priority: high" \
-            -H "Tags: security,updates,${HOSTNAME}" \
-            "$NTFY_SERVER/system-updates-${HOSTNAME}"
+if [ ! -z "$LOAD_AVG" ] && [ ! -z "$CPU_COUNT" ]; then
+    LOAD_THRESHOLD=$(echo "$CPU_COUNT * 2" | bc -l 2>/dev/null || echo "4")
+    LOAD_CHECK=$(echo "$LOAD_AVG > $LOAD_THRESHOLD" | bc -l 2>/dev/null || echo "0")
+    if [ "$LOAD_CHECK" = "1" ]; then
+        ISSUES+=("🟡 LOAD: $LOAD_AVG ($CPU_COUNT cores) - high system load")
+        [ "$PRIORITY" -lt "4" ] && PRIORITY="4"
     fi
 fi
 
-# Log completion
-logger -t system-health-check "Health check completed on $HOSTNAME"
+if command -v apt &> /dev/null; then
+    apt update -qq 2>/dev/null
+    SECURITY_UPDATES=$(apt list --upgradable 2>/dev/null | grep -c "ubuntu.*-security" || echo "0")
+    if [ "$SECURITY_UPDATES" -gt 0 ]; then
+        ISSUES+=("🟡 SECURITY: $SECURITY_UPDATES updates available")
+        [ "$PRIORITY" -lt "3" ] && PRIORITY="3"
+    fi
+fi
+
+# Always send status report (consolidated notification)
+if [ ${{ '{#ISSUES[@]}' }} -gt 0 ]; then
+    MESSAGE="Host: $HOSTNAME
+Time: $(date)
+Uptime: $(uptime -p)
+
+Issues detected:
+$(printf '%s\n' "${{ '{ISSUES[@]}' }}")
+
+System Status:
+• Disk Usage: $DISK_USAGE%
+• Memory Usage: $MEM_USAGE%
+• Load Average: $LOAD_AVG
+• Failed Services: $FAILED_SERVICES"
+
+    case "$PRIORITY" in
+        "5") TITLE="🚨 [$HOSTNAME] CRITICAL System Issues" ;;
+        "4") TITLE="⚠️  [$HOSTNAME] System Warnings" ;;
+        "3") TITLE="ℹ️  [$HOSTNAME] System Updates" ;;
+        *) TITLE="✅ [$HOSTNAME] System Notice" ;;
+    esac
+else
+    MESSAGE="Host: $HOSTNAME
+Time: $(date)
+Uptime: $(uptime -p)
+
+📊 System Status:
+• Disk Usage: $DISK_USAGE%
+• Memory Usage: $MEM_USAGE%
+• Load Average: $LOAD_AVG
+• Failed Services: $FAILED_SERVICES
+
+✅ All systems operating normally"
+
+    TITLE="✅ [$HOSTNAME] Bi-weekly Health Report"
+    PRIORITY="1"
+fi
+
+curl -s \
+    -u "$NTFY_USER:$NTFY_PASS" \
+    -d "$MESSAGE" \
+    -H "Title: $TITLE" \
+    -H "Priority: $PRIORITY" \
+    -H "Tags: health,$HOSTNAME" \
+    "$NTFY_SERVER/$TOPIC"

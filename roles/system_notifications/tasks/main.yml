@@ -27,6 +27,12 @@
     dest: /usr/local/bin/ntfy-mail
     mode: '0755'
 
+- name: Create simple ntfy send script
+  template:
+    src: ntfy-send.sh.j2
+    dest: /usr/local/bin/ntfy-send
+    mode: '0755'
+
 - name: Configure mail aliases for root
   lineinfile:
     path: /etc/aliases
@@ -76,9 +82,10 @@
     dest: /usr/local/bin/system-health-check
     mode: '0755'
 
-- name: Set up daily health check cron
+- name: Set up bi-weekly health check cron
   cron:
-    name: "Daily system health check"
+    name: "Bi-weekly system health check"
+    weekday: "{{ (groups.healthcheck_rotation.index(inventory_hostname) % 14) % 7 }}"
     hour: "8"
     minute: "0"
     job: "/usr/local/bin/system-health-check"

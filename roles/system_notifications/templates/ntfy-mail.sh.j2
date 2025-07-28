@@ -35,22 +35,27 @@ done
 MESSAGE=$(cat)
 
 # Determine topic and priority based on subject and recipient
-TOPIC="system-alerts-${HOSTNAME}"
+TOPIC="system-${HOSTNAME}"
+PRIORITY="{{ system_notifications.priorities.warning | default('default') }}"
+
+# Set priority and enhance title based on subject content
 if [[ "$SUBJECT" =~ (CRITICAL|URGENT|FAILED|ERROR) ]]; then
-    TOPIC="system-critical-${HOSTNAME}"
-    PRIORITY="{{ system_notifications.priorities.critical }}"
+    PRIORITY="{{ system_notifications.priorities.critical | default('urgent') }}"
+    TITLE="[$HOSTNAME] CRITICAL: $SUBJECT"
 elif [[ "$SUBJECT" =~ (WARNING|WARN) ]]; then
-    PRIORITY="{{ system_notifications.priorities.warning }}"
+    PRIORITY="{{ system_notifications.priorities.warning | default('default') }}"
+    TITLE="[$HOSTNAME] WARNING: $SUBJECT"
 elif [[ "$SUBJECT" =~ (INFO|UPDATE) ]]; then
-    PRIORITY="{{ system_notifications.priorities.info }}"
-    TOPIC="system-updates-${HOSTNAME}"
+    PRIORITY="{{ system_notifications.priorities.info | default('low') }}"
+    TITLE="[$HOSTNAME] INFO: $SUBJECT"
 elif [[ "$SUBJECT" =~ (CRON|JOB) ]]; then
-    TOPIC="system-cron-${HOSTNAME}"
-    PRIORITY="{{ system_notifications.priorities.error }}"
+    PRIORITY="{{ system_notifications.priorities.error | default('default') }}"
+    TITLE="[$HOSTNAME] CRON: $SUBJECT"
+else
+    TITLE="[$HOSTNAME] $SUBJECT"
 fi
 
-# Build notification title
-TITLE="[$HOSTNAME] $SUBJECT"
+# Build default title if no subject provided
 if [ -z "$SUBJECT" ]; then
     TITLE="[$HOSTNAME] System Notification"
 fi

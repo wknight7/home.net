@@ -53,6 +53,8 @@
 - include_tasks: chrome.yml
 - include_tasks: vscode.yml
 - include_tasks: gnome_settings.yml
+# ntfy client installation removed - workstations use web interface for monitoring
+# and send notifications via system_notifications role (applied via updates group)
 
 - name: Remove /etc/apt/sources.list as a one-time fix
   file:

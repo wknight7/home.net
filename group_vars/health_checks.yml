@@ -1,0 +1,18 @@
+---
+# Health Check Rotation Configuration
+# Distributes health checks across 14 days to minimize notification frequency
+
+# Calculate which day of the 14-day cycle this host should run health checks
+# This automatically distributes hosts evenly across 2 weeks using dedicated rotation group
+health_check_day: "{{ groups.healthcheck_rotation.index(inventory_hostname) % 14 }}"
+
+# Map the day number to actual day of week (0-6, where 0=Sunday)
+health_check_weekday: "{{ health_check_day % 7 }}"
+
+# Health check schedule settings
+health_check_enabled: true
+health_check_hour: "8"
+health_check_minute: "0"
+
+# Only send notifications if there are actual issues (optional)
+health_check_issues_only: false

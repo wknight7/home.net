@@ -1,0 +1,64 @@
+#!/bin/bash
+
+# Simple ntfy notification sender
+# Usage: ntfy-send "title" "priority" "message"
+# Example: ntfy-send "System Update" "high" "Package updates completed successfully"
+
+NTFY_SERVER="{{ ntfy_server }}"
+NTFY_USER="{{ ntfy_username }}"
+NTFY_PASS="{{ ntfy_password }}"
+HOSTNAME="{{ ansible_hostname }}"
+TOPIC="system-${HOSTNAME}"
+LOG_FILE="/var/log/ntfy-send.log"
+
+# Check arguments
+if [ $# -lt 3 ]; then
+    echo "Usage: ntfy-send \"title\" \"priority\" \"message\""
+    echo "Priority options: low, default, high, urgent"
+    echo "Example: ntfy-send \"System Update\" \"high\" \"Package updates completed\""
+    exit 1
+fi
+
+TITLE="$1"
+PRIORITY="$2" 
+MESSAGE="$3"
+
+# Validate priority
+case "$PRIORITY" in
+    low|default|high|urgent)
+        # Valid priority
+        ;;
+    *)
+        echo "Invalid priority: $PRIORITY. Using 'default'"
+        PRIORITY="default"
+        ;;
+esac
+
+# Build full title with hostname
+FULL_TITLE="[$HOSTNAME] $TITLE"
+
+# Log the notification
+echo "$(date): Sending to $TOPIC - $FULL_TITLE" >> "$LOG_FILE"
+
+# Send to ntfy
+RESPONSE=$(curl -s \
+    -u "$NTFY_USER:$NTFY_PASS" \
+    -d "$MESSAGE" \
+    -H "Title: $FULL_TITLE" \
+    -H "Priority: $PRIORITY" \
+    -H "Tags: system,$HOSTNAME" \
+    "$NTFY_SERVER/$TOPIC" 2>&1)
+
+# Check if curl succeeded
+if [ $? -eq 0 ]; then
+    echo "$(date): Success - $RESPONSE" >> "$LOG_FILE"
+    logger -t ntfy-send "Notification sent: $FULL_TITLE"
+    echo "Notification sent successfully"
+else
+    echo "$(date): Error - $RESPONSE" >> "$LOG_FILE"
+    logger -t ntfy-send "Notification failed: $FULL_TITLE - $RESPONSE"
+    echo "Failed to send notification: $RESPONSE"
+    exit 1
+fi
+
+exit 0

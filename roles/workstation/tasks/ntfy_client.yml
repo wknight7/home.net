@@ -1,0 +1,81 @@
+---
+# ntfy client configuration for workstations
+
+- name: Install ntfy client (desktop notifications)
+  tags: [ntfy_client, notifications, workstation]
+  block:
+    - name: Download ntfy client binary directly
+      get_url:
+        url: https://github.com/binwiederhier/ntfy/releases/download/v2.11.0/ntfy_2.11.0_linux_amd64.tar.gz
+        dest: /tmp/ntfy-client.tar.gz
+        mode: '0644'
+
+    - name: Extract ntfy client
+      unarchive:
+        src: /tmp/ntfy-client.tar.gz
+        dest: /tmp
+        remote_src: yes
+
+    - name: Install ntfy client binary
+      copy:
+        src: /tmp/ntfy_2.11.0_linux_amd64/ntfy
+        dest: /usr/local/bin/ntfy
+        mode: '0755'
+        remote_src: yes
+      become: yes
+
+- name: Install desktop notification dependencies
+  tags: [ntfy_client, notifications, workstation]
+  package:
+    name:
+      - libnotify-bin  # for notify-send
+      - dbus-x11       # for D-Bus integration
+    state: present
+  become: yes
+
+- name: Create ntfy notification script
+  tags: [ntfy_client, notifications, workstation]
+  template:
+    src: ntfy-notify.sh.j2
+    dest: /usr/local/bin/ntfy-notify
+    mode: '0755'
+  become: yes
+
+- name: Create ntfy client user directories for each user
+  tags: [ntfy_client, notifications, workstation]
+  file:
+    path: "/home/{{ item.name }}/.config/ntfy"
+    state: directory
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
+    mode: '0755'
+  loop: "{{ workstation_users }}"
+  when: workstation_users is defined
+
+- name: Create user-specific ntfy client config
+  tags: [ntfy_client, notifications, workstation]
+  template:
+    src: ntfy-user-client.yml.j2
+    dest: "/home/{{ item.name }}/.config/ntfy/client.yml"
+    owner: "{{ item.name }}"
+    group: "{{ item.name }}"
+    mode: '0644'
+  loop: "{{ workstation_users }}"
+  when: workstation_users is defined
+
+- name: Test ntfy client installation
+  tags: [ntfy_client, notifications, workstation]
+  command: /usr/local/bin/ntfy --help
+  register: ntfy_help
+  changed_when: false
+  failed_when: ntfy_help.rc != 0
+
+- name: Clean up downloaded files
+  tags: [ntfy_client, notifications, workstation]
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - /tmp/ntfy-client.tar.gz
+    - /tmp/ntfy_2.11.0_linux_amd64
+  ignore_errors: yes

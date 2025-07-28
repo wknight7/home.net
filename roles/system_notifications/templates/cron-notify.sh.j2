@@ -7,7 +7,7 @@ NTFY_SERVER="{{ ntfy_server }}"
 NTFY_USER="{{ ntfy_username }}"
 NTFY_PASS="{{ ntfy_password }}"
 HOSTNAME="{{ ansible_hostname }}"
-TOPIC="system-cron-${HOSTNAME}"
+TOPIC="system-${HOSTNAME}"
 
 JOB_DESC="$1"
 shift
@@ -19,13 +19,26 @@ EXIT_CODE=$?
 # Only notify on failures or if there's output
 if [ $EXIT_CODE -ne 0 ] || [ -n "$OUTPUT" ]; then
     if [ $EXIT_CODE -ne 0 ]; then
-        PRIORITY="high"
-        TITLE="[${HOSTNAME}] Cron Job Failed: $JOB_DESC"
-        MESSAGE="Command: $*\nExit code: $EXIT_CODE\nOutput:\n$OUTPUT"
+        PRIORITY="4"  # high
+        TITLE="🚨 [${HOSTNAME}] Cron Job Failed: $JOB_DESC"
+        MESSAGE="Host: ${HOSTNAME}
+Time: $(date)
+Job: $JOB_DESC
+Command: $*
+Exit Code: $EXIT_CODE
+
+Output:
+$OUTPUT"
     else
-        PRIORITY="low"
-        TITLE="[${HOSTNAME}] Cron Job Output: $JOB_DESC"
-        MESSAGE="Command: $*\nOutput:\n$OUTPUT"
+        PRIORITY="2"  # low
+        TITLE="ℹ️  [${HOSTNAME}] Cron Job Output: $JOB_DESC"
+        MESSAGE="Host: ${HOSTNAME}
+Time: $(date)
+Job: $JOB_DESC
+Command: $*
+
+Output:
+$OUTPUT"
     fi
     
     curl -s \

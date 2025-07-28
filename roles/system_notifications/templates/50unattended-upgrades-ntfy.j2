@@ -6,10 +6,4 @@ Unattended-Upgrade::Sender "system@{{ ansible_hostname }}.local";
 Unattended-Upgrade::Mail "root";
 
 # Custom notification command with restart check
-Unattended-Upgrade::OnUpgrade "
-if [ -f /var/run/reboot-required ]; then
-    echo 'Package upgrades completed - SYSTEM RESTART REQUIRED' | /usr/local/bin/ntfy-mail -s '[CRITICAL] Restart Required After Updates' root
-else
-    echo 'Package upgrades completed successfully' | /usr/local/bin/ntfy-mail -s 'System Updates Installed' root
-fi
-";
+Unattended-Upgrade::OnUpgrade {"if [ -f /var/run/reboot-required ]; then echo 'Package upgrades completed - SYSTEM RESTART REQUIRED' | /usr/local/bin/ntfy-mail -s '[CRITICAL] Restart Required After Updates' root; else echo 'Package upgrades completed successfully' | /usr/local/bin/ntfy-mail -s 'System Updates Installed' root; fi";};

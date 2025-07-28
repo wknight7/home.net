@@ -1,0 +1,43 @@
+#!/bin/bash
+# ntfy desktop notification script
+# Usage: ntfy-notify "title" "message" "priority"
+
+TITLE="${1:-Notification}"
+MESSAGE="${2:-No message}"
+PRIORITY="${3:-normal}"
+
+# Map ntfy priorities to notify-send urgency levels
+case "$PRIORITY" in
+    "urgent"|"max"|"5")
+        URGENCY="critical"
+        TIMEOUT=0  # Critical notifications don't auto-dismiss
+        ;;
+    "high"|"4")
+        URGENCY="critical"
+        TIMEOUT=15000
+        ;;
+    "default"|"3")
+        URGENCY="normal"
+        TIMEOUT=10000
+        ;;
+    "low"|"2")
+        URGENCY="low"
+        TIMEOUT=5000
+        ;;
+    "min"|"1")
+        URGENCY="low"
+        TIMEOUT=3000
+        ;;
+    *)
+        URGENCY="normal"
+        TIMEOUT=10000
+        ;;
+esac
+
+# Only show desktop notification if we're in a graphical session
+if [ -n "$DISPLAY" ] || [ -n "$WAYLAND_DISPLAY" ]; then
+    notify-send -u "$URGENCY" -t "$TIMEOUT" "ntfy: $TITLE" "$MESSAGE"
+fi
+
+# Also log to syslog for system notifications
+logger -t ntfy-notify "[$PRIORITY] $TITLE: $MESSAGE"

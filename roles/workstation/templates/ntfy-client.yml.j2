@@ -1,0 +1,25 @@
+# ntfy client configuration for workstation
+# This configures the client to connect to your ntfy server
+
+# Server settings
+default-host: "{{ ntfy_server | default('http://192.168.86.97') }}"
+default-user: "{{ ntfy_username | default('system-notifications') }}"
+default-password: "{{ ntfy_password }}"
+
+# Default client settings
+default-command: "/usr/local/bin/ntfy-notify '$title' '$message' '$priority'"
+
+# Subscription settings for this workstation
+subscribe:
+  - topic: "system-alerts-{{ ansible_hostname }}"
+    command: "/usr/local/bin/ntfy-notify '$title' '$message' '$priority'"
+  
+  - topic: "workstation-{{ ansible_hostname }}"
+    command: "/usr/local/bin/ntfy-notify '$title' '$message' '$priority'"
+  
+  - topic: "broadcast"
+    command: "/usr/local/bin/ntfy-notify 'Broadcast: $title' '$message' '$priority'"
+
+# Logging
+log-level: "info"
+log-file: "/var/log/ntfy-client.log"
