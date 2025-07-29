@@ -12,7 +12,7 @@ proxmox_instance: false
 user_maps: true
 
 # server
-unattended_upgrades: true
+unattended_upgrades: false  # Alpine doesn't use unattended-upgrades
 web_server: false
 
 # Add container_id

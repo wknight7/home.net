@@ -74,7 +74,9 @@
     src: 50unattended-upgrades-ntfy.j2
     dest: /etc/apt/apt.conf.d/50unattended-upgrades-ntfy
     mode: '0644'
-  when: unattended_upgrades | default(false)
+  when: 
+    - unattended_upgrades | default(false)
+    - ansible_distribution in ["Debian", "Ubuntu"]
 
 - name: Create system health check script
   template:

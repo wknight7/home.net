@@ -46,6 +46,13 @@ if command -v apt &> /dev/null; then
         ISSUES+=("🟡 SECURITY: $SECURITY_UPDATES updates available")
         [ "$PRIORITY" -lt "3" ] && PRIORITY="3"
     fi
+elif command -v apk &> /dev/null; then
+    apk update -q 2>/dev/null
+    UPDATES_AVAILABLE=$(apk list -u 2>/dev/null | wc -l || echo "0")
+    if [ "$UPDATES_AVAILABLE" -gt 0 ]; then
+        ISSUES+=("🟡 UPDATES: $UPDATES_AVAILABLE packages available")
+        [ "$PRIORITY" -lt "3" ] && PRIORITY="3"
+    fi
 fi
 
 # Always send status report (consolidated notification)

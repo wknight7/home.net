@@ -1,0 +1,21 @@
+---
+# Alpine Linux specific package names and configurations
+amd_microcode_package: amd-ucode
+cron_package: dcron
+dconf_package: dconf
+dns_utils_package: bind-tools
+intel_microcode_package: intel-ucode
+lm_sensors_package: lm-sensors
+nfs_client_package: nfs-utils
+openssh_package: openssh
+openssh_service: sshd
+python_flake8_package: py3-flake8
+python_package: python3
+python_pip_package: py3-pip
+python_psutil_package: py3-psutil
+python_pyflakes_package: py3-pyflakes
+python_virtualenv_package: py3-virtualenv
+rename_package: util-linux
+ruby_rake_package: ruby-rake
+sftp_path: /usr/lib/ssh/sftp-server
+sudo_group: wheel

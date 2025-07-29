@@ -13,6 +13,14 @@
     enabled: true
   when: ansible_distribution == "Archlinux"
 
+- name: system setup | cron | start and enable dcron daemon
+  tags: cron
+  service:
+    name: dcron
+    state: started
+    enabled: true
+  when: ansible_distribution == "Alpine"
+
 - name: system setup | cron | schedule automatic ansible provisioning
   tags: cron
   cron:
