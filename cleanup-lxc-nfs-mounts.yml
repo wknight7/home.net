@@ -1,0 +1,75 @@
+---
+# One-time cleanup playbook to remove erroneous NFS mounts from LXCs
+# These were accidentally added when workstation role was applied to LXCs
+# Run with: ansible-playbook -i inventory cleanup-lxc-nfs-mounts.yml
+
+- name: Clean up erroneous NFS mounts from LXC containers
+  hosts: lxc
+  become: yes
+  gather_facts: no
+  
+  tasks:
+    - name: check if fstab has NFS entries
+      shell: grep -c "192\.168\.86\.109.*nfs" /etc/fstab || true
+      register: nfs_entries_count
+      changed_when: false
+
+    - name: remove erroneous NFS mounts from fstab
+      lineinfile:
+        path: /etc/fstab
+        regexp: "^192\\.168\\.86\\.109.*nfs.*"
+        state: absent
+      when: nfs_entries_count.stdout | int > 0
+
+    - name: unmount any currently mounted NFS shares
+      mount:
+        path: "{{ item }}"
+        state: unmounted
+      loop:
+        - /mnt/truenas/bill-documents
+        - /mnt/truenas/bill-downloads
+        - /mnt/truenas/lily-documents
+        - /mnt/truenas/lily-downloads
+        - /mnt/truenas/loretta-documents
+        - /mnt/truenas/loretta-downloads
+        - /mnt/truenas/media
+        - /mnt/truenas/paperless
+        - /mnt/truenas/shared_files
+        - /mnt/truenas/workouts
+      ignore_errors: yes
+      when: nfs_entries_count.stdout | int > 0
+
+    - name: remove truenas mount directories from LXCs
+      file:
+        path: /mnt/truenas
+        state: absent
+      when: nfs_entries_count.stdout | int > 0
+
+    - name: stop and disable any mount services that may have been created
+      systemd:
+        name: "{{ item }}"
+        state: stopped
+        enabled: no
+      loop:
+        - mnt-truenas-bill\\x2ddocuments.mount
+        - mnt-truenas-bill\\x2ddownloads.mount
+        - mnt-truenas-lily\\x2ddocuments.mount
+        - mnt-truenas-lily\\x2ddownloads.mount
+        - mnt-truenas-loretta\\x2ddocuments.mount
+        - mnt-truenas-loretta\\x2ddownloads.mount
+        - mnt-truenas-media.mount
+        - mnt-truenas-paperless.mount
+        - mnt-truenas-shared_files.mount
+        - mnt-truenas-workouts.mount
+      ignore_errors: yes
+      when: nfs_entries_count.stdout | int > 0
+
+    - name: display cleanup summary
+      debug:
+        msg: "LXC {{ inventory_hostname }}: Removed {{ nfs_entries_count.stdout }} NFS entries from /etc/fstab and cleaned up mount points"
+      when: nfs_entries_count.stdout | int > 0
+
+    - name: display no-action summary
+      debug:
+        msg: "LXC {{ inventory_hostname }}: No NFS entries found - already clean"
+      when: nfs_entries_count.stdout | int == 0

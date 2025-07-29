@@ -1,0 +1,69 @@
+---
+# Remove erroneous NFS mounts that were accidentally added to LXCs
+# LXCs should use Proxmox mount points, not NFS mounts in fstab
+
+- name: cleanup | check if fstab has NFS entries
+  tags: cleanup,nfs
+  shell: grep -c "192\.168\.86\.109.*nfs" /etc/fstab || true
+  register: nfs_entries_count
+  changed_when: false
+
+- name: cleanup | remove erroneous NFS mounts from fstab
+  tags: cleanup,nfs
+  lineinfile:
+    path: /etc/fstab
+    regexp: "^192\\.168\\.86\\.109.*nfs.*"
+    state: absent
+  when: nfs_entries_count.stdout | int > 0
+  notify: reload systemd
+
+- name: cleanup | unmount any currently mounted NFS shares
+  tags: cleanup,nfs
+  mount:
+    path: "{{ item }}"
+    state: unmounted
+  loop:
+    - /mnt/truenas/bill-documents
+    - /mnt/truenas/bill-downloads
+    - /mnt/truenas/lily-documents
+    - /mnt/truenas/lily-downloads
+    - /mnt/truenas/loretta-documents
+    - /mnt/truenas/loretta-downloads
+    - /mnt/truenas/media
+    - /mnt/truenas/paperless
+    - /mnt/truenas/shared_files
+    - /mnt/truenas/workouts
+  ignore_errors: yes
+  when: nfs_entries_count.stdout | int > 0
+
+- name: cleanup | remove truenas mount directories from LXCs
+  tags: cleanup,nfs
+  file:
+    path: /mnt/truenas
+    state: absent
+  when: nfs_entries_count.stdout | int > 0
+
+- name: cleanup | stop and disable any mount services that may have been created
+  tags: cleanup,nfs
+  systemd:
+    name: "{{ item }}"
+    state: stopped
+    enabled: no
+  loop:
+    - mnt-truenas-bill\\x2ddocuments.mount
+    - mnt-truenas-bill\\x2ddownloads.mount
+    - mnt-truenas-lily\\x2ddocuments.mount
+    - mnt-truenas-lily\\x2ddownloads.mount
+    - mnt-truenas-loretta\\x2ddocuments.mount
+    - mnt-truenas-loretta\\x2ddownloads.mount
+    - mnt-truenas-media.mount
+    - mnt-truenas-paperless.mount
+    - mnt-truenas-shared_files.mount
+    - mnt-truenas-workouts.mount
+  ignore_errors: yes
+  when: nfs_entries_count.stdout | int > 0
+
+- name: cleanup | display cleanup summary
+  debug:
+    msg: "Removed {{ nfs_entries_count.stdout }} NFS entries from /etc/fstab and cleaned up mount points"
+  when: nfs_entries_count.stdout | int > 0
