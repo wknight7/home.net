@@ -1,0 +1,39 @@
+---
+# One-time cleanup playbook to remove old daily health check cron jobs
+# These were replaced by the new bi-weekly rotation system
+# Run with: ansible-playbook -i inventory cleanup-old-health-check-cron.yml
+
+- name: Remove old daily health check cron jobs
+  hosts: updates
+  become: yes
+  gather_facts: no
+  
+  tasks:
+    - name: check if old health check cron job exists
+      shell: crontab -l | grep -c "Daily system health check" || true
+      register: old_cron_count
+      changed_when: false
+
+    - name: remove old daily health check cron job from root crontab
+      cron:
+        name: "Daily system health check"
+        state: absent
+        user: root
+      when: old_cron_count.stdout | int > 0
+
+    - name: also remove by job pattern (backup method)
+      cron:
+        job: "/usr/local/bin/system-health-check"
+        state: absent
+        user: root
+      when: old_cron_count.stdout | int > 0
+
+    - name: display cleanup summary
+      debug:
+        msg: "Host {{ inventory_hostname }}: Removed old daily health check cron job"
+      when: old_cron_count.stdout | int > 0
+
+    - name: display no-action summary
+      debug:
+        msg: "Host {{ inventory_hostname }}: No old health check cron job found - already clean"
+      when: old_cron_count.stdout | int == 0
