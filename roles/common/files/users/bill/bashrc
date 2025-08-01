@@ -38,6 +38,7 @@ alias weather='curl wttr.in/Raleigh'
 #alias cp='rsync -ai --info=progress2'
 alias reboot='sudo systemctl reboot'
 alias shutdown='sudo systemctl poweroff'
+alias alpboot='wget http://192.168.86.83/bootstrap-alpine.sh && chmod +x bootstrap-alpine.sh && ./bootstrap-alpine.sh'
 
 # This command will display the disk usage of all mounted file systems, except for those of type squashfs, tmpfs, and devtmpfs, in a human-readable format.
 alias df='df -h -x squashfs -x tmpfs -x devtmpfs'  
