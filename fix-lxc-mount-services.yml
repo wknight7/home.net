@@ -1,0 +1,87 @@
+---
+- name: Fix failed NFS mount services from misconfigured Ansible run
+  hosts: lxc
+  become: yes
+  gather_facts: yes
+  
+  tasks:
+    - name: Display target container information
+      debug:
+        msg: |
+          Fixing mount services on: {{ inventory_hostname }}
+          Container ID: {{ container_id | default('Unknown') }}
+          IP Address: {{ ansible_host }}
+
+    - name: Check current failed services before fix
+      command: systemctl --failed --no-pager
+      register: failed_before
+      changed_when: false
+      failed_when: false
+      tags: verify
+
+    - name: Display current failed services
+      debug:
+        msg: |
+          Failed services before fix:
+          {{ failed_before.stdout_lines | default(['No failed services']) | join('\n') }}
+      tags: verify
+
+    - name: Create backup of current fstab
+      copy:
+        src: /etc/fstab
+        dest: "/etc/fstab.backup.{{ ansible_date_time.date }}"
+        remote_src: yes
+      tags: backup
+
+    - name: Reset fstab to default LXC state
+      copy:
+        content: "# UNCONFIGURED FSTAB FOR BASE SYSTEM\n"
+        dest: /etc/fstab
+        backup: no
+      tags: fstab
+
+    - name: Reset all failed systemd units
+      command: systemctl reset-failed
+      register: reset_result
+      changed_when: reset_result.rc == 0
+      tags: systemd
+
+    - name: Reload systemd daemon to clear cached mount references
+      systemd:
+        daemon_reload: yes
+      tags: systemd
+
+    - name: Wait a moment for systemd to settle
+      pause:
+        seconds: 2
+      tags: systemd
+
+    - name: Verify no failed services remain
+      command: systemctl --failed --no-pager
+      register: failed_check
+      changed_when: false
+      failed_when: false
+      tags: verify
+
+    - name: Display final failed services status
+      debug:
+        msg: |
+          ✅ Fix completed for {{ inventory_hostname }}
+          Failed services after fix:
+          {{ failed_check.stdout_lines | default(['No failed services']) | join('\n') }}
+          
+          {% if failed_check.stdout_lines | length == 0 or 'No failed units' in failed_check.stdout %}
+          🎉 SUCCESS: All mount service errors have been resolved!
+          {% else %}
+          ⚠️  WARNING: Some failed services may still exist
+          {% endif %}
+      tags: verify
+
+    - name: Summary for this container
+      debug:
+        msg: |
+          Container: {{ inventory_hostname }} ({{ ansible_host }})
+          - fstab backed up to: /etc/fstab.backup.{{ ansible_date_time.date }}
+          - fstab reset to clean state
+          - systemd units reset and reloaded
+          - Status: {% if failed_check.stdout_lines | length == 0 or 'No failed units' in failed_check.stdout %}✅ FIXED{% else %}⚠️ CHECK MANUALLY{% endif %}

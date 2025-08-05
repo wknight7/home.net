@@ -15,7 +15,6 @@ maintainerr ansible_host=192.168.86.65 container_id=108
 sab ansible_host=192.168.86.86 container_id=116
 tautulli ansible_host=192.168.86.72 container_id=110
 cloudflared ansible_host=192.168.86.43 container_id=102
-homepage ansible_host=192.168.86.101 container_id=114
 calibre-web ansible_host=192.168.86.103 container_id=115
 
 [workstation]
@@ -61,9 +60,7 @@ radarr ansible_host=192.168.86.79 container_id=106
 ntfy ansible_host=192.168.86.97 container_id=113
 maintainerr ansible_host=192.168.86.65 container_id=108
 sab ansible_host=192.168.86.86 container_id=116
-tautulli ansible_host=192.168.86.72 container_id=110
 cloudflared ansible_host=192.168.86.43 container_id=102
-homepage ansible_host=192.168.86.101 container_id=114
 calibre-web ansible_host=192.168.86.103 container_id=115
 
 [ssh:children]
