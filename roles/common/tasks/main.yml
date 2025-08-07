@@ -1,9 +1,4 @@
 ---
-# Load vault variables
-- name: Load vault variables
-  include_vars: ~/git/home.net/vault.yml
-  tags: always
-
 # Load distro-specific variables (if needed)
 - include_vars: "{{ ansible_distribution }}.yml"
   tags: always
@@ -17,10 +12,8 @@
     # Create necessary groups
     - import_tasks: groups.yml
 
-    # Make sure users exist on the system
-    - import_tasks: users/bill.yml
-    - import_tasks: users/hal.yml
-    - import_tasks: users/app_user.yml
+    # Make sure users exist on the system (backward compatibility)
+    - import_tasks: users.yml
 
     # Set up the ansible environment
     - import_tasks: ansible_setup.yml

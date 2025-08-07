@@ -1,0 +1,74 @@
+---
+# Consolidated user management for backward compatibility
+# New deployments should use specialized repos (lxc, workstations)
+
+- name: Create Bill user
+  user:
+    name: bill
+    groups: "{{ sudo_group | default('sudo') }},adm"
+    append: yes
+    shell: /bin/bash
+    state: present
+    password: "{{ bill_password | default(vault_bill_password) }}"
+  when: "'bill' in (infrastructure_users | default(['bill', 'hal']))"
+
+- name: Ensure .ssh directory exists for Bill
+  file:
+    path: /home/bill/.ssh
+    state: directory
+    owner: bill
+    group: bill
+    mode: '0700'
+  when: "'bill' in (infrastructure_users | default(['bill', 'hal']))"
+
+- name: Set authorized keys for Bill from vault
+  authorized_key:
+    user: bill
+    state: present
+    key: "{{ item }}"
+  loop: "{{ vault_bill_ssh_keys }}"
+  no_log: true
+  when: "'bill' in (infrastructure_users | default(['bill', 'hal']))"
+
+- name: Copy bashrc for Bill
+  copy:
+    src: "{{ role_path }}/files/users/bill/bashrc"
+    dest: "/home/bill/.bashrc"
+    owner: bill
+    group: bill
+    mode: '0644'
+  when: "'bill' in (infrastructure_users | default(['bill', 'hal']))"
+
+- name: Create hal user  
+  user:
+    name: hal    
+    uid: 1999
+    groups: "{{ sudo_group | default('sudo') }}"
+    append: yes
+    state: present    
+    shell: /bin/bash    
+  when: "'hal' in (infrastructure_users | default(['bill', 'hal']))"
+
+- name: Add sudoers file for hal
+  copy:
+    src: "{{ role_path }}/files/users/hal/sudoer_hal"
+    dest: /etc/sudoers.d/hal
+    owner: root
+    group: root
+    mode: '0440'
+  when: "'hal' in (infrastructure_users | default(['bill', 'hal']))"
+
+- name: Ensure app user exists as a system user
+  user:
+    name: "{{ app_user }}"
+    state: present
+    system: yes
+    create_home: no
+  when: app_user is defined 
+  
+- name: Add app user to specified groups
+  user:
+    name: "{{ app_user }}"
+    groups: "{{ app_user_groups }}"
+    append: yes
+  when: app_user is defined and app_user_groups is defined
