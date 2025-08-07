@@ -1,6 +1,31 @@
-# home.net
+# 🏠 Home.Net Infrastructure (Legacy)
 
 Ansible-based infrastructure automation for managing a home lab environment consisting of LXC containers, VMs, workstations, and network appliances.
+
+## ⚠️ **Migration Status**
+
+This repository contains **legacy common role functionality** and is maintained for backward compatibility during the transition to specialized repositories. 
+
+### **🏗️ Repository Ecosystem**
+
+This repository is part of a specialized homelab infrastructure ecosystem:
+
+- **[Common Repository](https://github.com/wknight7/common)** - Central configuration hub (SSH, users, vault)
+- **[LXC Repository](https://github.com/wknight7/lxc)** - Alpine Linux container management (recommended)
+- **[Workstations Repository](https://github.com/wknight7/workstations)** - Desktop automation (recommended)
+- **[Home.Net Repository](https://github.com/wknight7/home.net)** - This legacy repository
+
+### **📋 Migration Path**
+
+**For New Deployments:**
+- **Container Systems**: Use **[LXC Repository](https://github.com/wknight7/lxc)**
+- **Desktop Systems**: Use **[Workstations Repository](https://github.com/wknight7/workstations)**
+- **Shared Configuration**: Reference **[Common Repository](https://github.com/wknight7/common)**
+
+**For Existing Deployments:**
+- Continue using home.net repository (maintained for compatibility)
+- Plan migration to specialized repositories for improved maintainability
+- See `MIGRATION_SUMMARY.md` for detailed optimization documentation
 
 ## Infrastructure Overview
 
