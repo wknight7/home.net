@@ -33,6 +33,9 @@ nfs_mounts:
   - src: "192.168.86.109:/mnt/Data/media"
     dest: "/media"
     opts: "defaults,soft,timeo=300,retrans=2,_netdev,x-systemd.automount"
+  - src: "192.168.86.109:/mnt/ssd-files/plex_data"
+    dest: "/var/lib/plexmediaserver"
+    opts: "defaults,soft,timeo=300,retrans=2,_netdev,x-systemd.automount"
 
 # List needed mounts (generic)
 needed_mounts:
