@@ -109,6 +109,7 @@
 **✅ WORKING:** Vikunja v0.24.5 with full authentication and settings functionality  
 **✅ SECURE:** All default secrets replaced with strong generated values  
 **✅ STABLE:** Container and Docker configuration proven reliable  
+**❌ BROKEN:** Saved Filters feature (JSON parsing errors - `pq: invalid input syntax for type json`)
 
 **📝 MONITORING:** Watch GitHub releases for stable v1.0.x without authentication issues  
 
