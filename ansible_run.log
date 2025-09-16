@@ -119960,3 +119960,8 @@ password file /home/bill/.vault_pass.txt: [Errno 13] Permission denied:
 '/home/bill/.vault_pass.txt'
 
 2025-09-15 08:00:07,400 p=2772 u=hal n=ansible ERROR| ERROR! Could not read vault password file /home/bill/.vault_pass.txt: [Errno 13] Permission denied: '/home/bill/.vault_pass.txt'
+2025-09-15 08:40:04,260 p=7912 u=hal n=ansible WARNING| [WARNING]: Error in vault password file loading (default): Could not read vault
+password file /home/bill/.vault_pass.txt: [Errno 13] Permission denied:
+'/home/bill/.vault_pass.txt'
+
+2025-09-15 08:40:04,260 p=7912 u=hal n=ansible ERROR| ERROR! Could not read vault password file /home/bill/.vault_pass.txt: [Errno 13] Permission denied: '/home/bill/.vault_pass.txt'

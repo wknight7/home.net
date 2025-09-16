@@ -1,21 +1,21 @@
 [lxc]
-luggage-tags ansible_host=192.168.86.27 container_id=118
-prowlarr ansible_host=192.168.86.61 container_id=117
-wg ansible_host=192.168.86.57 container_id=120
-photoprism ansible_host=192.168.86.95 container_id=103
-bazarr ansible_host=192.168.86.76 container_id=111
-trilium ansible_host=192.168.86.78 container_id=104
-sonarr ansible_host=192.168.86.66 container_id=107
-paperless ansible_host=192.168.86.96 container_id=112
-books ansible_host=192.168.86.70 container_id=109
-overseer ansible_host=192.168.86.49 container_id=105
-radarr ansible_host=192.168.86.79 container_id=106
-ntfy ansible_host=192.168.86.97 container_id=113
-maintainerr ansible_host=192.168.86.65 container_id=108
-sab ansible_host=192.168.86.86 container_id=116
-tautulli ansible_host=192.168.86.72 container_id=110
-cloudflared ansible_host=192.168.86.43 container_id=102
-calibre-web ansible_host=192.168.86.103 container_id=115
+luggage-tags ansible_host=192.168.86.57 container_id=102
+prowlarr ansible_host=192.168.86.122 container_id=118
+wg ansible_host=192.168.86.46 container_id=120
+photoprism ansible_host=192.168.86.121 container_id=113
+bazarr ansible_host=192.168.86.89 container_id=109
+trilium ansible_host=192.168.86.117 container_id=117
+sonarr ansible_host=192.168.86.76 container_id=106
+paperless ansible_host=192.168.86.101 container_id=110
+books ansible_host=192.168.86.88 container_id=108
+overseer ansible_host=192.168.86.65 container_id=104
+radarr ansible_host=192.168.86.72 container_id=105
+ntfy ansible_host=192.168.86.105 container_id=114
+maintainerr ansible_host=192.168.86.77 container_id=107
+sab ansible_host=192.168.86.113 container_id=112
+tautulli ansible_host=192.168.86.50 container_id=101
+cloudflared ansible_host=192.168.86.44 container_id=103
+calibre-web ansible_host=192.168.86.107 container_id=111
 
 [workstation]
 desktop ansible_host=192.168.86.40
@@ -43,25 +43,25 @@ windows11 ansible_host=192.168.86.121 ansible_user=wknig ansible_connection=winr
 [updates]
 localhost ansible_connection=local
 plex ansible_host=192.168.86.110
-luggage-tags ansible_host=192.168.86.27 container_id=118
-prowlarr ansible_host=192.168.86.61 container_id=117
-wg ansible_host=192.168.86.57 container_id=120
-photoprism ansible_host=192.168.86.95 container_id=103
+luggage-tags ansible_host=192.168.86.57 container_id=102
+prowlarr ansible_host=192.168.86.122 container_id=118
+wg ansible_host=192.168.86.46 container_id=120
+photoprism ansible_host=192.168.86.121 container_id=113
 desktop ansible_host=192.168.86.40
 samsung ansible_host=192.168.86.94
 dell ansible_host=192.168.86.55
-bazarr ansible_host=192.168.86.76 container_id=111
-trilium ansible_host=192.168.86.78 container_id=104
-sonarr ansible_host=192.168.86.66 container_id=107
-paperless ansible_host=192.168.86.96 container_id=112
-books ansible_host=192.168.86.70 container_id=109
-overseer ansible_host=192.168.86.49 container_id=105
-radarr ansible_host=192.168.86.79 container_id=106
-ntfy ansible_host=192.168.86.97 container_id=113
-maintainerr ansible_host=192.168.86.65 container_id=108
-sab ansible_host=192.168.86.86 container_id=116
-cloudflared ansible_host=192.168.86.43 container_id=102
-calibre-web ansible_host=192.168.86.103 container_id=115
+bazarr ansible_host=192.168.86.89 container_id=109
+trilium ansible_host=192.168.86.117 container_id=117
+sonarr ansible_host=192.168.86.76 container_id=106
+paperless ansible_host=192.168.86.101 container_id=110
+books ansible_host=192.168.86.88 container_id=108
+overseer ansible_host=192.168.86.65 container_id=104
+radarr ansible_host=192.168.86.72 container_id=105
+ntfy ansible_host=192.168.86.105 container_id=114
+maintainerr ansible_host=192.168.86.77 container_id=107
+sab ansible_host=192.168.86.113 container_id=112
+cloudflared ansible_host=192.168.86.44 container_id=103
+calibre-web ansible_host=192.168.86.107 container_id=111
 
 [ssh:children]
 lxc
