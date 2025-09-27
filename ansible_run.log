@@ -119965,3 +119965,20 @@ password file /home/bill/.vault_pass.txt: [Errno 13] Permission denied:
 '/home/bill/.vault_pass.txt'
 
 2025-09-15 08:40:04,260 p=7912 u=hal n=ansible ERROR| ERROR! Could not read vault password file /home/bill/.vault_pass.txt: [Errno 13] Permission denied: '/home/bill/.vault_pass.txt'
+2025-09-25 07:48:06,555 p=914755 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-09-25 07:48:08,174 p=914755 u=bill n=ansible INFO| pve | CHANGED | rc=0 >>
+122        running                 email-server        
+
+2025-09-25 07:48:22,050 p=914813 u=bill n=ansible WARNING| [WARNING]: Found both group and host with same name: truenas
+
+2025-09-25 07:48:22,890 p=914813 u=bill n=ansible INFO| pve | CHANGED | rc=0 >>
+2: eth0@if75: <BROADCAST,MULTICAST,UP,LOWER_UP,M-DOWN> mtu 1500 qdisc noqueue state UP qlen 1000
+    link/ether bc:24:11:34:ed:7b brd ff:ff:ff:ff:ff:ff
+    inet 192.168.86.96/24 brd 192.168.86.255 scope global eth0
+       valid_lft forever preferred_lft forever
+    inet6 fd26:7d45:88e6:824c:be24:11ff:fe34:ed7b/64 scope global dynamic flags 100 
+       valid_lft 1800sec preferred_lft 1800sec
+    inet6 fe80::be24:11ff:fe34:ed7b/64 scope link 
+       valid_lft forever preferred_lft forever
+
