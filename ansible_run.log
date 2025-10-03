@@ -119982,3 +119982,18 @@ password file /home/bill/.vault_pass.txt: [Errno 13] Permission denied:
     inet6 fe80::be24:11ff:fe34:ed7b/64 scope link 
        valid_lft forever preferred_lft forever
 
+2025-09-27 13:25:03,888 p=1151470 u=hal n=ansible WARNING| [WARNING]: Error in vault password file loading (default): Could not read vault
+password file /home/bill/.vault_pass.txt: [Errno 13] Permission denied:
+'/home/bill/.vault_pass.txt'
+
+2025-09-27 13:25:03,889 p=1151470 u=hal n=ansible ERROR| ERROR! Could not read vault password file /home/bill/.vault_pass.txt: [Errno 13] Permission denied: '/home/bill/.vault_pass.txt'
+2025-10-02 09:15:05,575 p=2454 u=hal n=ansible WARNING| [WARNING]: Error in vault password file loading (default): Could not read vault
+password file /home/bill/.vault_pass.txt: [Errno 13] Permission denied:
+'/home/bill/.vault_pass.txt'
+
+2025-10-02 09:15:05,575 p=2454 u=hal n=ansible ERROR| ERROR! Could not read vault password file /home/bill/.vault_pass.txt: [Errno 13] Permission denied: '/home/bill/.vault_pass.txt'
+2025-10-02 10:05:07,020 p=2437 u=hal n=ansible WARNING| [WARNING]: Error in vault password file loading (default): Could not read vault
+password file /home/bill/.vault_pass.txt: [Errno 13] Permission denied:
+'/home/bill/.vault_pass.txt'
+
+2025-10-02 10:05:07,021 p=2437 u=hal n=ansible ERROR| ERROR! Could not read vault password file /home/bill/.vault_pass.txt: [Errno 13] Permission denied: '/home/bill/.vault_pass.txt'
